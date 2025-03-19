@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Learning Space</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header with logo -->
+        <header>
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Infinity Learning Space Logo" id="brand-logo">
+				</div>
+
+            <div class="connection-status">
+				<div class="status disconnected" id="statusDisplay">
+					Status: Disconnected
+				</div>			
+                <button id="connect-btn" class="btn connect-btn">Connect</button>
+                <button id="disconnect-btn" class="btn disconnect-btn">Disconnect</button>
+            </div>
+        </header>
+
+        <!-- Home Screen - Robot Selection -->
+        <div id="home-screen" class="screen active">
+            <h2>Select Your Robot</h2>
+            <div class="robot-selection">
+                <div class="robot-card" data-robot="car">
+                    <img src="images/car.png" alt="Mecanum Car">
+                    <h3>Smart Car</h3>
+                </div>
+				<div class="robot-card" data-robot="pod">
+                    <img src="images/pod.png" alt="Pod Robot">
+                    <h3>Pod Controls</h3>
+                </div>
+                <div class="robot-card" data-robot="generic">
+                    <img src="images/generic.png" alt="Generic Robot">
+                    <h3>Generic Controls</h3>
+                </div>
+                <!-- More robots can be added here in the future -->
+            </div>
+        </div>
+
+        <!-- Car Control Screen -->
+        <div id="car-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn back-btn">Back to Home</button>
+                <h2>Smart Car</h2>
+                <div class="robot-image">
+                    <img src="images/car.png" alt="Mecanum Car">
+                </div>
+            </div>
+
+            <div class="control-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="remote">Remote Control</button>
+                    <button class="tab-btn" data-tab="voice">Voice Control</button>
+					<button class="tab-btn" data-tab="tilt">Tilt Mode</button>
+                    <button class="tab-btn" data-tab="auto">Auto</button>
+                </div>
+
+                <!-- Remote Control Tab -->
+                <div class="tab-content active" id="remote-tab">
+                    <div class="control-pad">
+                        <div class="direction-controls">
+                            <button class="control-btn diagonal" data-command="frontleft">↖</button>
+                            <button class="control-btn" data-command="forward">↑</button>
+                            <button class="control-btn diagonal" data-command="frontright">↗</button>
+                            <button class="control-btn" data-command="left">←</button>
+                            <button class="control-btn" data-command="stop">■</button>
+                            <button class="control-btn" data-command="right">→</button>
+                            <button class="control-btn diagonal" data-command="backleft">↙</button>
+                            <button class="control-btn" data-command="backward">↓</button>
+                            <button class="control-btn diagonal" data-command="backright">↘</button>
+                        </div>
+                        <div class="special-controls">
+                            <button class="control-btn" data-command="turnleft">↺</button>
+                            <button class="control-btn" data-command="turnright">↻</button>
+                            <button class="control-btn" data-command="curvedtrajectory">⌒</button>
+                            <button class="control-btn" data-command="lateralarc">⇄</button>
+                        </div>
+                    </div>
+                    <div class="speed-controls">
+                        <h4>Speed</h4>
+                        <div class="speed-buttons">
+                            <button class="speed-btn" data-speed="low">Low</button>
+                            <button class="speed-btn active" data-speed="medium">Medium</button>
+                            <button class="speed-btn" data-speed="high">High</button>
+                        </div>
+                    </div>					
+                </div>
+
+                <!-- Voice Control Tab -->
+                <div class="tab-content" id="voice-tab">
+                    <div class="voice-control">
+                        <button id="voice-btn" class="btn large-btn">
+                            <span class="icon">🎤</span>
+                            <span>Click to Speak</span>
+                        </button>
+                        <div class="voice-status">
+                            <p id="voice-status-text">Ready for voice command...</p>
+                            <p id="voice-command-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tilt Mode Tab -->
+                <div class="tab-content" id="tilt-tab">
+                    <div class="tilt-control">
+                        <div class="toggle-container">
+                            <label class="toggle">
+                                <input type="checkbox" id="tilt-toggle">
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label">Enable Tilt Control</span>
+                            </label>
+                        </div>
+                        <div class="tilt-indicator">
+                            <div class="tilt-grid">
+                                <div class="tilt-cell" data-direction="frontleft">↖</div>
+                                <div class="tilt-cell" data-direction="forward">↑</div>
+                                <div class="tilt-cell" data-direction="frontright">↗</div>
+                                <div class="tilt-cell" data-direction="left">←</div>
+                                <div class="tilt-cell" data-direction="stop">■</div>
+                                <div class="tilt-cell" data-direction="right">→</div>
+                                <div class="tilt-cell" data-direction="backleft">↙</div>
+                                <div class="tilt-cell" data-direction="backward">↓</div>
+                                <div class="tilt-cell" data-direction="backright">↘</div>
+                            </div>
+                        </div>
+                        <div class="tilt-instructions">
+                            <p>Tilt your device to control the pod. The highlighted direction shows the current movement.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auto Mode Tab -->
+                <div class="tab-content" id="auto-tab">
+                    <div class="auto-modes">
+                        <div class="auto-buttons">
+                            <button class="auto-btn" data-mode="obstacle">Obstacle Avoidance</button>
+                            <button class="auto-btn" data-mode="follow">Follow Me</button>
+                            <button class="auto-btn" data-mode="line">Line Follower</button>
+                            <button class="auto-btn" data-mode="light">Light Seeker</button>
+                            <button class="auto-btn" data-mode="edge">Edge Detector</button>
+                        </div>
+                        <button id="stop-auto" class="btn stop-btn">Stop Auto Mode</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Console Section -->
+            <div class="console-section">
+                <h4>Console</h4>
+                <div id="car-console" class="console"></div>
+            </div>
+        </div>
+
+    <!-- Pod Control Screen -->
+        <div id="pod-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn back-btn">Back to Home</button>
+                <h2>Smart Pod</h2>
+                <div class="robot-image">
+                    <img src="images/pod.png" alt="Mecanum Pod">
+                </div>
+            </div>
+
+            <div class="control-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="remote">Remote Control</button>
+                    <button class="tab-btn" data-tab="voice">Voice Control</button>
+                    <button class="tab-btn" data-tab="auto">Auto Modes</button>
+                </div>
+
+                <!-- Remote Control Tab -->
+                <div class="tab-content active" id="remote-tab">
+                    <div class="control-pad">
+                        <div class="direction-controls">
+                            <button class="control-btn diagonal" data-command="frontleft">↖</button>
+                            <button class="control-btn" data-command="forward">↑</button>
+                            <button class="control-btn diagonal" data-command="frontright">↗</button>
+                            <button class="control-btn" data-command="left">←</button>
+                            <button class="control-btn" data-command="stop">■</button>
+                            <button class="control-btn" data-command="right">→</button>
+                            <button class="control-btn diagonal" data-command="backleft">↙</button>
+                            <button class="control-btn" data-command="backward">↓</button>
+                            <button class="control-btn diagonal" data-command="backright">↘</button>
+                        </div>
+                        <div class="special-controls">
+                            <button class="control-btn" data-command="turnleft">↺</button>
+                            <button class="control-btn" data-command="turnright">↻</button>
+                            <button class="control-btn" data-command="curvedtrajectory">⌒</button>
+                            <button class="control-btn" data-command="lateralarc">⇄</button>
+                        </div>
+                    </div>
+                    <div class="speed-controls">
+                        <h4>Speed</h4>
+                        <div class="speed-buttons">
+                            <button class="speed-btn" data-speed="low">Low</button>
+                            <button class="speed-btn active" data-speed="medium">Medium</button>
+                            <button class="speed-btn" data-speed="high">High</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voice Control Tab -->
+                <div class="tab-content" id="voice-tab">
+                    <div class="voice-control">
+                        <button id="voice-btn" class="btn large-btn">
+                            <span class="icon">🎤</span>
+                            <span>Click to Speak</span>
+                        </button>
+                        <div class="voice-status">
+                            <p id="voice-status-text">Ready for voice command...</p>
+                            <p id="voice-command-text"></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Auto Mode Tab -->
+                <div class="tab-content" id="auto-tab">
+                    <div class="auto-modes">
+                        <div class="auto-buttons">
+                            <button class="auto-btn" data-mode="SitHome">SitHome</button>
+                            <button class="auto-btn" data-mode="Stand1">Stand1</button>
+							<button class="auto-btn" data-mode="Stand2">Stand2</button>
+							<button class="auto-btn" data-mode="Stand3">Stand3</button>
+                            <button class="auto-btn" data-mode="RotateNeck">Rotate Neck</button>
+                            <button class="auto-btn" data-mode="Twist">Twist</button>
+                            <button class="auto-btn" data-mode="Down">Down Action</button>
+							<button class="auto-btn" data-mode="Wink">Wink</button>							
+                        </div>
+                        <button id="stop-auto" class="btn stop-btn">Stop Action</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Console Section -->
+            <div class="console-section">
+                <h4>Console</h4>
+                <div id="pod-console" class="console"></div>
+            </div>
+        </div>
+
+        <!-- Generic Control Screen -->
+        <div id="generic-screen" class="screen">
+            <div class="screen-header">
+                <button class="btn back-btn">Back to Home</button>
+                <h2>Generic Controls</h2>
+                <div class="robot-image">
+                    <img src="images/generic.png" alt="Generic Robot">
+                </div>
+            </div>
+
+            <div class="generic-controls">
+                <div class="custom-command">
+                    <h4>Custom Command</h4>
+                    <div class="command-input">
+                        <input type="text" id="custom-command" placeholder="Enter your command (e.g., hexapod:walk:10-20)">
+                        <button id="send-command" class="btn">Send</button>
+                    </div>
+                </div>
+                
+                <!-- Console Section -->
+                <div class="console-section">
+                    <h4>Console</h4>
+                    <div id="generic-console" class="console"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bluetooth Device Selection Modal -->
+        <div id="ble-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Select Bluetooth Device</h3>
+                <div class="device-list-container">
+                    <button id="scan-btn" class="btn">Scan for Devices</button>
+                    <div id="device-list" class="device-list">
+                        <p>No devices found. Click "Scan" to search for available devices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/bluetooth.js"></script>
+    <script src="js/commands.js"></script>
+    <script src="js/car-controller.js"></script>
+	<script src="js/pod-controller.js"></script>
+    <script src="js/generic-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
