@@ -6,58 +6,58 @@ const COMMANDS = {
     'smartcar': {
         // Manual control commands
         movement: {
-            forward: 'car:forward',
-            backward: 'car:backward',
-            left: 'car:left',
-            right: 'car:right',
-            frontleft: 'car:frontleft',
-            frontright: 'car:frontright',
-            backleft: 'car:backleft',
-            backright: 'car:backright',
-            turnleft: 'car:turnleft',
-            turnright: 'car:turnright',
-            curvedtrajectory: 'car:curvedtrajectory',
-            lateralarc: 'car:lateralarc',
-            stop: 'car:stop'
+            forward: 'c:forw',
+            backward: 'c:back',
+            left: 'c:left',
+            right: 'c:right',
+            frontleft: 'c:frontl',
+            frontright: 'c:frontr',
+            backleft: 'c:backl',
+            backright: 'c:backr',
+            turnleft: 'c:turnl',
+            turnright: 'c:turnr',
+            curvedtrajectory: 'c:curvedt',
+            lateralarc: 'c:laterala',
+            stop: 'c:stop'
         },
         
         // Speed control commands
         speed: {
-            low: 'car:setspeed:30',
-            medium: 'car:setspeed:60',
-            high: 'car:setspeed:90'
+            low: 'c:sets:70',
+            medium: 'c:sets:80',
+            high: 'c:sets:95'
         },
         
         // Auto mode commands
         autoModes: {
-            obstacle: 'car:automode:obstacle',
-            follow: 'car:automode:follow',
-            line: 'car:automode:line',
-            light: 'car:automode:light',
-            edge: 'car:automode:edge',
-            stop: 'car:automode:stop'
+            obstacle: 'c:auto:obstacle',
+            follow: 'c:auto:follow',
+            line: 'c:auto:line',
+            light: 'c:auto:light',
+            edge: 'c:auto:edge',
+            stop: 'c:auto:stop'
         },
         
         // Voice command mappings
         voiceCommands: {
-            'forward': 'car:forward',
-            'backward': 'car:backward',
-            'backwards': 'car:backward',
-            'left': 'car:left',
-            'right': 'car:right',
-            'front left': 'car:frontleft',
-            'front right': 'car:frontright',
-            'back left': 'car:backleft',
-            'back right': 'car:backright',
-            'turn left': 'car:turnleft',
-            'turn right': 'car:turnright',
-            'curve': 'car:curvedtrajectory',
-            'lateral': 'car:lateralarc',
-            'stop': 'car:stop',
-            'halt': 'car:stop',
-            'slow': 'car:setspeed:30',
-            'medium': 'car:setspeed:60',
-            'fast': 'car:setspeed:90'
+            'forward': 'c:forward',
+            'backward': 'c:backward',
+            'backwards': 'c:backward',
+            'left': 'c:left',
+            'right': 'c:right',
+            'front left': 'c:frontleft',
+            'front right': 'c:frontright',
+            'back left': 'c:backleft',
+            'back right': 'c:backright',
+            'turn left': 'c:turnleft',
+            'turn right': 'c:turnright',
+            'curve': 'c:curvedtrajectory',
+            'lateral': 'c:lateralarc',
+            'stop': 'c:stop',
+            'halt': 'c:stop',
+            'slow': 'c:setspeed:30',
+            'medium': 'c:setspeed:60',
+            'fast': 'c:setspeed:90'
         }
     },
     
@@ -65,61 +65,69 @@ const COMMANDS = {
     'pod': {
         // Basic movement examples
         movement: {
-            forward: 'pod:forward',
-            backward: 'pod:backward',
-            left: 'pod:left',
-            right: 'pod:right',
-            frontleft: 'pod:frontleft',
-            frontright: 'pod:frontright',
-            backleft: 'pod:backleft',
-            backright: 'pod:backright',
-            turnleft: 'pod:turnleft',
-            turnright: 'pod:turnright',
-            curvedtrajectory: 'pod:curvedtrajectory',
-            lateralarc: 'pod:lateralarc',
-            stop: 'pod:stop'
+            forward: 'p:forw',
+            backward: 'p:back',
+            left: 'p:left',
+            right: 'p:right',
+            frontleft: 'p:frontl',
+            frontright: 'p:frontr',
+            backleft: 'p:backl',
+            backright: 'p:backr',
+            turnleft: 'p:turnl',
+            turnright: 'p:turnr',
+            curvedtrajectory: 'p:curvedt',
+            lateralarc: 'p:laterala',
+            stop: 'p:stop'
         },
 		        // Speed control commands
         speed: {
-            low: 'pod:setspeed:30',
-            medium: 'pod:setspeed:60',
-            high: 'pod:setspeed:90'
+            low: 'p:sets:70',
+            medium: 'p:sets:80',
+            high: 'p:sets:95'
         },
             // Auto mode commands
         autoModes: {
-            SitHome: 'pod:automode:SitHome',
-            Stand1: 'pod:automode:Stand1',
-            Stand2: 'pod:automode:Stand2',
-            Stand3: 'pod:automode:Stand3',
-            RotateNeck: 'pod:automode:RotateNeck',
-            Twist: 'pod:automode:Twist',
-            Down: 'pod:automode:Down',
-            Wink: 'pod:automode:Wink',
-			stop: 'pod:automode:Stop'
+            SitHome: 'p:automode:SitHome',
+            Stand1: 'p:automode:Stand1',
+            Stand2: 'p:automode:Stand2',
+            Stand3: 'p:automode:Stand3',
+            RotateNeck: 'p:automode:RotateNeck',
+            Twist: 'p:automode:Twist',
+            Down: 'p:automode:Down',
+            Wink: 'p:automode:Wink',
+			stop: 'p:automode:Stop'
         },
 
         // Voice command mappings
         voiceCommands: {
-            'forward': 'pod:forward',
-            'backward': 'pod:backward',
-            'backwards': 'pod:backward',
-            'left': 'pod:left',
-            'right': 'pod:right',
-            'front left': 'pod:frontleft',
-            'front right': 'pod:frontright',
-            'back left': 'pod:backleft',
-            'back right': 'pod:backright',
-            'turn left': 'pod:turnleft',
-            'turn right': 'pod:turnright',
-            'curve': 'pod:curvedtrajectory',
-            'lateral': 'pod:lateralarc',
-            'stop': 'pod:stop',
-            'halt': 'pod:stop',
-            'slow': 'pod:setspeed:30',
-            'medium': 'pod:setspeed:60',
-            'fast': 'pod:setspeed:90'
+            'forward': 'p:forward',
+            'backward': 'p:backward',
+            'backwards': 'p:backward',
+            'left': 'p:left',
+            'right': 'p:right',
+            'front left': 'p:frontleft',
+            'front right': 'p:frontright',
+            'back left': 'p:backleft',
+            'back right': 'p:backright',
+            'turn left': 'p:turnleft',
+            'turn right': 'p:turnright',
+            'curve': 'p:curvedtrajectory',
+            'lateral': 'p:lateralarc',
+            'stop': 'p:stop',
+            'halt': 'p:stop',
+            'slow': 'p:setspeed:30',
+            'medium': 'p:setspeed:60',
+            'fast': 'p:setspeed:90'
         }    
-    }
+    },
+	 // Generic commands (for future expansion)
+    'generic': {
+        // Basic movement examples
+        smartlock: {
+			'lock': 'g:lock',
+			'unlock': 'g:unlock'
+		}
+	}
 
 };
 

@@ -3,15 +3,6 @@ class GenericController {
     constructor() {
         this.consoleElement = document.getElementById('generic-console');
         this.setupEventListeners();
-        this.initializePasswordField();
-    }
-
-    // Initialize the password field to be of type "password"
-    initializePasswordField() {
-        const passwordInput = document.getElementById('smart-password');
-        if (passwordInput) {
-            passwordInput.type = "password"; // This makes the text display as dots/asterisks
-        }
     }
 
     setupEventListeners() {
@@ -82,8 +73,7 @@ class GenericController {
 
         const password = passwordInput.value.trim();
         if (password) {
-			const commandCode = getCommand('generic', 'smartlock', 'lock')
-            const command = `${commandCode}:${password}`;			
+            const command = `lock:${password}`;
             bluetoothHandler.sendData(command);
             this.logToConsole(`Sent lock command with password`);
             passwordInput.value = ''; // Clear password field for security
@@ -99,8 +89,7 @@ class GenericController {
 
         const password = passwordInput.value.trim();
         if (password) {
-			const commandCode = getCommand('generic', 'smartlock', 'unlock')
-            const command = `${commandCode}:${password}`;	
+            const command = `unlock:${password}`;
             bluetoothHandler.sendData(command);
             this.logToConsole(`Sent unlock command with password`);
             passwordInput.value = ''; // Clear password field for security

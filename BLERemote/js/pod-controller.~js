@@ -4,7 +4,7 @@ class PodController {
         this.currentSpeed = 'medium'; // Default speed
         this.tiltEnabled = false;
         this.activeAutoMode = null;
-        this.consoleElement = document.getElementById('pod-console');
+        this.consoleElement = document.getElementById('car-console');
         this.deviceOrientation = { beta: 0, gamma: 0 }; // For tilt control
         this.lastTiltDirection = 'stop';
         this.setupEventListeners();
@@ -22,7 +22,7 @@ class PodController {
         });
 
         // Set up speed control buttons
-        const speedButtons = document.querySelectorAll('.speed-btn');
+        const speedButtons = document.querySelectorAll('#pod-screen .speed-btn');
         speedButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const speed = button.getAttribute('data-speed');
@@ -35,7 +35,7 @@ class PodController {
         });
 
         // Set up voice control
-        const voiceButton = document.getElementById('voice-btn');
+        const voiceButton = document.querySelector('#pod-screen #voice-btn');
         if (voiceButton) {
             voiceButton.addEventListener('click', () => {
                 this.startVoiceRecognition();
@@ -43,7 +43,7 @@ class PodController {
         }
 
         // Set up tilt control toggle
-        const tiltToggle = document.getElementById('tilt-toggle');
+        const tiltToggle = document.querySelector('#pod-screen #tilt-toggle');
         if (tiltToggle) {
             tiltToggle.addEventListener('change', () => {
                 this.toggleTiltControl(tiltToggle.checked);
@@ -52,6 +52,7 @@ class PodController {
 
         // Set up auto mode buttons
         //const autoButtons = document.querySelectorAll('.auto-btn');
+
 		const autoButtons = document.querySelectorAll('#pod-screen .auto-btn');
         autoButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -65,7 +66,7 @@ class PodController {
         });
 
         // Set up stop auto mode button
-        const stopAutoButton = document.querySelector('#pod-screen #stop-auto');
+        const stopAutoButton = document.querySelector('#pod-screen #stop-auto')
         if (stopAutoButton) {
             stopAutoButton.addEventListener('click', () => {
                 this.stopAutoMode();
@@ -76,7 +77,7 @@ class PodController {
         }
 
         // Set up tab switching
-        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabButtons = document.querySelectorAll('#pod-screen .tab-btn');
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const tabId = button.getAttribute('data-tab');
@@ -88,7 +89,7 @@ class PodController {
     // Switch between tabs
     switchTab(tabId) {
         // Update tab buttons
-        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabButtons = document.querySelectorAll('#pod-screen .control-tabs .tab-buttons .tab-btn');
         tabButtons.forEach(btn => {
             if (btn.getAttribute('data-tab') === tabId) {
                 btn.classList.add('active');
@@ -116,7 +117,7 @@ class PodController {
 
     // Send movement command to the pod
     sendMovementCommand(direction) {
-        const command = getCommand('smartpod', 'movement', direction);
+        const command = getCommand('pod', 'movement', direction);
         if (command) {
             bluetoothHandler.sendData(command);
             this.logToConsole(`Sent: ${command}`);
@@ -126,7 +127,7 @@ class PodController {
     // Set pod speed
     setSpeed(speed) {
         this.currentSpeed = speed;
-        const command = getCommand('smartpod', 'speed', speed);
+        const command = getCommand('pod', 'speed', speed);
         if (command) {
             bluetoothHandler.sendData(command);
             this.logToConsole(`Set speed to ${speed}: ${command}`);
@@ -136,7 +137,7 @@ class PodController {
     // Activate an auto mode
     activateAutoMode(mode) {
         this.activeAutoMode = mode;
-        const command = getCommand('smartpod', 'autoModes', mode);
+        const command = getCommand('pod', 'autoModes', mode);
         if (command) {
             bluetoothHandler.sendData(command);
             this.logToConsole(`Activated auto mode: ${mode}`);
@@ -146,7 +147,7 @@ class PodController {
     // Stop the current auto mode
     stopAutoMode() {
         if (this.activeAutoMode) {
-            const command = getCommand('smartpod', 'autoModes', 'stop');
+            const command = getCommand('pod', 'autoModes', 'stop');
             if (command) {
                 bluetoothHandler.sendData(command);
                 this.logToConsole('Stopped auto mode');
@@ -274,7 +275,7 @@ class PodController {
             document.getElementById('voice-command-text').textContent = `"${transcript}"`;
             
             // Parse voice command
-            const command = parseVoiceCommand('smartpod', transcript);
+            const command = parseVoiceCommand('pod', transcript);
             if (command) {
                 bluetoothHandler.sendData(command);
                 this.logToConsole(`Voice command: "${transcript}" → ${command}`);
@@ -305,16 +306,24 @@ class PodController {
         }, 200);
     }
 
-    // Log messages to the console
-    logToConsole(message) {
-        if (this.consoleElement) {
-            const timestamp = new Date().toLocaleTimeString();
-            const entry = document.createElement('div');
-            entry.textContent = `[${timestamp}] ${message}`;
-            this.consoleElement.appendChild(entry);
-            this.consoleElement.scrollTop = this.consoleElement.scrollHeight;
-        }
-    }
+	
+	// Log messages to console
+	logToConsole(message) {
+		const consoles = [
+			document.getElementById('pod-console')
+		];
+		
+		const timestamp = new Date().toLocaleTimeString();		
+		consoles.forEach(console => {
+			if (console) {
+				const entry = document.createElement('div');
+				entry.textContent = `[${timestamp}] ${message}`;
+				console.appendChild(entry);
+				console.scrollTop = console.scrollHeight;
+			}
+		});
+	}
+	
 }
 
 // Create pod controller when page loads

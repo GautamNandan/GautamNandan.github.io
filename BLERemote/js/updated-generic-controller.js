@@ -82,8 +82,7 @@ class GenericController {
 
         const password = passwordInput.value.trim();
         if (password) {
-			const commandCode = getCommand('generic', 'smartlock', 'lock')
-            const command = `${commandCode}:${password}`;			
+            const command = `lock:${password}`;
             bluetoothHandler.sendData(command);
             this.logToConsole(`Sent lock command with password`);
             passwordInput.value = ''; // Clear password field for security
@@ -99,8 +98,7 @@ class GenericController {
 
         const password = passwordInput.value.trim();
         if (password) {
-			const commandCode = getCommand('generic', 'smartlock', 'unlock')
-            const command = `${commandCode}:${password}`;	
+            const command = `unlock:${password}`;
             bluetoothHandler.sendData(command);
             this.logToConsole(`Sent unlock command with password`);
             passwordInput.value = ''; // Clear password field for security
@@ -108,6 +106,7 @@ class GenericController {
             this.logToConsole('Please enter a password');
         }
     }
+
     // Log messages to the console
     logToConsole(message) {
         const consoles = [

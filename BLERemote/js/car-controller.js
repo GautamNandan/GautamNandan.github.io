@@ -10,16 +10,41 @@ class CarController {
         this.setupEventListeners();
     }
 
-    setupEventListeners() {
-        // Set up remote control buttons
-        const controlButtons = document.querySelectorAll('#car-screen .control-btn');
-        controlButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const command = button.getAttribute('data-command');
-                this.sendMovementCommand(command);
-                this.addVisualFeedback(button);
-            });
+ setupEventListeners() {
+    // Set up remote control buttons with both press and release handlers
+    const controlButtons = document.querySelectorAll('#car-screen .control-btn');
+    controlButtons.forEach(button => {
+        // Handle button press
+        button.addEventListener('mousedown', () => {
+            const command = button.getAttribute('data-command');
+            this.sendMovementCommand(command);
+            this.addVisualFeedback(button);
         });
+        
+        // Handle button release with delay
+        button.addEventListener('mouseup', () => {
+            // Add delay before sending release command
+            setTimeout(() => {
+                this.handleButtonRelease(button);
+            }, 100); // 100ms delay, adjust as needed
+        });
+        
+        // Handle touch events for mobile
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent default behavior
+            const command = button.getAttribute('data-command');
+            this.sendMovementCommand(command);
+            this.addVisualFeedback(button);
+        });
+        
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault(); // Prevent default behavior
+            // Add delay before sending release command
+            setTimeout(() => {
+                this.handleButtonRelease(button);
+            }, 100); // 100ms delay, adjust as needed
+        });
+    });
 
         // Set up speed control buttons
         const speedButtons = document.querySelectorAll('#car-screen .speed-btn');
@@ -185,7 +210,24 @@ class CarController {
             this.stopTiltControl();
         }
     }
+handleButtonRelease(button) {
+    // You can customize this to send different commands on release
+    const command = button.getAttribute('data-command');
+    
+    // Example: Send stop command on release for movement buttons
+    if (command !== 'stop') {
+        this.sendStopCommandOnRelease();
+		this.logToConsole(`Sent: ${command}`);
+    }
+}
 
+// Add this method to send your custom stop command
+sendStopCommandOnRelease() {
+    const stopCommand = getCommand('smartcar', 'movement', 'stop');
+    if (stopCommand) {
+        bluetoothHandler.sendData(stopCommand);
+    }
+}
     // Start tilt control
     startTiltControl() {
         window.addEventListener('deviceorientation', this.handleTilt.bind(this));
