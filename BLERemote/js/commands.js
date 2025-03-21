@@ -16,8 +16,10 @@ const COMMANDS = {
             backright: 'c:backr',
             turnleft: 'c:turnl',
             turnright: 'c:turnr',
-            curvedtrajectory: 'c:curvedt',
-            lateralarc: 'c:laterala',
+            curvedtrajectoryRight: 'c:curvedtr',
+            lateralarcRight: 'c:lateralr',
+            curvedtrajectoryLeft: 'c:curvedtl',
+            lateralarcLeft: 'c:laterall',			
             stop: 'c:stop'
         },
         
@@ -40,24 +42,21 @@ const COMMANDS = {
         
         // Voice command mappings
         voiceCommands: {
-            'forward': 'c:forward',
-            'backward': 'c:backward',
-            'backwards': 'c:backward',
-            'left': 'c:left',
-            'right': 'c:right',
-            'front left': 'c:frontleft',
-            'front right': 'c:frontright',
-            'back left': 'c:backleft',
-            'back right': 'c:backright',
-            'turn left': 'c:turnleft',
-            'turn right': 'c:turnright',
-            'curve': 'c:curvedtrajectory',
-            'lateral': 'c:lateralarc',
-            'stop': 'c:stop',
-            'halt': 'c:stop',
-            'slow': 'c:setspeed:30',
-            'medium': 'c:setspeed:60',
-            'fast': 'c:setspeed:90'
+            forward: 'c:forw',
+            backward: 'c:back',
+            left: 'c:left',
+            right: 'c:right',
+            frontleft: 'c:frontl',
+            frontright: 'c:frontr',
+            backleft: 'c:backl',
+            backright: 'c:backr',
+            turnleft: 'c:turnl',
+            turnright: 'c:turnr',
+            curvedtrajectoryRight: 'c:curvedtr',
+            lateralarcRight: 'c:lateralr',
+            curvedtrajectoryLeft: 'c:curvedtl',
+            lateralarcLeft: 'c:laterall',			
+            stop: 'c:stop'
         }
     },
     
@@ -75,8 +74,10 @@ const COMMANDS = {
             backright: 'p:backr',
             turnleft: 'p:turnl',
             turnright: 'p:turnr',
-            curvedtrajectory: 'p:curvedt',
-            lateralarc: 'p:laterala',
+            curvedtrajectoryRight: 'p:curvedtr',
+            lateralarcRight: 'p:lateralr',
+            curvedtrajectoryLeft: 'p:curvedtl',
+            lateralarcLeft: 'p:laterall',
             stop: 'p:stop'
         },
 		        // Speed control commands
@@ -87,37 +88,34 @@ const COMMANDS = {
         },
             // Auto mode commands
         autoModes: {
-            SitHome: 'p:automode:SitHome',
-            Stand1: 'p:automode:Stand1',
-            Stand2: 'p:automode:Stand2',
-            Stand3: 'p:automode:Stand3',
-            RotateNeck: 'p:automode:RotateNeck',
-            Twist: 'p:automode:Twist',
-            Down: 'p:automode:Down',
-            Wink: 'p:automode:Wink',
-			stop: 'p:automode:Stop'
+            SitHome: 'p:SitHome',
+            Stand1: 'p:Stand1',
+            Stand2: 'p:Stand2',
+            Stand3: 'p:Stand3',
+            RotateNeck: 'p:RotateNeck',
+            Twist: 'p:Twist',
+            Down: 'p:Down',
+            Wink: 'p:Wink',
+			stop: 'p:Stop'
         },
 
         // Voice command mappings
         voiceCommands: {
-            'forward': 'p:forward',
-            'backward': 'p:backward',
-            'backwards': 'p:backward',
-            'left': 'p:left',
-            'right': 'p:right',
-            'front left': 'p:frontleft',
-            'front right': 'p:frontright',
-            'back left': 'p:backleft',
-            'back right': 'p:backright',
-            'turn left': 'p:turnleft',
-            'turn right': 'p:turnright',
-            'curve': 'p:curvedtrajectory',
-            'lateral': 'p:lateralarc',
-            'stop': 'p:stop',
-            'halt': 'p:stop',
-            'slow': 'p:setspeed:30',
-            'medium': 'p:setspeed:60',
-            'fast': 'p:setspeed:90'
+            forward: 'p:forw',
+            backward: 'p:back',
+            left: 'p:left',
+            right: 'p:right',
+            frontleft: 'p:frontl',
+            frontright: 'p:frontr',
+            backleft: 'p:backl',
+            backright: 'p:backr',
+            turnleft: 'p:turnl',
+            turnright: 'p:turnr',
+            curvedtrajectoryRight: 'p:curvedtr',
+            lateralarcRight: 'p:lateralr',
+            curvedtrajectoryLeft: 'p:curvedtl',
+            lateralarcLeft: 'p:laterall',			
+            stop: 'p:stop'
         }    
     },
 	 // Generic commands (for future expansion)
