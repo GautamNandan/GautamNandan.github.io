@@ -93,10 +93,18 @@ const COMMANDS = {
             Stand2: 'p:Stand2',
             Stand3: 'p:Stand3',
             RotateNeck: 'p:RotateNeck',
+			leftturn: 'p:leftturn:5',
+			rightturn: 'p:rightturn:5',
+			backward: 'p:backward:5',
+			forward: 'p:forward:5',
             Twist: 'p:Twist',
-            Down: 'p:Down',
-            Wink: 'p:Wink',
-			stop: 'p:Stop'
+            Down: 'p:Down:5',
+            Wink: 'p:Wink:5',
+			stop: 'p:Stop',
+            joint3: 'p:joint3',
+            joint7: 'p:joint7',
+			joint5: 'p:joint5',
+			joint9: 'p:joint9'
         },
 
         // Voice command mappings
