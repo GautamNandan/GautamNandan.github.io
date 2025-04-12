@@ -5441,10 +5441,10 @@ Blockly.Python['stepper_step'] = function(block) {
 
   //Source example: http://mpy-tut.zoic.org/tut/motors.html
   var code = `
-for i in range(1, ` + step + `):
+while True:
 	for phase in phases:
 		for n, p in enumerate(pins):
-			pins[n](phase & 1 < < n)
+			pins[n](phase & 1 << n)
 		time.sleep(0.001)
 `;
 
