@@ -264,7 +264,92 @@
       <block type="lists_sort"></block>
     </category>
 
-  <category name="%{BKY_CAT_TIMING}" colour="220">
+    <sep></sep>
+    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+
+    <sep></sep>
+   <category name="BIPES">
+    <block type="project_metadata">
+      <value name="project_author">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+      <value name="project_iot_id">
+        <shadow type="math_number">
+          <field name="NUM"></field>
+        </shadow>
+      </value>
+      <value name="project_description">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="bipes_plot">
+    </block>
+    <block type="localstorage_store">
+      <value name="ADD0">
+        <shadow type="utime.vars">
+          <field name="VARS">ticks_ms</field>
+        </shadow>
+      </value>
+    </block>
+
+   </category>
+    <sep></sep>
+    <!--
+    <category name="Python" colour="%{BKY_LOGIC_HUE}">
+    <category name="Machine" colour="%{BKY_VARIABLES_HUE}">
+    -->
+
+  <category name="Python">
+
+      <label text="Python"></label>
+<block type="try_catch"></block>
+
+    <block type="exec_python">
+  <value name="command">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+
+    
+    </block>
+
+    <block type="exec_python_output">
+      <field name="EXEC_PYTHON_OUTPUT">Execute Python custom with output</field>
+  <value name="commnad">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+
+  <block type="inter_init">
+      <value name="Nome">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+      <value name="Função">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+      <value name="pin">
+        <shadow type="pinout">
+          <field name="PIN"></field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+
+
+  <category name="%{BKY_CAT_TIMING}">
 	  <label text="%{BKY_CAT_TIMING}"></label>
     <block type="delay">
       <value name="TIME">
@@ -310,51 +395,6 @@
       </value>
     </block>
   </category>
-    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
-  <category name="Connectivity">
-      <category name="Bluetooth" colour="290">
-        <block type="configure_and_start_bluetooth"></block>
-        <block type="handle_ble_data"></block>
-        <block type="verificar_dados_ble"></block>
-        <block type="show_received_data"></block>
-        <block type="chamar_formatar_dados_plotter"></block>
-      </category>
-      <category name="Wifi" colour="190">
-        <block type="wifi_client_connect">
-      <value name="wifi_client_essid">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-      <value name="wifi_client_key">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-    </block>
-
-    <block type="net_ap_mode">
-      <field name="NAME">Configure Access Point Mode</field>
-      <value name="wifi_essid">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-      <value name="wifi_key">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-    </block>
-    <block type="wifi_client_scan_networks">
-    </block>
-    <block type="net_ifconfig">
-      <field name="NET_IFCONFIG">Wifi current IP</field>
-    </block>
-
-      </category>
-      </category>
 
   <category name="%{BKY_CAT_MACHINE}">
       <label text="%{BKY_CAT_MACHINE}"></label>
@@ -378,7 +418,7 @@
     <block type="reset_cause_wdt"></block>
     <block type="reset_cause_deep"></block>
       </category>
-
+    
       <category name="In/Out Pins">
       <label text="In/Out Pins"></label>
     <block type="pinout"></block>
@@ -575,7 +615,7 @@
       </block>
 
       <block type="neopixel_write"></block>
-
+      
 
 </category>
 
@@ -584,6 +624,8 @@
   <category name="Character display">
       <label text="PCF8574 Display controller"></label>
 
+      <label text="Library: https://github.com/dhylands/python_lcd"></label>
+      <button text="Install I2CLCD library" callbackKey="installPyLib"></button>
 	<block type="char_lcd_init">
         <value name="scl">
           <shadow type="pinout">
@@ -596,7 +638,7 @@
             <field name="SDA"></field>
           </shadow>
         </value>
-
+ 
 	 <value name="lines">
         <shadow type="math_number">
           <field name="NUM">4</field>
@@ -611,18 +653,20 @@
 
 
 
-
+ 
 	</block>
 	<block type="char_lcd_clear"></block>
 	<block type="char_lcd_putstr"></block>
 	<block type="char_lcd_moveto"></block>
-	<block type="char_lcd_backlight"></block>
+	<block type="char_lcd_backlight_on"></block>
 	<block type="char_lcd_display"></block>
 
   </category>
 
     <category name="ST7789 Display">
       <label text="ST7789 Display"></label>
+      <label text="Library: https://github.com/devbis/st7789py_mpy"></label>
+      <button text="Install st7789py library" callbackKey="installPyLib"></button>
 
       <block type="st7789_init">
         <value name="spi">
@@ -695,7 +739,7 @@
       </block>
 
       <block type="st7789_color_colors"></block>
-
+ 
        <block type="st7789_fill">
         <value name="r">
          <shadow type="math_number">
@@ -764,8 +808,9 @@
 
     <category name="OLED Display">
       <label text="SSD1306 OLED I2C Display"></label>
+      <button text="Install ssd1306 library" callbackKey="installPyLib"></button>
 
-
+	    
       <block type="init_oled">
         <value name="i2c">
           <shadow type="math_number">
@@ -843,7 +888,7 @@
           </shadow>
         </value>
     </block>
-
+	    
       <block type="tank_move"></block>
 
 
@@ -862,6 +907,10 @@
 
   <category name="LED Matrix">
       <label text="TM1640 LED Matrix"></label>
+      <label text="Library: https://github.com/mcauser/micropython-tm1640"></label>
+        <button text="Install tm1640 library" callbackKey="installPyLib"></button>
+        <button text="Load example: tm1640" callbackKey="loadExample"></button>
+        <button text="Documentation and how to connect: tm1640" callbackKey="loadDoc"></button>
 
     <block type="tm1640_init">
 
@@ -997,11 +1046,11 @@
       <block type="dht_read_humidity"></block>
     </category>
 <!--Adicionando os blocos do Anenmômetro-->
-    <category name="Anemometer">
-    <label text="Anemometer"></label>
-<!--Start Anemometer-->
+    <category name="Anemômetro">
+    <label text="Anenômetro"></label>
+<!--Iniciar Anemômetro-->
     <block type="anemo_init">
-        <value name="Function">
+        <value name="Função">
           <shadow type="text">
             <field name="TEXT"></field>
           </shadow>
@@ -1012,21 +1061,21 @@
           </shadow>
         </value>
       </block>
-<!--Stop anemometer-->
+<!--Parar Anemômetro-->
       <block type="anemo_stop">
-        <value name="Function">
+        <value name="Função">
           <shadow type="text">
             <field name="TEXT"></field>
           </shadow>
         </value>
       </block>
   </category>
-<!--Adicionando os blocos do Rain Gauge-->
-  <category name="Rain Gauge">
-    <label text= "Rain Gauge"></label>
-<!--Iniciar Rain Gauage-->
-    <block type="rain_init">
-        <value name="Function">
+<!--Adicionando os blocos do Pluviômetro--> 
+  <category name="Pluviômetro">
+    <label text= "Pluviômetro"></label>
+<!--Iniciar Pluviômetro-->
+    <block type="pluvio_init">
+        <value name="Função">
           <shadow type="text">
             <field name="TEXT"></field>
           </shadow>
@@ -1037,10 +1086,9 @@
           </shadow>
         </value>
       </block>
-<!--Stop Rain Guage-->
-<!--Stop Rain Guage-->
-      <block type="rain_stop">
-        <value name="Function">
+<!--Parar Pluviômetro-->
+      <block type="pluvio_stop">
+        <value name="Função">
           <shadow type="text">
             <field name="TEXT"></field>
           </shadow>
@@ -1050,6 +1098,10 @@
 
   <category name="Ultrasound">
       <label text="HCSR04 ultrasound distance sensor"></label>
+      <label text="Library: https://github.com/rsc1975/micropython-hcsr04"></label>
+        <button text="Install HCSR04 library" callbackKey="installPyLib"></button>
+
+
       <block type="hcsr_init">
         <field name="BLOCK_HCSR_INIT">Start HCSR04 Ultrasound sensor</field>
         <value name="echo">
@@ -1075,6 +1127,9 @@
 
   <category name="GPS">
       <label text="Global Positioning System sensor"></label>
+   <label text="Library: https://github.com/"></label>
+        <button text="Install GPS library" callbackKey="installPyLib"></button>
+
 	<block type="gps_init">
       </block>
 	<block type="gps_update">
@@ -1095,6 +1150,9 @@
 
   <category name="Oximeter">
       <label text="MAX30100 pulse oximeter sensor"></label>
+   <label text="Library: https://github.com/"></label>
+        <button text="Install MAX30100 library" callbackKey="installPyLib"></button>
+
 	<block type="max30100_init">
       </block>
 	<block type="max30100_read">
@@ -1111,6 +1169,13 @@
 
   <category name="Inertial Measurement">
       <label text="MPU6050 IMU"></label>
+   <label text="Library: https://github.com/"></label>
+        <button text="Install imu library (MPU6050)" callbackKey="installPyLib"></button>
+
+        <button text="Load example: mpu6050" callbackKey="loadExample"></button>
+        <button text="Documentation and how to connect: mpu6050" callbackKey="loadDoc"></button>
+
+
 
     <block type="init_mpu6050">
 
@@ -1142,6 +1207,9 @@
       <category name="OneWire">
       <label text="OneWire"></label>
 
+        <button text="Load example: ds1820" callbackKey="loadExample"></button>
+        <button text="Documentation and how to connect: ds1820" callbackKey="loadDoc"></button>
+
       <block type="onewire_ds18x20_init">
         <value name="pin">
           <shadow type="pinout">
@@ -1157,13 +1225,17 @@
             <field name="NUM">10000</field>
           </shadow>
         </value>
-
+ 
       </block>
       </category>
 
 
   <category name="RFID Reader">
       <label text="RC522 13.56MHz RFID Reader"></label>
+      <label text="Library: https://github.com/wendlers/micropython-mfrc522"></label>
+        <button text="Install mfrc522 library" callbackKey="installPyLib"></button>
+        <button text="Load example: mfrc522" callbackKey="loadExample"></button>
+        <button text="Documentation and how to connect: mfrc522" callbackKey="loadDoc"></button>
 
       <block type="rfid_rc522_init">
         <value name="sck">
@@ -1171,7 +1243,7 @@
             <field name="SCK"></field>
           </shadow>
         </value>
-
+ 
         <value name="mosi">
           <shadow type="pinout">
             <field name="MOSI"></field>
@@ -1183,13 +1255,13 @@
             <field name="MISO"></field>
           </shadow>
         </value>
-
+ 
         <value name="rst">
           <shadow type="pinout">
             <field name="RST"></field>
           </shadow>
         </value>
-
+ 
         <value name="cs">
           <shadow type="pinout">
             <field name="RST"></field>
@@ -1207,6 +1279,8 @@
 
   <category name="Rotatory Encoder">
       <label text="Rotatory Incremental Encoder"></label>
+        <button text="Load example: encoder" callbackKey="loadExample"></button>
+        <button text="Documentation and how to connect: encoder" callbackKey="loadDoc"></button>
 
       <block type="encoder_init">
         <value name="p0">
@@ -1214,7 +1288,7 @@
             <field name="ch0"></field>
           </shadow>
         </value>
-
+ 
         <value name="p1">
           <shadow type="pinout">
             <field name="ch1"></field>
@@ -1228,6 +1302,9 @@
 
   <category name="Camera (ESP32CAM)">
       <label text="OV2640 Camera on ESP32-CAM Board"></label>
+        <button text="Load example: esp32cam" callbackKey="loadExample"></button>
+      <label text="More info: https://rafaelaroca.wordpress.com/2021/07/15/esp32-camera-micropython-and-no-esptool/"></label>
+
       <block type="esp32_cam_init"> </block>
       <block type="esp32_cam_capture"> </block>
       <block type="esp32_cam_red_led"> </block>
@@ -1343,9 +1420,15 @@ _
   </category>
 
   <category name="Sounds">
+        <label text="Sounds and RTTTL:"></label>
         <label text="Ring Tone Text Transfer Language (RTTTL) "></label>
+        <label text="Library: "></label>
+        <button text="Install rtttl library" callbackKey="installPyLib"></button>
+        <button text="Install songs library" callbackKey="installPyLib"></button>
+        <button text="Load example: songs" callbackKey="loadExample"></button>
+        <button text="Documentation and how to connect: sound" callbackKey="loadDoc"></button>
 
-    <block type="tone">
+    <block type="tone"> 
       <value name="pin">
         <shadow type="pinout">
           <field name="pin"></field>
@@ -1363,7 +1446,7 @@ _
       </value>
     </block>
 
-    <block type="note">
+    <block type="note"> 
       <value name="pin">
         <shadow type="pinout">
           <field name="pin"></field>
@@ -1383,7 +1466,7 @@ _
 
     <block type="tone_type"> </block>
 
-    <block type="rtttl_play">
+    <block type="rtttl_play"> 
       <value name="pin">
         <shadow type="pinout">
           <field name="pin"></field>
@@ -1516,11 +1599,210 @@ _
 
       </category>
   </category>
+ 
+ 
+  <category name="%{BKY_CAT_FILES}">
+  <label text="Read and write files"></label>
+
+  <block type="file_open"> 
+    <value name="file_name">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+    </value>
+  </block>
+
+  <block type="file_open_write"> 
+    <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+    </value>
+  </block>
+
+  <block type="file_open_read"> 
+    <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+    </value>
+  </block>
+<block type="file_write"> 
+  <value name="data">
+        <shadow type="text">
+          <field name="TEXT">contents</field>
+        </shadow>
+      </value>
+</block>
+<block type="file_write_line"> 
+  <value name="data">
+        <shadow type="text">
+          <field name="TEXT">Line contents</field>
+        </shadow>
+      </value>
+</block>
+<block type="file_write_byte"> 
+        <value name="data">
+          <shadow type="math_number">
+            <field name="NUM">80</field>
+          </shadow>
+        </value>
+</block>
 
 
- <category name="%{BKY_CAT_NET}">
+<block type="file_read"> 
+
+  <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+
+</block>
+<block type="file_close"> 
+
+  <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
 
 
+</block>
+
+      <label text="Disk file operations"></label>
+<block type="files_list">
+</block>
+<block type="uos_mkdir">
+  <value name="pIn">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+</block>
+
+<block type="uos_remove">
+  <value name="pIn">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+</block>
+
+      <label text="SD Card"></label>
+
+<block type="sd_mount">
+  <value name="pIn">
+        <shadow type="text">
+		<field name="TEXT">/sd</field>
+        </shadow>
+      </value>
+</block>
+
+<block type="uos_listdir">
+  <value name="pIn">
+        <shadow type="text">
+		<field name="TEXT">/sd</field>
+        </shadow>
+      </value>
+</block>
+
+<block type="uos_umount">
+  <value name="pIn">
+        <shadow type="text">
+		<field name="TEXT">/sd</field>
+        </shadow>
+      </value>
+</block>
+
+      <label text="Other file operations"></label>
+
+<block type="uos_listdir">
+</block>
+
+
+<block type="uos_uname"> </block>
+<block type="uos_urandom">
+</block>
+<block type="uos_chdir">
+</block>
+<block type="uos_getcwd">
+</block>
+<block type="uos_ilistdir">
+</block>
+<block type="uos_rmdir">
+</block>
+<block type="uos_rename">
+</block>
+<block type="uos_stat">
+</block>
+<block type="uos_statvfs">
+</block>
+<block type="uos_sync">
+</block>
+<block type="uos_dupterm">
+</block>
+<block type="uos_mount">
+</block>
+<block type="uos_umount">
+</block>
+<block type="uos_readblocks">
+</block>
+<block type="uos_readblocks">
+</block>
+<block type="uos_writeblocks">
+</block>
+<block type="uos_writeblocks">
+</block>
+<block type="uos_ioctl">
+</block>
+
+  </category>
+ 
+
+ 
+
+
+  <category name="%{BKY_CAT_NET}">
+    <block type="wifi_client_connect">
+      <value name="wifi_client_essid">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+      <value name="wifi_client_key">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="net_ap_mode">
+      <field name="NAME">Configure Access Point Mode</field>
+      <value name="wifi_essid">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+      <value name="wifi_key">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="wifi_client_scan_networks">
+    </block>
+    <block type="net_ifconfig">
+      <field name="NET_IFCONFIG">Wifi current IP</field>
+    </block>
+
+    <block type="net_wiznet5k_init">
+    </block>
+    <block type="net_wiznet5k_isconnected">
+    </block>
+    <block type="net_wiznet5k_regs">
+    </block>
+    <block type="net_wiznet5k_ifconfig">
+    </block>
 
     <category name="HTTP Client">
       <label text="HTTP (web) Client"></label>
@@ -1643,7 +1925,8 @@ _
 
     <category name="HTTP Server">
       <label text="HTTP Web Server"></label>
-
+      <button text="Load example: webserver" callbackKey="loadExample"></button>
+      <button text="Documentation: webserver" callbackKey="loadDoc"></button>
 
     <block type="net_http_server_start">
         <value name="port">
@@ -1672,6 +1955,9 @@ _
 
     <category name="EMAIL">
       <label text="Email sender using uMail"></label>
+      <label text="Library: https://github.com/shawwwn/uMail"></label>
+        <button text="Install umail library" callbackKey="installPyLib"></button>
+        <button text="Documentation: uMail" callbackKey="loadDoc"></button>
 
       <block type="umail_init">
 	  <value name="host">
@@ -1719,7 +2005,8 @@ _
     <category name="NTP Time">
      <label text="Network Time Protocol (NTP)"></label>
      <label text="Adjusts RTC using Internet"></label>
-
+        <button text="Load example: ntp" callbackKey="loadExample"></button>
+        <button text="Documentation: ntp" callbackKey="loadDoc"></button>
 
 
     <block type="net_ntp_sync">
@@ -1735,7 +2022,8 @@ _
 
     <category name="TCP/IP Socket">
       <label text="TCP/IP Socket"></label>
-
+        <button text="Load example: starwars" callbackKey="loadExample"></button>
+        <button text="Documentation: sockets" callbackKey="loadDoc"></button>
 
 
     <block type="net_socket_connect">
@@ -1882,6 +2170,11 @@ _
   <category name="Bluetooth REPL">
     <label text="Bluetooth REPL"></label>
     <label text="This block allows terminal/console access using bluetooth."></label>
+    <label text="Library: https://github.com/micropython/micropython/tree/master/examples/bluetooth"></label>
+    <label text="You need to install 3 files to use:"></label>
+    <button text="Install ble_advertising library" callbackKey="installPyLib"></button>
+    <button text="Install ble_uart_peripheral library" callbackKey="installPyLib"></button>
+    <button text="Install ble_uart_repl library" callbackKey="installPyLib"></button>
 
       <label text="Web Bluetooth REPL"></label>
       <block type="bluetooth_repl_setup">
@@ -1898,6 +2191,12 @@ _
           </shadow>
         </value>
       </block>
+    <label text="Usage:"></label>
+    <label text="1. Install the 3 files above"></label>
+    <label text="2. Start Web Bluetooth REPL"></label>
+    <label text="3. Pair the ESP32 with your device /"></label>
+    <label text="4. Go to https://bipes.net.br/beta2/ui/"></label>
+    <label text="5. Select the bluetooth option and Connect (Web Bluetooth)"></label>
     </category>
 
   <category name="WebREPL">
@@ -1910,7 +2209,9 @@ _
     <category name="CAN Bus">
      <label text="Controller Area Network (CAN)"></label>
      <label text="Requires specific firmware"></label>
-
+     <label text="Compatible with: https://github.com/micropython/micropython/issues/5087#issuecomment-538779410"></label>
+        <button text="Load example: esp32_can" callbackKey="loadExample"></button>
+        <button text="Documentation: esp32_can" callbackKey="loadDoc"></button>
 
     <block type="esp32_can_init">
     </block>
@@ -1926,7 +2227,8 @@ _
 
     <category name="Google Sheets">
       <label text="Send files to a Google Spreadsheet"></label>
-
+      <label text="Library: https://gist.github.com/SpotlightKid/8637c685626b334e5c0ec341dd269c44"></label>
+        <button text="install prequests library" callbackKey="installPyLib"></button>
       <block type="google_spreadsheet">
     <field name="sheet_num">1</field>
     <value name="deploy_code">
@@ -1953,247 +2255,71 @@ _
       </block>
     </category>
   </category>
-   <category name="General" colour="230">
-    <block type="project_metadata">
-      <value name="project_author">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-      <value name="project_iot_id">
+
+<category name="%{BKY_CAT_CONTROL}">
+  <category name="PID">
+    <button text="Install control library" callbackKey="installPyLib"></button>
+    <label text="Proportional–integral–derivative Controller"></label>
+      <label text="Library: https://github.com/JorgeGMarques/micropython-simple-pid"></label>
+      <button text="Load example: pid_water_boiler" callbackKey="loadExample"></button>
+
+    <block type="control_pid.__init__">
+      <value name="SETPOINT">
         <shadow type="math_number">
-          <field name="NUM"></field>
-        </shadow>
-      </value>
-      <value name="project_description">
-        <shadow type="text">
-          <field name="TEXT"></field>
+         <field name="NUM">1</field>
         </shadow>
       </value>
     </block>
+    <block type="control_pid.compute"></block>
+    <block type="control_pid.compute_not_realtime"></block>
 
-    <block type="bipes_plot">
-    </block>
-    <block type="localstorage_store">
-      <value name="ADD0">
-        <shadow type="utime.vars">
-          <field name="VARS">ticks_ms</field>
+    <block type="control_pid.tunings">
+      <value name="KP">
+        <shadow type="math_number">
+         <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="KI">
+        <shadow type="math_number">
+         <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="KD">
+        <shadow type="math_number">
+         <field name="NUM">0</field>
         </shadow>
       </value>
     </block>
-
-   </category>
-
+    <block type="control_pid.setpoint">
+      <value name="SETPOINT">
+        <shadow type="math_number">
+         <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="control_pid.auto_mode"></block>
+    <block type="control_pid.output_limits"></block>
+    <block type="control_pid.vars"></block>
     <!--
-    <category name="Python" colour="%{BKY_LOGIC_HUE}">
-    <category name="Machine" colour="%{BKY_VARIABLES_HUE}">
+    <block type="control-pid-reset"></block>
     -->
-  <category name="%{BKY_CAT_FILES}" colour="230">
-  <label text="Read and write files"></label>
-
-  <block type="file_open">
-    <value name="file_name">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-    </value>
-  </block>
-
-  <block type="file_open_write">
-    <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-    </value>
-  </block>
-
-  <block type="file_open_read">
-    <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-    </value>
-  </block>
-<block type="file_write">
-  <value name="data">
-        <shadow type="text">
-          <field name="TEXT">contents</field>
-        </shadow>
-      </value>
-</block>
-<block type="file_write_line">
-  <value name="data">
-        <shadow type="text">
-          <field name="TEXT">Line contents</field>
-        </shadow>
-      </value>
-</block>
-<block type="file_write_byte">
-        <value name="data">
-          <shadow type="math_number">
-            <field name="NUM">80</field>
-          </shadow>
-        </value>
-</block>
-
-
-<block type="file_read">
-
-  <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-
-</block>
-<block type="file_close">
-
-  <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-
-
-</block>
-
-      <label text="Disk file operations"></label>
-<block type="files_list">
-</block>
-<block type="uos_mkdir">
-  <value name="pIn">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-</block>
-
-<block type="uos_remove">
-  <value name="pIn">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-</block>
-
-      <label text="SD Card"></label>
-
-<block type="sd_mount">
-  <value name="pIn">
-        <shadow type="text">
-		<field name="TEXT">/sd</field>
-        </shadow>
-      </value>
-</block>
-
-<block type="uos_listdir">
-  <value name="pIn">
-        <shadow type="text">
-		<field name="TEXT">/sd</field>
-        </shadow>
-      </value>
-</block>
-
-<block type="uos_umount">
-  <value name="pIn">
-        <shadow type="text">
-		<field name="TEXT">/sd</field>
-        </shadow>
-      </value>
-</block>
-
-      <label text="Other file operations"></label>
-
-<block type="uos_listdir">
-</block>
-
-
-<block type="uos_uname"> </block>
-<block type="uos_urandom">
-</block>
-<block type="uos_chdir">
-</block>
-<block type="uos_getcwd">
-</block>
-<block type="uos_ilistdir">
-</block>
-<block type="uos_rmdir">
-</block>
-<block type="uos_rename">
-</block>
-<block type="uos_stat">
-</block>
-<block type="uos_statvfs">
-</block>
-<block type="uos_sync">
-</block>
-<block type="uos_dupterm">
-</block>
-<block type="uos_mount">
-</block>
-<block type="uos_umount">
-</block>
-<block type="uos_readblocks">
-</block>
-<block type="uos_readblocks">
-</block>
-<block type="uos_writeblocks">
-</block>
-<block type="uos_writeblocks">
-</block>
-<block type="uos_ioctl">
-</block>
-
-  </category>
-  <category name="Python" colour="230">
-
-      <label text="Python"></label>
-<block type="try_catch"></block>
-
-    <block type="exec_python">
-  <value name="command">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-
-    
-    </block>
-
-    <block type="exec_python_output">
-      <field name="EXEC_PYTHON_OUTPUT">Execute Python custom with output</field>
-  <value name="commnad">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-    </block>
-
-  <block type="inter_init">
-      <value name="Nome">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-      <value name="Function">
-        <shadow type="text">
-          <field name="TEXT"></field>
-        </shadow>
-      </value>
-      <value name="pin">
-        <shadow type="pinout">
-          <field name="PIN"></field>
-        </shadow>
-      </value>
-    </block>
   </category>
 
-
-
-
-
-
-
+  <category name="Simulate">
+    <button text="Install control library" callbackKey="installPyLib"></button>
+    <label text="No breadboard or sensors? Just simulate it!"></label>
+    <label text="Realtime simulation:"></label>
+    <button text="Load example: pid_water_boiler" callbackKey="loadExample"></button>
+    <block type="simulate_water_boiler">
+    </block>
+    <label text="Non realtime simulation:"></label>
+    <button text="Load example: pid_dc_motor" callbackKey="loadExample"></button>
+    <block type="simulate_dcmotor.sim">
+    </block>
+    <block type="simulate_dcmotor.vars">
+    </block>
+  </category>
+</category>
 
 <category name="micropython">
 <category name="btree">

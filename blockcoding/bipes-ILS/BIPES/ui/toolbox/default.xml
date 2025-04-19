@@ -513,7 +513,7 @@
 	<block type="char_lcd_clear"></block>
 	<block type="char_lcd_putstr"></block>
 	<block type="char_lcd_moveto"></block>
-	<block type="char_lcd_backlight"></block>
+	<block type="char_lcd_backlight_on"></block>
 	<block type="char_lcd_display"></block>
 
   </category>

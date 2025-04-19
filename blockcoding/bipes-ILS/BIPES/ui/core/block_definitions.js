@@ -484,16 +484,16 @@ Blockly.Blocks['thread'] = {
   }
 };
 
-//Novo bloco para criar uma função thread para rodar loops em paralelo
+//Novo bloco para criar uma Function thread para rodar loops em paralelo
 Blockly.Blocks['iniciar_thread'] = {
   init: function() {
       this.appendValueInput("FUNCTION")
           .setCheck("Function")
-          .appendField("Iniciar tarefa paralela com a função");
+          .appendField("Start tarefa paralela com a Function");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
-      this.setTooltip("Inicia uma nova thread para executar a função especificada.");
+      this.setTooltip("Inicia uma nova thread para executar a Function especificada.");
       this.setHelpUrl("");
   }
 };
@@ -1395,6 +1395,20 @@ Blockly.Blocks['wifi_client_scan_networks'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Scan wifi networks");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['ble_setup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabelSerializable(MSG["ble_setup"]), "NAME");
+    this.appendValueInput("ble_essid")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldLabelSerializable(MSG["ble_name"]), "ble_essid");
+    this.setColour(230);
+ this.setTooltip("Setup BLE name");
  this.setHelpUrl("http://www.bipes.net.br");
   }
 };
@@ -9437,9 +9451,9 @@ Blockly.Blocks['char_lcd_backlight'] = {
         .appendField("LCD Backlight");
 
     this.appendValueInput("state")
-        .setCheck("Number")
+        .setCheck("Boolean")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ON/OFF");
+        .appendField("TRUE/FALSE");
 
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -9454,9 +9468,9 @@ Blockly.Blocks['char_lcd_display'] = {
         .appendField("LCD Power");
 
     this.appendValueInput("state")
-        .setCheck("Number")
+        .setCheck("Boolean")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ON/OFF");
+        .appendField("TRUE/FALSE");
 
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -11476,8 +11490,8 @@ Blockly.Blocks['cell_value'] = {
   }
 };
 // Blocos do Pluviômetro
-// Iniciar Pluviômetro
-Blockly.Blocks['pluvio_init']={
+// Start Pluviômetro
+Blockly.Blocks['rain_init']={
   init: function(){
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
@@ -11485,11 +11499,11 @@ Blockly.Blocks['pluvio_init']={
                      70,
                      70,
                      "*"))
-        .appendField("Iniciar Pluiômetro");
-        this.appendValueInput("Função")
+        .appendField("Start Rain Guage");
+        this.appendValueInput("Function")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Função");
+        .appendField("Function");
     this.appendValueInput("pin")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -11499,22 +11513,22 @@ Blockly.Blocks['pluvio_init']={
         this.setColour(100);
 }
 };
-// Parar Pluviômetro
-Blockly.Blocks['pluvio_stop'] = {
+// Stop Pluviômetro
+Blockly.Blocks['rain_stop'] = {
   init: function(){
     this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("Parar Plviômetro"), "STOP_PLUVIO");
-    this.appendValueInput("Função")
+        .appendField(new Blockly.FieldLabelSerializable("Stop Rain Gauge"), "STOP_PLUVIO");
+    this.appendValueInput("Function")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Função");
+        .appendField("Function");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(100);
   }
 };
-//Blocos Anemômetro
-// Iniciar Anemômetro
+//Blocos Anemometer
+// Start Anemometer
 Blockly.Blocks['anemo_init'] = {
   init: function(){
     this.appendDummyInput()
@@ -11523,12 +11537,12 @@ Blockly.Blocks['anemo_init'] = {
                      55,
                      55,
                      "*"))
-        .appendField("Iniciar Anenômetro");
+        .appendField("Start Anemometer");
 
-    this.appendValueInput("Função")
+    this.appendValueInput("Function")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Função");
+        .appendField("Function");
     this.appendValueInput("pin")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -11539,22 +11553,22 @@ Blockly.Blocks['anemo_init'] = {
   }
 };
 
-//Parar Anemômetro
+//Stop Anemometer
 Blockly.Blocks['anemo_stop'] = {
   init: function(){
     this.appendDummyInput()
-        .appendField(new Blockly.FieldLabelSerializable("Parar Anenômetro"), "STOP_ANENO");
-    this.appendValueInput("Função")
+        .appendField(new Blockly.FieldLabelSerializable("Stop Anemometer"), "STOP_ANENO");
+    this.appendValueInput("Function")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Função");
+        .appendField("Function");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255,0,0);
   }
 };
 //Blocos de Interrupção
-// Iniciar interrupção
+// Start interrupção
 Blockly.Blocks['inter_init'] = {
   init: function(){
     this.appendDummyInput()
@@ -11563,15 +11577,15 @@ Blockly.Blocks['inter_init'] = {
         55,
         55,
         "*"))
-        .appendField("Iniciar Interrupção");
-    this.appendValueInput("Nome")
+        .appendField("Start Interrupt");
+    this.appendValueInput("Name")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Nome");
-    this.appendValueInput("Função")
+    this.appendValueInput("Function")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Função");
+        .appendField("Function");
     this.appendValueInput("pin")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -11640,16 +11654,16 @@ Blockly.Blocks['http_get_content'] = {
 
 
 //BLOCOS PARA USAR O BLUETOOTH BLE DA AMADOBOARD COM O APLICATIVO BLUEFRUIT DA ADAFRUIT
-// Bloco combinado de configurar e iniciar o Bluetooth BLE
-Blockly.Blocks['configurar_e_iniciar_bluetooth'] = {
+// combined block to configure and start Bluetooth BLE
+Blockly.Blocks['configure_and_start_bluetooth'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Configurar e iniciar Bluetooth com nome")
-        .appendField(new Blockly.FieldTextInput("MeuBluetooth"), "BLUETOOTH_NAME");
+        .appendField("Configure and start Bluetooth with a name")
+        .appendField(new Blockly.FieldTextInput("MyBluetooth"), "BLUETOOTH_NAME");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("Configura e inicia o Bluetooth BLE com o nome especificado.");
+    this.setTooltip("Configures and starts the BLE Bluetooth with the specified name.");
     this.setHelpUrl("");
   }
 };
@@ -11657,13 +11671,13 @@ Blockly.Blocks['configurar_e_iniciar_bluetooth'] = {
 
 Blockly.Blocks['handle_ble_data'] = {
   init: function() {
-    this.appendValueInput("VAR")  // Entrada para o nome da variável
+    this.appendValueInput("VAR")  // Input for the variable name
         .setCheck("Variable")
-        .appendField("Definir dados BLE recebidos para");
+        .appendField("Set received BLE data to");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("Recebe os dados BLE e armazena na variável escolhida.");
+    this.setTooltip("Receives the BLE data and stores it in the selected variable.");
     this.setHelpUrl("");
   }
 };
@@ -11674,11 +11688,11 @@ Blockly.Blocks['handle_ble_data'] = {
 Blockly.Blocks['verificar_dados_ble'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Verificar dados recebidos");
+        .appendField("Check received data");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(65);
-    this.setTooltip("Verifica se há dados recebidos via BLE e chama a função handle_ble_data.");
+    this.setColour(230);
+    this.setTooltip("Checks if data has been received via BLE and calls the handle_ble_data function.");
     this.setHelpUrl("");
   }
 };
@@ -11686,20 +11700,20 @@ Blockly.Blocks['verificar_dados_ble'] = {
 Blockly.Blocks['show_received_data'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("dados recebidos BLE (received_data)");
+        .appendField("BLE received data (received_data)");
     this.setOutput(true, "String");
     this.setColour(230);
-    this.setTooltip("Retorna os dados recebidos via BLE");
+    this.setTooltip("Returns the data received via BLE");
     this.setHelpUrl("");
   }
 };
 
 
-//Blocos para enviar dados vai bluetooth
+//Blocks to send data via bluetooth
 Blockly.Blocks['configurar_plotter_dados'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Configurar plotter para sensores");
+        .appendField("Configure plotter for sensors");
     this.appendValueInput('SENSOR_0')
         .setCheck('Number')
         .appendField('Sensor 1');
@@ -11708,7 +11722,7 @@ Blockly.Blocks['configurar_plotter_dados'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("Configura o plotter para enviar dados de múltiplos sensores.");
+    this.setTooltip("Configures the plotter to send data from multiple sensors.");
     this.setHelpUrl("");
   },
   mutationToDom: function() {
@@ -11768,31 +11782,31 @@ Blockly.Blocks['configurar_plotter_dados'] = {
 Blockly.Blocks['chamar_formatar_dados_plotter'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Enviar dados ao plotter");
+        .appendField("Send data to plotter");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
-    this.setTooltip("Chama a função que formata e envia os dados ao plotter");
+    this.setColour(230);
+    this.setTooltip("Calls the function that formats and sends the data to the plotter");
     this.setHelpUrl("");
   }
 };
 
-// Bloco de contêiner do mutator (sensor container)
+// Mutator container block (sensor container)
 Blockly.Blocks['sensor_container'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField('sensores');
+        .appendField('sensors');
     this.appendStatementInput('STACK');
     this.setColour(230);
     this.contextMenu = false;
   }
 };
 
-// Bloco que adiciona sensor (sensor create)
+// Block that adds sensor (sensor create)
 Blockly.Blocks['sensor_create'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField('adicionar sensor');
+        .appendField('add sensor');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(230);
@@ -11806,14 +11820,14 @@ Blockly.Blocks['math_min'] = {
   init: function() {
     this.appendValueInput("VALUE1")
         .setCheck("Number")
-        .appendField("min de");
+        .appendField("min of");
     this.appendValueInput("VALUE2")
         .setCheck("Number")
-        .appendField("e");
+        .appendField("and");
     this.setInputsInline(true);
     this.setOutput(true, "Number");
     this.setColour(230);
-    this.setTooltip("Retorna o menor dos dois valores.");
+    this.setTooltip("Returns the smaller of the two values.");
     this.setHelpUrl("");
   }
 };
@@ -11823,15 +11837,14 @@ Blockly.Blocks['math_max'] = {
   init: function() {
     this.appendValueInput("VALUE1")
         .setCheck("Number")
-        .appendField("max de");
+        .appendField("max of");
     this.appendValueInput("VALUE2")
         .setCheck("Number")
-        .appendField("e");
+        .appendField("and");
     this.setInputsInline(true);
     this.setOutput(true, "Number");
     this.setColour(230);
-    this.setTooltip("Retorna o maior dos dois valores.");
+    this.setTooltip("Returns the larger of the two values.");
     this.setHelpUrl("");
   }
 };
-

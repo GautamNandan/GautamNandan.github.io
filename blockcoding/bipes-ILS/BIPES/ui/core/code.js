@@ -22,13 +22,15 @@ var libToInstall = '';
  */
 Code.LANGUAGE_NAME = {
   'en': 'English',
-  'pt-br': 'Português Brasileiro',
-  'es': 'Español',
+  'pt-br': 'Portugues',
+  'es': 'Espanol',
   'it': 'Italiano',
-  'fr': 'Français',
+  'fr': 'French',
   'de': 'Deutsch',
+  'nb': 'Norwegian',
   'zh-hans': 'Chinese (simplified)',
-  'zh-hant': 'Chinese (traditional)'
+  'zh-hant': 'Chinese (tradicional)',
+  'he': 'Hebrew'
 };
 
 /**
@@ -604,7 +606,7 @@ Code.init = function() {
   }
   Blockly.svgResize(Code.workspace);
 
-  Code.workspace.registerButtonCallback('installPyLib', function(button) {
+    Code.workspace.registerButtonCallback('installPyLib', function(button) {
 
 	var lib = button.text_.split(" ")[1];
 	console.log(button.text_);
@@ -612,7 +614,7 @@ Code.init = function() {
         alert("This will automatic download and install the library on the connected board: " + lib + ". Internet is required for this operation. Install results will be shown on console tab.");
 
 
-	UI ['notify'].send('Installing library, check console')
+	//Code.tabClick('console');
 
 	var installCmd = `
 def bipesInstall(url, lib):
@@ -677,6 +679,7 @@ print('Install done.')
 	var lib = tmp.replace(/\s/g,'');
 
         var msgCon = "This will load Example: " + lib + ". Internet is required for this operation. Important: all blocks on workspace will be lost and replaced by the example blocks. Do you want to continue?";
+	
 
 	if (confirm(msgCon)) {
 		//console.log('Thing was saved to the database.');

@@ -104,13 +104,14 @@ h1 {
 .top-menu > .logo:before {
   content: "";
   display: inline-block;
-  width: 5rem;  /* Wider container */
+  width: 5rem;  
   height: 6.5rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
   background-image: url('media/logo.png'); /* Path to your logo file */
 }
+
 /*
 .top-menu > .logo:before  {
   content:"";
@@ -118,7 +119,7 @@ h1 {
   width: 2rem;
   height: 2rem;
   background-size: cover;
-  background-image: url(media/icons.svg);
+  background-image: url('media/logo.png');
   background-size: auto 4rem;
   background-position: left calc(-2rem*8) top; 
 }
