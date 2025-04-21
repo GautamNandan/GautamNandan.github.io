@@ -587,13 +587,13 @@
 	<block type="char_lcd_init">
         <value name="scl">
           <shadow type="pinout">
-            <field name="SCL"></field>
+            <field name="SCL">32</field>
           </shadow>
         </value>
 
         <value name="sda">
           <shadow type="pinout">
-            <field name="SDA"></field>
+            <field name="SDA">33 </field>
           </shadow>
         </value>
 
@@ -861,9 +861,10 @@
     </category>
 
   <category name="LED Matrix">
-      <label text="TM1640 LED Matrix"></label>
+      <label text="MAX7219 LED Matrix"></label>
 
-    <block type="tm1640_init">
+    <block type="max7219_init">
+
 
  <value name="clk">
         <shadow type="math_number">
@@ -876,19 +877,48 @@
           <field name="NUM">13</field>
         </shadow>
       </value>
-
+ <value name="cs">
+        <shadow type="math_number">
+          <field name="NUM">12</field>
+        </shadow>
+      </value>
 
       </block>
 
-    <block type="tm1640_write">
-  <value name="vector">
+    <block type="max7219_write">
+  <value name="text">
         <shadow type="text">
-          <field name="TEXT">1, 2, 4, 8, 16, 32, 64, 128</field>
+          <field name="TEXT">INFINITY</field>
         </shadow>
       </value>
+       <value name="xpos">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+       <value name="ypos">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+
     </block>
 
-    <block type="tm1640_brig">
+        <block type="max7219_scroll">
+  <value name="text">
+        <shadow type="text">
+          <field name="TEXT">INFINITY</field>
+        </shadow>
+      </value>
+       <value name="delay">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+
+    </block>
+
+    <block type="max7219_brig">
     <value name="brig">
         <shadow type="math_number">
           <field name="NUM">7</field>
@@ -898,7 +928,7 @@
     </block>
 
 
-    <block type="tm1640_num">
+    <block type="max7219_num">
     <value name="num">
         <shadow type="math_number">
           <field name="NUM">0</field>
@@ -906,7 +936,7 @@
       </value>
     </block>
 
-    <block type="tm1640_custom">
+    <block type="max7219_custom">
                     <field name="A0">FALSE</field>
                     <field name="A1">FALSE</field>
                     <field name="A2">FALSE</field>
@@ -973,6 +1003,9 @@
                     <field name="H7">FALSE</field>
                 </block>
 
+ <block type="max7219_show"></block>
+ <block type="max7219_wake"></block>
+ <block type="max7219_shutdown"></block>
 
   </category>
 

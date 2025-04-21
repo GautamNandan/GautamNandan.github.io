@@ -1413,7 +1413,7 @@ Blockly.Blocks['ble_setup'] = {
   }
 };
 
-Blockly.Blocks['tm1640_init'] = {
+Blockly.Blocks['max7219_init'] = {
   init: function() {
 
 
@@ -1423,9 +1423,8 @@ Blockly.Blocks['tm1640_init'] = {
         55,
         55,
         "*"))
-      .appendField("Start TM1640 LED Matrix")
+      .appendField("Start MAX7219 LED Matrix")
 	  ;
-
 
     this.appendValueInput("clk")
         .setCheck("Number")
@@ -1435,37 +1434,73 @@ Blockly.Blocks['tm1640_init'] = {
     this.appendValueInput("dio")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("DIO");
+        .appendField("DO");
 
-
+    this.appendValueInput("cs")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("CS");
+		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("Start TM1640 LED Matrix");
+ this.setTooltip("Start MAX7219 LED Matrix");
  this.setHelpUrl("http://www.bipes.net.br");
   }
 };
 
-Blockly.Blocks['tm1640_write'] = {
+Blockly.Blocks['max7219_write'] = {
   init: function() {
    this.appendDummyInput()
-        .appendField("Write array to Led Matrix");
+        .appendField("Write Text to Led Matrix");
 
- this.appendValueInput("vector")
+ this.appendValueInput("text")
         .setCheck("String")
-        .appendField("LED array value");
-
+        .appendField("LED Text value");
+		
+ this.appendValueInput("xpos")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("XPOS");
+		
+ this.appendValueInput("ypos")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("YPOS");
+		
  this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
 
     this.setColour(230);
- this.setTooltip("Write to TM1640 LED Matrix");
+ this.setTooltip("Write to MAX7219 LED Matrix");
  this.setHelpUrl("http://www.bipes.net.br");
   }
 };
 
+Blockly.Blocks['max7219_scroll'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Scroll Text on Led Matrix");
 
-Blockly.Blocks['tm1640_num'] = {
+ this.appendValueInput("text")
+        .setCheck("String")
+        .appendField("LED Text value");
+		
+ this.appendValueInput("delay")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("DELAY(ms)");
+		
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Write to MAX7219 LED Matrix");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['max7219_num'] = {
   init: function() {
    this.appendDummyInput()
         .appendField("Write Number on Led Matrix");
@@ -1480,33 +1515,74 @@ Blockly.Blocks['tm1640_num'] = {
 
 
     this.setColour(230);
- this.setTooltip("Write number on TM1640 LED Matrix");
+ this.setTooltip("Write number on MAX7219 LED Matrix");
  this.setHelpUrl("http://www.bipes.net.br");
   }
 };
 
-Blockly.Blocks['tm1640_brig'] = {
+Blockly.Blocks['max7219_brig'] = {
   init: function() {
    this.appendDummyInput()
         .appendField("Set Brightness of Led Matrix");
 
     this.appendValueInput("brig")
         .setCheck("Number")
-        .appendField("value (1-7)");
+        .appendField("value (1-15)");
 
 
  this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
 
-
-
     this.setColour(230);
- this.setTooltip("Set brightness of TM1640 LED Matrix");
+ this.setTooltip("Set brightness of MAX7219 LED Matrix");
  this.setHelpUrl("http://www.bipes.net.br");
   }
 };
 
-Blockly.Blocks['tm1640_custom'] = {
+Blockly.Blocks['max7219_show'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Show on Led Matrix");
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Set brightness of MAX7219 LED Matrix");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['max7219_shutdown'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Turn off Led Matrix");
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Turn of LED Matrix");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['max7219_wake'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Turn on Led Matrix");
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Wake up MAX7219 LED Matrix");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+
+Blockly.Blocks['max7219_custom'] = {
     init: function () {
 
         this.appendDummyInput()

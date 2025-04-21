@@ -367,7 +367,7 @@ Blockly.Python['init_mpu6050'] = function(block) {
   var sda = Blockly.Python.valueToCode(block, 'sda', Blockly.Python.ORDER_ATOMIC);
 
   Blockly.Python.definitions_['import_imu'] = 'from mpu import imu';
-  Blockly.Python.definitions_['import_imu'] = 'from mpu import mpu6500';
+  Blockly.Python.definitions_['import_mpu'] = 'from mpu import mpu6500';
 //  var code = 'i2c=I2C(-1, scl=Pin(' + scl + '), sda=Pin(' + sda + '))\n';
  //     code += 'oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c)\n';
     var code = "imu.init_MPU()\nimu.calibrate_sensors()\n";
@@ -675,41 +675,57 @@ Blockly.Python['dht_read_humidity'] = function(block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['tm1640_init'] = function(block) {
+Blockly.Python['max7219_init'] = function(block) {
   var clk = Blockly.Python.valueToCode(block, 'clk', Blockly.Python.ORDER_ATOMIC);
   var dio = Blockly.Python.valueToCode(block, 'dio', Blockly.Python.ORDER_ATOMIC);
+  var cs = Blockly.Python.valueToCode(block, 'cs', Blockly.Python.ORDER_ATOMIC);
+  
+  Blockly.Python.definitions_['import_pin'] = 'from machine import SPI, Pin';
+  Blockly.Python.definitions_['import_const'] = 'from micropython import const';
+  Blockly.Python.definitions_['import_max7219'] = 'from ledmatrix import Matrix8x8';
 
-  Blockly.Python.definitions_['import_tm1640'] = 'from ledmatrix import tm1640';
-  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-
-  var code = 'tm = tm1640.TM1640(clk=Pin(14), dio=Pin(13))\n';
+  var code = 'max_clk = const(' + clk  + ')\n';
+  code += 'max_cs = const(' + cs   + ')\n';
+  code += 'max_din = const(' + dio  + ')\n';
+  
+  //code += 'spi = SoftSPI(sck=max_clk, mosi=max_din, miso=16)\n';
+  code += 'spi = SPI(1, baudrate=10000000, polarity=1, phase=0, sck=Pin(max_clk), mosi=Pin(max_din))\n';
+  code += 'display = Matrix8x8(spi, Pin(max_cs), 1)\n';
   return code;
 };
 
 
-
-Blockly.Python['tm1640_write'] = function(block) {
-  var pIn = Blockly.Python.valueToCode(block, 'vector', Blockly.Python.ORDER_ATOMIC);
-  var x = pIn.replace('\'','').replace('\'','');
-  var code = 'tm.write([' + x + '])\n';
+Blockly.Python['max7219_write'] = function(block) {
+  var pIn = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
+  var xpos = Blockly.Python.valueToCode(block, 'xpos', Blockly.Python.ORDER_ATOMIC);
+  var ypos = Blockly.Python.valueToCode(block, 'ypos', Blockly.Python.ORDER_ATOMIC);
+  var code = 'display.text(' + pIn + ',' + xpos + ',' + ypos + ')\n';
   return code;
 };
 
-Blockly.Python['tm1640_brig'] = function(block) {
+Blockly.Python['max7219_scroll'] = function(block) {
+  var pIn = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
+  var delay = Blockly.Python.valueToCode(block, 'delay', Blockly.Python.ORDER_ATOMIC);
+  var code = 'display.scroll_text(' + pIn + ',' + delay  + ')\n';
+  return code;
+};
+
+
+Blockly.Python['max7219_brig'] = function(block) {
   var pIn = Blockly.Python.valueToCode(block, 'brig', Blockly.Python.ORDER_ATOMIC);
-  var code = 'tm.brightness(' + pIn + ')\n';
+  var code = 'display.brightness(' + pIn + ')\n';
   return code;
 };
 
-Blockly.Python['tm1640_num'] = function(block) {
-  //Reference: https://github.com/mcauser/micropython-tm1640
-	//https://github.com/mcauser/micropython-tm1640/blob/master/tm1640_test.py
+Blockly.Python['max7219_num'] = function(block) {
+  //Reference: https://github.com/mcauser/micropython-max7219
+	//https://github.com/mcauser/micropython-max7219/blob/master/max7219_test.py
   var pIn = Blockly.Python.valueToCode(block, 'num', Blockly.Python.ORDER_ATOMIC);
-  var code = 'digits = [0x3c66666e76663c00, 0x7e1818181c181800, 0x7e060c3060663c00, 0x3c66603860663c00, 0x30307e3234383000, 0x3c6660603e067e00, 0x3c66663e06663c00, 0x1818183030667e00, 0x3c66663c66663c00, 0x3c66607c66663c00]\ntm.write_int(digits[' + pIn + '])\n';
+  var code = 'display.number(' + pIn + ')\n';
   return code;
 };
 
-Blockly.Python['tm1640_custom'] = function (block) {
+Blockly.Python['max7219_custom'] = function (block) {
     var checkbox_a0 = block.getFieldValue('A0') == 'TRUE';
     var checkbox_a1 = block.getFieldValue('A1') == 'TRUE';
     var checkbox_a2 = block.getFieldValue('A2') == 'TRUE';
@@ -774,20 +790,38 @@ Blockly.Python['tm1640_custom'] = function (block) {
     var checkbox_h5 = block.getFieldValue('H5') == 'TRUE';
     var checkbox_h6 = block.getFieldValue('H6') == 'TRUE';
     var checkbox_h7 = block.getFieldValue('H7') == 'TRUE';
-
-    var line1 = Number(checkbox_a0) * 2**0 + Number(checkbox_a1) * 2**1 + Number(checkbox_a2) * 2**2 + Number(checkbox_a3) * 2**3 + Number(checkbox_a4) * 2**4 + Number(checkbox_a5) * 2**5 + Number(checkbox_a6) * 2**6 + Number(checkbox_a7) * 2**7;
-    var line2 = Number(checkbox_b0) * 2**0 + Number(checkbox_b1) * 2**1 + Number(checkbox_b2) * 2**2 + Number(checkbox_b3) * 2**3 + Number(checkbox_b4) * 2**4 + Number(checkbox_b5) * 2**5 + Number(checkbox_b6) * 2**6 + Number(checkbox_b7) * 2**7;
-    var line3 = Number(checkbox_c0) * 2**0 + Number(checkbox_c1) * 2**1 + Number(checkbox_c2) * 2**2 + Number(checkbox_c3) * 2**3 + Number(checkbox_c4) * 2**4 + Number(checkbox_c5) * 2**5 + Number(checkbox_c6) * 2**6 + Number(checkbox_c7) * 2**7;
-    var line4 = Number(checkbox_d0) * 2**0 + Number(checkbox_d1) * 2**1 + Number(checkbox_d2) * 2**2 + Number(checkbox_d3) * 2**3 + Number(checkbox_d4) * 2**4 + Number(checkbox_d5) * 2**5 + Number(checkbox_d6) * 2**6 + Number(checkbox_d7) * 2**7;
-    var line5 = Number(checkbox_e0) * 2**0 + Number(checkbox_e1) * 2**1 + Number(checkbox_e2) * 2**2 + Number(checkbox_e3) * 2**3 + Number(checkbox_e4) * 2**4 + Number(checkbox_e5) * 2**5 + Number(checkbox_e6) * 2**6 + Number(checkbox_e7) * 2**7;
-    var line6 = Number(checkbox_f0) * 2**0 + Number(checkbox_f1) * 2**1 + Number(checkbox_f2) * 2**2 + Number(checkbox_f3) * 2**3 + Number(checkbox_f4) * 2**4 + Number(checkbox_f5) * 2**5 + Number(checkbox_f6) * 2**6 + Number(checkbox_f7) * 2**7;
-    var line7 = Number(checkbox_g0) * 2**0 + Number(checkbox_g1) * 2**1 + Number(checkbox_g2) * 2**2 + Number(checkbox_g3) * 2**3 + Number(checkbox_g4) * 2**4 + Number(checkbox_g5) * 2**5 + Number(checkbox_g6) * 2**6 + Number(checkbox_g7) * 2**7;
-    var line8 = Number(checkbox_h0) * 2**0 + Number(checkbox_h1) * 2**1 + Number(checkbox_h2) * 2**2 + Number(checkbox_h3) * 2**3 + Number(checkbox_h4) * 2**4 + Number(checkbox_h5) * 2**5 + Number(checkbox_h6) * 2**6 + Number(checkbox_h7) * 2**7;
-
-
-    var code = 'tm.write([' + line8 + ',' + line7 + ',' + line6 + ',' + line5 + ',' + line4 + ',' + line3 + ',' + line2 + ',' + line1 + '])\n';
+    
+	//var code = 'display.text(' + line8 +  line7 +  line6 +  line5 +  line4 +  line3 +  line2 +  line1 + ')\n';
+	var code = 'matrix = [\n';
+	code += '\t[' + Number(checkbox_a0) + ',' + Number(checkbox_a1) + ',' + Number(checkbox_a2) + ',' + Number(checkbox_a3) + ',' + Number(checkbox_a4) + ',' + Number(checkbox_a5) + ',' + Number(checkbox_a6) + ',' + Number(checkbox_a7) + '],\n';
+	code += '\t[' + Number(checkbox_b0) + ',' + Number(checkbox_b1) + ',' + Number(checkbox_b2) + ',' + Number(checkbox_b3) + ',' + Number(checkbox_b4) + ',' + Number(checkbox_b5) + ',' + Number(checkbox_b6) + ',' + Number(checkbox_b7) + '],\n';
+	code += '\t[' + Number(checkbox_c0) + ',' + Number(checkbox_c1) + ',' + Number(checkbox_c2) + ',' + Number(checkbox_c3) + ',' + Number(checkbox_c4) + ',' + Number(checkbox_c5) + ',' + Number(checkbox_c6) + ',' + Number(checkbox_c7) + '],\n';
+	code += '\t[' + Number(checkbox_d0) + ',' + Number(checkbox_d1) + ',' + Number(checkbox_d2) + ',' + Number(checkbox_d3) + ',' + Number(checkbox_d4) + ',' + Number(checkbox_d5) + ',' + Number(checkbox_d6) + ',' + Number(checkbox_d7) + '],\n';
+	code += '\t[' + Number(checkbox_e0) + ',' + Number(checkbox_e1) + ',' + Number(checkbox_e2) + ',' + Number(checkbox_e3) + ',' + Number(checkbox_e4) + ',' + Number(checkbox_e5) + ',' + Number(checkbox_e6) + ',' + Number(checkbox_e7) + '],\n';
+	code += '\t[' + Number(checkbox_f0) + ',' + Number(checkbox_f1) + ',' + Number(checkbox_f2) + ',' + Number(checkbox_f3) + ',' + Number(checkbox_f4) + ',' + Number(checkbox_f5) + ',' + Number(checkbox_f6) + ',' + Number(checkbox_f7) + '],\n';
+	code += '\t[' + Number(checkbox_g0) + ',' + Number(checkbox_g1) + ',' + Number(checkbox_g2) + ',' + Number(checkbox_g3) + ',' + Number(checkbox_g4) + ',' + Number(checkbox_g5) + ',' + Number(checkbox_g6) + ',' + Number(checkbox_g7) + '],\n';
+	code += '\t[' + Number(checkbox_h0) + ',' + Number(checkbox_h1) + ',' + Number(checkbox_h2) + ',' + Number(checkbox_h3) + ',' + Number(checkbox_h4) + ',' + Number(checkbox_h5) + ',' + Number(checkbox_h6) + ',' + Number(checkbox_h7) + ']\n';
+	code += ']';
     return code;
 };
+Blockly.Python['max7219_show'] = function(block) {
+
+  var code = 'display.show()\n';
+  return code;
+};
+
+Blockly.Python['max7219_shutdown'] = function(block) {
+
+  var code = 'display.shutdown()\n';
+  return code;
+};
+
+Blockly.Python['max7219_wake'] = function(block) {
+
+  var code = 'display.wake()\n';
+  return code;
+};
+
 
 /// Relay Switch
 Blockly.Python['relay_switch'] = function(block) {
@@ -4819,9 +4853,15 @@ Blockly.Python['rfid_rc522_init'] = function(block) {
   var rst = Blockly.Python.valueToCode(block, 'rst', Blockly.Python.ORDER_ATOMIC);
   var cs = Blockly.Python.valueToCode(block, 'cs', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.definitions_['import_mfrc522'] = 'from rf import mfrc522';
+  Blockly.Python.definitions_['import_spi'] = 'from machine import SPI';
+  
 
   //var code = 'rdr=mfrc522.MFRC522(0,2,4,5,14)\n';
-  var code = 'rdr=mfrc522.MFRC522(' + sck + ',' + mosi + ',' + miso + ',' + rst + ',' + cs + ')\n';
+ 
+  var code = 'spi = SPI(2, baudrate=2500000, polarity=0, phase=0)\n';
+  code += 'spi.init()\n';
+  //code += 'rdr=mfrc522.MFRC522(' + sck + ',' + mosi + ',' + miso + ',' + rst + ',' + cs + ')\n';
+  code += 'rdr = MFRC522(spi=spi, gpioRst=' + rst + ',' +  'gpioCs=' + cs + ')\n';
   return code;
 };
 
@@ -4830,9 +4870,7 @@ Blockly.Python['rfid_rc522_detect_card'] = function(block) {
   var stat = Blockly.Python.valueToCode(block, 'stat', Blockly.Python.ORDER_ATOMIC);
   var tag = Blockly.Python.valueToCode(block, 'tag', Blockly.Python.ORDER_ATOMIC);
 
-  Blockly.Python.definitions_['import_mfrc522'] = 'import mfrc522';
-
-  var code = '(' + stat + ',' + tag + ') = rdr.request(rdr.REQIDL)\n';
+   var code = '(' + stat + ',' + tag + ') = rdr.request(rdr.REQIDL)\n';
   //return [code, Blockly.Python.ORDER_NONE];
   return code;
 };
