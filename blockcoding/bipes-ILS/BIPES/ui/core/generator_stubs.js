@@ -4873,7 +4873,10 @@ Blockly.Python['char_lcd_putstr'] = function(block) {
 };
 
 Blockly.Python['char_lcd_moveto'] = function(block) {
-  var code = 'lcd.move_to(0,0)\n';
+  var x = Blockly.Python.valueToCode(block, 'x', Blockly.Python.ORDER_NONE);
+  var y = Blockly.Python.valueToCode(block, 'y', Blockly.Python.ORDER_NONE);
+  
+  var code = 'lcd.move_to(' + x + ', ' + y + ')\n';
   return code;
 };
 
