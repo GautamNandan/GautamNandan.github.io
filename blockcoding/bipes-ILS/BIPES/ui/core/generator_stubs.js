@@ -862,11 +862,13 @@ Blockly.Python['tm1637_scroll'] = function(block) {
 
 Blockly.Python['tm1637_brig'] = function(block) {
   var pIn = Blockly.Python.valueToCode(block, 'brig', Blockly.Python.ORDER_ATOMIC);
-  if ( pIn > 7)
-  {
-	pIn = 7;
-  }
-  var code = 'display.brightness(' + pIn + ')\n';
+  // Map input from range 0-100 to range 1-7
+  var code = 'display.brightness(max(1, min(7, int(1 + (' + pIn + ' * 6 / 100)))))\n';
+  return code;
+};
+
+Blockly.Python['tm1637_clear'] = function(block) {
+  var code = 'display.show(\'\')\n';
   return code;
 };
 

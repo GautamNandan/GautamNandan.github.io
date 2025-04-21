@@ -621,7 +621,7 @@
 
   </category>
 
-    <category name="ST7789 Display">
+    <category name="TFT Display">
       <label text="ST7789 Display"></label>
 
       <block type="st7789_init">
@@ -1082,6 +1082,9 @@
         </shadow>
       </value>
     </block>
+
+    <block type="tm1637_clear">
+      </block>
 
   </category>
 

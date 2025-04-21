@@ -1771,7 +1771,7 @@ Blockly.Blocks['tm1637_brig'] = {
 
     this.appendValueInput("brig")
         .setCheck("Number")
-        .appendField("value (1-7)");
+        .appendField("Percentage (1-100)");
 
 
  this.setPreviousStatement(true, null);
@@ -1806,6 +1806,20 @@ Blockly.Blocks['tm1637_time'] = {
  this.setHelpUrl("http://www.bipes.net.br");
   }
 };
+
+Blockly.Blocks['tm1637_clear'] = {
+  init: function() {
+    this.setColour(230);
+    this.appendDummyInput()
+        .appendField("Clear 7 segment");
+
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
+
+
 Blockly.Blocks['file_open_write'] = {
   init: function() {
    this.appendDummyInput()
