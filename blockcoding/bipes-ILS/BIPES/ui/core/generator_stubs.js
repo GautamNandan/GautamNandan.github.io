@@ -711,7 +711,8 @@ Blockly.Python['max7219_scroll'] = function(block) {
 
 Blockly.Python['max7219_brig'] = function(block) {
   var pIn = Blockly.Python.valueToCode(block, 'brig', Blockly.Python.ORDER_ATOMIC);
-  var code = 'display.brightness(' + pIn + ')\n';
+  // Map input from range 0-100 to range 1-15
+  var code = 'display.brightness(max(1, min(15, int(1 + (' + pIn + ' * 14 / 100)))))\n';
   return code;
 };
 
@@ -822,6 +823,67 @@ Blockly.Python['max7219_wake'] = function(block) {
   return code;
 };
 
+Blockly.Python['max7219_clear'] = function(block) {
+
+  var code = 'display.zero()\n';
+  return code;
+};
+
+
+
+Blockly.Python['tm1637_init'] = function(block) {
+  var clk = Blockly.Python.valueToCode(block, 'clk', Blockly.Python.ORDER_ATOMIC);
+  var dio = Blockly.Python.valueToCode(block, 'dio', Blockly.Python.ORDER_ATOMIC);
+  
+  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
+  Blockly.Python.definitions_['import_tm1637'] = 'from led import tm1637';
+
+  var code = 'max_clk = const(' + clk  + ')\n';
+  code += 'max_din = const(' + dio  + ')\n';
+  
+  code += 'display = tm1637.TM1637(clk=Pin(max_clk), dio=Pin(max_din))\n';
+  return code;
+};
+
+
+Blockly.Python['tm1637_write'] = function(block) {
+  var pIn = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
+  var code = 'display.show(' + pIn + ')\n';
+  return code;
+};
+
+Blockly.Python['tm1637_scroll'] = function(block) {
+  var pIn = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
+  var delay = Blockly.Python.valueToCode(block, 'delay', Blockly.Python.ORDER_ATOMIC);
+  var code = 'display.scroll(' + pIn + ',' + delay  + ')\n';
+  return code;
+};
+
+
+Blockly.Python['tm1637_brig'] = function(block) {
+  var pIn = Blockly.Python.valueToCode(block, 'brig', Blockly.Python.ORDER_ATOMIC);
+  if ( pIn > 7)
+  {
+	pIn = 7;
+  }
+  var code = 'display.brightness(' + pIn + ')\n';
+  return code;
+};
+
+Blockly.Python['tm1637_temp'] = function(block) {
+  var pIn = Blockly.Python.valueToCode(block, 'temp', Blockly.Python.ORDER_ATOMIC);
+
+  var code = 'display.temperature(' + pIn + ')\n';
+  return code;
+};
+
+Blockly.Python['tm1637_time'] = function(block) {
+  var hrs = Blockly.Python.valueToCode(block, 'hrs', Blockly.Python.ORDER_ATOMIC);
+  var mns = Blockly.Python.valueToCode(block, 'mns', Blockly.Python.ORDER_ATOMIC);
+  //tm.show('{:>2d}{:02d}'.format(18, 6), colon=False)
+  var code = 'display.show(\'{:>2d}{:02d}\'.format(' + hrs + ',' + mns +  '), colon=False)\n';
+  return code;
+};
 
 /// Relay Switch
 Blockly.Python['relay_switch'] = function(block) {
@@ -4804,7 +4866,9 @@ Blockly.Python['char_lcd_clear'] = function(block) {
 };
 
 Blockly.Python['char_lcd_putstr'] = function(block) {
-  var code = "lcd.putstr('test')\n";
+	
+  var value_text = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_NONE);	
+  var code = 'lcd.putstr(' + value_text + ')\n';
   return code;
 };
 

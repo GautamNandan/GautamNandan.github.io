@@ -1517,7 +1517,7 @@ Blockly.Blocks['max7219_brig'] = {
 
     this.appendValueInput("brig")
         .setCheck("Number")
-        .appendField("value (1-15)");
+        .appendField("Percentage (0-100%)");
 
 
  this.setPreviousStatement(true, null);
@@ -1571,6 +1571,19 @@ Blockly.Blocks['max7219_wake'] = {
   }
 };
 
+Blockly.Blocks['max7219_clear'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Clear Led Matrix");
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Clear MAX7219 LED Matrix");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
 
 Blockly.Blocks['max7219_custom'] = {
     init: function () {
@@ -1660,6 +1673,139 @@ Blockly.Blocks['max7219_custom'] = {
     }
 };
 
+Blockly.Blocks['tm1637_init'] = {
+  init: function() {
+
+ this.appendDummyInput()
+      .appendField(new Blockly.FieldImage(
+        "media/tm1637led.png",
+        55,
+        55,
+        "*"))
+      .appendField("Start tm1637 LED")
+	  ;
+
+    this.appendValueInput("clk")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("CLK");
+
+    this.appendValueInput("dio")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("DO");
+		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("Start tm1637 LED");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['tm1637_write'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Write to Led");
+
+ this.appendValueInput("text")
+        .setCheck("String")
+        .appendField("LED Text value");
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Write to tm1637 LED");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['tm1637_scroll'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Scroll Text on Led");
+
+ this.appendValueInput("text")
+        .setCheck("String")
+        .appendField("LED Text value");
+		
+ this.appendValueInput("delay")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("DELAY(ms)");
+		
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Write to tm1637 LED");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['tm1637_temp'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Write Temperature on Led");
+
+    this.appendValueInput("temp")
+        .setCheck("Number")
+        .appendField("value");
+
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+
+    this.setColour(230);
+ this.setTooltip("Write number on tm1637 LED");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['tm1637_brig'] = {
+  init: function() {
+   this.appendDummyInput()
+        .appendField("Set Brightness of Led");
+
+    this.appendValueInput("brig")
+        .setCheck("Number")
+        .appendField("value (1-7)");
+
+
+ this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setColour(230);
+ this.setTooltip("Set brightness of tm1637 LED Matrix");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['tm1637_time'] = {
+  init: function() {
+
+   this.appendDummyInput()
+        .appendField("Set Time on Led");
+		
+    this.appendValueInput("hrs")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("HRS");
+
+    this.appendValueInput("mns")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("MNS");
+		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("Show temperature");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
 Blockly.Blocks['file_open_write'] = {
   init: function() {
    this.appendDummyInput()

@@ -1006,10 +1006,84 @@
  <block type="max7219_show"></block>
  <block type="max7219_wake"></block>
  <block type="max7219_shutdown"></block>
+ <block type="max7219_clear"></block>
 
   </category>
 
+  <category name="7 Segment LED">
+      <label text="TM1637 LED"></label>
 
+    <block type="tm1637_init">
+
+
+ <value name="clk">
+        <shadow type="math_number">
+          <field name="NUM">4</field>
+        </shadow>
+      </value>
+
+ <value name="dio">
+        <shadow type="math_number">
+          <field name="NUM">16</field>
+        </shadow>
+      </value>
+
+      </block>
+
+    <block type="tm1637_write">
+  <value name="text">
+        <shadow type="text">
+          <field name="TEXT">INFY</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="tm1637_scroll">
+  <value name="text">
+        <shadow type="text">
+          <field name="TEXT">INFINITY</field>
+        </shadow>
+      </value>
+       <value name="delay">
+        <shadow type="math_number">
+          <field name="NUM">1000</field>
+        </shadow>
+      </value>
+
+    </block>
+
+    <block type="tm1637_brig">
+    <value name="brig">
+        <shadow type="math_number">
+          <field name="NUM">4</field>
+        </shadow>
+      </value>
+
+    </block>
+
+
+    <block type="tm1637_temp">
+    <value name="temp">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+        <block type="tm1637_time">
+    <value name="hrs">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+          <value name="mns">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+  </category>
 
 
   </category>
