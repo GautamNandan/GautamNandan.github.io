@@ -697,9 +697,7 @@ Blockly.Python['max7219_init'] = function(block) {
 
 Blockly.Python['max7219_write'] = function(block) {
   var pIn = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
-  var xpos = Blockly.Python.valueToCode(block, 'xpos', Blockly.Python.ORDER_ATOMIC);
-  var ypos = Blockly.Python.valueToCode(block, 'ypos', Blockly.Python.ORDER_ATOMIC);
-  var code = 'display.text(' + pIn + ',' + xpos + ',' + ypos + ')\n';
+  var code = 'display.text(' + pIn + ')\n';
   return code;
 };
 
@@ -801,7 +799,9 @@ Blockly.Python['max7219_custom'] = function (block) {
 	code += '\t[' + Number(checkbox_f0) + ',' + Number(checkbox_f1) + ',' + Number(checkbox_f2) + ',' + Number(checkbox_f3) + ',' + Number(checkbox_f4) + ',' + Number(checkbox_f5) + ',' + Number(checkbox_f6) + ',' + Number(checkbox_f7) + '],\n';
 	code += '\t[' + Number(checkbox_g0) + ',' + Number(checkbox_g1) + ',' + Number(checkbox_g2) + ',' + Number(checkbox_g3) + ',' + Number(checkbox_g4) + ',' + Number(checkbox_g5) + ',' + Number(checkbox_g6) + ',' + Number(checkbox_g7) + '],\n';
 	code += '\t[' + Number(checkbox_h0) + ',' + Number(checkbox_h1) + ',' + Number(checkbox_h2) + ',' + Number(checkbox_h3) + ',' + Number(checkbox_h4) + ',' + Number(checkbox_h5) + ',' + Number(checkbox_h6) + ',' + Number(checkbox_h7) + ']\n';
-	code += ']';
+	code += ']\n';
+	
+	code += 'display.glyphArray(matrix)\n';
     return code;
 };
 Blockly.Python['max7219_show'] = function(block) {

@@ -1457,17 +1457,7 @@ Blockly.Blocks['max7219_write'] = {
  this.appendValueInput("text")
         .setCheck("String")
         .appendField("LED Text value");
-		
- this.appendValueInput("xpos")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("XPOS");
-		
- this.appendValueInput("ypos")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("YPOS");
-		
+
  this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
 
