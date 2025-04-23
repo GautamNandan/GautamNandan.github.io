@@ -657,6 +657,14 @@ Blockly.Python['joy_read'] = function(block) {
   return code;
 };
 
+Blockly.Python['joy_button'] = function(block) {
+  var code = 'js.was_pressed()';
+  return [code, Blockly.Python.ORDER_NONE];
+  return code;
+};
+
+
+
 /// DHT11/22
 /// Start DHT Sensor
 Blockly.Python['dht_init'] = function(block) {

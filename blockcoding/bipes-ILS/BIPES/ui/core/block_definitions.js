@@ -2161,6 +2161,18 @@ Blockly.Blocks['joy_read'] = {
   }
 };
 
+Blockly.Blocks['joy_button'] = {
+  init: function() {
+    this.setColour(230);
+    this.appendDummyInput()
+        .appendField("Read JoyStick Button Value");
+
+    this.setOutput(true);
+
+    this.setTooltip('');
+  }
+};
+
 /// Start DHT Sensor
 Blockly.Blocks['dht_init'] = {
   init: function() {

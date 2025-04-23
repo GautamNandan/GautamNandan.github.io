@@ -1125,6 +1125,7 @@
 		</block>	
 	  <block type="joy_update"> </block>
 	  <block type="joy_read"> </block>
+	  <block type="joy_button"> </block>
 	 </category>
   </category>
   <category name="%{BKY_CAT_SENSORS}">
