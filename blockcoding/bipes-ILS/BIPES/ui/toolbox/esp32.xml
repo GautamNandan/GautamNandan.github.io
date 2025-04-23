@@ -1107,7 +1107,7 @@
             <field name="PIN"></field>
           </shadow>
         </value>			
-        <value name="button">
+        <value name="button1">
           <shadow type="pinout">
             <field name="PIN"></field>
           </shadow>
@@ -1365,10 +1365,15 @@
             <field name="ch1"></field>
           </shadow>
         </value>
-
+        <value name="button">
+          <shadow type="pinout">
+            <field name="button"></field>
+          </shadow>
+        </value>
       </block>
       <block type="encoder_reset"></block>
       <block type="encoder_read"></block>
+	  <block type="encoder_button"></block>
   </category>
 
   <category name="Camera (ESP32CAM)">

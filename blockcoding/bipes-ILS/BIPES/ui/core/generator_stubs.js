@@ -5508,80 +5508,38 @@ Blockly.Python['gps_get_datetime'] = function(block) {
 Blockly.Python['encoder_init'] = function(block) {
   var p0 = Blockly.Python.valueToCode(block, 'p0', Blockly.Python.ORDER_ATOMIC);
   var p1 = Blockly.Python.valueToCode(block, 'p1', Blockly.Python.ORDER_ATOMIC);
-
+  var b1 = Blockly.Python.valueToCode(block, 'button', Blockly.Python.ORDER_ATOMIC);
+  
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-  Blockly.Python.definitions_['import_encoder_class'] = `
+  Blockly.Python.definitions_['import time'] = 'import time';
+  Blockly.Python.definitions_['import encoder'] = 'from rotaryencoder import RotaryEncoder';
 
-#Encoder class
-#Source: https://github.com/peterhinch/micropython-samples/blob/master/encoders/encoder_portable.py
-class Encoder(object):
-    def __init__(self, pin_x, pin_y, reverse, scale):
-        self.reverse = reverse
-        self.scale = scale
-        self.forward = True
-        self.pin_x = pin_x
-        self.pin_y = pin_y
-        self._pos = 0
-        self.x_interrupt = pin_x.irq(trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING, handler=self.x_callback)
-        self.y_interrupt = pin_y.irq(trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING, handler=self.y_callback)
 
-    def x_callback(self, line):
-        self.forward = self.pin_x.value() ^ self.pin_y.value() ^ self.reverse
-        self._pos += 1 if self.forward else -1
-
-    def y_callback(self, line):
-        self.forward = self.pin_x.value() ^ self.pin_y.value() ^ self.reverse ^ 1
-        self._pos += 1 if self.forward else -1
-
-    @property
-    def position(self):
-        return self._pos * self.scale
-
-    @position.setter
-    def position(self, value):
-        self._pos = value // self.scale
-
-  `;
-
-	/*
-  Blockly.Python.definitions_['import_encoder_callback'] = `
-
-#BIPES Encoder CallBack
-x=0
-
-def callback(p):
-    global x
-    x=x+1
-    print(x)
-    `;
-
-	//TODO: count backwards
-  var code =  "p0 = Pin(" + p0 + ", Pin.IN)\n";
-      code += "p1 = Pin(" + p1 + ", Pin.IN)\n";
-      code += "p0.irq(trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING, handler=callback) \n";
-      code += "p1.irq(trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING, handler=callback) \n";
-      */
-
-  var code =  "p00 = Pin(" + p0 + ", Pin.IN)\n";
-      code += "p11 = Pin(" + p1 + ", Pin.IN)\n";
-      code += "encoder = Encoder(p00,p11,1,1)\n";
-
+  var code = 'encoder = RotaryEncoder(pin_clk=' + p0 + ',pin_dt=' + p1 + ',pin_sw=' + b1 + ',' + 'min_val=0, max_val=100)\n';
   return code;
 };
 
 Blockly.Python['encoder_reset'] = function(block) {
 
-  var code = 'encoder.position=0\n';
+  var code = 'encoder.reset(0)\n';
 
   return code;
 };
 
 Blockly.Python['encoder_read'] = function(block) {
 
-  var code = 'encoder.position';
+  var code = 'encoder.read()';
 
   return [code, Blockly.Python.ORDER_NONE];
 };
+
+Blockly.Python['encoder_button'] = function(block) {
+
+  var code = 'encoder.check_button()';
+
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
 
 
 //Stepper Motor

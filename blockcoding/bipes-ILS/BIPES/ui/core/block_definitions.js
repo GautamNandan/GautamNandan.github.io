@@ -2115,7 +2115,7 @@ Blockly.Blocks['joy_init'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldLabelSerializable("y axis"), "DHT_PIN_MSG");
 
-    this.appendValueInput("button")
+    this.appendValueInput("button1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldLabelSerializable("button"), "DHT_PIN_MSG");
@@ -10662,6 +10662,11 @@ Blockly.Blocks['encoder_init'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("ch1");
 
+    this.appendValueInput("button")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("button");
+		
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('');
@@ -10686,6 +10691,18 @@ Blockly.Blocks['encoder_read'] = {
     this.setColour(135);
     this.appendDummyInput()
         .appendField("Read Encoder Value");
+
+    this.setOutput(true);
+
+    this.setTooltip('');
+  }
+};
+
+Blockly.Blocks['encoder_button'] = {
+  init: function() {
+    this.setColour(135);
+    this.appendDummyInput()
+        .appendField("Read Encoder Button Value");
 
     this.setOutput(true);
 
