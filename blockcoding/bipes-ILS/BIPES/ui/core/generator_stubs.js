@@ -630,6 +630,33 @@ Blockly.Python['wifi_client_scan_networks'] = function(block) {
 	return [code, Blockly.Python.ORDER_NONE];
 };
 
+Blockly.Python['joy_init'] = function(block) {
+  var xpin = Blockly.Python.valueToCode(block, 'xpin', Blockly.Python.ORDER_ATOMIC);
+  var ypin = Blockly.Python.valueToCode(block, 'ypin', Blockly.Python.ORDER_ATOMIC);
+  var button1 = Blockly.Python.valueToCode(block, 'button', Blockly.Python.ORDER_ATOMIC); 
+  var xcenter = Blockly.Python.valueToCode(block, 'xcenter', Blockly.Python.ORDER_ATOMIC);
+  var ycenter = Blockly.Python.valueToCode(block, 'ycenter', Blockly.Python.ORDER_ATOMIC);  
+  
+  // Importa as bibliotecas necessárias
+  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin, ADC';
+  Blockly.Python.definitions_['import_joy'] = 'from joystick import Joystick';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+
+  var code = 'js = Joystick(x_pin=' + xpin + ', y_pin=' + ypin + ', btn_pin=' + button1 + ', x_center=' + xcenter + ', y_center=' + ycenter + ')\n';
+  return code;
+};
+
+Blockly.Python['joy_update'] = function(block) {
+  var code = 'js.read()\n'; 
+  return code;
+};
+
+Blockly.Python['joy_read'] = function(block) {
+  var code = 'js.get_direction()';
+  return [code, Blockly.Python.ORDER_NONE];
+  return code;
+};
+
 /// DHT11/22
 /// Start DHT Sensor
 Blockly.Python['dht_init'] = function(block) {
@@ -679,7 +706,8 @@ Blockly.Python['max7219_init'] = function(block) {
   var clk = Blockly.Python.valueToCode(block, 'clk', Blockly.Python.ORDER_ATOMIC);
   var dio = Blockly.Python.valueToCode(block, 'dio', Blockly.Python.ORDER_ATOMIC);
   var cs = Blockly.Python.valueToCode(block, 'cs', Blockly.Python.ORDER_ATOMIC);
-  
+  var count = Blockly.Python.valueToCode(block, 'count', Blockly.Python.ORDER_ATOMIC); 
+
   Blockly.Python.definitions_['import_pin'] = 'from machine import SPI, Pin';
   Blockly.Python.definitions_['import_const'] = 'from micropython import const';
   Blockly.Python.definitions_['import_max7219'] = 'from ledmatrix import Matrix8x8';
@@ -687,10 +715,10 @@ Blockly.Python['max7219_init'] = function(block) {
   var code = 'max_clk = const(' + clk  + ')\n';
   code += 'max_cs = const(' + cs   + ')\n';
   code += 'max_din = const(' + dio  + ')\n';
-  
+  code += 'max_count = const(' + count  + ')\n'; 
   //code += 'spi = SoftSPI(sck=max_clk, mosi=max_din, miso=16)\n';
   code += 'spi = SPI(1, baudrate=10000000, polarity=1, phase=0, sck=Pin(max_clk), mosi=Pin(max_din))\n';
-  code += 'display = Matrix8x8(spi, Pin(max_cs), 1)\n';
+  code += 'display = Matrix8x8(spi, Pin(max_cs), max_count)\n';
   return code;
 };
 

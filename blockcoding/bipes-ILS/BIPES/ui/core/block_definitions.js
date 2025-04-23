@@ -1425,8 +1425,13 @@ Blockly.Blocks['max7219_init'] = {
         "*"))
       .appendField("Start MAX7219 LED Matrix")
 	  ;
-
-    this.appendValueInput("clk")
+	  
+    this.appendValueInput("count")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Count");
+    
+	this.appendValueInput("clk")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("CLK");
@@ -2088,6 +2093,73 @@ Blockly.Blocks['hcsr_read'] = {
   }
 };
 
+Blockly.Blocks['joy_init'] = {
+  init: function() {
+ this.appendDummyInput()
+      .appendField(new Blockly.FieldImage(
+        "media/joystick.png",
+        55,
+        55,
+        "*"))
+      .appendField("Start Joystick Controller")
+	  ;
+
+    this.appendValueInput("xpin")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldLabelSerializable("x axis"), "DHT_PIN_MSG");
+
+
+    this.appendValueInput("ypin")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldLabelSerializable("y axis"), "DHT_PIN_MSG");
+
+    this.appendValueInput("button")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldLabelSerializable("button"), "DHT_PIN_MSG");
+
+    this.appendValueInput("xcenter")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldLabelSerializable("x center"), "Default X center Value");
+
+    this.appendValueInput("ycenter")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldLabelSerializable("y center"), "Default Y center Value");
+		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("Start Joystick Controller");
+ this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['joy_update'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField("Update JoyStick Values");  
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Update JoyStick Values");
+    this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
+
+Blockly.Blocks['joy_read'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabelSerializable("Read Joystick values"), "MSG_MEASURE_DHT");
+    this.setColour(230);
+	this.setOutput(true, null);
+    this.setTooltip("Read JoyStick Values");
+    this.setHelpUrl("http://www.bipes.net.br");
+  }
+};
 
 /// Start DHT Sensor
 Blockly.Blocks['dht_init'] = {

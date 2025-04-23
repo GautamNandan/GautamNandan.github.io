@@ -478,8 +478,6 @@
 <category name="NeoPixel LED Strip">
       <label text="NeoPixel RGB LED Strip"></label>
 
-        <button text="Documentation and how to connect: neopixel" callbackKey="loadDoc"></button>
-
       <block type="neopixel_init">
        <value name="pin">
           <shadow type="pinout">
@@ -882,7 +880,11 @@
           <field name="NUM">12</field>
         </shadow>
       </value>
-
+ <value name="count">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
       </block>
 
     <block type="max7219_write">
@@ -1091,6 +1093,40 @@
 
   </category>
 
+  <category name="Input">
+     <category name="Joystick">
+	    <block type="joy_init">
+        <field name="JOYSTICK_INIT">Start Joystick Controller</field>
+        <value name="xpin">
+          <shadow type="pinout">
+            <field name="PIN"></field>
+          </shadow>
+        </value>		
+        <value name="ypin">
+          <shadow type="pinout">
+            <field name="PIN"></field>
+          </shadow>
+        </value>			
+        <value name="button">
+          <shadow type="pinout">
+            <field name="PIN"></field>
+          </shadow>
+        </value>	
+		<value name="xcenter">
+          <shadow type="math_number">
+            <field name="NUM">3212</field>
+          </shadow>
+        </value>	
+		<value name="ycenter">
+          <shadow type="math_number">
+            <field name="NUM">3152</field>
+          </shadow>
+        </value>			
+		</block>	
+	  <block type="joy_update"> </block>
+	  <block type="joy_read"> </block>
+	 </category>
+  </category>
   <category name="%{BKY_CAT_SENSORS}">
     <category name="DHT11/22 Sensor">
       <label text="DHT11/22 Temperature and Humidity Sensor"></label>
@@ -1107,9 +1143,8 @@
       <block type="dht_read_humidity"></block>
     </category>
 <!--Adicionando os blocos do Anenmômetro-->
-    <category name="Anemometer">
-    <label text="Anemometer"></label>
-<!--Start Anemometer-->
+    <!--
+
     <block type="anemo_init">
         <value name="Function">
           <shadow type="text">
@@ -1122,7 +1157,7 @@
           </shadow>
         </value>
       </block>
-<!--Stop anemometer-->
+
       <block type="anemo_stop">
         <value name="Function">
           <shadow type="text">
@@ -1131,10 +1166,11 @@
         </value>
       </block>
   </category>
-<!--Adicionando os blocos do Rain Gauge-->
+  -->
+<!--
   <category name="Rain Gauge">
     <label text= "Rain Gauge"></label>
-<!--Iniciar Rain Gauage-->
+
     <block type="rain_init">
         <value name="Function">
           <shadow type="text">
@@ -1147,8 +1183,7 @@
           </shadow>
         </value>
       </block>
-<!--Stop Rain Guage-->
-<!--Stop Rain Guage-->
+
       <block type="rain_stop">
         <value name="Function">
           <shadow type="text">
@@ -1157,7 +1192,7 @@
         </value>
       </block>
   </category>
-
+-->
   <category name="Ultrasound">
       <label text="HCSR04 ultrasound distance sensor"></label>
       <block type="hcsr_init">
