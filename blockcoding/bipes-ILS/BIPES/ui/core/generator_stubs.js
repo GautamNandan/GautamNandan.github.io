@@ -4957,7 +4957,7 @@ Blockly.Python['rfid_rc522_init'] = function(block) {
   var miso = Blockly.Python.valueToCode(block, 'miso', Blockly.Python.ORDER_ATOMIC);
   var rst = Blockly.Python.valueToCode(block, 'rst', Blockly.Python.ORDER_ATOMIC);
   var cs = Blockly.Python.valueToCode(block, 'cs', Blockly.Python.ORDER_ATOMIC);
-  Blockly.Python.definitions_['import_mfrc522'] = 'from rf import mfrc522';
+  Blockly.Python.definitions_['import_mfrc522'] = 'from rf import MFRC522';
   Blockly.Python.definitions_['import_spi'] = 'from machine import SPI';
   
 
@@ -4985,7 +4985,7 @@ Blockly.Python['rfid_rc522_anticoll'] = function(block) {
   var stat = Blockly.Python.valueToCode(block, 'stat', Blockly.Python.ORDER_ATOMIC);
   var tag = Blockly.Python.valueToCode(block, 'tag', Blockly.Python.ORDER_ATOMIC);
 
-  var code = '(' + stat + ',' + tag + ') = rdr.anticoll()\n';
+  var code = '(' + stat + ',' + tag + ') = rdr.anticollFormatted()\n';
   return code;
 
   //Blockly.Python.definitions_['import_mfrc522'] = 'import mfrc522';
