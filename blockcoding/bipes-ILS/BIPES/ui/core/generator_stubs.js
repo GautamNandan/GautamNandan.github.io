@@ -633,7 +633,7 @@ Blockly.Python['wifi_client_scan_networks'] = function(block) {
 Blockly.Python['joy_init'] = function(block) {
   var xpin = Blockly.Python.valueToCode(block, 'xpin', Blockly.Python.ORDER_ATOMIC);
   var ypin = Blockly.Python.valueToCode(block, 'ypin', Blockly.Python.ORDER_ATOMIC);
-  var button1 = Blockly.Python.valueToCode(block, 'button', Blockly.Python.ORDER_ATOMIC); 
+  var button1 = Blockly.Python.valueToCode(block, 'button1', Blockly.Python.ORDER_ATOMIC); 
   var xcenter = Blockly.Python.valueToCode(block, 'xcenter', Blockly.Python.ORDER_ATOMIC);
   var ycenter = Blockly.Python.valueToCode(block, 'ycenter', Blockly.Python.ORDER_ATOMIC);  
   
