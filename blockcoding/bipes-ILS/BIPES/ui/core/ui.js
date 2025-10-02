@@ -636,26 +636,134 @@ workspace.prototype.changeTo = function (device) {
  * Generate XML through Blockly and download it.
  * @param {string} uid - optional uid to download a specific project, if none, the current will be downloaded.
  */
-workspace.prototype.saveXML = function (uid) {
+/**
+ * Generate XML through Blockly and download it with path selection when supported.
+ * @param {string} uid - optional uid to download a specific project, if none, the current will be downloaded.
+ */
+workspace.prototype.saveXML = async function (uid) {
+  // Check if File System Access API is supported (Chrome/Edge 86+)
+  if ('showSaveFilePicker' in window) {
+    try {
+      let xmlText = '';
+      let defaultFilename = 'workspace.bipes.xml';
+      
+      // Get project name for default filename
+      try {
+        if (uid == undefined) {
+          let projectName = Tool.makeAName(Code.generateCode(), '');
+          if (projectName && projectName.trim() !== '' && projectName !== 'My BIPES Project') {
+            defaultFilename = `${projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.bipes.xml`;
+          }
+        } else {
+          let projectName = UI['account'].getProjectName_(uid);
+          if (projectName && projectName.trim() !== '' && projectName !== 'My BIPES Project') {
+            defaultFilename = `${projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.bipes.xml`;
+          }
+        }
+      } catch (e) {
+        console.log('Could not determine project name, using default filename');
+      }
+
+      // Show save file picker with path selection
+      const fileHandle = await window.showSaveFilePicker({
+        suggestedName: defaultFilename,
+        types: [{
+          description: 'BIPES XML files',
+          accept: {
+            'text/xml': ['.xml', '.bipes.xml']
+          }
+        }]
+      });
+
+      // Generate XML content
+      if (uid == undefined) {
+        xmlText = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Code.workspace));
+        xmlText = this.writeWorkspace(xmlText, true);
+      } else {
+        xmlText = Blockly.Xml.domToPrettyText(Blockly.Xml.textToDom(localStorage[uid]));
+      }
+
+      // Write to selected file
+      const writable = await fileHandle.createWritable();
+      await writable.write(xmlText);
+      await writable.close();
+
+      UI['notify'].send(`File saved successfully to: ${fileHandle.name}`);
+      
+    } catch (error) {
+      if (error.name !== 'AbortError') {
+        console.error('Error saving with File System Access API:', error);
+        UI['notify'].send('Error with advanced save. Using fallback method.');
+        // Fall back to traditional download method
+        this.saveXMLTraditional(uid);
+      } else {
+        UI['notify'].send('File save cancelled.');
+      }
+    }
+  } else {
+    // Fallback for browsers that don't support File System Access API
+    this.saveXMLTraditional(uid);
+  }
+};
+
+/**
+ * Traditional save method with filename prompt (fallback for older browsers)
+ */
+workspace.prototype.saveXMLTraditional = function (uid) {
   let xmlText = '';
+  let defaultFilename = 'workspace.bipes.xml';
+  
+  // Get project name for default filename if available
+  try {
+    if (uid == undefined) {
+      let projectName = Tool.makeAName(Code.generateCode(), '');
+      if (projectName && projectName.trim() !== '' && projectName !== 'My BIPES Project') {
+        defaultFilename = `${projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.bipes.xml`;
+      }
+    } else {
+      let projectName = UI['account'].getProjectName_(uid);
+      if (projectName && projectName.trim() !== '' && projectName !== 'My BIPES Project') {
+        defaultFilename = `${projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.bipes.xml`;
+      }
+    }
+  } catch (e) {
+    console.log('Could not determine project name, using default filename');
+  }
+
+  // Prompt user for filename
+  let userFilename = prompt('Enter filename for the XML file:', defaultFilename);
+  
+  if (userFilename === null || userFilename.trim() === '') {
+    UI['notify'].send('File save cancelled.');
+    return;
+  }
+
+  // Ensure filename has .xml extension
+  if (!userFilename.toLowerCase().endsWith('.xml')) {
+    userFilename += '.xml';
+  }
+
+  // Sanitize filename
+  userFilename = userFilename.replace(/[<>:"/\\|?*]/g, '_');
+
   if (uid == undefined) {
     xmlText = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Code.workspace));
-    xmlText = this.writeWorkspace (xmlText, true);
+    xmlText = this.writeWorkspace(xmlText, true);
   } else {
-    // Bounce in Blockly to make Pretty Text formatting
-    xmlText = Blockly.Xml.domToPrettyText(Blockly.Xml.textToDom(localStorage [uid]));
+    xmlText = Blockly.Xml.domToPrettyText(Blockly.Xml.textToDom(localStorage[uid]));
   }
 
   let data = "data:x-application/xml;charset=utf-8," + encodeURIComponent(xmlText);
-	let element = document.createElement('a');
-	element.setAttribute('href', data),
-	element.setAttribute('download', 'workspace.bipes.xml'),
-	element.style.display = 'none';
-	document.body.appendChild(element);
-	element.click ();
-	document.body.removeChild(element);
-}
-
+  let element = document.createElement('a');
+  element.setAttribute('href', data);
+  element.setAttribute('download', userFilename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+  
+  UI['notify'].send(`File saved as: ${userFilename} (downloads folder)`);
+};
 /**
  * Read freeboard, device, timestamp and origin from BIPES generated XML.
  * if XML `</workspace>` not available, will set to the first device in :js:attr:`workspace#devices`
