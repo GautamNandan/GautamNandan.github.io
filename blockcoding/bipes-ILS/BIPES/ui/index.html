@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta charset="utf-8">
   <meta name="google" value="notranslate">
   <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -128,6 +129,7 @@ document.body.appendChild(el);
         <div id="tab_console" class="taboff">Console</div>
         <div id="tab_files" class="taboff">...</div>
         <div id="tab_programs" class="taboff">...</div>
+		<div id="tab_firmware" class="taboff">...</div>
         <div id="tab_device" class="taboff">...</div>
         <div id="tab_iot" class="taboff">IOT</div>
         <div id="tab_mqtt" class="taboff" onclick='document.getElementById("easymqtt_iframe").contentWindow.startEasyMQTT(window.easyMQTT_session);'>EasyMQTT</div>
@@ -248,6 +250,11 @@ document.body.appendChild(el);
     </center>
   </div>
 
+
+
+<div id="content_firmware" class="content" style="padding: 0;">
+  <iframe id="firmware" src="flash/webtools.html" width="100%" height="1000" frameborder="0"></iframe>
+</div>
 
 <!-- ################################################## -->
 

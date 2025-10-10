@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Install MicroPython on ESP32 or ESP8266</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Ubuntu, sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .content {
+        max-width: 700px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      h1 + h2 {
+        text-align: center;
+        color: #666;
+        font-weight: 400;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        color: #333;
+        margin: 30px 0 15px 0;
+        font-weight: 600;
+        border-left: 4px solid #667eea;
+        padding-left: 15px;
+      }
+
+      h2:first-of-type {
+        margin-top: 0;
+      }
+
+      p {
+        color: #444;
+        margin: 0 0 15px 0;
+        line-height: 1.7;
+      }
+
+      a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+      }
+
+      a:hover {
+        color: #764ba2;
+        border-bottom-color: #764ba2;
+      }
+
+      esp-web-install-button {
+        display: block;
+        margin: 25px 0;
+      }
+
+      .supported-info {
+        display: none;
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 4px solid #2196f3;
+        margin: 15px 0;
+      }
+
+      esp-web-install-button[install-supported] + .supported-info {
+        display: block;
+      }
+
+      .supported-info p {
+        margin: 0;
+        color: #1565c0;
+      }
+
+      i[slot="unsupported"] {
+        display: block;
+        background: #fff3cd;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #ffc107;
+        color: #856404;
+        line-height: 1.6;
+      }
+
+      ul {
+        margin: 15px 0 15px 25px;
+        padding: 0;
+      }
+
+      li {
+        color: #444;
+        margin-bottom: 10px;
+        line-height: 1.6;
+        position: relative;
+        padding-left: 10px;
+      }
+
+      li::before {
+        content: "→";
+        position: absolute;
+        left: -15px;
+        color: #667eea;
+        font-weight: bold;
+      }
+
+      .footer {
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 2px solid rgba(102, 126, 234, 0.2);
+        text-align: center;
+      }
+
+      .footer div {
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .footer .initiative {
+        font-style: italic;
+        font-size: 0.9em;
+        color: #888;
+        margin-top: 15px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .content pre {
+        max-width: 100%;
+        overflow-x: auto;
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .content {
+          background: rgba(30, 30, 46, 0.95);
+          color: #e0e0e0;
+        }
+
+        h1 {
+          background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        h1 + h2 {
+          color: #aaa;
+        }
+
+        h2 {
+          color: #e0e0e0;
+          border-left-color: #a78bfa;
+        }
+
+        p {
+          color: #ccc;
+        }
+
+        li {
+          color: #ccc;
+        }
+
+        li::before {
+          color: #a78bfa;
+        }
+
+        a {
+          color: #a78bfa;
+        }
+
+        a:hover {
+          color: #c084fc;
+          border-bottom-color: #c084fc;
+        }
+
+        .supported-info {
+          background: rgba(33, 150, 243, 0.1);
+          border-left-color: #64b5f6;
+        }
+
+        .supported-info p {
+          color: #90caf9;
+        }
+
+        i[slot="unsupported"] {
+          background: rgba(255, 193, 7, 0.1);
+          border-left-color: #ffa726;
+          color: #ffb74d;
+        }
+
+        .footer div {
+          color: #aaa;
+        }
+
+        .footer .initiative {
+          color: #888;
+        }
+
+        .footer {
+          border-top-color: rgba(167, 139, 250, 0.2);
+        }
+
+        .content pre {
+          background: #1a1a2e;
+          border-color: #333;
+          color: #e0e0e0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 10px;
+        }
+
+        .content {
+          padding: 25px;
+          border-radius: 15px;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        h2 {
+          font-size: 1.3em;
+        }
+      }
+    </style>
+    <script type="module">
+      import(
+        window.location.hostname === "localhost"
+          ? "/dist/web/install-button.js"
+          : "https://unpkg.com/esp-web-tools@6.1.1/dist/web/install-button.js?module"
+      );
+    </script>
+  </head>
+  <body>
+    <div class="content">
+      <h1>MicroPython Web Installer</h1>
+      <h2>(for ESP32 and ESP8266)</h2>
+
+      <h2 id="demo">Install</h2>
+      <p>
+        This page allows you quickly and easily install <a href="https://micropython.org/">MicroPython</a> on ESP32 or ESP8266 board directly from the browser, without the need of using esptool or any other software on your computer. Simply connect the board to an USB port, click on the button "Connect", select the device and have MicroPython running on your board!
+      </p>
+
+      <esp-web-install-button manifest="static/firmware_build/manifest.json">
+        <i slot="unsupported">
+          The demo is not available because your browser does not support Web
+          Serial. Open this page in Google Chrome or Microsoft Edge instead<span class="not-supported-i hidden"> (but not on your iOS device)</span>.
+        </i>
+      </esp-web-install-button>
+
+      <p class="supported-info">
+        If you don't see your ESP device in the list of devices to choose, you
+        might need to install
+        <a href="#drivers">the drivers</a>.
+      </p>
+
+      <h2>MicroPython Firmware version</h2>
+      <p>This page installs the firmware version:v1.26.1</p>
+
+      <h2>Reset loop</h2>
+      <p>
+        Some ESP8266 boards have poor power regulators, and due to inadequate power supply, will enter on a continuos reset loop dependending on your USB power source. If this happens, you can use the solution described <a href="https://rafaelaroca.wordpress.com/2021/06/10/reset-trouble-with-esp8266-and-micropython/">here</a>.
+      </p>
+
+      <h2>About and more details</h2>
+      <p>
+        This page uses 
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API">Web Serial</a>. Web Serial is available in Google Chrome and Microsoft Edge browsers<span class="not-supported-i hidden"> (but not on your iOS device)</span>. Android support should be possible but has not been implemented yet.
+      </p>
+
+      <h2 id="drivers">USB Serial Drivers</h2>
+      <p>
+        If the serial port is not showing up, your computer might be missing the
+        drivers for the USB serial chip used in your ESP device. These drivers
+        work for most ESP devices:
+      </p>
+      <ul>
+        <li>
+          CP2102 (square chip):
+          <a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">driver</a>
+        </li>
+        <li>
+          CH341:
+          <a href="https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers">driver</a>
+        </li>
+      </ul>
+
+      <div class="footer">
+        <div>
+          Based on ESP Web Tools –
+          <a href="https://github.com/esphome/esp-web-tools">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        document.querySelector(".not-supported-i").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>

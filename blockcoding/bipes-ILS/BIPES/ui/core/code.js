@@ -180,7 +180,7 @@ Code.LANG = Code.getLang();
  * @private
  */
 
-Code.TABS_ = ['blocks', 'console', 'files', 'device', 'programs', 'databoard', 'mqtt', 'iot'];
+Code.TABS_ = ['blocks', 'console', 'files', 'device', 'programs', 'databoard', 'mqtt', 'iot','firmware'];
 
 Code.current = ["blocks", "",""]
 
@@ -806,7 +806,7 @@ Code.initLanguage = function() {
   document.getElementById('tab_files').textContent = MSG['files'];
   document.getElementById('tab_programs').textContent = MSG['shared'];
   document.getElementById('tab_device').textContent = MSG['device'];
-
+  document.getElementById("tab_firmware").textContent = MSG['firmware'];
   document.getElementById('linkButton').title = MSG['linkTooltip'];
   document.getElementById('runButton').title = MSG['runTooltip'];
   //document.getElementById('trashButton').title = MSG['trashTooltip'];
