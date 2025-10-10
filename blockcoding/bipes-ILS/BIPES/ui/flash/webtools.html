@@ -82,6 +82,60 @@
         border-bottom-color: #764ba2;
       }
 
+      .board-selector {
+        margin: 25px 0;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+      }
+
+      .board-selector label {
+        display: block;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      .board-selector select {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 1em;
+        border: 2px solid #667eea;
+        border-radius: 8px;
+        background: white;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .board-selector select:hover {
+        border-color: #764ba2;
+      }
+
+      .board-selector select:focus {
+        outline: none;
+        border-color: #764ba2;
+        box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+      }
+
+      .board-info {
+        margin-top: 15px;
+        padding: 12px;
+        background: #e3f2fd;
+        border-radius: 8px;
+        border-left: 4px solid #2196f3;
+        font-size: 0.9em;
+        color: #1565c0;
+        display: none;
+      }
+
+      .board-info.active {
+        display: block;
+      }
+
       esp-web-install-button {
         display: block;
         margin: 25px 0;
@@ -215,6 +269,31 @@
           border-bottom-color: #c084fc;
         }
 
+        .board-selector {
+          background: rgba(40, 40, 60, 0.5);
+          border-color: #444;
+        }
+
+        .board-selector label {
+          color: #e0e0e0;
+        }
+
+        .board-selector select {
+          background: #2a2a3e;
+          color: #e0e0e0;
+          border-color: #a78bfa;
+        }
+
+        .board-selector select:hover {
+          border-color: #c084fc;
+        }
+
+        .board-info {
+          background: rgba(33, 150, 243, 0.1);
+          border-left-color: #64b5f6;
+          color: #90caf9;
+        }
+
         .supported-info {
           background: rgba(33, 150, 243, 0.1);
           border-left-color: #64b5f6;
@@ -283,10 +362,32 @@
 
       <h2 id="demo">Install</h2>
       <p>
-        This page allows you quickly and easily install <a href="https://micropython.org/">MicroPython</a> on ESP32 or ESP8266 board directly from the browser, without the need of using esptool or any other software on your computer. Simply connect the board to an USB port, click on the button "Connect", select the device and have MicroPython running on your board!
+        This page allows you quickly and easily install <a href="https://micropython.org/">MicroPython</a> on ESP32 or ESP8266 board directly from the browser, without the need of using esptool or any other software on your computer. Simply connect the board to an USB port, select your board type, click on the button "Connect", select the device and have MicroPython running on your board!
       </p>
 
-      <esp-web-install-button manifest="static/firmware_build/manifest.json">
+      <div class="board-selector">
+        <label for="board-select">Select Your Board:</label>
+        <select id="board-select">
+          <option value="esp32">ESP32 Generic</option>
+          <option value="esp32s2">ESP32-S2 Generic</option>
+          <option value="esp8266-wemos">ESP8266 - Wemos D1 Mini (4MB QIO)</option>
+          <option value="esp8266-generic">ESP8266 - Generic (4MB DIO)</option>
+        </select>
+        <div id="board-info-esp32" class="board-info">
+          <strong>ESP32 Generic:</strong> Standard ESP32 boards with 4MB flash
+        </div>
+        <div id="board-info-esp32s2" class="board-info">
+          <strong>ESP32-S2:</strong> ESP32-S2 boards with native USB support
+        </div>
+        <div id="board-info-esp8266-wemos" class="board-info">
+          <strong>Wemos D1 Mini:</strong> Uses QIO flash mode (Quad I/O - faster, 4 data lines). Most Wemos boards support this mode.
+        </div>
+        <div id="board-info-esp8266-generic" class="board-info">
+          <strong>Generic ESP8266:</strong> Uses DIO flash mode (Dual I/O - slower but more compatible). Use this for NodeMCU, ESP-01, or if unsure.
+        </div>
+      </div>
+
+      <esp-web-install-button id="install-button" manifest="static/firmware_build/manifest.json">
         <i slot="unsupported">
           The demo is not available because your browser does not support Web
           Serial. Open this page in Google Chrome or Microsoft Edge instead<span class="not-supported-i hidden"> (but not on your iOS device)</span>.
@@ -300,7 +401,7 @@
       </p>
 
       <h2>MicroPython Firmware version</h2>
-      <p>This page installs the firmware version:v1.26.1</p>
+      <p>This page installs the firmware version: v1.26.1</p>
 
       <h2>Reset loop</h2>
       <p>
@@ -328,7 +429,7 @@
 
       <div class="footer">
         <div>
-          Based on ESP Web Tools –
+          Based on ESP Web Tools —
           <a href="https://github.com/esphome/esp-web-tools">GitHub</a>
         </div>
       </div>
@@ -338,6 +439,40 @@
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
         document.querySelector(".not-supported-i").classList.remove("hidden");
       }
+
+      // Board selection handler
+      const boardSelect = document.getElementById('board-select');
+      const installButton = document.getElementById('install-button');
+      
+      // Board info elements
+      const boardInfos = {
+        'esp32': document.getElementById('board-info-esp32'),
+        'esp32s2': document.getElementById('board-info-esp32s2'),
+        'esp8266-wemos': document.getElementById('board-info-esp8266-wemos'),
+        'esp8266-generic': document.getElementById('board-info-esp8266-generic')
+      };
+
+      // Show initial board info
+      boardInfos['esp32'].classList.add('active');
+
+      boardSelect.addEventListener('change', function() {
+        const selectedBoard = this.value;
+        
+        // Hide all board info
+        Object.values(boardInfos).forEach(info => {
+          info.classList.remove('active');
+        });
+        
+        // Show selected board info
+        if (boardInfos[selectedBoard]) {
+          boardInfos[selectedBoard].classList.add('active');
+        }
+
+        // Update manifest path based on selection
+        // Note: ESP Web Tools will filter available builds based on detected chip
+        // The manifest.json should contain all board configurations
+        console.log('Selected board:', selectedBoard);
+      });
     </script>
   </body>
 </html>

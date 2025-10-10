@@ -2,6 +2,7 @@
   "name": "MicroPython",
   "version": "1.26.1",
   "home_assistant_domain": "esphome",
+  "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
@@ -9,13 +10,34 @@
         { "path": "ESP32_GENERIC-20250911-v1.26.1.bin", "offset": 4096 }
       ]
     },
- {
+    {
       "chipFamily": "ESP32-S2",
-      "parts": [{ "path": "ESP32_GENERIC_S2-20250911-v1.26.1.bin", "offset": 4096 }]
- },
+      "parts": [
+        { "path": "ESP32_GENERIC_S2-20250911-v1.26.1.bin", "offset": 4096 }
+      ]
+    },
     {
       "chipFamily": "ESP8266",
-      "parts": [{ "path": "ESP8266_GENERIC-20250911-v1.26.1.bin", "offset": 0 }]
+      "name": "Wemos D1 Mini (4MB QIO)",
+      "parts": [
+        {
+          "path": "ESP8266_GENERIC-20250911-v1.26.1.bin",
+          "offset": 0
+        }
+      ],
+      "flashFreq": "40m",
+      "flashMode": "qio",
+      "flashSize": "4MB"
+    },
+    {
+      "chipFamily": "ESP8266",
+      "name": "Generic ESP8266 (4MB DIO)",
+      "parts": [
+        { "path": "ESP8266_GENERIC-20250911-v1.26.1.bin", "offset": 0 }
+      ],
+      "flashFreq": "40m",
+      "flashMode": "dio",
+      "flashSize": "4MB"
     }
   ]
 }
