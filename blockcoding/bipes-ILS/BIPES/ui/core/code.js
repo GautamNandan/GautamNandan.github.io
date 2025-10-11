@@ -655,13 +655,14 @@ def bipesInstall(url, lib):
  
 	if ( customUrl !== '') {
 		var parts = customUrl.split('/');
-		var lib = parts.pop();
+		lib = parts.pop();
 		var url = parts.join('/');
 		console.log(url);
 		console.log(lib);
 		installCmd = installCmd + "lib = '" + lib + "'" +'\r';
 		installCmd = installCmd + "customUrl = '" + customUrl + "'" + '\r';
-		installCmd = installCmd + "bipesInstall(customUrl, lib)";		
+		installCmd = installCmd + "bipesInstall(customUrl, lib)";
+		lib = lib.rsplit('.', 1)[0]
 	} else {
 		installCmd = installCmd + "lib = '" + lib + ".py'" + '\r';
 		installCmd = installCmd + "bipesInstall('http://bipes.net.br/beta2/ui/pylibs/' + lib, lib)";
