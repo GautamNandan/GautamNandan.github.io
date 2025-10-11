@@ -623,10 +623,86 @@ Code.init = function() {
 		console.log(lib)
 			alert("This will automatically download and install the library on the connected board: " + lib + ". Internet is required for this operation. Install results will be shown on console tab.");		
 	}
+var installCmd;
 
 	//Code.tabClick('console');
-
-	var installCmd = `
+if ( customUrl !== '') {
+		installCmd = `
+	def bipesInstall(url, lib):
+    import socket
+    
+    # Parse URL properly
+    url = url.replace('http://', '')
+    if '/' in url:
+        host_port, path = url.split('/', 1)
+    else:
+        host_port = url
+        path = ''
+    
+    # Separate host and port
+    if ':' in host_port:
+        host, port = host_port.split(':')
+        port = int(port)
+    else:
+        host = host_port
+        port = 80
+    
+    print('Host:', host)
+    print('Port:', port)
+    print('Path:', path)
+    
+    try:
+        # Connect
+        addr = socket.getaddrinfo(host, port)[0][-1]
+        s = socket.socket()
+        s.settimeout(10)
+        s.connect(addr)
+        print('Connected to server')
+        
+        # Send HTTP request
+        request = 'GET /{} HTTP/1.0\r\nHost: {}\r\n\r\n'.format(path, host)
+        s.send(request.encode('utf-8'))
+        
+        # Receive all data
+        response = b''
+        while True:
+            try:
+                chunk = s.recv(512)
+                if not chunk:
+                    break
+                response += chunk
+            except:
+                break
+        
+        s.close()
+        print('Received {} bytes'.format(len(response)))
+        
+        # Find end of HTTP headers
+        header_end = response.find(b'\r\n\r\n')
+        if header_end == -1:
+            header_end = response.find(b'\n\n')
+            if header_end != -1:
+                body = response[header_end + 2:]
+            else:
+                body = response
+        else:
+            body = response[header_end + 4:]
+        
+        # Save to file (binary mode!)
+        lib_name = lib.rsplit('.', 1)[0] if '.' in lib else lib
+        filename = lib_name + '.py'
+        
+        with open(filename, 'wb') as f:
+            f.write(body)
+        
+        print('Download done, saved to {}'.format(filename))
+        print('File size: {} bytes'.format(len(body)))
+        
+    except Exception as e:
+        print('Error:', e)
+`;	
+ } else {
+	installCmd = `
 def bipesInstall(url, lib):
     import socket
     _, _, host, path = url.split('/', 3)
@@ -651,7 +727,11 @@ def bipesInstall(url, lib):
     f.close()
     print('Download done')
 
-`;
+`;	
+	
+}
+ 
+ 
  
 	if ( customUrl !== '') {
 		var parts = customUrl.split('/');
