@@ -626,9 +626,8 @@ Code.init = function() {
 var installCmd;
 
 	//Code.tabClick('console');
-if ( customUrl !== '') {
-		installCmd = `
-	def bipesInstall(url, lib):
+if (customUrl !== '') {
+    installCmd = `def bipesInstall(url, lib):
     import socket
     
     # Parse URL properly
@@ -660,7 +659,7 @@ if ( customUrl !== '') {
         print('Connected to server')
         
         # Send HTTP request
-        request = 'GET /{} HTTP/1.0\r\nHost: {}\r\n\r\n'.format(path, host)
+        request = 'GET /{} HTTP/1.0\\r\\nHost: {}\\r\\n\\r\\n'.format(path, host)
         s.send(request.encode('utf-8'))
         
         # Receive all data
@@ -678,9 +677,9 @@ if ( customUrl !== '') {
         print('Received {} bytes'.format(len(response)))
         
         # Find end of HTTP headers
-        header_end = response.find(b'\r\n\r\n')
+        header_end = response.find(b'\\r\\n\\r\\n')
         if header_end == -1:
-            header_end = response.find(b'\n\n')
+            header_end = response.find(b'\\n\\n')
             if header_end != -1:
                 body = response[header_end + 2:]
             else:
@@ -701,9 +700,8 @@ if ( customUrl !== '') {
     except Exception as e:
         print('Error:', e)
 `;	
- } else {
-	installCmd = `
-def bipesInstall(url, lib):
+} else {
+    installCmd = `def bipesInstall(url, lib):
     import socket
     _, _, host, path = url.split('/', 3)
     addr = socket.getaddrinfo(host, 80)[0][-1]
@@ -711,26 +709,18 @@ def bipesInstall(url, lib):
     s.connect(addr)
     print('Downloading from ' + url)
     s.send(bytes('GET /%s HTTP/1.0\\r\\nHost: %s\\r\\n\\r\\n' % (path, host), 'utf8'))
-
     f = open('tmplib.py', 'w')
-    #f = open(lib, 'w')
-
     while True:
         data = s.recv(100)
         if data:
-            #print(str(data, 'utf8'), end='')
             f.write(data)
-            #print('.')
         else:
             break
     s.close()
     f.close()
     print('Download done')
-
-`;	
-	
+`;
 }
- 
  
  
 	if ( customUrl !== '') {
