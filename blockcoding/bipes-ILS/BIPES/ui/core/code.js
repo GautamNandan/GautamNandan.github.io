@@ -608,11 +608,21 @@ Code.init = function() {
 
     Code.workspace.registerButtonCallback('installPyLib', function(button) {
 
-	var lib = button.text_.split(" ")[1];
-	console.log(button.text_);
-	console.log(lib)
-        alert("This will automatic download and install the library on the connected board: " + lib + ". Internet is required for this operation. Install results will be shown on console tab.");
-
+	var lib ='';
+	var customUrl = '';
+	if ( button.text_ === "InstallCustomLib" ) {
+		customUrl = prompt('Enter custom library URL:', 'https://example.com/library.js');
+		if (customUrl && customUrl.trim()) {
+			customUrl = customUrl.trim();
+			console.log("This will automatically download librray from:" + customUrl)
+		}
+	}
+	else {
+		lib = button.text_.split(" ")[1];
+		console.log(button.text_);
+		console.log(lib)
+			alert("This will automatically download and install the library on the connected board: " + lib + ". Internet is required for this operation. Install results will be shown on console tab.");		
+	}
 
 	//Code.tabClick('console');
 
@@ -643,9 +653,21 @@ def bipesInstall(url, lib):
 
 `;
  
-    installCmd = installCmd + "lib = '" + lib + ".py'" + '\r';
-    installCmd = installCmd + "bipesInstall('http://bipes.net.br/beta2/ui/pylibs/' + lib, lib)";
-	    
+	if ( customUrl !== '') {
+		var parts = customUrl.split('/');
+		var lib = parts.pop();
+		var url = parts.join('/');
+		console.log(url);
+		console.log(lib);
+		installCmd = installCmd + "lib = '" + lib + "'" +'\r';
+		installCmd = installCmd + "customUrl = '" + customUrl + "'" + '\r';
+		installCmd = installCmd + "bipesInstall(customUrl, lib)";		
+	} else {
+		installCmd = installCmd + "lib = '" + lib + ".py'" + '\r';
+		installCmd = installCmd + "bipesInstall('http://bipes.net.br/beta2/ui/pylibs/' + lib, lib)";
+
+	}
+	
 
      Tool.runPython(installCmd);
 
