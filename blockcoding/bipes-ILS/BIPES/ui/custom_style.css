@@ -1,0 +1,81 @@
+/* Label styling - improved readability */
+.blocklyTreeLabel {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+/* Toolbox container - cleaner spacing */
+.blocklyToolboxContents {
+  padding: 0.75em;
+  background-color: #f8f9fa;
+}
+
+/* Category rows - enhanced visual appeal */
+.blocklyTreeRow {
+  padding: 8px 12px;
+  margin-bottom: 0.5em;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 3px solid #8b95a1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  background-color: #dce1e8;
+}
+
+/* Hover effect for categories */
+.blocklyTreeRow:hover {
+  background-color: #c8d0db;
+  transform: translateX(2px);
+  border-color: #6b7785;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* Selected/Active category */
+.blocklyTreeRow.blocklyTreeSelected {
+  background-color: #b8c4d1;
+  border-color: #4a9eff;
+  box-shadow: 0 4px 10px rgba(74, 158, 255, 0.35);
+}
+
+/* Icon spacing (if using icons) */
+.blocklyTreeIcon {
+  margin-right: 8px;
+}
+
+/* Separator styling */
+.blocklyTreeSeparator {
+  border-top: 1px solid #d1d5db;
+  margin: 0.75em 0;
+  opacity: 0.6;
+}
+
+/* Nested categories (if applicable) */
+.blocklyTreeRow .blocklyTreeRow {
+  margin-left: 12px;
+  font-size: 13px;
+}
+
+/* Optional: Add subtle shadow to toolbox */
+.blocklyToolboxDiv {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Scrollbar styling (webkit browsers) */
+.blocklyToolboxContents::-webkit-scrollbar {
+  width: 8px;
+}
+
+.blocklyToolboxContents::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.blocklyToolboxContents::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.blocklyToolboxContents::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
