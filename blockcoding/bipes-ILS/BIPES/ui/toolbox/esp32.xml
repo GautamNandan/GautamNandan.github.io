@@ -3416,7 +3416,7 @@ _
 </category>
 
 <category name="Custom Libs">
-  <label text="Library: https://github.com/dhylands/python_lcd"></label>
+  <label text="Device should be connected to Internet"></label>
   <button text="InstallCustomLib" callbackKey="installPyLib"></button>
 </category>  
 </document>
