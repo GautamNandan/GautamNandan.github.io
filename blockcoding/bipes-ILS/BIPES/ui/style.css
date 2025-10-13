@@ -654,7 +654,9 @@ pre.content {
 #ProjectList .current span {
   filter: invert(1);
 }
-
+#put-file-select-cloud:before {
+  background-position: left calc(-1.5rem*19) top;
+}
 /* Toolbar */
 @media (min-width: 60em) {
   .top-menu > .toolbar {

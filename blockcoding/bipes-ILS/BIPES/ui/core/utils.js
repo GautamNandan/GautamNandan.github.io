@@ -538,11 +538,48 @@ class files {
     };
     reader.readAsArrayBuffer(f);
   }
+	handle_put_file_select_cloud() {
+		// Prompt user for URL
+		const url = prompt('Path of library');
+		
+		// Validate that user entered something
+		if (!url || url.trim() === '') {
+			console.log('No URL provided');
+			return;
+		}
+		
+		// Extract filename from URL
+		const urlParts = url.split('/');
+		this.put_file_name = urlParts[urlParts.length - 1];
+		
+		// Fetch the file from HTTP location
+		fetch(url)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				return response.arrayBuffer();
+			})
+			.then(arrayBuffer => {
+				// Convert to Uint8Array (same format as FileReader)
+				this.put_file_data = new Uint8Array(arrayBuffer);
+				
+				// Call the existing function
+				this.put_file();
+			})
+			.catch(error => {
+				console.error('Error fetching file:', error);
+				alert('Failed to fetch file: ' + error.message);
+			});
+	}
+
+  
   /**
    * Get file from ``codemirror``editor and calls :js:func:`Files.put_file` to upload.
    */
   files_save_as () {
 
+/*
     //For codemirror
     var codeStr = Files.editor.getDoc().getValue("\n");
 
@@ -555,6 +592,8 @@ class files {
     this.put_file_data = bufCode;
 
     this.put_file ();
+	*/
+	this.handle_put_file_from_url('http://192.168.1.131:8090/pylibs/test.py');
   }
   /**
    * List files from device, on success, calls :js:func:`files.updateTable` to display it.

@@ -281,8 +281,14 @@ document.body.appendChild(el);
 
   <div id="file-boxes">
   <div id="file-header">
-    <span>File manager</span>
-    <label id="putFileButton" for="put-file-select"  class="noteaxt button icon" title="Upload script to device"></label>
+    <span>Cloud to Device</span>
+	<label id="put-file-select-cloud" class="noteaxt button icon" title="Upload script to device from cloud"></label>
+
+  </div>
+  
+  <div id="file-header">
+    <span>HardDisk to Device</span>
+    <label id="putFileButton" for="put-file-select"  class="noteaxt button icon" title="Upload script to device from harddisk"></label>
     <input name="PutFileList" id="put-file-select" type="file" accept=".md,.py" required="">
     <!--<input type="button" value="Run Blocks" onclick="Tool.runPython(); return false;" />-->
 
@@ -325,7 +331,7 @@ document.body.appendChild(el);
 
   <div id="file_save_as" class="py">
   <input type=text id=content_file_name placeholder="Filename">
-  <button id="editor2DeviceButton" class="button icon text" onclick="Files.files_save_as();">Save</button>
+  <button id="editor2DeviceButton" class="button icon text" onclick="Files.files_save_as();">Save on Device</button>
   <button id="generated2DeviceButton" class="button icon text" onclick="Files.file_save_as.className = 'py';  Files.files_save_as ();">Save a copy</button>
   <button id="updateXMLButton"  class="button icon text" onclick="Files.editedXML2Workspace();">Push to workspace</button>
   </div>
