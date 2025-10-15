@@ -1334,6 +1334,21 @@ Blockly.Blocks['move_servo_time'] = {
   }
 };
 
+Blockly.Blocks['servo_stop'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField("Move Servo Motor")
+      .appendField("Servo Name")
+      .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
+
+    this.setColour(230);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setTooltip("Stops Servo Motor");
+    this.setHelpUrl("http://www.bipes.net.ebr");
+  }
+};
 
 Blockly.Blocks['net_get_request'] = {
   init: function() {

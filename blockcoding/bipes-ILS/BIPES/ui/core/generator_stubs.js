@@ -537,6 +537,14 @@ Blockly.Python['move_servo_time'] = function(block) {
     return code;
 };  
 
+Blockly.Python['servo_stop'] = function(block) {
+     var servo_name = block.getFieldValue('servo_name');  
+
+
+    var code = servo_name + '.writeus(' + 0 + ')\n'; 
+    return code;
+};  
+
 Blockly.Python['net_get_request'] = function(block) {
 	var value_url = Blockly.Python.valueToCode(block, 'URL', Blockly.Python.ORDER_ATOMIC);
 
