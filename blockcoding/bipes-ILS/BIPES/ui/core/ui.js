@@ -528,7 +528,9 @@ class workspace {
  */
 workspace.prototype.run = function () {
   if (this.runButton.status) {
+
     if(mux.connected ()) {
+		Tool.softReset()  
         Tool.runPython();
     } else {
       Channel ['mux'].connect ();
@@ -536,6 +538,7 @@ workspace.prototype.run = function () {
     }
   } else {
     Tool.stopPython();
+	Tool.softReset() 
   }
 }
 
