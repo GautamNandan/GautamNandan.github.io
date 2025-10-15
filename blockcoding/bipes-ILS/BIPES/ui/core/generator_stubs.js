@@ -4929,11 +4929,11 @@ Blockly.Python['char_lcd_scroll_right'] = function(block) {
 };
 
 Blockly.Python['char_lcd_show_cursor'] = function(block) {
-  var code = 'lcdInstance.show_cursor()\n';
+  var code = 'lcdInstance.blink_cursor_on()\n';
   return code;
 };
 Blockly.Python['char_lcd_hide_cursor'] = function(block) {
-  var code = 'lcdInstance.hide_cursor()\n';
+  var code = 'lcdInstance.blink_cursor_off()\n';
   return code;
 };
 

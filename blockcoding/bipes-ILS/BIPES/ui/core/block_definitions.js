@@ -1337,7 +1337,7 @@ Blockly.Blocks['move_servo_time'] = {
 Blockly.Blocks['servo_stop'] = {
   init: function() {
     this.appendDummyInput()
-      .appendField("Move Servo Motor")
+	  .appendField("Servo_stop")
       .appendField("Servo Name")
       .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
 
