@@ -4910,6 +4910,25 @@ Blockly.Python['char_lcd_clear'] = function(block) {
   return code;
 };
 
+Blockly.Python['char_lcd_scroll_left'] = function(block) {
+  var code = 'lcdInstance.scroll_left()\n';
+  return code;
+};
+
+Blockly.Python['char_lcd_scroll_right'] = function(block) {
+  var code = 'lcdInstance.scroll_right()\n';
+  return code;
+};
+
+Blockly.Python['char_lcd_show_cursor'] = function(block) {
+  var code = 'lcdInstance.show_cursor()\n';
+  return code;
+};
+Blockly.Python['char_lcd_hide_cursor'] = function(block) {
+  var code = 'lcdInstance.hide_cursor()\n';
+  return code;
+};
+
 Blockly.Python['char_lcd_putstr'] = function(block) {
 	
   var value_text = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_NONE);	
