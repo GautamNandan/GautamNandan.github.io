@@ -507,28 +507,35 @@ Blockly.Python['tank_turn'] = function(block) {
 Blockly.Python['init_servo'] = function(block) {
     var pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
     var servo_name = block.getFieldValue('servo_name'); 
-    Blockly.Python.definitions_['import_pwm'] = 'from machine import PWM';
+    var frequency = Blockly.Python.valueToCode(block, 'servo_frequency', Blockly.Python.ORDER_ATOMIC);
+    var min_us = Blockly.Python.valueToCode(block, 'servo_min_us', Blockly.Python.ORDER_ATOMIC);
+    var max_us = Blockly.Python.valueToCode(block, 'servo_max_us', Blockly.Python.ORDER_ATOMIC);   
+    var angle = Blockly.Python.valueToCode(block, 'servo_angle', Blockly.Python.ORDER_ATOMIC);   
+        
     Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-    var code = servo_name + ' = PWM(Pin(' + pin + '), freq=50)\n';
+    Blockly.Python.definitions_['import_servo'] = 'from ils import servo';
+    var code =  servo_name + ' = servo.Servo(' + pin + ',' + frequency + ',' + min_us + ',' + max_us + ',' + angle + ')\n';
+
     return code;
 };
 
-Blockly.Python['move_servo'] = function(block) {
+Blockly.Python['move_servo_angle'] = function(block) {
     var value_angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
     var servo_name = block.getFieldValue('servo_name');  
 
-    
-    var duty_min = 30;   // Valor mínimo para 0 graus
-    var duty_max = 125;  // Valor máximo para 180 graus
 
-    // Código para converter ângulo em duty cycle
-    var duty_code = 'int(' + duty_min + ' + (' + value_angle + ' / 180) * (' + duty_max + ' - ' + duty_min + '))';
-
-    var code = servo_name + '.duty(' + duty_code + ')\n'; 
+    var code = servo_name + '.setAngle(' + value_angle + ')\n'; 
     return code;
 };
 
-  
+Blockly.Python['move_servo_time'] = function(block) {
+    var value_time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);
+    var servo_name = block.getFieldValue('servo_name');  
+
+
+    var code = servo_name + '.writeus(' + value_time + ')\n'; 
+    return code;
+};  
 
 Blockly.Python['net_get_request'] = function(block) {
 	var value_url = Blockly.Python.valueToCode(block, 'URL', Blockly.Python.ORDER_ATOMIC);
@@ -4891,22 +4898,22 @@ Blockly.Python['char_lcd_init'] = function(block) {
   var value_scl = Blockly.Python.valueToCode(block, 'scl', Blockly.Python.ORDER_NONE);
   
   Blockly.Python.definitions_['import_lcd'] = 'from machine import Pin, SoftI2C';
-  Blockly.Python.definitions_['import_i2c_lcd'] = 'from lcd import I2cLcd';  
+  Blockly.Python.definitions_['import_i2c_lcd'] = 'from ils import lcd';  
   Blockly.Python.definitions_['DEFAULT_I2C_ADDR'] = 'DEFAULT_I2C_ADDR = 0x27';
   var code = `i2c = SoftI2C(sda=Pin(${value_sda}), scl=Pin(${value_scl}), freq=400000)\n`;
-  code += `lcd = I2cLcd(i2c, DEFAULT_I2C_ADDR, ${value_lines}, ${value_columns})\n`;
+  code += `lcdInstance = lcd.I2cLcd(i2c, DEFAULT_I2C_ADDR, ${value_lines}, ${value_columns})\n`;
   return code;
 };
 
 Blockly.Python['char_lcd_clear'] = function(block) {
-  var code = 'lcd.clear()\n';
+  var code = 'lcdInstance.clear()\n';
   return code;
 };
 
 Blockly.Python['char_lcd_putstr'] = function(block) {
 	
   var value_text = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_NONE);	
-  var code = 'lcd.putstr(' + value_text + ')\n';
+  var code = 'lcdInstance.putstr(' + value_text + ')\n';
   return code;
 };
 
@@ -4914,7 +4921,7 @@ Blockly.Python['char_lcd_moveto'] = function(block) {
   var x = Blockly.Python.valueToCode(block, 'x', Blockly.Python.ORDER_NONE);
   var y = Blockly.Python.valueToCode(block, 'y', Blockly.Python.ORDER_NONE);
   
-  var code = 'lcd.move_to(' + x + ', ' + y + ')\n';
+  var code = 'lcdInstance.move_to(' + x + ', ' + y + ')\n';
   return code;
 };
 
@@ -4924,11 +4931,11 @@ Blockly.Python['char_lcd_backlight'] = function(block) {
   var code;
   if ( value_state == 'True')
   {
-	    code = 'lcd.backlight_on()\n';
+	    code = 'lcdInstance.backlight_on()\n';
   }
   else
   {
-	    code = 'lcd.backlight_off()\n';	  
+	    code = 'lcdInstance.backlight_off()\n';	  
   }
   return code;
 };
@@ -4939,11 +4946,11 @@ Blockly.Python['char_lcd_display'] = function(block) {
   var code;
   if ( value_state == 'True')
   {
-	    code = 'lcd.display_on()\n';
+	    code = 'lcdInstance.display_on()\n';
   }
   else
   {
-	    code = 'lcd.display_off()\n';	  
+	    code = 'lcdInstance.display_off()\n';	  
   }
   return code;  
 };
@@ -6464,6 +6471,179 @@ Blockly.Python['configurar_plotter_dados'] = function(block) {
 
   return code;
 };
+Blockly.Python["async_sleep"] = function (block) {
+  Blockly.Python.definitions_["import_uasyncio"] = "import uasyncio";
+  var value_time = Blockly.Python.valueToCode(
+    block,
+    "TIME",
+    Blockly.Python.ORDER_NONE
+  );
+  var dropdown_scale = block.getFieldValue("SCALE");
+  var code = `await uasyncio.${dropdown_scale}(${value_time})\n`;
+  return code;
+};
+
+/**
+ * Python code generator for the 'onstart' block
+ * Creates an async function that serves as the program entry point
+ * 
+ * @param {Blockly.Block} block - The onstart block instance
+ * @returns {string} Generated Python code
+ */
+Blockly.Python["onstart"] = function (block) {
+  if (!block || !block.workspace) {
+    console.error('ILS: Invalid block or workspace in onstart generator');
+    return '';
+  }
+
+  try {
+    // Generate global variable declarations
+    const globals = generateGlobalDeclarations(block);
+    
+    // Add required imports
+    addRequiredImports();
+    
+    // Get statements from the block
+    const statements = Blockly.Python.statementToCode(block, "__statements") || '';
+    
+    // Mark that onstart block exists
+    ILS.onstartBlockExists = true;
+    
+    // Build the Python code
+    const code = buildOnstartFunction(globals, statements);
+    
+    return code;
+  } catch (error) {
+    console.error('ILS: Error generating onstart block code:', error);
+    return '# Error generating onstart code\n';
+  }
+};
+
+/**
+ * Generates global variable declarations for the onstart function
+ * Ensures all workspace variables are accessible within the async function
+ * 
+ * @param {Blockly.Block} block - The onstart block
+ * @returns {string} Global declaration statement or empty string
+ */
+function generateGlobalDeclarations(block) {
+  try {
+    const workspace = block.workspace;
+    const variables = Blockly.Variables.allUsedVarModels(workspace) || [];
+    const blockVars = block.getVars ? block.getVars() : [];
+    const globals = [];
+
+    // Collect variables that aren't shadowed by local parameters
+    for (let i = 0; i < variables.length; i++) {
+      const variable = variables[i];
+      const varName = variable.name;
+      
+      // Only add if not a local parameter
+      if (blockVars.indexOf(varName) === -1) {
+        const pythonVarName = Blockly.Python.nameDB_.getName(
+          varName, 
+          Blockly.VARIABLE_CATEGORY_NAME
+        );
+        globals.push(pythonVarName);
+      }
+    }
+
+    // Return formatted global statement if any globals exist
+    return globals.length > 0
+      ? `${Blockly.Python.INDENT}global ${globals.join(", ")}\n`
+      : "";
+  } catch (error) {
+    console.error('ILS: Error generating global declarations:', error);
+    return "";
+  }
+}
+
+/**
+ * Adds required Python imports to the definitions
+ */
+function addRequiredImports() {
+  try {
+    Blockly.Python.definitions_["import_ils"] = "import ils";
+    Blockly.Python.definitions_["import_uasyncio"] = "import uasyncio";
+  } catch (error) {
+    console.error('ILS: Error adding imports:', error);
+  }
+}
+
+/**
+ * Builds the complete onstart function with proper formatting
+ * 
+ * @param {string} globals - Global variable declarations
+ * @param {string} statements - User-defined statements from the block
+ * @returns {string} Complete Python function code
+ */
+function buildOnstartFunction(globals, statements) {
+  let code = 'async def onStart():\n';
+  
+  // Add global declarations
+  if (globals) {
+    code += globals;
+  }
+  
+  // Track if any code was added (to determine if 'pass' is needed)
+  let hasContent = false;
+  
+  // Add user statements if they exist
+  if (statements && statements.trim().length > 0) {
+    code += statements;
+    if (!statements.endsWith('\n')) {
+      code += '\n';
+    }
+    hasContent = true;
+  }
+  
+  // Add 'pass' if function body is empty
+  if (!hasContent) {
+    code += `${ILS.codeIndent}pass\n`;
+  }
+  
+  // Add execution wrapper with error handling
+  code += buildExecutionWrapper();
+  
+  return code;
+}
+
+/**
+ * Creates the try-catch wrapper for executing the onstart function
+ * 
+ * @returns {string} Python try-except block
+ */
+function buildExecutionWrapper() {
+  let wrapper = '\ntry:\n';
+  wrapper += `${ILS.codeIndent}ils.run(onStart)\n`;
+  wrapper += `${ILS.codeIndent}ils.start()\n`;
+  wrapper += 'except KeyboardInterrupt as e:\n';
+  wrapper += `${ILS.codeIndent}print("^C")\n`;
+  wrapper += 'except Exception as e:\n';
+  wrapper += `${ILS.codeIndent}print(f"Error: {e}")\n`;
+  
+  return wrapper;
+}
+
+/**
+ * Validates that the onstart block configuration is correct
+ * 
+ * @param {Blockly.Block} block - The onstart block to validate
+ * @returns {boolean} True if valid, false otherwise
+ */
+function validateOnstartBlock(block) {
+  if (!block) {
+    console.warn('ILS: onstart block is null or undefined');
+    return false;
+  }
+  
+  if (!block.workspace) {
+    console.warn('ILS: onstart block has no workspace');
+    return false;
+  }
+  
+  return true;
+}
 
 
 

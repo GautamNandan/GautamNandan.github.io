@@ -272,6 +272,13 @@
           <field name="NUM">1</field>
         </shadow>
       </value>
+    </block>-->
+    <block type="async_sleep">
+      <value name="TIME">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
     </block>
     <block type="utime.vars"></block>
     <block type="utime.ticks_add">
@@ -1399,23 +1406,52 @@
     </category>
 
   <category name="RC Servo Motor">
-      <label text="Hobby RC Servo Motor"></label>
+      <label text="RC Servo Motor"></label>
     <block type="init_servo">
         <value name="pin">
           <shadow type="pinout">
-            <field name="PIN"></field>
+            <field name="PIN"></field>          
           </shadow>
-        </value>
+        </value>		  
+      <value name="servo_frequency">		  
+        <shadow type="math_number">
+			<field name="servo_frequency">50</field>
+        </shadow>
+        </value>		  		
+      <value name="servo_min_us">		  		
+        <shadow type="math_number">
+            <field name="servo_min_us">50</field>
+        </shadow>
+        </value>		  		
+      <value name="servo_max_us">		  		
+        <shadow type="math_number">
+            <field name="servo_max_us">50</field>
+        </shadow>
+        </value>		  		
+      <value name="servo_angle">		  		
+        <shadow type="math_number">
+            <field name="servo_angle">50</field>	    	     	   
+        </shadow>		
+        </value>		  
     </block>
 
-    <block type="move_servo">
+    <block type="move_servo_angle">
     <value name="angle">
         <shadow type="math_number">
-          <field name="NUM">90</field>
+          <field name="NUM">180</field>
         </shadow>
       </value>
     </block>
+    <block type="move_servo_time">
+    <value name="time">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>    
+    
   </category>
+
 
 
   <category name="Stepper Motor">

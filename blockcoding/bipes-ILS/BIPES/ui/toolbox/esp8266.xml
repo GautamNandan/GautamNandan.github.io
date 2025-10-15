@@ -345,7 +345,14 @@
 
   <category name="%{BKY_CAT_TIMING}">
 	  <label text="%{BKY_CAT_TIMING}"></label>
-    <block type="delay">
+    <!--<block type="delay">
+      <value name="TIME">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block> -->
+    <block type="async_sleep">
       <value name="TIME">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -628,13 +635,13 @@
 	<block type="char_lcd_init">
         <value name="scl">
           <shadow type="pinout">
-            <field name="SCL"></field>
+            <field name="SCL">5</field>
           </shadow>
         </value>
 
         <value name="sda">
           <shadow type="pinout">
-            <field name="SDA"></field>
+            <field name="SDA">4</field>
           </shadow>
         </value>
  
@@ -646,7 +653,7 @@
 
 	 <value name="columns">
         <shadow type="math_number">
-          <field name="NUM">20</field>
+          <field name="NUM">16</field>
         </shadow>
       </value>
 
@@ -1214,22 +1221,50 @@
     </category>
 
   <category name="RC Servo Motor">
-      <label text="Hobby RC Servo Motor"></label>
+      <label text="RC Servo Motor"></label>
     <block type="init_servo">
         <value name="pin">
           <shadow type="pinout">
-            <field name="PIN"></field>
+            <field name="PIN"></field>          
           </shadow>
-        </value>
+        </value>		  
+      <value name="servo_frequency">		  
+        <shadow type="math_number">
+			<field name="NUM">50</field>
+        </shadow>
+        </value>		  		
+      <value name="servo_min_us">		  		
+        <shadow type="math_number">
+            <field name="NUM">50</field>
+        </shadow>
+        </value>		  		
+      <value name="servo_max_us">		  		
+        <shadow type="math_number">
+            <field name="NUM">50</field>
+        </shadow>
+        </value>		  		
+      <value name="servo_angle">		  		
+        <shadow type="math_number">
+            <field name="NUM">50</field>	    	     	   
+        </shadow>		
+        </value>		  
     </block>
 
-    <block type="move_servo">
+    <block type="move_servo_angle">
     <value name="angle">
         <shadow type="math_number">
-          <field name="NUM">90</field>
+          <field name="NUM">180</field>
         </shadow>
       </value>
     </block>
+    <block type="move_servo_time">
+    <value name="time">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>    
+    
   </category>
 
 

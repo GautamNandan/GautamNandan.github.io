@@ -1260,6 +1260,27 @@ Blockly.Blocks['init_servo'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Pin");
 
+    this.appendValueInput("servo_frequency")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("frequency");
+      
+    this.appendValueInput("servo_min_us")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("min_us");      
+      
+
+    this.appendValueInput("servo_max_us")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("max_us");
+      
+    this.appendValueInput("servo_angle")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("max_angle");
+                        
     this.setColour(230);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1271,7 +1292,7 @@ Blockly.Blocks['init_servo'] = {
 
 
 
-Blockly.Blocks['move_servo'] = {
+Blockly.Blocks['move_servo_angle'] = {
   init: function() {
     this.appendDummyInput()
       .appendField("Move Servo Motor")
@@ -1288,6 +1309,27 @@ Blockly.Blocks['move_servo'] = {
     this.setNextStatement(true, null);
 
     this.setTooltip("Move RC servo motor to degrees");
+    this.setHelpUrl("http://www.bipes.net.ebr");
+  }
+};
+
+Blockly.Blocks['move_servo_time'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField("Move Servo Motor")
+      .appendField("Servo Name")
+      .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
+
+    this.appendValueInput("time")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("utime");
+
+    this.setColour(230);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+
+    this.setTooltip("Move RC servo motor for us time");
     this.setHelpUrl("http://www.bipes.net.ebr");
   }
 };
@@ -12118,6 +12160,38 @@ Blockly.Blocks['chamar_formatar_dados_plotter'] = {
   }
 };
 
+Blockly.Blocks["async_sleep"] = {
+  init: function () {
+    this.appendValueInput("TIME").setCheck(null).appendField("Wait");
+    this.appendDummyInput().appendField(
+      new Blockly.FieldDropdown([
+        ["seconds", "sleep"],
+        ["milliseconds", "sleep_ms"],
+      ]),
+      "SCALE"
+    );
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Delay for given number, should be positive or 0.");
+    this.setHelpUrl(
+      "https://docs.micropython.org/en/latest/library/utime.html#utime.sleep"
+    );
+  },
+};
+Blockly.Blocks["onstart"] = {
+  init: function () {
+    this.appendStatementInput("__statements")
+      .setCheck(null)
+      .appendField("onStart");
+    this.setColour(230);
+    this.setTooltip("onstart function");
+    this.setHelpUrl("");
+    this.setDeletable(false);
+    this.contextMenu = false;
+  },
+};
 // Mutator container block (sensor container)
 Blockly.Blocks['sensor_container'] = {
   init: function() {
