@@ -1469,6 +1469,8 @@
 
   <category name="RC Servo Motor">
       <label text="RC Servo Motor"></label>
+     <button text="Learn about:Servos" callbackKey="loadDoc"></button>
+	<button text="Load example: Servo-Basic" callbackKey="loadExample"></button>		 
     <block type="init_servo">
         <value name="pin">
           <shadow type="pinout">

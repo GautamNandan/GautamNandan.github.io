@@ -454,6 +454,26 @@ Code.reloadToolbox = function(XML_) {
 function loadExampleFromURL(pName){
 
     var request = new XMLHttpRequest();
+	var examplePath = getExamplePathByName(pName);
+    request.open('GET', examplePath, true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader('Content-Type');
+            if (type.indexOf("text") !== 1) {
+
+		    //alert(request.responseText);
+
+		    var content = request.responseText;
+                    var xml = Blockly.Xml.textToDom(content);
+                    Blockly.Xml.domToWorkspace(xml, Code.workspace);
+
+                return request.responseText;
+            }
+        }
+    }
+	
+/*	
     request.open('GET', '/beta2/ui/examples/' + pName + '.xml', true);
     //request.open('GET', 'http://bipes.net.br/beta2/ui/examples/' + pName + '.xml', true);
     request.send(null);
@@ -472,6 +492,7 @@ function loadExampleFromURL(pName){
             }
         }
     }
+*/	
 }
 
 /**
@@ -512,7 +533,133 @@ Code.generateXML = function (workspace = Code.workspace) {
     return UI ['workspace'].writeWorkspace(xmlText, true);
 }
 
+// Store the parsed data
+let moduleDocsData = null;
+let moduleExamplesData = null;
 
+/**
+ * Load and parse both JSON files from the website root
+ * @returns {Promise<Object>} Promise that resolves to an object with both datasets
+ */
+async function loadModuleFiles() {
+  try {
+    const [docsResponse, examplesResponse] = await Promise.all([
+      fetch('/moduledocs.json'),
+      fetch('/moduleexamples.json')
+    ]);
+    
+    if (!docsResponse.ok) {
+      throw new Error(`Failed to load moduledocs.json: ${docsResponse.status}`);
+    }
+    
+    if (!examplesResponse.ok) {
+      throw new Error(`Failed to load moduleexamples.json: ${examplesResponse.status}`);
+    }
+    
+    moduleDocsData = await docsResponse.json();
+    moduleExamplesData = await examplesResponse.json();
+    
+    console.log('Module files loaded successfully:');
+    console.log('- Docs:', Object.keys(moduleDocsData).length, 'modules');
+    console.log('- Examples:', Object.keys(moduleExamplesData).length, 'examples');
+    
+    return {
+      docs: moduleDocsData,
+      examples: moduleExamplesData
+    };
+  } catch (error) {
+    console.error('Error loading module files:', error);
+    throw error;
+  }
+}
+
+// ============ DOCS FUNCTIONS ============
+
+/**
+ * Get the documentation path for a given module name
+ * @param {string} name - The module name to search for
+ * @returns {string|null} The path if found, null otherwise
+ */
+function getDocPathByName(name) {
+  if (!moduleDocsData) {
+    console.warn('Module docs not loaded. Call loadModuleFiles() first.');
+    return null;
+  }
+  
+  return moduleDocsData[name] || null;
+}
+
+/**
+ * Get the documentation path for a given module name (case-insensitive)
+ * @param {string} name - The module name to search for
+ * @returns {string|null} The path if found, null otherwise
+ */
+function getDocPathByNameCaseInsensitive(name) {
+  if (!moduleDocsData) {
+    console.warn('Module docs not loaded. Call loadModuleFiles() first.');
+    return null;
+  }
+  
+  const lowerName = name.toLowerCase();
+  const key = Object.keys(moduleDocsData).find(k => k.toLowerCase() === lowerName);
+  return key ? moduleDocsData[key] : null;
+}
+
+/**
+ * Get all module documentation names
+ * @returns {Array<string>} Array of all module names
+ */
+function getAllDocNames() {
+  if (!moduleDocsData) {
+    console.warn('Module docs not loaded. Call loadModuleFiles() first.');
+    return [];
+  }
+  
+  return Object.keys(moduleDocsData);
+}
+
+/**
+ * Get the example path for a given example name
+ * @param {string} name - The example name to search for
+ * @returns {string|null} The path if found, null otherwise
+ */
+function getExamplePathByName(name) {
+  if (!moduleExamplesData) {
+    console.warn('Module examples not loaded. Call loadModuleFiles() first.');
+    return null;
+  }
+  
+  return moduleExamplesData[name] || null;
+}
+
+/**
+ * Get the example path for a given example name (case-insensitive)
+ * @param {string} name - The example name to search for
+ * @returns {string|null} The path if found, null otherwise
+ */
+function getExamplePathByNameCaseInsensitive(name) {
+  if (!moduleExamplesData) {
+    console.warn('Module examples not loaded. Call loadModuleFiles() first.');
+    return null;
+  }
+  
+  const lowerName = name.toLowerCase();
+  const key = Object.keys(moduleExamplesData).find(k => k.toLowerCase() === lowerName);
+  return key ? moduleExamplesData[key] : null;
+}
+
+/**
+ * Get all example names
+ * @returns {Array<string>} Array of all example names
+ */
+function getAllExampleNames() {
+  if (!moduleExamplesData) {
+    console.warn('Module examples not loaded. Call loadModuleFiles() first.');
+    return [];
+  }
+  
+  return Object.keys(moduleExamplesData);
+}
 
 /**
  * Initialize Blockly.  Called on page load.
@@ -797,31 +944,8 @@ print('Install done.')
 	var tmp = button.text_.split(":")[1];
 	var lib = tmp.replace(/\s/g,'');
 
-	var url = "https://docs.google.com/document/d/e/2PACX-1vSk-9T56hP9K9EOhkF5SoNzsYl4TzDk-GEDnMssaFP_m-LEfI6IU-uRkkLP_HoONK0QmMrZVo_f27Fw/pub";
-
-        if (Code.getLang() == 'pt-br') {
-		url = "https://docs.google.com/document/d/e/2PACX-1vT7dc6hP4sKyMJupklbGK4adIf3qCkt4r-HrEWO8jTRMx9uUOUSfboKG749IF3DZr8k6zUPSLXkrDGY/pub";
-	}
-        if (Code.getLang() == 'en') {
-		url = "https://docs.google.com/document/d/e/2PACX-1vSk-9T56hP9K9EOhkF5SoNzsYl4TzDk-GEDnMssaFP_m-LEfI6IU-uRkkLP_HoONK0QmMrZVo_f27Fw/pub";
-
-	}
-	
-	if (lib == "mpu6050") {
-		url = url + '#h.79fbsr8dha21';
-	}
-
-	if (lib == "tm1640") {
-		url = url + '#h.iw35vui9vzi1';
-	}
-
-	if (lib == "ds1820") {
-		url = url + '#h.w84555jgod5j';
-	}
-
-	if (lib == "mfrc522") {
-		url = url + '#h.owhbali4ayaj';
-	}
+	var url = getDocPathByName(lib);
+	console.log('Path for UserModule:', url);
 
 	var win = window.open(url, '_blank');
 	win.focus();
@@ -831,8 +955,12 @@ print('Install done.')
 
 
 
-
-
+loadModuleFiles().then(() => {
+  console.log('Module files ready!');
+ 
+}).catch(err => {
+  console.error('Failed to initialize module files:', err);
+});
 
 
   // Lazy-load the syntax-highlighting.
