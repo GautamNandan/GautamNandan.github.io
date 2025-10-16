@@ -544,8 +544,8 @@ let moduleExamplesData = null;
 async function loadModuleFiles() {
   try {
     const [docsResponse, examplesResponse] = await Promise.all([
-      fetch('/moduledocs.json'),
-      fetch('/moduleexamples.json')
+      fetch('moduledocs.json'),
+      fetch('moduleexamples.json')
     ]);
     
     if (!docsResponse.ok) {
