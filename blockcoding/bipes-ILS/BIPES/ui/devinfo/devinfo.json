@@ -151,6 +151,37 @@
 			],
 			"serial_packet_size":"500"
 		},
+		"UnoESP32": {
+			"title":"<b>UNO-ESP32</b><br>",
+			"speed":"115200",
+			"boardID":"ESP32", 
+			"img":"devinfo/media/esp32-uno-pinout.png",
+			"description":"",
+			"toolbox":"esp32-uno.xml",
+			"pinout": [
+				["IO0 / ADC21 / TOUCH 1 / GPIO0", "0"],			
+				["IO2 / ADC12 / TOUCH 2 / GPIO2", "2"],
+				["IO4 / ADC10 / TOUCH 0 / GPIO4", "4"],
+				["IO35 / ADC7 /  GPIO35", "35"],
+				["IO34 / ADC6 /  GPIO34", "34"],
+				["IO36 / ADC0 /  GPIO36", "36"],
+				["IO39 / ADC3 /  GPIO39", "39"],				
+				["IO18 / VSPI SCK / GPIO18", "18"],
+				["IO19 / MISO / GPIO19", "19"],
+				["IO23 / MOSI / GPIO23", "23"],
+				["IO5 / VSPI SS", "5"],
+				["IO13 / TOUCH4 / ADC14", "13"],
+				["IO12 / TOUCH5 / ADC15", "12"],				
+				["IO14 / TOUCH6 / ADC16", "14"],								
+				["IO27 / TOUCH7 / ADC17", "27"],												
+				["IO16 / RX2", "16"],												
+				["IO17 / TX2", "17"],																
+				["IO25 / DAC1 / ADC18", "25"],																
+				["IO26 / DAC2 / ADC19", "26"]
+				
+			],
+			"serial_packet_size":"500"
+		},		
 		"ESP32": {
 			"title":"<b>ESP32</b><br>",
 			"speed":"115200",
