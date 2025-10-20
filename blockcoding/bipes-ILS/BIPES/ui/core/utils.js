@@ -168,75 +168,83 @@ class Tool {
    * @param {string} code - Python code to process
    * @returns {string} Modified code with async/await
    */
-  static fixAsyncInCode(code) {
-    if (!code || typeof code !== 'string') {
-      console.error('ILS: Invalid code provided to fixAsyncInCode');
-      return '';
-    }
+ static fixAsyncInCode(code) {
+  if (!code || typeof code !== 'string') {
+    console.error('ILS: Invalid code provided to fixAsyncInCode');
+    return '';
+  }
+  try {
+    const lines = code.split('\n');
+    const functionNames = [];
+    const excludeFunctions = ['on_cretile_iot_data'];
+    let hasOnStart = false;
 
-    try {
-      const lines = code.split('\n');
-      const functionNames = [];
-      const excludeFunctions = ['on_cretile_iot_data'];
-      let hasOnStart = false;
-
-      // First pass: Convert function definitions to async
-      lines.forEach((line, index) => {
-        if (line.startsWith('def')) {
-          // Check if function should be excluded
-          const shouldExclude = excludeFunctions.some(excludedFunc => 
-            line.trim().indexOf(excludedFunc) >= 0
-          );
-
-          if (shouldExclude) {
-            // Skip this function
-          } else {
-            // Extract function name and add to list
-            const functionName = line.split('def')[1].trim().slice(0, -1);
+    // First pass: Convert function definitions to async and collect function names
+    lines.forEach((line, index) => {
+      if (line.trim().startsWith('def ')) {
+        // Check if function should be excluded
+        const shouldExclude = excludeFunctions.some(excludedFunc => 
+          line.trim().indexOf(excludedFunc) >= 0
+        );
+        
+        if (!shouldExclude) {
+          // Extract function name (everything between 'def ' and '(')
+          const match = line.match(/def\s+(\w+)\s*\(/);
+          if (match) {
+            const functionName = match[1];
             functionNames.push(functionName);
-            lines[index] = 'async ' + line;
+            lines[index] = line.replace(/def\s+/, 'async def ');
           }
         }
+      }
+      if (line.includes('async def onStart')) {
+        hasOnStart = true;
+      }
+    });
 
-        if (line.includes('async def onStart')) {
-          hasOnStart = true;
+    // Second pass: Add await to function calls
+    if (hasOnStart) {
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+        
+        // Skip function definition lines
+        if (line.trim().startsWith('async def') || line.trim().startsWith('def')) {
+          return;
+        }
+
+        // Check for function calls with parentheses
+        for (const funcName of functionNames) {
+          // Create regex to match function calls: funcName(
+          const funcCallRegex = new RegExp(`\\b${funcName}\\s*\\(`, 'g');
+          
+          if (funcCallRegex.test(line)) {
+            // Check if await is already present before this function call
+            const awaitCheckRegex = new RegExp(`await\\s+${funcName}\\s*\\(`);
+            if (!awaitCheckRegex.test(line)) {
+              // Get the indentation
+              const leadingSpaces = line.match(/^\s*/)[0];
+              const trimmedLine = line.trim();
+              
+              // Add await before the function call
+              const updatedLine = trimmedLine.replace(
+                new RegExp(`\\b${funcName}\\s*\\(`), 
+                `await ${funcName}(`
+              );
+              
+              lines[index] = leadingSpaces + updatedLine;
+            }
+            break; // Only process first match per line
+          }
         }
       });
-
-      // Second pass: Add await to function calls
-      if (hasOnStart) {
-        lines.forEach((line, index) => {
-          if (!line.trim()) return;
-
-          // Check if line is a direct function call (no other code)
-          if (functionNames.includes(line.trim())) {
-            const spaceCount = line.split(' ').length - 1;
-            const indentation = ' '.repeat(spaceCount);
-            lines[index] = indentation + 'await ' + line.trim();
-          } else {
-            // Check if line contains a function call within a statement
-            for (const funcName of functionNames) {
-              if (line.trim().includes(funcName)) {
-                // Don't add await to function definitions
-                if (!line.trim().startsWith("async def")) {
-                  const indexOfFunc = line.indexOf(funcName);
-                  const fullStatement = line.substr(0, indexOfFunc) + 'await ' + line.substr(indexOfFunc);
-                  lines[index] = fullStatement;
-                  break; // Only process once per line
-                }
-              }
-            }
-          }
-        });
-      }
-
-      return lines.join('\n');
-    } catch (error) {
-      console.error('ILS: Error in fixAsyncInCode:', error);
-      return code; // Return original code on error
     }
-  }
 
+    return lines.join('\n');
+  } catch (error) {
+    console.error('ILS: Error in fixAsyncInCode:', error);
+    return code; // Return original code on error
+  }
+}
   /**
    * Run Python code on the connected device
    * @param {string} code_ - Code to be sent (optional, generates from workspace if not provided)

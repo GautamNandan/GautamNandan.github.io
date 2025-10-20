@@ -2,7 +2,7 @@ var MSG = {
   title: "BIPES",
   blocks: "Blocks",
   files: "Files",
-  firmware: "Sofware Refresh",
+  firmware: "Software Refresh",
   shared: "Shared",
   device: "Device",
   linkTooltip: "Save and link to blocks.",
