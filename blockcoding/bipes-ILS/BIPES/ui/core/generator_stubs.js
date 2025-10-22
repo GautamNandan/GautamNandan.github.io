@@ -4838,67 +4838,23 @@ Blockly.Python['files_list'] = function(block) {
 
 //HCSR04 ultrasound
 
+	
+
 Blockly.Python['hcsr_init'] = function(block) {
   var pEcho = Blockly.Python.valueToCode(block, 'echo', Blockly.Python.ORDER_ATOMIC);
   var pTrig = Blockly.Python.valueToCode(block, 'trigger', Blockly.Python.ORDER_ATOMIC);
-  var pTime = Blockly.Python.valueToCode(block, 'timeout', Blockly.Python.ORDER_ATOMIC);
 
-  Blockly.Python.definitions_['import_time'] = 'import time';
-  Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-  Blockly.Python.definitions_['import_hcr'] = `
-
-from machine import time_pulse_us
-
-#Based on: https://github.com/lemariva/uPySensors
-class HCSR04:
-    def __init__(self, trigger_pin, echo_pin, echo_timeout_us=500*2*30):
-        self.echo_timeout_us = echo_timeout_us
-        self.trigger = Pin(trigger_pin, mode=Pin.OUT)
-        self.trigger.value(0)
-        self.echo = Pin(echo_pin, mode=Pin.IN)
-
-    def _send_pulse_and_wait(self):
-        self.trigger.value(0)
-        time.sleep_us(5)
-        self.trigger.value(1)
-        time.sleep_us(10)
-        self.trigger.value(0)
-        try:
-			pulse_time = time_pulse_us(self.echo, 1, self.echo_timeout_us)
-			return pulse_time
-        except OSError as ex:
-            if ex.args[0] == 110: # 110 = ETIMEDOUT
-                raise OSError('Out of range')
-            raise ex
-
-    def distance_mm(self):
-        pulse_time = self._send_pulse_and_wait()
-        mm = pulse_time * 100 // 582
-        return mm
-
-    def distance_cm(self):
-        pulse_time = self._send_pulse_and_wait()
-        cms = (pulse_time / 2) / 29.1
-        return cms
-`;
-
-/*
- * while 1:
-	sensor = HCSR04(trigger_pin=13, echo_pin=15, echo_timeout_us=10000)
-	distance = sensor.distance_mm()
-	print(distance)
-	time.sleep(1)
-
-*/
-
-
-  var code = 'ultraSoundSensor = HCSR04(trigger_pin=' + pTrig + ', echo_pin=' + pEcho + ', echo_timeout_us=' + pTime + ')\n';
-
+  Blockly.Python.definitions_['import_time_us'] = 'from machine import Pin, time_pulse_us';
+  Blockly.Python.definitions_['import_pin'] = 'import time';
+  Blockly.Python.definitions_['import_ultra'] = 'from ils import ultrasonic';  
+  var ultra_name = 'hcsr04';
+  
+  var code =  ultra_name + ' = ultrasonic.Ultrasonic([' + pTrig + ',' + pEcho + '])\n';
   return code;
 };
 
 Blockly.Python['hcsr_read'] = function(block) {
-  var code = 'ultraSoundSensor.distance_mm()';
+  var code = 'hcsr04.measureDistance()';
   return [code, Blockly.Python.ORDER_NONE];
 };
 

@@ -2128,20 +2128,12 @@ Blockly.Blocks['hcsr_init'] = {
     this.appendValueInput("echo")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldLabelSerializable("echo pin"), "DHT_PIN_MSG");
-
+        .appendField("Echo");
 
     this.appendValueInput("trigger")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldLabelSerializable("trigger pin"), "DHT_PIN_MSG");
-
-
-    this.appendValueInput("timeout")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldLabelSerializable("timeout (us)"), "DHT_PIN_MSG");
-
+        .appendField("Trigger");
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
