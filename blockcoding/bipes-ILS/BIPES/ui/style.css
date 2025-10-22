@@ -722,9 +722,9 @@ pre.content {
 
 
 #extensionButton {
-  background-image: url('/media/ext-icon.svg') !important;
-  background-position: center !important;
-  background-size: 70% !important; /* Increased from 1.5rem to percentage */
+  background-image: url('/media/ext-icon.svg');
+  background-position: center;
+  background-size: 70% ; /* Increased from 1.5rem to percentage */
   background-repeat: no-repeat;
   width: 2.5rem; /* Set button width */
   height: 2.5rem; /* Set button height */
@@ -732,9 +732,9 @@ pre.content {
   min-height: 2.5rem;
 }
 
-#extensionButton:before {
-  background: none !important;
-  content: none !important;
+#extensionButton:before, #downloadIcon:before{
+  background: none;
+  content: none;
 }
 /* Sprited icons. */
 
