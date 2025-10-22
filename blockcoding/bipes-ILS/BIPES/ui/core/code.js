@@ -661,6 +661,9 @@ function getAllExampleNames() {
   return Object.keys(moduleExamplesData);
 }
 
+Code.getWorkspace = function() {
+  return Code.workspace;
+}
 /**
  * Initialize Blockly.  Called on page load.
  */
@@ -753,24 +756,8 @@ Code.init = function() {
   }
   Blockly.svgResize(Code.workspace);
 
-    Code.workspace.registerButtonCallback('installPyLib', function(button) {
-
-	var lib ='';
-	var customUrl = '';
-	if ( button.text_ === "InstallCustomLib" ) {
-		customUrl = prompt('Enter custom library URL:', 'https://example.com/library.js');
-		if (customUrl && customUrl.trim()) {
-			customUrl = customUrl.trim();
-			console.log("This will automatically download librray from:" + customUrl)
-		}
-	}
-	else {
-		lib = button.text_.split(" ")[1];
-		console.log(button.text_);
-		console.log(lib)
-			alert("This will automatically download and install the library on the connected board: " + lib + ". Internet is required for this operation. Install results will be shown on console tab.");		
-	}
-var installCmd;
+	Code.workspace.UploadPyModule = function(customUrl, lib) {
+	var installCmd;
 
 	//Code.tabClick('console');
 if (customUrl !== '') {
@@ -908,6 +895,26 @@ print('Install done.')
 `;
  
      Tool.runPython(copyCmd);
+		}
+	Code.workspace.registerButtonCallback('installPyLib', function(button) {
+
+	var lib ='';
+	var customUrl = '';
+	if ( button.text_ === "InstallCustomLib" ) {
+		customUrl = prompt('Enter custom library URL:', 'https://example.com/library.js');
+		if (customUrl && customUrl.trim()) {
+			customUrl = customUrl.trim();
+			console.log("This will automatically download librray from:" + customUrl)
+		}
+	}
+	else {
+		lib = button.text_.split(" ")[1];
+		console.log(button.text_);
+		console.log(lib)
+			alert("This will automatically download and install the library on the connected board: " + lib + ". Internet is required for this operation. Install results will be shown on console tab.");		
+	}
+	Code.workspace.UploadPyModule(customUrl,lib);
+	
 
 
       });
@@ -938,6 +945,50 @@ print('Install done.')
 
       });
 
+    Code.workspace.registerButtonCallback('loadExtExample', function(button) {
+	//Load example:espnow_test1
+	var ext = button.text_.split(":")[1];
+	ext = ext.split("_")[0];	
+	var fileName = button.text_.split("_")[1];
+	var path = "extensions/" + ext + "/examples/" + fileName + ".xml";
+	
+	var lib = path.replace(/\s/g,'');
+    var msgCon = "This will load Example: " + lib + ". Internet is required for this operation. Important: all blocks on workspace will be lost and replaced by the example blocks. Do you want to continue?";
+	
+
+	if (confirm(msgCon)) {
+		//console.log('Thing was saved to the database.');
+		
+		//Ask for confirmation
+      		//Code.discard(); 
+		//Delete blocks without asking for confirmation
+		Code.workspace.clear();
+
+		Code.renderContent();
+		var request = new XMLHttpRequest();
+		request.open('GET', lib, true);
+		request.send(null);
+		request.onreadystatechange = function () {
+			if (request.readyState === 4 && request.status === 200) {
+				var type = request.getResponseHeader('Content-Type');
+				if (type.indexOf("text") !== 1) {
+
+				//alert(request.responseText);
+
+				var content = request.responseText;
+						var xml = Blockly.Xml.textToDom(content);
+						Blockly.Xml.domToWorkspace(xml, Code.workspace);
+
+					return request.responseText;
+				}
+			}
+		}
+		Code.renderContent();
+	} else {
+		console.log('Example load canceled.');
+	}
+
+      });
 
     Code.workspace.registerButtonCallback('loadDoc', function(button) {
 
@@ -954,6 +1005,21 @@ print('Install done.')
       });
 
 
+
+    Code.workspace.registerButtonCallback('loadExtDoc', function(button) {
+	//<button text="Learn about:espnow" callbackKey="loadExtDoc"></button>
+	var ext = button.text_.split(":")[1];
+	var fileName = ext + "_readme.pdf";
+	var path = "extensions/" + ext + "/docs/" + fileName;
+	
+	var url = path.replace(/\s/g,'');
+	console.log('Path for UserModule:', url);
+
+	var win = window.open(url, '_blank');
+	win.focus();
+
+
+      });
 
 loadModuleFiles().then(() => {
   console.log('Module files ready!');

@@ -284,7 +284,9 @@
         </shadow>
       </value>
     </block>
+    <block type="comment"></block>
 
+    	    
     <block type="bipes_plot">
     </block>
     <block type="localstorage_store">
@@ -396,8 +398,7 @@
       </value>
     </block>
   </category>
-    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+
   <category name="Connectivity">
     <block type="net_ap_mode">
       <field name="NAME">Configure Access Point Mode</field>

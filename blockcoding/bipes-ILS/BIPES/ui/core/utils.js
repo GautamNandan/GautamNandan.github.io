@@ -957,7 +957,38 @@ class files {
       console.error('ILS: Error in handle_put_file_select_cloud:', error);
     }
   }
+  handle_put_file_extension(url) {
+    try {
+      
+      if (!url || url.trim() === '') {
+        console.log('ILS: No URL provided for extension');
+        return;
+      }
 
+      // Extract filename from URL
+      const urlParts = url.split('/');
+      this.put_file_name = urlParts[urlParts.length - 1];
+
+      // Fetch the file from HTTP location
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.arrayBuffer();
+        })
+        .then(arrayBuffer => {
+          this.put_file_data = new Uint8Array(arrayBuffer);
+          this.put_file();
+        })
+        .catch(error => {
+          console.error('ILS: Error fetching file from cloud:', error);
+          alert('Failed to fetch file: ' + error.message);
+        });
+    } catch (error) {
+      console.error('ILS: Error in handle_put_file_select_cloud:', error);
+    }
+  }
   /**
    * Save code from editor or workspace and upload
    */

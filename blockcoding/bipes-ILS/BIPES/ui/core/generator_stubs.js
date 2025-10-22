@@ -16,6 +16,11 @@ Blockly.Python['project_metadata'] = function(block) {
   return code;
 };
 
+Blockly.Python['comment'] = function(block) {
+  var text = block.getFieldValue('TEXT');
+  var code = '# ' + text + '\n';
+  return code;
+};
 
 Blockly.Python['delay_old'] = function(block) {
   var value_time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);

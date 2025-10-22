@@ -1,0 +1,29 @@
+{
+  "id": "espnow",
+  "name": "ESP-NOW Wireless",
+  "version": "1.0.0",
+  "description": "ESP-NOW peer,,,",
+  "author": "BIPES Team",
+  "category": "%{BKY_CAT_COMM}",
+
+  "tags": ["wireless", "esp32", "communication"],
+  "dependencies": {
+    "micropython_libs": ["network", "espnow"],
+    "other_extensions": []
+  },
+  "devices": ["esp32", "esp32s3", "esp32c3"],
+  "files": {
+    "blocks": "blocks.js",
+    "generators": "generators.js",
+    "toolbox": "toolbox.xml",
+    "icon": "icon.png",
+    "python_module": "espnow_lib.py",
+	"examples":[ "test1.xml", "test2.xml"]
+	
+  },
+  "settings": {
+    "requires_internet": false,
+    "requires_pins": false,
+    "installable": false
+  }
+}

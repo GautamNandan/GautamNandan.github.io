@@ -77,7 +77,7 @@ function checkCookie() {
   <script src="core/queue.js"></script>
   <script src="core/FileSaver.js"></script>
   <script src="core/shortcut.js"></script>
-
+  <script src="core/extension_manager.js"></script>
 
   <!-- Custom Blocks for BIPES Project --> 
   <script src="core/block_definitions.js?ver=0.2.3.11011813"></script> <!-- Rafael 24/03/2020 -->
@@ -137,6 +137,41 @@ document.body.appendChild(el);
         <div id="tab_databoard" class="taboff">Databoard</div>
       </div>
       <button id="toolbarButton" class="notext icon medium" title="..."></button>
+	  
+    <button id="extensionButton" class="notext icon" onclick="openExtensionModal()"></button>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="extensionModal">
+        <div class="modal-container">
+            <!-- Header -->
+            <div class="modal-header">
+                <h2 class="modal-title">Extension Manager</h2>
+                <button class="close-btn" onclick="closeExtensionModal()">&times;</button>
+            </div>
+
+            <!-- Search -->
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="extensionSearch" 
+                        placeholder="Search extensions by name, description, or tags..."
+                        oninput="filterExtensions()"
+                    >
+                </div>
+            </div>
+
+            <!-- Extensions List -->
+            <div class="extensions-list" id="extensionsList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading extensions...</p>
+                </div>
+            </div>
+        </div>
+    </div>	  
       <div class="toolbar">
       <div id="channel_connect">
         <button class="icon" id="channelButton" title="Choose connection channel"></button>
@@ -387,8 +422,9 @@ document.body.appendChild(el);
   </span>
   </details>
 </div>
-
+<script src="core/extension_ui.js"></script>
 <script>
+
 
 // Init blockly
 Code.init ();
@@ -506,6 +542,8 @@ window.onload = function() {
 		Tool.stopPython();
 	});
 
+        console.log('Initializing extension manager...');
+        extensionManager.init(Code.getWorkspace());
 
 
 };

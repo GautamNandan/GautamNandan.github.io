@@ -1,3 +1,16 @@
+// Block Definition
+Blockly.Blocks['comment'] = {
+  init: function() {
+    this.appendDummyInput("comment")
+        .appendField("# comment:")
+        .appendField(new Blockly.FieldTextInput("Add your comment here"), "TEXT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Add a comment to your code");
+    this.setHelpUrl("");
+  }
+};
 Blockly.Blocks['pwm'] = {
   init: function(){
     this.appendDummyInput()
