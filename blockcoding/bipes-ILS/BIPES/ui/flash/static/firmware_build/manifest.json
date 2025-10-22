@@ -12,7 +12,7 @@
           "offset": 4096                      
         },
         {
-          "path": "ESP32_GENERIC-20251015-v1.23.0_partition_table.bin",
+          "path": "ESP32_GENERIC-20251015-v1.23.0_partition-table.bin",
           "offset": 32768                     
         },
         {
