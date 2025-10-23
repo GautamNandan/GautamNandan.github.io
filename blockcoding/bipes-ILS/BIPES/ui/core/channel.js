@@ -388,6 +388,8 @@ class webserial {
     navigator.serial.requestPort ().then((port) => {
       UI ['workspace'].connecting ();
       this.port = port;
+	  const info = port.getInfo();
+	  console.log(info.usbVendorId, info.usbProductId);
       this.port.open({baudRate: [this.speed] }).then(() => {
         const appendStream = new WritableStream({
           write(chunk) {

@@ -1,0 +1,56 @@
+<!doctype html>
+
+<head>
+	<title>BIPES Databoard</title>
+	<link rel="stylesheet" href='./core/main.css?ver=0.2.3.1105' />
+	<script type="module" src="./core/databoard.js?ver=0.2.3.1105"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js"></script>
+	<script type="text/javascript" src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+
+</head>
+
+
+<body>
+
+<section>
+</section>
+<script>
+  //Out of module to be accessible by BIPES
+  var modules = {}
+
+  function initDataStorage () {
+    modules.Workspaces.init()
+    modules.DataStorage.init(modules.Workspaces.grid)
+    inited = true
+    grid_inited = true
+  }
+  function deinitGrid () {
+    modules.Workspaces.grid.deinit()
+    modules.Workspaces.inited = false
+    grid_inited = false
+  }
+  function initGrid () {
+    modules.Workspaces.show(JSON.parse(localStorage['currentWorkspace']))
+    grid_inited = true
+  }
+</script>
+<script type="module">
+  import {Workspaces} from './core/databoard.js'
+  import {DataStorage} from './core/datastorage.js'
+
+  var modulesNames = ['DataStorage', 'Workspaces'],
+      grid_inited = false,
+      inited = false
+
+  modulesNames.forEach ((module) => {
+	  eval(`modules.${module} = new ${module}()`)
+  });
+
+  //Init if not in a iframe
+  if (window.self == window.top) {
+    initDataStorage ()
+  }
+</script>
+</body>

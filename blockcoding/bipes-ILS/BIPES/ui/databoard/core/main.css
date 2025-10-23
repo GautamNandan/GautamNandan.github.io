@@ -1,0 +1,698 @@
+preview
+*{
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+  user-select: none;
+}
+body, input {
+  font: 1em sans-serif;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+form input, form textarea, form select, button {
+	color: #000;
+	background: none;
+	font: 1em sans-serif;
+	outline: none;
+	border: none;
+}
+form input, form textarea, .content h2, .content p {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+form input[type="submit"] {
+     -webkit-appearance: none;
+
+	width: auto;
+	cursor: pointer;
+	padding: 0.5em;
+	border-radius: 2rem;
+	display: inline-block;
+}
+label {
+	cursor: pointer;
+}
+input[type=checkbox]{
+	display: none;
+}
+form input[type="checkbox"] {
+	width: 1em;
+}
+textarea {
+	resize: vertical;
+}
+input[type="file"] {
+	display: none;
+}
+h1, h2, h3 {
+	margin: 0;
+}
+h1 {
+    cursor: default;
+	font-size: 1.25em;
+}
+h2 {
+	font-size: 1.125em;
+}
+h3 {
+	font-size: 1em;
+}
+li {
+	line-height:1.25em;
+	padding: .25em 0;
+}
+pre {
+   font-family: "courier new", courier, monospace;
+   font-size: .95em;
+   -moz-tab-size: 3;
+   tab-size: 3;
+   white-space: pre-wrap;
+}
+a {
+	text-decoration: none;
+}
+
+nav {
+	transition: .25s ease-out margin;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	position: absolute;
+	height:100vh;
+	width:3.5rem;
+
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+
+	z-index: 11;
+	transition: 0.25s ease width;
+
+	background: #fff;
+	border-right: 1px solid #000;
+
+	font-weight: bold;
+}
+nav.on, nav div {
+	width: 13.5em;
+}
+
+nav a:link, nav a:visited {
+	color: #000;
+}
+nav a, nav span {
+	white-space: nowrap;
+	cursor: pointer;
+	transition: .25s ease border-color, .125s linear color;
+	display: flex;
+	align-items: center;
+}
+nav a:before, nav span:before, button.icon:before, .button.icon:before {
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: url('/beta2/ui/media/icons.svg');
+	content: '';
+	margin: 0 auto;
+}
+nav a::before, nav span::before {
+	margin: 1rem;
+}
+nav a:hover {
+	color: #222;
+}
+
+/*Icons*/
+.button#edit::before {
+	background-position: left calc(-1.5rem*25) top;
+}
+.button#storage::before {
+	background-position: left calc(-1.5rem*26) top;
+}
+#dashboard.on .button#edit::before {
+	background-position: left calc(-1.5rem*25) bottom;
+}
+.button#add:before, button#add:before, button#raise:before {
+	background-position: left calc(-1.5rem*23) top;
+}
+button#remove:before {
+	background-position: left calc(-1.5rem*3) top;
+}
+button#dismiss:before {
+	background-position: left calc(-1.5rem*24) top;
+}
+button#lower:before {
+	background-position: left calc(-1.5rem*24) top;
+}
+.button#upload:before {
+	background-position: left calc(-1.5rem*2) top;
+}
+button#download:before {
+  background-position: left calc(-1.5rem*1) top;
+}
+.button#gridView:before {
+  background-position: left calc(-1.5rem*27) top;
+}
+#dashboard.scrollView .button#gridView:before {
+  background-position: left calc(-1.5rem*27) bottom;
+}
+.icon#streamButton:before {
+  background-position: left calc(-1.5rem*28) top;
+}
+.icon#chartButton:before {
+  background-position: left calc(-1.5rem*29) top;
+}
+.icon#switchButton:before {
+  background-position: left calc(-1.5rem*30) top;
+}
+.button#drag:before {
+	background-position: left calc(-1.5rem*31) top;
+}
+section {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .25rem .25rem .25rem .5rem;
+  font-weight: bold;
+  height: 3rem;
+  overflow: hidden;
+}
+button.icon, .button.icon {
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: #000;
+    padding: .25rem;
+    transition: border-color ease .125s;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+button.icon:hover {
+	border: 1px solid #000;
+}
+button.noicon {
+	border: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+section #dashboard {
+	display: flex;
+	height: 100vh;
+}
+#dashboard #workspaces{
+	transition: .25s ease width, .25s ease height;
+	position: absolute;
+	z-index:12;
+	background: #fff;
+}
+#grid {
+	transition: .25s ease width;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+#workspaces > div {
+    display: block;
+}
+#workspaces span > div, #workspaces #edit, #workspaces #add{
+	box-sizing: border-box;
+  height: 3rem;
+	margin:.25em;
+	overflow: hidden;
+
+	padding:.25em;
+	border: 1px solid #888;
+	border-radius: .25em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	transition: .25s ease background-color;
+}
+#workspaces span > div.on {
+	background: #3298dc;
+}
+#workspaces span > div.on button{
+	filter: invert(1) ;
+}
+#workspaces span h3 {
+  min-width: 3em;
+  height: 100%;
+	cursor: pointer;
+}
+#grid button#remove, #dashboard #add {
+	display: none
+}
+#dashboard.on #add{
+  display:flex
+}
+#grid #add {
+	z-index: 12;
+	display: block !important;
+  position: absolute;
+  bottom: -5em;
+  border: 1px solid #000;
+  padding: .75em;
+	margin-bottom: 0;
+	transition: .25s ease box-shadow, .25s ease margin-bottom, .25s ease bottom;
+}
+
+#grid #add:hover {
+	margin-bottom: .25em;
+  box-shadow: 0 .125em .25em rgba(0, 0, 0, 0.5);
+}
+#grid > div {
+	position: relative;
+	height: calc(100vh - 3.5em);
+	width: 100%;
+}
+#grid button {
+	background: #fff;
+	z-index: 1;
+}
+#grid #actions {
+  top: 0;
+	transition: .25s ease width, .25s ease right;
+	width: 0;
+	border-left: 1px solid #ccc;
+	box-sizing: border-box;
+	position:absolute;
+	background: #fff;
+	height:100%;
+	z-index:11;
+	overflow:hidden;
+}
+#grid.on #actions {
+	border-right: 1px solid #ccc;
+}
+#grid #actions button.noicon{
+	margin: 0;
+	width: 100%;
+	background: transparent !important;
+}
+#grid #actions > span > div {
+  font-size: 0.9em;
+  color: #666;
+	border-radius: .5em;
+	margin: .125em 0 .125em 0;
+	width: 100%;
+	padding: .5em 0;
+}
+#grid #actions .button, #grid #actions .switch {
+    transition: box-shadow ease .125s, .125s ease background-color, margin ease .125s;
+}
+#actions .switch {
+	border: 1px solid #888;
+}
+#actions .range button {
+	margin: 0.5em 0.25em 0 0.25em !important;
+}
+#actions .range button:hover {
+	box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5);
+}
+#actions .range button:active {
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+#grid #actions .button:hover, #grid #actions .switch:hover {
+    margin: 0 0 0.25em 0;
+    box-shadow: 0 .125em .125em rgba(0, 0, 0, 0.5);
+}
+#grid #actions .switch.on {
+	background: #3298dc;
+}
+#grid #actions .switch.on button {
+	color: #fff
+}
+#grid #actions .range {
+  width: 100%;
+	display: block;
+	padding: .5em;
+	text-align: center;
+	box-sizing: border-box;
+}
+#grid #actions input {
+	border: none;
+	border-bottom: 1px solid #aaa;
+  width: 100%;
+  padding: 0.25em 0;
+}
+input:focus, input:hover{
+    outline:none;
+}
+input:focus {
+    border-color: #3298dc !important;
+}
+#grid #actions > span > div:active {
+    margin: .125em 0 .125em 0 !important;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0)  !important;
+}
+#grid #actions > span {
+	display: block;
+	width: 12rem;
+	height: 100%;
+	padding: 0.5rem;
+	box-sizing:border-box;
+	display: flex;
+  flex-direction: column;
+	padding-bottom: 4em;
+
+  height: 100vh;
+	overflow-x: hidden;
+  overflow-y: auto;
+	scrollbar-width: none;
+}
+#dashboard.on #grid.on #actions {
+	width: 12em;
+}
+#storageManager, #addMenu {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0,0,0,0);
+  z-index:12;
+  transition: background-color ease .25s;
+}
+#storageManager.on, #storageManager.ani, #addMenu.on, #addMenu.ani{
+  display: block;
+}
+#storageManager.on, #addMenu.on{
+  background: rgba(0,0,0,.1);
+}
+#storageManager {
+  padding: .5em;
+  box-sizing: border-box;
+}
+#storageManager > div {
+  max-width: 30em;
+  max-height: 40em;
+  padding: 0.5em 1em 1em 1em;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+#storageManager > div, #addMenu > div{
+  background: #fff;
+  box-shadow: 0 .25em .5em rgba(0,0,0,0.5);
+  border-radius: 1em;
+  margin-top: 100vh;
+  opacity: 0;
+  transition: margin-top ease .25s, opacity ease .25s;
+  box-sizing: border-box;
+}
+#storageManager.on > div {
+  margin-top: 10vh;
+  opacity: 1;
+}
+#storageManager span > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 0.25em 0;
+  user-select: text;
+}
+#storageManager span > div:last-child {
+  border-bottom: none;
+}
+#storageManager span {
+  border: 1px solid #aaa;
+  display: block;
+  padding: 0 .5em;
+  border-radius: 1em;
+}
+#storageManager h2 {
+  font-weight: normal
+}
+#storageManager span > div > div {
+  display: flex;
+}
+#addMenu.on > div {
+  opacity: 1;
+}
+#addMenu > div {
+  max-width: 14em;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+}
+#addMenu button {
+  padding: .5em;
+  border-radius: 0.5em;
+}
+
+.dropdown select {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #666;
+  padding: .5em;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: #000;
+  border-radius: .25em;
+  width: 100%;
+  margin: .5em 0;
+}
+
+.muuri-item {
+  width: 22.5rem;
+  height: 15rem;
+  position: absolute;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+.muuri > div > div {
+  border-radius: 1em;
+  border: 1px solid #ddd;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+}
+.muuri div video {
+	width: 100%;
+  height: 100%;
+}
+.muuri > div > div {
+  transition: box-shadow ease .125s;
+}
+#dashboard.on .muuri > div.on > div {
+	box-shadow:  0 0 1em rgba(68, 153, 204, 1);
+	border-color: #3298dc;
+	z-index: 10
+}
+.muuri #dismiss {
+  position: absolute;
+  padding: .125em;
+	margin: -.5em;
+	transition: .25s ease background-color;
+	background: #999;
+	display: none;
+}
+.muuri #drag {
+  position: absolute;
+  border: 1px solid #ddd;
+  border-radius: 0 1em;
+  padding: 0.75em;
+	margin: 0em;
+	background: #fff;
+	margin-top: -3em;
+  margin-left: -1px;
+  display: none;
+}
+.muuri #drag:before {
+  opacity: 0.6;
+}
+.muuri #dismiss:before{
+  filter: invert(1)
+}
+.muuri #dismiss:hover {
+	background: #000 !important;
+}
+#dashboard.on button#dismiss, #dashboard.on .button#drag {
+	display: block
+}
+#dashboard.scrollView .muuri > div {
+  width: 100%;
+  height: 100vh;
+}
+.dragging > div {
+	box-shadow:  0 0.5em 0.75em rgba(0, 0, 0, 0.25);
+}
+.dragging {
+  z-index: 999;
+}
+#switchPlugin {
+  width: 2em;
+  height: 2em;
+  background: #D1EDFF;
+  border-radius: 100%;
+  box-shadow: 0 1px 1px rgb(0, 0, 0);
+  border: .25em solid #3298dc;
+  transition: box-shadow ease .125s, margin-bottom ease .125s, background-color ease .125s;
+  cursor: pointer;
+}
+
+#switchPlugin:hover {
+  box-shadow: 0 3px 3px rgb(0, 0, 0);
+  margin-bottom: 2px;
+}
+#switchPlugin:active {
+  box-shadow: 0 0 0 rgb(0, 0, 0);
+  margin-bottom: -2px;
+}
+.muuri-item.switch > div > span {
+  overflow: hidden;
+}
+.muuri-item.switch span.on #switchPlugin{
+  background-color: #3298dc;
+}
+.muuri-item.switch > div > span {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-between;
+  justify-content: space-between;
+}
+.muuri-item.switch {
+  width: 7.5rem !important;
+  height: 7.5rem !important;
+}
+.muuri-item.switch h2, .muuri-item.switch h3 {
+  font-weight: normal;
+  padding: 0.25em 0;
+  color: #666;
+  height: 1.25rem;
+  white-space: nowrap;
+}
+.muuri-item.switch h2 {
+  font-size: 0.9em;
+}
+.muuri-item.switch h3 {
+  font-size: 0.8em;
+}
+@media (orientation: landscape) {
+  #workspaces {
+    width: 4rem;
+    height: 100%;
+    right: 0
+  }
+  #workspaces > div {
+    overflow-y: auto;
+    height: calc(100vh - 10rem);
+  }
+  #dashboard.on #workspaces {
+	  width: 6.5rem;
+  }
+  #dashboard.on #grid {
+    width: calc(100% - 6.5rem);
+  }
+  #grid {
+    width: calc(100% - 4em);
+  }
+  #grid #add {
+    right: 8.5rem;
+  }
+  #dashboard.on #grid #add {
+    bottom: .5em;
+  }
+  #addMenu > div {
+    margin-right: 8.5em;
+  }
+  #addMenu.on > div {
+    margin-top: calc(100vh - 5.25em);
+  }
+  #dashboard.on #grid.on{
+    width: calc(100% - 18.5em);
+  }
+  #dashboard.on #actions {
+    right: 6.5rem;
+  }
+  #grid #actions {
+	  right: 4em;
+	}
+}
+@media (orientation: portrait) {
+  #grid {
+    width: 100%;
+    height: calc(100% - 3.5rem);
+  }
+  #grid #actions {
+    right: 0;
+    height: calc(100% - 3.5em)
+  }
+  #grid #actions > span {
+    height: 100%;
+  }
+  #workspaces {
+    width: 100vw;
+    height: 3.5rem;
+    bottom: 0;
+    position:absolute;
+    display:flex;
+    border-top: 1px solid #ccc;
+  }
+  #workspaces > div {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: calc(100vw - 10.5rem);
+    display: flex;
+  }
+  #workspaces > span {
+    display: flex;
+    border-left: 1px solid #ccc;
+  }
+  #workspaces > span > div {
+    width: 3em;
+  }
+  #workspaces > div > span {
+    display: inline-flex;
+  }
+  #workspaces > div > span > div {
+    transition: .25s ease background-color, width ease .25s;
+    width: 3em;
+  }
+  #dashboard.on #workspaces > div > span > div {
+    width: 6em;
+  }
+  #workspaces #add {
+    min-width: 3em;
+  }
+  #grid #add {
+    right: .5rem;
+  }
+  #dashboard.on #grid #add {
+    bottom: 4em;
+  }
+  #addMenu > div {
+    margin-right: .5em;
+  }
+  #addMenu.on > div {
+    margin-top: calc(100vh - 8.75em);
+  }
+  #dashboard.on #grid.on{
+    width: calc(100% - 12em);
+  }
+  #dashboard.scrollView .muuri > div {
+    width: 100%;
+    height: calc(100vh - 3.5em);
+  }
+}
+
+@media only screen and (max-width: 20em) {
+  .muuri-item {
+    max-width: 15rem;
+  }
+}
