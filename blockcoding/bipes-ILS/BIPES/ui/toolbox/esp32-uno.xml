@@ -2397,7 +2397,7 @@ _
       </block>
     </category>
 
-  <category name="WebREPL" colour="%{BKY_NET_HUE}>
+  <category name="WebREPL" colour="%{BKY_NET_HUE}">
       <label text="WebREPL"></label>
       <block type="webrepl_setup"></block>
       <block type="webrepl_start"></block>
