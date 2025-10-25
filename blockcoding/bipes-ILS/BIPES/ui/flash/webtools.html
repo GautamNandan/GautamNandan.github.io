@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Install MicroPython on ESP32 or ESP8266</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark light" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       * {
         margin: 0;
@@ -13,81 +13,48 @@
       }
 
       body {
-        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Ubuntu, sans-serif;
+        font-family: 'Poppins', sans-serif;
         line-height: 1.6;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: white;
         min-height: 100vh;
         padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .content {
-        max-width: 700px;
-        margin: 0 auto;
-        background: rgba(255, 255, 255, 0.95);
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
         padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
       }
 
       h1 {
-        font-size: 2.5em;
+        font-size: 2em;
         font-weight: 700;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 10px;
+        color: #1E88E5;
+        margin-bottom: 8px;
         text-align: center;
       }
 
-      h1 + h2 {
+      .subtitle {
         text-align: center;
         color: #666;
-        font-weight: 400;
-        font-size: 1.2em;
+        font-size: 1em;
         margin-bottom: 30px;
+        font-weight: 400;
       }
 
-      h2 {
-        font-size: 1.5em;
-        color: #333;
-        margin: 30px 0 15px 0;
-        font-weight: 600;
-        border-left: 4px solid #667eea;
-        padding-left: 15px;
-      }
-
-      h2:first-of-type {
-        margin-top: 0;
-      }
-
-      p {
-        color: #444;
-        margin: 0 0 15px 0;
-        line-height: 1.7;
-      }
-
-      a {
-        color: #667eea;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        border-bottom: 2px solid transparent;
-      }
-
-      a:hover {
-        color: #764ba2;
-        border-bottom-color: #764ba2;
+      .description {
+        color: #555;
+        margin-bottom: 25px;
+        text-align: center;
+        font-size: 0.95em;
       }
 
       .board-selector {
         margin: 25px 0;
-        padding: 20px;
-        background: #f8f9fa;
-        border-radius: 10px;
-        border: 2px solid #e0e0e0;
       }
 
       .board-selector label {
@@ -95,40 +62,34 @@
         font-weight: 600;
         color: #333;
         margin-bottom: 10px;
-        font-size: 1.1em;
+        font-size: 1em;
       }
 
       .board-selector select {
         width: 100%;
-        padding: 12px 15px;
+        padding: 14px;
         font-size: 1em;
-        border: 2px solid #667eea;
-        border-radius: 8px;
+        border: 2px solid #1E88E5;
+        border-radius: 10px;
         background: white;
         color: #333;
         cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: inherit;
-      }
-
-      .board-selector select:hover {
-        border-color: #764ba2;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
       }
 
       .board-selector select:focus {
         outline: none;
-        border-color: #764ba2;
-        box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        border-color: #009688;
       }
 
       .board-info {
-        margin-top: 15px;
+        margin-top: 12px;
         padding: 12px;
-        background: #e3f2fd;
+        background: #E3F2FD;
         border-radius: 8px;
-        border-left: 4px solid #2196f3;
         font-size: 0.9em;
-        color: #1565c0;
+        color: #1565C0;
         display: none;
       }
 
@@ -141,209 +102,101 @@
         margin: 25px 0;
       }
 
-      .supported-info {
-        display: none;
-        background: #e3f2fd;
+      .install-note {
+        background: #FFF9E6;
         padding: 15px;
-        border-radius: 10px;
-        border-left: 4px solid #2196f3;
-        margin: 15px 0;
+        border-radius: 8px;
+        border-left: 4px solid #FFD700;
+        margin: 20px 0;
+        font-size: 0.9em;
+        color: #856404;
       }
 
-      esp-web-install-button[install-supported] + .supported-info {
-        display: block;
-      }
-
-      .supported-info p {
-        margin: 0;
-        color: #1565c0;
+      .install-note strong {
+        color: #664D03;
       }
 
       i[slot="unsupported"] {
         display: block;
-        background: #fff3cd;
+        background: #FFF3CD;
         padding: 20px;
         border-radius: 10px;
-        border-left: 4px solid #ffc107;
+        border-left: 4px solid #FFC107;
         color: #856404;
-        line-height: 1.6;
-      }
-
-      ul {
-        margin: 15px 0 15px 25px;
-        padding: 0;
-      }
-
-      li {
-        color: #444;
-        margin-bottom: 10px;
-        line-height: 1.6;
-        position: relative;
-        padding-left: 10px;
-      }
-
-      li::before {
-        content: "→";
-        position: absolute;
-        left: -15px;
-        color: #667eea;
-        font-weight: bold;
+        font-style: normal;
       }
 
       .footer {
-        margin-top: 50px;
-        padding-top: 30px;
-        border-top: 2px solid rgba(102, 126, 234, 0.2);
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid #E0E0E0;
         text-align: center;
+        color: #999;
+        font-size: 0.85em;
       }
 
-      .footer div {
+      .footer a {
+        color: #1E88E5;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      .version-badge {
+        display: inline-block;
+        background: #009688;
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+
+      .drivers-section {
+        margin-top: 25px;
+        padding: 20px;
+        background: #F8F9FA;
+        border-radius: 10px;
+      }
+
+      .drivers-section h3 {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .drivers-section p {
         color: #666;
+        font-size: 0.9em;
         margin-bottom: 10px;
       }
 
-      .footer .initiative {
-        font-style: italic;
-        font-size: 0.9em;
-        color: #888;
-        margin-top: 15px;
+      .drivers-section a {
+        color: #1E88E5;
+        text-decoration: none;
+        font-weight: 500;
       }
 
-      .hidden {
-        display: none;
-      }
-
-      .content pre {
-        max-width: 100%;
-        overflow-x: auto;
-        background: #f5f5f5;
-        padding: 15px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        .content {
-          background: rgba(30, 30, 46, 0.95);
-          color: #e0e0e0;
-        }
-
-        h1 {
-          background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        h1 + h2 {
-          color: #aaa;
-        }
-
-        h2 {
-          color: #e0e0e0;
-          border-left-color: #a78bfa;
-        }
-
-        p {
-          color: #ccc;
-        }
-
-        li {
-          color: #ccc;
-        }
-
-        li::before {
-          color: #a78bfa;
-        }
-
-        a {
-          color: #a78bfa;
-        }
-
-        a:hover {
-          color: #c084fc;
-          border-bottom-color: #c084fc;
-        }
-
-        .board-selector {
-          background: rgba(40, 40, 60, 0.5);
-          border-color: #444;
-        }
-
-        .board-selector label {
-          color: #e0e0e0;
-        }
-
-        .board-selector select {
-          background: #2a2a3e;
-          color: #e0e0e0;
-          border-color: #a78bfa;
-        }
-
-        .board-selector select:hover {
-          border-color: #c084fc;
-        }
-
-        .board-info {
-          background: rgba(33, 150, 243, 0.1);
-          border-left-color: #64b5f6;
-          color: #90caf9;
-        }
-
-        .supported-info {
-          background: rgba(33, 150, 243, 0.1);
-          border-left-color: #64b5f6;
-        }
-
-        .supported-info p {
-          color: #90caf9;
-        }
-
-        i[slot="unsupported"] {
-          background: rgba(255, 193, 7, 0.1);
-          border-left-color: #ffa726;
-          color: #ffb74d;
-        }
-
-        .footer div {
-          color: #aaa;
-        }
-
-        .footer .initiative {
-          color: #888;
-        }
-
-        .footer {
-          border-top-color: rgba(167, 139, 250, 0.2);
-        }
-
-        .content pre {
-          background: #1a1a2e;
-          border-color: #333;
-          color: #e0e0e0;
-        }
+      .drivers-section a:hover {
+        text-decoration: underline;
       }
 
       @media (max-width: 600px) {
         body {
-          padding: 10px;
+          padding: 15px;
         }
 
-        .content {
+        .container {
           padding: 25px;
-          border-radius: 15px;
         }
 
         h1 {
-          font-size: 2em;
-        }
-
-        h2 {
-          font-size: 1.3em;
+          font-size: 1.6em;
         }
       }
     </style>
@@ -356,104 +209,72 @@
     </script>
   </head>
   <body>
-    <div class="content">
-      <h1>MicroPython Web Installer</h1>
-      <h2>(for ESP32 and ESP8266)</h2>
+    <div class="container">
+      <h1>MicroPython Installer</h1>
+      <p class="subtitle">ESP32 & ESP8266</p>
 
-      <h2 id="demo">Install</h2>
-      <p>
-        This page allows you quickly and easily install <a href="https://micropython.org/">MicroPython</a> on ESP32 or ESP8266 board directly from the browser, without the need of using esptool or any other software on your computer. Simply connect the board to an USB port, select your board type, click on the button "Connect", select the device and have MicroPython running on your board!
+      <p class="description">
+        Connect your board via USB, select the board type, and click "Connect" to install MicroPython directly from your browser!
       </p>
 
       <div class="board-selector">
         <label for="board-select">Select Your Board:</label>
         <select id="board-select">
           <option value="esp32">ESP32 Generic</option>
-          <option value="esp32s2">ESP32-S2 Generic</option>
-          <option value="esp8266-wemos">ESP8266 - Wemos D1 Mini (4MB QIO)</option>
-          <option value="esp8266-generic">ESP8266 - Generic (4MB DIO)</option>
+          <option value="esp32s2">ESP32-S2</option>
+          <option value="esp8266-wemos">ESP8266 - Wemos D1 Mini</option>
+          <option value="esp8266-generic">ESP8266 - Generic</option>
         </select>
-        <div id="board-info-esp32" class="board-info">
+        
+        <div id="board-info-esp32" class="board-info active">
           <strong>ESP32 Generic:</strong> Standard ESP32 boards with 4MB flash
         </div>
         <div id="board-info-esp32s2" class="board-info">
-          <strong>ESP32-S2:</strong> ESP32-S2 boards with native USB support
+          <strong>ESP32-S2:</strong> Boards with native USB support
         </div>
         <div id="board-info-esp8266-wemos" class="board-info">
-          <strong>Wemos D1 Mini:</strong> Uses QIO flash mode (Quad I/O - faster, 4 data lines). Most Wemos boards support this mode.
+          <strong>Wemos D1 Mini:</strong> 4MB QIO flash mode (most Wemos boards)
         </div>
         <div id="board-info-esp8266-generic" class="board-info">
-          <strong>Generic ESP8266:</strong> Uses DIO flash mode (Dual I/O - slower but more compatible). Use this for NodeMCU, ESP-01, or if unsure.
+          <strong>Generic ESP8266:</strong> 4MB DIO mode (NodeMCU, ESP-01)
         </div>
       </div>
 
       <esp-web-install-button id="install-button" manifest="static/firmware_build/manifest.json">
         <i slot="unsupported">
-          The demo is not available because your browser does not support Web
-          Serial. Open this page in Google Chrome or Microsoft Edge instead<span class="not-supported-i hidden"> (but not on your iOS device)</span>.
+          Your browser doesn't support Web Serial. Please use Google Chrome or Microsoft Edge.
         </i>
       </esp-web-install-button>
 
-      <p class="supported-info">
-        If you don't see your ESP device in the list of devices to choose, you
-        might need to install
-        <a href="#drivers">the drivers</a>.
-      </p>
+      <div class="install-note">
+        <strong>Firmware Version:</strong>
+        <span class="version-badge">v1.26.1</span>
+      </div>
 
-      <h2>MicroPython Firmware version</h2>
-      <p>This page installs the firmware version: v1.26.1</p>
-
-      <h2>Reset loop</h2>
-      <p>
-        Some ESP8266 boards have poor power regulators, and due to inadequate power supply, will enter on a continuos reset loop dependending on your USB power source. If this happens, you can use the solution described <a href="https://rafaelaroca.wordpress.com/2021/06/10/reset-trouble-with-esp8266-and-micropython/">here</a>.
-      </p>
-
-      <h2>About and more details</h2>
-      <p>
-        This page uses 
-        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API">Web Serial</a>. Web Serial is available in Google Chrome and Microsoft Edge browsers<span class="not-supported-i hidden"> (but not on your iOS device)</span>. Android support should be possible but has not been implemented yet.
-      </p>
-
-      <h2 id="drivers">USB Serial Drivers</h2>
-      <p>
-        If the serial port is not showing up, your computer might be missing the
-        drivers for the USB serial chip used in your ESP device. These drivers
-        work for most ESP devices:
-      </p>
-      <ul>
-        <li>
-          CP2102 (square chip):
-          <a href="https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip">driver</a>
-        </li>
-      </ul>
+      <div class="drivers-section">
+        <h3>Need Drivers?</h3>
+        <p>
+          If your board isn't detected, install the USB serial drivers:
+          <a href="https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip">CP2102 Driver</a>
+        </p>
+      </div>
 
       <div class="footer">
-        <div>
-          Based on ESP Web Tools —
-          <a href="https://github.com/esphome/esp-web-tools">GitHub</a>
-        </div>
+        Based on <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a> • 
+        <a href="https://micropython.org/">MicroPython.org</a>
       </div>
     </div>
 
     <script>
-      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        document.querySelector(".not-supported-i").classList.remove("hidden");
-      }
-
       // Board selection handler
       const boardSelect = document.getElementById('board-select');
-      const installButton = document.getElementById('install-button');
       
-      // Board info elements
       const boardInfos = {
         'esp32': document.getElementById('board-info-esp32'),
         'esp32s2': document.getElementById('board-info-esp32s2'),
         'esp8266-wemos': document.getElementById('board-info-esp8266-wemos'),
         'esp8266-generic': document.getElementById('board-info-esp8266-generic')
       };
-
-      // Show initial board info
-      boardInfos['esp32'].classList.add('active');
 
       boardSelect.addEventListener('change', function() {
         const selectedBoard = this.value;
@@ -468,9 +289,6 @@
           boardInfos[selectedBoard].classList.add('active');
         }
 
-        // Update manifest path based on selection
-        // Note: ESP Web Tools will filter available builds based on detected chip
-        // The manifest.json should contain all board configurations
         console.log('Selected board:', selectedBoard);
       });
     </script>

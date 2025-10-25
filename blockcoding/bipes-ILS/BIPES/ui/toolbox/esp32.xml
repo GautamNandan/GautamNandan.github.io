@@ -269,7 +269,7 @@
     <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
 
     <sep></sep>
-   <category name="BIPES">
+   <category name="BIPES" colour="%{BKY_BIPES_HUE}">
     <block type="project_metadata">
       <value name="project_author">
         <shadow type="text">
@@ -301,13 +301,8 @@
 
    </category>
     <sep></sep>
-    <!--
-    <category name="Python" colour="%{BKY_LOGIC_HUE}">
-    <category name="Machine" colour="%{BKY_VARIABLES_HUE}">
-    -->
 
-  <category name="Python">
-
+  <category name="Python" colour="%{BKY_PYTHON_HUE}">
       <label text="Python"></label>
 <block type="try_catch"></block>
 
@@ -348,7 +343,9 @@
       </value>
     </block>
   </category>
-  <category name="%{BKY_CAT_TIMING}" colour="220">
+
+
+  <category name="%{BKY_CAT_TIMING}" colour="%{BKY_TIMING_HUE}">
 	  <label text="%{BKY_CAT_TIMING}"></label>
     <!--<block type="delay">
       <value name="TIME">
@@ -402,7 +399,7 @@
     </block>
   </category>
 
-  <category name="Connectivity">
+  <category name="Connectivity" colour="%{BKY_CONNECTIVITY_HUE}">
       <category name="Bluetooth" colour="290">
         <block type="configure_and_start_bluetooth"></block>
         <block type="handle_ble_data"></block>
@@ -446,9 +443,9 @@
       </category>
       </category>
 
-  <category name="%{BKY_CAT_MACHINE}">
+  <category name="%{BKY_CAT_MACHINE}" colour="%{BKY_MACHINE_HUE}">
       <label text="%{BKY_CAT_MACHINE}"></label>
-      <category name="CPU">
+      <category name="CPU" colour="%{BKY_MACHINE_HUE}">
       <label text="ESP32 CPU"></label>
 
     <block type="get_freq"></block>
@@ -468,8 +465,7 @@
     <block type="reset_cause_wdt"></block>
     <block type="reset_cause_deep"></block>
       </category>
-
-      <category name="In/Out Pins">
+      <category name="In/Out Pins" colour="%{BKY_MACHINE_HUE}">
       <label text="In/Out Pins"></label>
     <block type="pinout"></block>
     <block type="gpio_set">
@@ -563,9 +559,9 @@
 </category>
 
 
-<category name="%{BKY_CAT_DISPLAYS}">
+<category name="%{BKY_CAT_DISPLAYS}" colour="%{BKY_DISPLAYS_HUE}">
 
-<category name="NeoPixel LED Strip">
+<category name="NeoPixel LED Strip" colour="%{BKY_DISPLAYS_HUE}">
       <label text="NeoPixel RGB LED Strip"></label>
 
         <button text="Documentation and how to connect: neopixel" callbackKey="loadDoc"></button>
@@ -671,7 +667,7 @@
 
 
 
-  <category name="Character display">
+  <category name="Character display" colour="%{BKY_DISPLAYS_HUE}">
       <label text="PCF8574 Display controller"></label>
 
 	<block type="char_lcd_init">
@@ -857,7 +853,7 @@
     </block>
     </category>
 
-    <category name="OLED Display">
+    <category name="OLED Display" colour="%{BKY_DISPLAYS_HUE}">
       <label text="SSD1306 OLED I2C Display"></label>
 
 
@@ -955,7 +951,7 @@
 
     </category>
 
-  <category name="LED Matrix">
+  <category name="LED Matrix" colour="%{BKY_DISPLAYS_HUE}">
       <label text="MAX7219 LED Matrix"></label>
 
     <block type="max7219_init">
@@ -1109,7 +1105,7 @@
 
   </category>
 
-  <category name="7 Segment LED">
+  <category name="7 Segment LED" colour="%{BKY_DISPLAYS_HUE}">
       <label text="TM1637 LED"></label>
 
     <block type="tm1637_init">
@@ -1190,8 +1186,8 @@
 
   </category>
 
-  <category name="Input">
-     <category name="Joystick">
+  <category name="Input" colour="%{BKY_INPUT_HUE}">
+     <category name="Joystick" colour="%{BKY_INPUT_HUE}">
 	    <block type="joy_init">
         <field name="JOYSTICK_INIT">Start Joystick Controller</field>
         <value name="xpin">
@@ -1225,8 +1221,8 @@
 	  <block type="joy_button"> </block>
 	 </category>
   </category>
-  <category name="%{BKY_CAT_SENSORS}">
-    <category name="DHT11/22 Sensor">
+  <category name="%{BKY_CAT_SENSORS}" colour="%{BKY_SENSORS_HUE}">
+    <category name="DHT11/22 Sensor" colour="%{BKY_SENSORS_HUE}">
       <label text="DHT11/22 Temperature and Humidity Sensor"></label>
       <block type="dht_init">
         <field name="BLOCK_DHT_INIT">Start DHT11/22 sensor</field>
@@ -1291,7 +1287,7 @@
       </block>
   </category>
 -->
-  <category name="Ultrasound">
+  <category name="Ultrasound" colour="%{BKY_SENSORS_HUE}">
       <label text="HCSR04 ultrasound distance sensor"></label>
       <block type="hcsr_init">
         <field name="BLOCK_HCSR_INIT">Start HCSR04 Ultrasound sensor</field>
@@ -1312,7 +1308,7 @@
 
   </category>
 
-  <category name="GPS">
+  <category name="GPS" colour="%{BKY_SENSORS_HUE}">
       <label text="Global Positioning System sensor"></label>
    <label text="Library: https://github.com/"></label>
         <button text="Install GPS library" callbackKey="installPyLib"></button>
@@ -1335,7 +1331,7 @@
 
   </category>
 
-  <category name="Oximeter">
+  <category name="Oximeter" colour="%{BKY_SENSORS_HUE}">
       <label text="MAX30100 pulse oximeter sensor"></label>
    <label text="Library: https://github.com/"></label>
         <button text="Install MAX30100 library" callbackKey="installPyLib"></button>
@@ -1354,7 +1350,7 @@
 
   </category>
 
-  <category name="Inertial Measurement">
+  <category name="Inertial Measurement" colour="%{BKY_SENSORS_HUE}">
       <label text="MPU6050 IMU"></label>
 
     <block type="init_mpu6050">
@@ -1384,7 +1380,7 @@
 
   </category>
 
-      <category name="OneWire">
+      <category name="OneWire" colour="%{BKY_SENSORS_HUE}">
       <label text="OneWire"></label>
 
         <button text="Load example: ds1820" callbackKey="loadExample"></button>
@@ -1410,7 +1406,7 @@
       </category>
 
 
-  <category name="RFID Reader">
+  <category name="RFID Reader" colour="%{BKY_SENSORS_HUE}">
       <label text="RC522 13.56MHz RFID Reader"></label>
 
       <block type="rfid_rc522_init">
@@ -1453,7 +1449,7 @@
   </category>
 
 
-  <category name="Rotatory Encoder">
+  <category name="Rotatory Encoder" colour="%{BKY_SENSORS_HUE}">
       <label text="Rotatory Incremental Encoder"></label>
         <button text="Load example: encoder" callbackKey="loadExample"></button>
         <button text="Documentation and how to connect: encoder" callbackKey="loadDoc"></button>
@@ -1493,8 +1489,8 @@
   </category>
   </category>
 
-  <category name="%{BKY_CAT_OUTPUTS}">
-    <category name="Relay">
+  <category name="%{BKY_CAT_OUTPUTS}" colour="%{BKY_OUTPUTS_HUE}">
+    <category name="Relay" colour="%{BKY_OUTPUTS_HUE}">
       <label text="Relay"></label>
       <block type="relay_switch">
         <value name="pin">
@@ -1505,7 +1501,7 @@
       </block>
     </category>
 
-  <category name="RC Servo Motor">
+  <category name="RC Servo Motor" colour="%{BKY_OUTPUTS_HUE}">
       <label text="RC Servo Motor"></label>
     <button text="Learn about:Servos" callbackKey="loadDoc"></button>
     <button text="Load example: Servo-Basic" callbackKey="loadExample"></button>	
@@ -1558,8 +1554,7 @@
   </category>
 
 
-
-  <category name="Stepper Motor">
+  <category name="Stepper Motor" colour="%{BKY_OUTPUTS_HUE}">
       <label text="Stepper Motor"></label>
     <block type="stepper_init">
       <value name="p0">
@@ -1593,7 +1588,7 @@
     </block>
   </category>
 
-  <category name="DC Motor">
+  <category name="DC Motor" colour="%{BKY_OUTPUTS_HUE}">
       <label text="DC Motor"></label>
     <block type="dc_motor_init">
       <value name="pwm">
@@ -1634,7 +1629,7 @@ _
     </block>
   </category>
 
-  <category name="Sounds">
+  <category name="Sounds" colour="%{BKY_OUTPUTS_HUE}">
         <label text="Sounds and RTTTL:"></label>
         <label text="Ring Tone Text Transfer Language (RTTTL) "></label>
         <label text="Library: "></label>
@@ -1729,9 +1724,9 @@ _
 
   </category>
 
-  <category name="%{BKY_CAT_COMM}">
+  <category name="%{BKY_CAT_COMM}" colour="%{BKY_COMM_HUE}">
       <label text="%{BKY_CAT_COMM}"></label>
-      <category name="UART">
+      <category name="UART" colour="%{BKY_COMM_HUE}">
       <label text="UART Serial Port"></label>
 <block type="uart_init">
 </block>
@@ -1748,7 +1743,7 @@ _
 </block>
 
       </category>
-      <category name="SPI">
+      <category name="SPI" colour="%{BKY_COMM_HUE}">
       <label text="SPI"></label>
 <block type="machine.SPI_SPI.init">
 </block>
@@ -1765,7 +1760,7 @@ _
 
       </category>
 
-      <category name="GSM Modem">
+      <category name="GSM Modem" colour="%{BKY_COMM_HUE}">
 
       <block type="gsm_modem_init">
 </block>
@@ -1781,7 +1776,7 @@ _
 
 
       </category>
-      <category name="I2C">
+      <category name="I2C" colour="%{BKY_COMM_HUE}">
       <label text="I2c"></label>
 <block type="machine.I2C_I2C.init">
 </block>
@@ -1815,7 +1810,7 @@ _
       </category>
   </category>
  
-  <category name="%{BKY_CAT_FILES}">
+   <category name="%{BKY_CAT_FILES}" colour="%{BKY_FILES_HUE}">
   <label text="Read and write files"></label>
 
   <block type="file_open"> 
@@ -1977,7 +1972,7 @@ _
  
 
 
-  <category name="%{BKY_CAT_NET}">
+  <category name="%{BKY_CAT_NET}" colour="%{BKY_NET_HUE}">
     <block type="wifi_client_connect">
       <value name="wifi_client_essid">
         <shadow type="text">
@@ -2018,7 +2013,7 @@ _
     <block type="net_wiznet5k_ifconfig">
     </block>
 
-    <category name="HTTP Client">
+    <category name="HTTP Client" colour="%{BKY_NET_HUE}">
       <label text="HTTP (web) Client"></label>
       <label text="GET Method"></label>
 
@@ -2137,7 +2132,7 @@ _
 
     </category>
 
-    <category name="HTTP Server">
+    <category name="HTTP Server" colour="%{BKY_NET_HUE}">
       <label text="HTTP Web Server"></label>
       <button text="Load example: webserver" callbackKey="loadExample"></button>
       <button text="Documentation: webserver" callbackKey="loadDoc"></button>
@@ -2167,7 +2162,7 @@ _
 
     </category>
 
-    <category name="EMAIL">
+    <category name="EMAIL" colour="%{BKY_NET_HUE}">
       <label text="Email sender using uMail"></label>
       <label text="Library: https://github.com/shawwwn/uMail"></label>
         <button text="Install umail library" callbackKey="installPyLib"></button>
@@ -2216,7 +2211,7 @@ _
     </category>
 
 
-    <category name="NTP Time">
+    <category name="NTP Time" colour="%{BKY_NET_HUE}">
      <label text="Network Time Protocol (NTP)"></label>
      <label text="Adjusts RTC using Internet"></label>
         <button text="Load example: ntp" callbackKey="loadExample"></button>
@@ -2234,7 +2229,7 @@ _
     </block>
     </category>
 
-    <category name="TCP/IP Socket">
+    <category name="TCP/IP Socket" colour="%{BKY_NET_HUE}">
       <label text="TCP/IP Socket"></label>
         <button text="Load example: starwars" callbackKey="loadExample"></button>
         <button text="Documentation: sockets" callbackKey="loadDoc"></button>
@@ -2275,7 +2270,7 @@ _
 
     </category>
 
-    <category name="MQTT">
+    <category name="MQTT" colour="%{BKY_NET_HUE}">
       <label text="MQTT (Message Queue Telemetry Transport)"></label>
       <block type="mqtt_init">
         <field name="BLOCK_MQTT_INIT">Start MQTT Client</field>
@@ -2352,7 +2347,7 @@ _
         <field name="BLOCK_MQTT_DISCONNECT">Disconnect MQTT Client</field>
       </block>
     </category>
-    <category name="EasyMQTT">
+    <category name="EasyMQTT" colour="%{BKY_NET_HUE}">
       <label text="IoT: EasyMQTT"></label>
       <block type="easymqtt_init">
       </block>
@@ -2402,14 +2397,14 @@ _
       </block>
     </category>
 
-  <category name="WebREPL">
+  <category name="WebREPL" colour="%{BKY_NET_HUE}>
       <label text="WebREPL"></label>
       <block type="webrepl_setup"></block>
       <block type="webrepl_start"></block>
     </category>
 
 
-    <category name="CAN Bus">
+    <category name="CAN Bus" colour="%{BKY_NET_HUE}">
      <label text="Controller Area Network (CAN)"></label>
      <label text="Requires specific firmware"></label>
      <label text="Compatible with: https://github.com/micropython/micropython/issues/5087#issuecomment-538779410"></label>
@@ -2428,7 +2423,7 @@ _
 
     </category>
 
-    <category name="Google Sheets">
+    <category name="Google Sheets" colour="%{BKY_NET_HUE}">
       <label text="Send files to a Google Spreadsheet"></label>
       <label text="Library: https://gist.github.com/SpotlightKid/8637c685626b334e5c0ec341dd269c44"></label>
         <button text="install prequests library" callbackKey="installPyLib"></button>
@@ -2458,8 +2453,9 @@ _
       </block>
     </category>
   </category>
-<category name="%{BKY_CAT_CONTROL}">
-  <category name="PID">
+
+<category name="%{BKY_CAT_CONTROL}" colour="%{BKY_CONTROL_HUE}">
+  <category name="PID" colour="%{BKY_CONTROL_HUE}">
     <button text="Install control library" callbackKey="installPyLib"></button>
     <label text="Proportional–integral–derivative Controller"></label>
       <label text="Library: https://github.com/JorgeGMarques/micropython-simple-pid"></label>
@@ -2507,7 +2503,7 @@ _
     -->
   </category>
 
-  <category name="Simulate">
+  <category name="Simulate" colour="%{BKY_CONTROL_HUE}">
     <button text="Install control library" callbackKey="installPyLib"></button>
     <label text="No breadboard or sensors? Just simulate it!"></label>
     <label text="Realtime simulation:"></label>
@@ -2523,7 +2519,7 @@ _
   </category>
 </category>
 
-<category name="micropython">
+<category name="micropython" colour="%{BKY_MICROPYTHON_HUE}">
 <category name="btree">
 <block type="btree_open">
 </block>
@@ -3592,7 +3588,7 @@ _
 </category>
 </category>
 
-<category name="Custom Libs">
+<category name="Custom Libs" colour="%{BKY_CUSTOMLIB_HUE}">
   <label text="Device should be connected to Internet"></label>
   <button text="InstallCustomLib" callbackKey="installPyLib"></button>
 </category>  
