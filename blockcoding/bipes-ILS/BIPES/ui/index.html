@@ -135,6 +135,7 @@ document.body.appendChild(el);
         <div id="tab_iot" class="taboff">IOT</div>
         <div id="tab_mqtt" class="taboff" onclick='document.getElementById("easymqtt_iframe").contentWindow.startEasyMQTT(window.easyMQTT_session);'>EasyMQTT</div>
         <div id="tab_databoard" class="taboff">Databoard</div>
+		<div id="tab_nodered" class="taboff">Flows</div>		
       </div>
       <button id="toolbarButton" class="notext icon medium" title="..."></button>
 	  
@@ -291,6 +292,10 @@ document.body.appendChild(el);
 
 <div id="content_firmware" class="content" style="padding: 0;">
   <iframe id="firmware" src="flash/webtools.html" width="100%" height="1000" frameborder="0"></iframe>
+</div>
+
+<div id="content_nodered" class="content" style="padding: 0;">
+  <iframe id="nodered" src="https://flows.nodered.org" width="100%" height="1000" frameborder="0"></iframe>
 </div>
 
 <!-- ################################################## -->

@@ -180,7 +180,7 @@ Code.LANG = Code.getLang();
  * @private
  */
 
-Code.TABS_ = ['blocks', 'console', 'files', 'device', 'programs', 'databoard', 'mqtt', 'iot','firmware'];
+Code.TABS_ = ['blocks', 'console', 'files', 'device', 'programs', 'databoard', 'mqtt', 'iot','firmware',"nodered"];
 
 Code.current = ["blocks", "",""]
 
@@ -704,6 +704,7 @@ Code.init = function() {
        rtl: rtl,
        toolbox: toolboxXml,
        oneBasedIndex: false,
+	   
        zoom:
            {controls: true,
             wheel: true}

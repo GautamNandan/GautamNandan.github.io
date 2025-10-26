@@ -3,6 +3,7 @@ var MSG = {
   blocks: "Blocks",
   files: "Files",
   firmware: "Software Refresh",
+  nodered: "Flows",  
   shared: "Shared",
   device: "Device",
   linkTooltip: "Save and link to blocks.",

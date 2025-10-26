@@ -22,6 +22,12 @@ Blockly.Python['comment'] = function(block) {
   return code;
 };
 
+Blockly.Python['show_blename'] = function(block) {
+  var code = 'ils.printBleName()';  
+  return code;
+};
+
+
 Blockly.Python['delay_old'] = function(block) {
   var value_time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.definitions_['import_time'] = 'import time';

@@ -288,7 +288,7 @@
       </value>
     </block>
     <block type="comment"></block>
-
+    <block type="show_blename"></block>
     <block type="bipes_plot">
     </block>
     <block type="localstorage_store">

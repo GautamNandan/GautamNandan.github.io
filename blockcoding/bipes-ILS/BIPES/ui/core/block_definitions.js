@@ -11,6 +11,19 @@ Blockly.Blocks['comment'] = {
     this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['show_blename'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Show BLE Name");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("Display BLE Name");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['pwm'] = {
   init: function(){
     this.appendDummyInput()

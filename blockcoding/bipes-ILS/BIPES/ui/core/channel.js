@@ -113,7 +113,7 @@ class mux {
         textArray = code.replace(/\r\n|\n/gm, '\r').match(pattern_);
       } else if (Channel ['webbluetooth'].connected) {
         var pattern_ = new RegExp(`(.|[\r]){1,`, 'g')
-        textArray = code.replace(/\r\n|\n/gm, '\r').match(/(.|[\r]){1,5}/g);
+        textArray = code.replace(/\r\n|\n/gm, '\r').match(/(.|[\r]){1,75}/g);
       }
     }
 
@@ -604,6 +604,7 @@ class webbluetooth {
     }
       navigator.bluetooth.requestDevice({
         //filters: [{services: []}]
+        //filters: [{namePrefix : "ILS-"}],
         optionalServices: [webbluetooth.ServiceUUID],
         acceptAllDevices: true
       })
