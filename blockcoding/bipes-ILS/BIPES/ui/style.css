@@ -1576,33 +1576,34 @@ button.icon.medium:before  {
     margin-bottom: 16px;
     opacity: 0.5;
 }
+    /*
 
-/* Blockly Font Customization */
 .blocklyText {
     font-family: 'Varela Round', sans-serif !important;
     font-weight: 500 !important;
 }
 
-/* Block field text (inputs, dropdowns) */
+
 .blocklyEditableText > text,
 .blocklyNonEditableText > text {
     font-family: 'Varela Round', sans-serif !important;
     font-weight: 500 !important;
 }
 
-/* Dropdown menus */
+
 .blocklyDropDownDiv {
     font-family: 'Varela Round', sans-serif !important;
 }
 
-/* Toolbox (category names) */
+
 .blocklyTreeLabel {
     font-family: 'Varela Round', sans-serif !important;
     font-weight: 600 !important;
 }
 
-/* Flyout (blocks in toolbox) */
+
 .blocklyFlyoutLabel {
     font-family: 'Varela Round', sans-serif !important;
     font-weight: 600 !important;
 }
+*/
