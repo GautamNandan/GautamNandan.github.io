@@ -354,7 +354,7 @@ class webserial {
     this.encoder = new TextEncoder();
     this.appendStream = undefined;
     this.shouldListen = true;
-    this.packetSize = 100;
+    this.packetSize = 200;
     this.speed = 115200;
   }
 
@@ -604,9 +604,9 @@ class webbluetooth {
     }
       navigator.bluetooth.requestDevice({
         //filters: [{services: []}]
-        //filters: [{namePrefix : "ILS-"}],
+        filters: [{namePrefix : "ILS-"}],
         optionalServices: [webbluetooth.ServiceUUID],
-        acceptAllDevices: true
+        //acceptAllDevices: true
       })
       .then(device => {
         UI ['workspace'].connecting ();

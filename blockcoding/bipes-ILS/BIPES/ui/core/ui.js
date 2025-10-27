@@ -530,7 +530,7 @@ workspace.prototype.run = function () {
   if (this.runButton.status) {
 
     if(mux.connected ()) {
-		Tool.softReset()  
+		//Tool.softReset()  
         Tool.runPython();
     } else {
       Channel ['mux'].connect ();
@@ -538,7 +538,7 @@ workspace.prototype.run = function () {
     }
   } else {
     Tool.stopPython();
-	Tool.softReset() 
+	  //Tool.softReset() 
   }
 }
 
@@ -863,6 +863,7 @@ workspace.prototype.loadXML = function () {
         let content = this.readWorkspace (readerEvent.target.result, true);
         try {
           let xml = Blockly.Xml.textToDom(content);
+          Code.workspace.clear();
           Blockly.Xml.domToWorkspace(xml, Code.workspace);
         }
         catch (e) {

@@ -1187,7 +1187,7 @@
   </category>
 
   <category name="Input" colour="%{BKY_INPUT_HUE}">
-     <category name="Joystick">
+     <category name="Joystick" colour="%{BKY_INPUT_HUE}">
 	    <block type="joy_init">
         <field name="JOYSTICK_INIT">Start Joystick Controller</field>
         <value name="xpin">

@@ -267,18 +267,7 @@ class Tool {
     }
   }
 
-  /**
-   * Stop running Python program by sending Ctrl+C
-   */
-  static stopPython() {
-    try {
-      mux.bufferPush('\x03\x03');
-    } catch (error) {
-      console.error('ILS: Error stopping Python:', error);
-    }
-  }
-
-  /**
+/**
    * Perform a soft reset of the device
    */
   static softReset() {
@@ -301,6 +290,20 @@ class Tool {
     }
   }
 
+
+  /**
+   * Stop running Python program by sending Ctrl+C
+   */
+  static stopPython() {
+    try {
+      mux.bufferPush('\x03\x03');
+	  //Tool.softReset();
+    } catch (error) {
+      console.error('ILS: Error stopping Python:', error);
+    }
+  }
+
+  
   /**
    * Async sleep function that allows UI updates
    * @param {number} milliseconds - Time to sleep in milliseconds
@@ -426,7 +429,7 @@ class Tool {
           window.frames[3].modules.DataStorage.push(match_[1], coordinates);
 
           // Compatibility layer with old BIPES-DATA:INDEX,DATA
-          if (match_[1] === "BIPES-DATA") {
+          if (match_[1] === "ILS-DATA") {
             coordinates[0] = parseInt(coordinates[0]);
             coordinates[1] = parseFloat(coordinates[1]);
             const q = new Queue(coordinates[0]);
@@ -442,9 +445,26 @@ class Tool {
       }
     } catch (error) {
       console.error('ILS: Error in bipesVerify:', error);
+console.log('=== Frame Debug Info ===');
+console.log('Total frames:', window.frames.length);
+
+for (let i = 0; i < window.frames.length; i++) {
+    try {
+        const frame = window.frames[i];
+        console.log(`Frame ${i}:`, {
+            location: frame.location.href,
+            hasModules: !!frame.modules,
+            hasDataStorage: !!frame.modules?.DataStorage,
+            name: frame.name
+        });
+    } catch (e) {
+        console.log(`Frame ${i}: Cross`);
+	}
+
+	  
     }
   }
-
+  }
   /**
    * Bridge incoming data to MQTT
    * @param {number} id_ - ID for the MQTT message
@@ -1008,7 +1028,7 @@ class files {
         bufCode[i] = codeStr.charCodeAt(i);
       }
 
-      this.put_file_name = 'sketch.py';
+    this.put_file_name = UI ['workspace'].file.value;
       this.put_file_data = bufCode;
 
       this.put_file();

@@ -36,11 +36,29 @@ BlocklyStorage.backupBlocks_ = function(opt_workspace) {
  * Bind the localStorage backup function to the unload event.
  * @param {Blockly.WorkspaceSvg=} opt_workspace Workspace.
  */
+ /*
 BlocklyStorage.backupOnUnload = function(opt_workspace) {
   var workspace = opt_workspace || Blockly.getMainWorkspace();
   window.addEventListener('unload',
       function() {BlocklyStorage.backupBlocks_(workspace);}, false);
 };
+*/
+BlocklyStorage.backupOnUnload = function(opt_workspace) {
+  var workspace = opt_workspace || Blockly.getMainWorkspace();
+  
+  // Use visibilitychange instead of unload
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      BlocklyStorage.backupBlocks_(workspace);
+    }
+  }, false);
+  
+  // Also backup on pagehide for better coverage
+  window.addEventListener('pagehide', function() {
+    BlocklyStorage.backupBlocks_(workspace);
+  }, false);
+};
+
 /**
  * Restore code blocks from localStorage.
  * @param {Blockly.WorkspaceSvg=} opt_workspace Workspace.

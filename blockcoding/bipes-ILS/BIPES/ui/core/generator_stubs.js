@@ -27,7 +27,7 @@ Blockly.Python['show_blename'] = function(block) {
   return code;
 };
 
-
+ 
 Blockly.Python['delay_old'] = function(block) {
   var value_time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.definitions_['import_time'] = 'import time';
@@ -5802,7 +5802,7 @@ Blockly.Python['bipes_plot'] = function(block) {
   q.enqueue(id);
 */
 
-  var code = `print('$BIPES-DATA:',${id},',',${x})\n`;
+  var code = `print('$ILS-DATA:',${id},',',${x})\n`;
 
   return code;
 };
@@ -6608,13 +6608,9 @@ function buildOnstartFunction(globals, statements) {
  * @returns {string} Python try-except block
  */
 function buildExecutionWrapper() {
-  let wrapper = '\ntry:\n';
-  wrapper += `${ILS.codeIndent}ils.run(onStart)\n`;
-  wrapper += `${ILS.codeIndent}ils.start()\n`;
-  wrapper += 'except KeyboardInterrupt as e:\n';
-  wrapper += `${ILS.codeIndent}print("^C")\n`;
-  wrapper += 'except Exception as e:\n';
-  wrapper += `${ILS.codeIndent}print(f"Error: {e}")\n`;
+  let wrapper;
+  wrapper = `\nils.run(onStart)\n`;
+  wrapper += `ils.start()\n`;
   
   return wrapper;
 }

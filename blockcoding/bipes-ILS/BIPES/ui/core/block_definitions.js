@@ -12,6 +12,7 @@ Blockly.Blocks['comment'] = {
   }
 };
 
+
 Blockly.Blocks['show_blename'] = {
   init: function() {
     this.appendDummyInput()

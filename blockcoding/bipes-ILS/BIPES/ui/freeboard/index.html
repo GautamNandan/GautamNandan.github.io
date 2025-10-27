@@ -17,6 +17,42 @@
         }
     </style>
     <script src="js/freeboard.thirdparty.min.js"></script>
+	
+<script>
+  // Create the modules namespace that the parent expects
+  window.modules = window.modules || {};
+  
+  // Create DataStorage with a push method
+  window.modules.DataStorage = {
+    data: {},
+    
+    push: function(key, values) {
+      if (!this.data[key]) {
+        this.data[key] = [];
+      }
+      this.data[key].push(values);
+      console.log('DataStorage push:', key, values);
+      
+      // If you're using Freeboard, you might want to update datasources here
+      // freeboard.setDatasourceValue(key, values);
+    },
+    
+    get: function(key) {
+      return this.data[key] || [];
+    },
+    
+    clear: function(key) {
+      if (key) {
+        delete this.data[key];
+      } else {
+        this.data = {};
+      }
+    }
+  };
+  
+  console.log('DataStorage module initialized');
+</script>
+
     <script type="text/javascript">
         function loadForest() {
             window.location.href = '../freeboardForest/';
