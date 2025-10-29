@@ -8,16 +8,7 @@
       "chipFamily": "ESP32",
       "parts": [                              
         {
-          "path": "ESP32_GENERIC-20251015-v1.23.0_bootloader.bin",
-          "offset": 4096                      
-        },
-        {
-          "path": "ESP32_GENERIC-20251015-v1.23.0_partition-table.bin",
-          "offset": 32768                     
-        },
-        {
-          "path": "ESP32_GENERIC-20251015-v1.23.0_micropython.bin",
-          "offset": 65536                     
+          "path": "ESP32_GENERIC-20251015-v1.24.0.bin",
         }
       ]
     },
