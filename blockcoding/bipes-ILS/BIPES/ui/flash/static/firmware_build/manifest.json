@@ -1,21 +1,25 @@
 {
   "name": "MicroPython",
-  "version": "1.23.0",
+  "version": "1.24.0",
   "home_assistant_domain": "esphome",
   "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
-      "parts": [                              
+      "parts": [
         {
           "path": "ESP32_GENERIC-20251015-v1.24.0.bin",
+          "offset": 0
         }
       ]
     },
     {
       "chipFamily": "ESP32-S2",
       "parts": [
-        { "path": "ESP32_GENERIC_S2-20250911-v1.26.1.bin", "offset": 4096 }
+        {
+          "path": "ESP32_GENERIC_S2-20250911-v1.26.1.bin",
+          "offset": 4096
+        }
       ]
     },
     {
@@ -35,7 +39,10 @@
       "chipFamily": "ESP8266",
       "name": "Generic ESP8266 (4MB DIO)",
       "parts": [
-        { "path": "ESP8266_GENERIC-20250911-v1.26.1.bin", "offset": 0 }
+        {
+          "path": "ESP8266_GENERIC-20250911-v1.26.1.bin",
+          "offset": 0
+        }
       ],
       "flashFreq": "40m",
       "flashMode": "dio",
