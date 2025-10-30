@@ -47,6 +47,7 @@ var MSG = {
   notConnected: "No connection to send data.",
   serialFroozen: "Serial connection is unresponsive.",
   notAvailableFlag: "$1 is not available on your browser.\r\nPlease make sure the $1 flag is enabled.",
+  updatingonDevice: "File uploaded to Device",
 
 //Blocks
   block_delay: "delay",

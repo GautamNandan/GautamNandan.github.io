@@ -1016,7 +1016,7 @@ class files {
     try {
       let codeStr;
 
-      if (Code.current[0] === 'Files') {
+      if (Code.current[0] === 'files') {
         codeStr = Files.editor.getDoc().getValue('\n');
       } else {
         codeStr = Blockly.Python.workspaceToCode(Code.workspace);
@@ -1032,7 +1032,7 @@ class files {
       this.put_file_data = bufCode;
 
       this.put_file();
-      UI['notify'].send(MSG['updatingSketch']);
+      UI['notify'].send(MSG['updatingonDevice']);
     } catch (error) {
       console.error('ILS: Error saving file:', error);
     }
