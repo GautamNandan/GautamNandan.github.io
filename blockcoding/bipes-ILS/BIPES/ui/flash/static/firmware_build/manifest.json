@@ -8,7 +8,7 @@
       "chipFamily": "ESP32",
       "parts": [
         {
-          "path": "ESP32_GENERIC-20251015-v1.24.0.bin",
+          "path": "ESP32_GENERIC-20250911-v1.24.0.bin",
           "offset": 0
         }
       ]
@@ -27,7 +27,7 @@
       "name": "Wemos D1 Mini (4MB QIO)",
       "parts": [
         {
-          "path": "ESP8266_GENERIC-20251015-v1.23.0.bin",
+          "path": "ESP32_GENERIC-20250911-v1.24.0.bin",
           "offset": 0
         }
       ],
@@ -40,7 +40,7 @@
       "name": "Generic ESP8266 (4MB DIO)",
       "parts": [
         {
-          "path": "ESP8266_GENERIC-20250911-v1.26.1.bin",
+          "path": "ESP32_GENERIC-20250911-v1.24.0.bin",
           "offset": 0
         }
       ],
