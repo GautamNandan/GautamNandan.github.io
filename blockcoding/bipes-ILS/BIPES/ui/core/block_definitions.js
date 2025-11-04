@@ -1,8 +1,9 @@
 // Block Definition
+
 Blockly.Blocks['comment'] = {
   init: function() {
     this.appendDummyInput("comment")
-        .appendField("# comment:")
+        .appendField("# Comment:")
         .appendField(new Blockly.FieldTextInput("Add your comment here"), "TEXT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1216,7 +1217,7 @@ Blockly.Blocks['write_oled_int'] = {
     this.setHelpUrl("http://www.bipes.net.br");
   }
 };
-
+/*
 Blockly.Blocks['init_tank'] = {
   init: function() {
     this.appendDummyInput()
@@ -1270,7 +1271,7 @@ Blockly.Blocks['tank_turn'] = {
  this.setHelpUrl("");
   }
 };
-
+*/
 Blockly.Blocks['init_servo'] = {
   init: function() {
     this.appendDummyInput()
@@ -12332,3 +12333,5 @@ Blockly.Blocks['math_max'] = {
     this.setHelpUrl("");
   }
 };
+
+

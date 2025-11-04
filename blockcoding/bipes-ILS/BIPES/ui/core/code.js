@@ -180,7 +180,8 @@ Code.LANG = Code.getLang();
  * @private
  */
 
-Code.TABS_ = ['blocks', 'console', 'files', 'device', 'programs', 'databoard', 'mqtt', 'iot','firmware',"nodered"];
+//Code.TABS_ = ['blocks', 'console', 'files', 'device', 'programs', 'databoard', 'mqtt', 'iot','firmware',"nodered"];
+Code.TABS_ = ['blocks', 'console', 'files', 'device'];
 
 Code.current = ["blocks", "",""]
 
@@ -1092,9 +1093,9 @@ Code.initLanguage = function() {
   //Changed to a fixed title for all languages - BIPES Beta
   document.getElementById('tab_blocks').textContent = MSG['blocks'];
   document.getElementById('tab_files').textContent = MSG['files'];
-  document.getElementById('tab_programs').textContent = MSG['shared'];
+  //document.getElementById('tab_programs').textContent = MSG['shared'];
   document.getElementById('tab_device').textContent = MSG['device'];
-  document.getElementById("tab_firmware").textContent = MSG['firmware'];
+//  document.getElementById("tab_firmware").textContent = MSG['firmware'];
   document.getElementById('linkButton').title = MSG['linkTooltip'];
   document.getElementById('runButton').title = MSG['runTooltip'];
   //document.getElementById('trashButton').title = MSG['trashTooltip'];

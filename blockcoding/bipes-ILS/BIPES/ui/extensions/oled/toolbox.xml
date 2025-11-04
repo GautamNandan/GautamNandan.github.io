@@ -1,0 +1,296 @@
+<!-- OLED DISPLAY CATEGORY -->
+  <category name="OLED Display" colour="230">
+    <label text="Setup" web-class="boldtext"></label>
+    <block type="oled_init">
+      <field name="DISPLAY_SIZE">128,64</field>
+      <value name="SCL_PIN">
+        <shadow type="math_number">
+          <field name="NUM">22</field>
+        </shadow>
+      </value>
+      <value name="SDA_PIN">
+        <shadow type="math_number">
+          <field name="NUM">21</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="oled_init_custom">
+      <value name="WIDTH">
+        <shadow type="math_number">
+          <field name="NUM">128</field>
+        </shadow>
+      </value>
+      <value name="HEIGHT">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="SCL_PIN">
+        <shadow type="math_number">
+          <field name="NUM">22</field>
+        </shadow>
+      </value>
+      <value name="SDA_PIN">
+        <shadow type="math_number">
+          <field name="NUM">21</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="32"></sep>
+  <category name="Draw Utils" colour="230">
+    <sep gap="32"></sep>
+    <label text="Display Control" web-class="boldtext"></label>
+    <block type="oled_clear"></block>
+    <block type="oled_show"></block>
+    <block type="oled_invert">
+      <field name="INVERT">0</field>
+    </block>
+    <block type="oled_contrast">
+      <value name="CONTRAST">
+        <shadow type="math_number">
+          <field name="NUM">255</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="oled_scroll">
+      <value name="DX">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="DY">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="32"></sep>
+    <label text="Text &amp; Graphics" web-class="boldtext"></label>
+    <block type="oled_text">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">Hello</field>
+        </shadow>
+      </value>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="oled_pixel">
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">32</field>
+        </shadow>
+      </value>
+      <field name="COLOR">1</field>
+    </block>
+    
+    <sep gap="32"></sep>
+    <label text="Shapes" web-class="boldtext"></label>
+    <block type="oled_line">
+      <value name="X1">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y1">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="X2">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="Y2">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="oled_rect">
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="WIDTH">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+      <value name="HEIGHT">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+      <field name="FILLED">FALSE</field>
+    </block>
+    <block type="oled_circle">
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">32</field>
+        </shadow>
+      </value>
+      <value name="RADIUS">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <field name="FILLED">FALSE</field>
+    </block>
+    <block type="oled_triangle">
+      <value name="X1">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="Y1">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="X2">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+      <value name="Y2">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+      <value name="X3">
+        <shadow type="math_number">
+          <field name="NUM">15</field>
+        </shadow>
+      </value>
+      <value name="Y3">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+      </value>
+      <field name="FILLED">FALSE</field>
+    </block>
+  </category>
+  
+  <!-- TANK DRAWING CATEGORY -->
+  <category name="Tank Drawing" colour="160">
+    <label text="Setup" web-class="boldtext"></label>
+    <block type="tank_create">
+      <value name="XPOS">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="YPOS">
+        <shadow type="math_number">
+          <field name="NUM">32</field>
+        </shadow>
+      </value>
+      <field name="DIRECTION">0</field>
+    </block>
+    
+    <sep gap="32"></sep>
+    <label text="Pen Control" web-class="boldtext"></label>
+    <block type="tank_pen_down"></block>
+    <block type="tank_pen_up"></block>
+    
+    <sep gap="32"></sep>
+    <label text="Movement" web-class="boldtext"></label>
+    <block type="tank_move">
+      <field name="DIRECTION">1</field>
+      <value name="STEPS">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="32"></sep>
+    <label text="Turning" web-class="boldtext"></label>
+    <block type="tank_turn">
+      <field name="DIRECTION">1</field>
+      <value name="ANGLE">
+        <shadow type="math_number">
+          <field name="NUM">90</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="tank_turn_preset">
+      <field name="DIRECTION">1</field>
+      <field name="ANGLE">90</field>
+    </block>
+    <block type="tank_orient">
+      <field name="DIRECTION">0</field>
+    </block>
+    <block type="tank_orient_custom">
+      <value name="ANGLE">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="32"></sep>
+    <label text="Position" web-class="boldtext"></label>
+    <block type="tank_goto">
+      <value name="XPOS">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="YPOS">
+        <shadow type="math_number">
+          <field name="NUM">32</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="tank_home"></block>
+    <block type="tank_centre"></block>
+    
+    <sep gap="32"></sep>
+    <label text="Quick Shapes" web-class="boldtext"></label>
+    <block type="tank_draw_shape">
+      <field name="SHAPE">SQUARE</field>
+      <value name="SIZE">
+        <shadow type="math_number">
+          <field name="NUM">30</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="32"></sep>
+    <label text="Information" web-class="boldtext"></label>
+    <block type="tank_get_x"></block>
+    <block type="tank_get_y"></block>
+    <block type="tank_get_direction"></block>
+  </category>
+  
+  </category>
+  

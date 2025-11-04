@@ -1,228 +1,280 @@
-	   function installPyModuleForExtension(extensionName, pythonFileUrl) {
-		   	console.log("Install py module for extensionName:" + extensionName + " pythonFileUrl:" + pythonFileUrl);
-			//utils.handle_put_file_select_cloud(pythonFileUrl, "");
-			Files.handle_put_file_extension(pythonFileUrl);
-			
-	   }
+// Extension UI Functions
 
-	   function unInstallPyModuleForExtension(extensionName, pythonFileUrl) {
-		   	console.log("unInstall py module for extensionName:" + extensionName + " pythonFileUrl:" + pythonFileUrl);
-		
-			var copyCmd = `
-import os
+async function installPyModuleForExtension(extensionName, pythonFileUrl, pythonInstallPath) {
+    console.log(`Installing module: ${extensionName} from ${pythonFileUrl} to ${pythonInstallPath}`);
+    await Files.handle_put_file_extension_async(pythonFileUrl, pythonInstallPath);
+}
 
-def delete_file(filename):
-	try:
-		# Check if file exists
-		if filename in os.listdir():
-			os.remove(filename)
-			print(f"Deleted: {filename}")
-		else:
-			print(f"File not found: {filename}")
-	except OSError as e:
-		print(f"Error: {e}")
-			`;
-			copyCmd += '\n';
-			copyCmd += 'delete_file(' + "'" + pythonFileUrl + "'" + ')\n';									
-		
-			Tool.runPython(copyCmd);
-	   }
+async function unInstallPyModuleForExtension(extensionId, pythonFileUrl) {
+    console.log(`Uninstalling module: ${extensionId} - ${pythonFileUrl}`);
+	await Files.delete_async(pythonFileUrl);
+}
 
-	   
-      // Open modal
-        function openExtensionModal() {
-            const modal = document.getElementById('extensionModal');
-            modal.classList.add('active');
-            loadExtensions();
+function openExtensionModal() {
+    const modal = document.getElementById('extensionModal');
+    modal.classList.add('active');
+    loadExtensions();
+}
+
+function closeExtensionModal() {
+    const modal = document.getElementById('extensionModal');
+    modal.classList.remove('active');
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('extensionModal');
+        if (modal.classList.contains('active')) {
+            closeExtensionModal();
         }
+    }
+});
 
-        // Close modal
-        function closeExtensionModal() {
-            const modal = document.getElementById('extensionModal');
-            modal.classList.remove('active');
-        }
+let currentCategory = 'all';
 
-        // Close on overlay click
-        document.getElementById('extensionModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeExtensionModal();
-            }
-        });
-
-        // Close on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeExtensionModal();
-            }
-        });
-
-        // Load extensions
-        async function loadExtensions() {
-            const container = document.getElementById('extensionsList');
-            
-            try {
-                // Get extensions from ExtensionManager
-                const extensions = window.extensionManager.getAvailableExtensions();
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryList = document.getElementById('extensionCategories');
+    if (categoryList) {
+        categoryList.addEventListener('click', function(e) {
+            const li = e.target.closest('li');
+            if (li && li.dataset.category && !li.classList.contains('hr')) {
+                categoryList.querySelectorAll('li').forEach(item => item.classList.remove('active'));
+                li.classList.add('active');
                 
-                if (extensions.length === 0) {
-                    container.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📦</div>
-                            <h3>No Extensions Available</h3>
-                            <p>No extensions found in the manifest.</p>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // Render extensions
-                container.innerHTML = extensions.map(ext => createExtensionCard(ext)).join('');
-            } catch (error) {
-                console.error('Error loading extensions:', error);
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">⚠️</div>
-                        <h3>Error Loading Extensions</h3>
-                        <p>${error.message}</p>
-                    </div>
-                `;
+                currentCategory = li.dataset.category;
+                filterExtensionsByCategory(currentCategory);
             }
+        });
+    }
+});
+
+function filterExtensionsByCategory(category) {
+    const cards = document.querySelectorAll('.extension-list > li');
+    
+    cards.forEach(card => {
+        const cardCategory = card.dataset.category;
+        
+        if (category === 'all') {
+            card.style.display = 'block';
+        } else if (category === 'installed') {
+            const extId = card.querySelector('[data-extension-id]')?.dataset.extensionId;
+            const isInstalled = extId && window.extensionManager.isExtensionLoaded(extId);
+            card.style.display = isInstalled ? 'block' : 'none';
+        } else {
+            card.style.display = cardCategory === category ? 'block' : 'none';
+        }
+    });
+}
+
+async function loadExtensions() {
+    const container = document.getElementById('extensionList');
+    
+    try {
+        const extensions = window.extensionManager.getAvailableExtensions();
+        
+        if (extensions.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">📦</div>
+                    <h3>No Extensions Available</h3>
+                    <p>No extensions found in the manifest.</p>
+                </div>
+            `;
+            return;
         }
 
-        // Create extension card HTML
-        function createExtensionCard(ext) {
-            const isInstalled = window.extensionManager.isExtensionLoaded(ext.id);
-            const installedClass = isInstalled ? 'installed' : '';
-			const cat_friendlyName = window.extensionManager.translateCategory(ext.category);
-            
-            // Determine icon display
-            let iconHtml;
-            if (ext.files && ext.files.icon) {
-                // Use PNG/image file
-                const iconPath = `${ext.path}/${ext.files.icon}`;
-                iconHtml = `<img src="${iconPath}" alt="${ext.name}" onerror="this.style.display='none'; this.parentElement.textContent='📦';">`;
-            } else if (ext.icon) {
-                // Use emoji icon
-                iconHtml = ext.icon;
-            } else {
-                // Default fallback
-                iconHtml = '📦';
-            }
-            
-            return `
-                <div class="extension-card ${installedClass}" data-extension-id="${ext.id}">
-                    <div class="extension-icon">${iconHtml}</div>
-                    <div class="extension-content">
-                        <div class="extension-header">
-                            <span class="extension-name">${ext.name}</span>
-                            <span class="extension-version">v${ext.version}</span>
-                            ${cat_friendlyName ? `<span class="extension-category">${cat_friendlyName}</span>` : ''}
+        container.innerHTML = extensions.map(ext => createExtensionCard(ext)).join('');
+        filterExtensionsByCategory(currentCategory);
+    } catch (error) {
+        console.error('Error loading extensions:', error);
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">⚠️</div>
+                <h3>Error Loading Extensions</h3>
+                <p>${error.message}</p>
+            </div>
+        `;
+    }
+}
+
+function createExtensionCard(ext) {
+    const isInstalled = window.extensionManager.isExtensionLoaded(ext.id);
+    
+    let category = ext.category || 'other';
+    if (category.startsWith('%{BKY_')) {
+        const key = category.match(/%\{BKY_(.+?)\}/)?.[1];
+        if (key && typeof Blockly !== 'undefined' && Blockly.Msg && Blockly.Msg[key]) {
+            category = Blockly.Msg[key];
+        }
+    }
+    
+    const categoryItems = document.querySelectorAll('#extensionCategories li[data-category]');
+    let categorySlug = 'other';
+    
+    for (const item of categoryItems) {
+        const displayName = item.textContent.trim();
+        const slug = item.dataset.category;
+        
+        if (displayName.toLowerCase().includes(category.toLowerCase()) || 
+            category.toLowerCase().includes(displayName.toLowerCase())) {
+            categorySlug = slug;
+            break;
+        }
+    }
+    
+    let iconHtml;
+    if (ext.files && ext.files.icon) {
+        const iconPath = `${ext.path}/${ext.files.icon}`;
+        iconHtml = `<img src="${iconPath}" alt="${ext.name}" onerror="this.style.display='none'; this.parentElement.textContent='📦';">`;
+    } else if (ext.icon) {
+        iconHtml = ext.icon;
+    } else {
+        iconHtml = '📦';
+    }
+    
+    return `
+        <li data-category="${categorySlug}">
+            <div class="extension-box" data-extension-id="${ext.id}">
+                <div class="header">
+                    <div class="cover">${iconHtml}</div>
+                    <div class="detail">
+                        <div class="name">
+                            ${ext.name}
+                            ${isInstalled ? '<span class="installed-icon"><i class="fas fa-check-circle"></i></span>' : ''}
                         </div>
-                        <div class="extension-description">${ext.description}</div>
-                        ${ext.tags && ext.tags.length > 0 ? `
-                            <div class="extension-tags">
-                                ${ext.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                            </div>
-                        ` : ''}
-                        <div class="extension-footer">
-                            ${ext.author ? `<span class="extension-author">by ${ext.author}</span>` : ''}
-                            <button 
-                                class="btn ${isInstalled ? 'btn-uninstall' : 'btn-install'}" 
-                                onclick="toggleExtension('${ext.id}')"
-                                id="btn-${ext.id}"
-                            >
-                                ${isInstalled ? '✓ Uninstall' : '↓ Install'}
-                            </button>
+                        <div class="author">${ext.author || 'Unknown'}</div>
+                        <div class="other">
+                            <span class="version">${ext.version || '1.0.0'}</span>
+                            ${ext.github ? `<a href="${ext.github}" target="_blank"><i class="fab fa-github"></i></a>` : ''}
                         </div>
                     </div>
                 </div>
-            `;
-        }
+                <div class="description">${ext.description || 'No description available'}</div>
+                <div class="button">
+                    <button 
+                        class="${isInstalled ? 'extension-uninstall' : 'extension-install'}" 
+                        onclick="toggleExtension('${ext.id}')"
+                        id="btn-${ext.id}"
+                    >
+                        <i class="fas fa-${isInstalled ? 'trash-alt' : 'download'}"></i> ${isInstalled ? 'Uninstall' : 'Install'}
+                    </button>
+                </div>
+            </div>
+        </li>
+    `;
+}
 
-        // Toggle extension (install/uninstall)
-        async function toggleExtension(extensionId) {
-            const btn = document.getElementById(`btn-${extensionId}`);
-            const card = document.querySelector(`[data-extension-id="${extensionId}"]`);
-            const isInstalled = window.extensionManager.isExtensionLoaded(extensionId);
+async function toggleExtension(extensionId) {
+    const btn = document.getElementById(`btn-${extensionId}`);
+    const card = document.querySelector(`[data-extension-id="${extensionId}"]`);
+    const isInstalled = window.extensionManager.isExtensionLoaded(extensionId);
 
-            // Disable button during operation
-            btn.disabled = true;
-           
+    btn.disabled = true;
 
-            try {
-                if (isInstalled) {
-                    // Uninstall
-					const extInfo = window.extensionManager.getExtensionInfo(extensionId);					
-					let success = true;
-					if (mux.connected()) {
-						btn.textContent = isInstalled ? 'Uninstalling...' : 'Installing...';					
-						success = await window.extensionManager.disableExtension(extensionId);
-						} else {
-							console.log("Not Connected to Device");
-							alert("Connect to Device and then try!");
-							return;
-						}
+    try {
+        if (isInstalled) {
+            // Uninstall
+            if (!mux.connected()) {
+                alert("Connect to Device first!");
+                btn.disabled = false;
+                return;
+            }
 
-				       if (extInfo.hasPythonModule) {
-						    const extensionName = extInfo.name;
-						    let pythonFileUrl = window.extensionManager.getPythonModuleUrl(extensionId);
-							pythonFileUrl = pythonFileUrl.split('/').pop();
-	   
-    						await unInstallPyModuleForExtension(extensionName, pythonFileUrl);
-						}					
-                    btn.className = 'btn btn-install';
-                    btn.textContent = '↓ Install';
-                    card.classList.remove('installed');
-					
-                } else {
-                    // Install
-					const extInfo = window.extensionManager.getExtensionInfo(extensionId);
-					let success = true;
-					if (mux.connected()) {
-						btn.textContent = isInstalled ? 'Uninstalling...' : 'Installing...';					
-						success = await window.extensionManager.enableExtension(extensionId);
-						} else {
-							console.log("Not Connected to Device");
-							alert("Connect to Device and then try!");
-							return;
-						}
-                    if (success) {		
-				       if (extInfo.hasPythonModule) {
-						    const extensionName = extInfo.name;
-						    const pythonFileUrl = window.extensionManager.getPythonModuleUrl(extensionId);
-	   
-    						await installPyModuleForExtension(extensionName, pythonFileUrl);
-						}					
-                        btn.className = 'btn btn-uninstall';
-                        btn.textContent = '✓ Uninstall';
-                        card.classList.add('installed');
-						
-						
-                    } else {
-                        throw new Error('Failed to install extension');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uninstalling...';
+            const extInfo = window.extensionManager.getExtensionInfo(extensionId);
+            
+            await window.extensionManager.disableExtension(extensionId);
+
+            if (extInfo.hasPythonModule) {
+                for (const fileUrl of extInfo.pythonModulePath) {
+                    await unInstallPyModuleForExtension(extensionId, fileUrl);
+                }
+            }
+
+            btn.className = 'extension-install';
+            btn.innerHTML = '<i class="fas fa-download"></i> Install';
+            
+            const installedIcon = card.querySelector('.installed-icon');
+            if (installedIcon) installedIcon.remove();
+            
+        } else {
+            // Install
+            if (!mux.connected()) {
+                alert("Connect to Device first!");
+                btn.disabled = false;
+                return;
+            }
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Installing...';
+            const extInfo = window.extensionManager.getExtensionInfo(extensionId);
+            
+            const success = await window.extensionManager.enableExtension(extensionId);
+            
+            if (success) {
+                if (extInfo.hasPythonModule) {
+                    //const pythonInstallPath = extInfo.pythonInstallPath;
+					const pythonInstallPath = '';
+                    const basePath = `extensions/${extensionId}/pylib/`;
+                    
+                    // Create directory first
+                    await createDirectoryOnDevice(pythonInstallPath);
+                    
+                    for (const fileUrl of extInfo.pythonModulePath) {
+                        const filePath = basePath + fileUrl;
+                        await installPyModuleForExtension(extensionId, filePath, pythonInstallPath);
                     }
                 }
-            } catch (error) {
-                console.error(`Error toggling extension ${extensionId}:`, error);
-                alert(`Error: ${error.message}`);
-                // Reset button state
-                btn.textContent = isInstalled ? '✓ Uninstall' : '↓ Install';
-            } finally {
-                btn.disabled = false;
+
+                btn.className = 'extension-uninstall';
+                btn.innerHTML = '<i class="fas fa-trash-alt"></i> Uninstall';
+                
+                const nameDiv = card.querySelector('.name');
+                if (nameDiv && !nameDiv.querySelector('.installed-icon')) {
+                    nameDiv.innerHTML += '<span class="installed-icon"><i class="fas fa-check-circle"></i></span>';
+                }
+            } else {
+                throw new Error('Failed to install extension');
             }
         }
+    } catch (error) {
+        console.error(`Error toggling extension ${extensionId}:`, error);
+        alert(`Error: ${error.message}`);
+        btn.innerHTML = isInstalled ? '<i class="fas fa-trash-alt"></i> Uninstall' : '<i class="fas fa-download"></i> Install';
+    } finally {
+        btn.disabled = false;
+    }
+}
 
-        // Filter extensions by search query
-        function filterExtensions() {
-            const query = document.getElementById('extensionSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('.extension-card');
+function createDirectoryOnDevice(destDir) {
+    return new Promise((resolve, reject) => {
+        try {
+            mux.bufferPush(`import os\r`);
+            mux.bufferPush(`def ensure_dir(path):\r`);
+            mux.bufferPush(`    parts = path.strip('/').split('/')\r`);
+            mux.bufferPush(`    current = ''\r`);
+            mux.bufferPush(`    for part in parts:\r`);
+            mux.bufferPush(`        current += '/' + part\r`);
+            mux.bufferPush(`        try:\r`);
+            mux.bufferPush(`            os.mkdir(current)\r`);
+            mux.bufferPush(`        except:\r`);
+            mux.bufferPush(`            pass\r`);
+            mux.bufferPush(`\r`);
+            mux.bufferPush(`ensure_dir('${destDir}')\r`);
             
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            // Wait a bit for the command to execute
+            setTimeout(() => resolve(), 500);
+        } catch (error) {
+            reject(error);
         }
+    });
+}
+
+function filterExtensions() {
+    const query = document.getElementById('extensionSearch').value.toLowerCase();
+    const cards = document.querySelectorAll('.extension-list > li');
+    
+    cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? 'block' : 'none';
+    });
+}

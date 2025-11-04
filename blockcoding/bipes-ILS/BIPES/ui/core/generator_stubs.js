@@ -4,6 +4,7 @@
  */
 let UPythonClass = {}
 
+
 Blockly.Python['project_metadata'] = function(block) {
   var value_project_author = Blockly.Python.valueToCode(block, 'project_author', Blockly.Python.ORDER_ATOMIC);
   var value_project_iot_id = Blockly.Python.valueToCode(block, 'project_iot_id', Blockly.Python.ORDER_ATOMIC);
@@ -488,7 +489,7 @@ Blockly.Python['write_oled_int'] = function(block) {
 	
 	return code;
   };
-
+/*
 Blockly.Python['init_tank'] = function(block) {
   var Xpos = Blockly.Python.valueToCode(block, 'Xpos', Blockly.Python.ORDER_ATOMIC);
   var Ypos = Blockly.Python.valueToCode(block, 'Ypos', Blockly.Python.ORDER_ATOMIC);
@@ -520,7 +521,7 @@ Blockly.Python['tank_turn'] = function(block) {
   var code = 'tank1.turn(' + angle_tank_angle + ')\n';
   return code;
 };
-
+*/
 Blockly.Python['init_servo'] = function(block) {
     var pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
     var servo_name = block.getFieldValue('servo_name'); 

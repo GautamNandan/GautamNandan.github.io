@@ -129,50 +129,85 @@ document.body.appendChild(el);
         <div id="tab_blocks" class="tabon">...</div>
         <div id="tab_console" class="taboff">Console</div>
         <div id="tab_files" class="taboff">...</div>
-        <div id="tab_programs" class="taboff">...</div>
-		<div id="tab_firmware" class="taboff">...</div>
-        <div id="tab_device" class="taboff">...</div>
-        <div id="tab_iot" class="taboff">IOT</div>
+        <!--<div id="tab_programs" class="taboff">...</div> -->
+        <div id="tab_device" class="taboff">...</div>		
+		<!--<div id="tab_firmware" class="taboff">...</div>
+        <!-- <div id="tab_iot" class="taboff">IOT</div>
         <div id="tab_mqtt" class="taboff" onclick='document.getElementById("easymqtt_iframe").contentWindow.startEasyMQTT(window.easyMQTT_session);'>EasyMQTT</div>
         <div id="tab_databoard" class="taboff">Databoard</div>
-		<div id="tab_nodered" class="taboff">Flows</div>		
+		<div id="tab_nodered" class="taboff">Flows</div>		-->
       </div>
       <button id="toolbarButton" class="notext icon medium" title="..."></button>
 	  
     <button id="extensionButton" class="notext icon" onclick="openExtensionModal()"></button>
-
-    <!-- Modal -->
-    <div class="modal-overlay" id="extensionModal">
-        <div class="modal-container">
-            <!-- Header -->
-            <div class="modal-header">
-                <h2 class="modal-title">Extension Manager</h2>
-                <button class="close-btn" onclick="closeExtensionModal()">&times;</button>
-            </div>
-
-            <!-- Search -->
-            <div class="search-container">
-                <div class="search-box">
-                    <span class="search-icon">🔍</span>
-                    <input 
-                        type="text" 
-                        class="search-input" 
-                        id="extensionSearch" 
-                        placeholder="Search extensions by name, description, or tags..."
-                        oninput="filterExtensions()"
-                    >
-                </div>
-            </div>
-
-            <!-- Extensions List -->
-            <div class="extensions-list" id="extensionsList">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading extensions...</p>
-                </div>
+	<button id="firmwareButton" class="notext icon" onclick="openFirmwareModal()" title="Flash Firmware"></button>
+<!-- Extension Modal HTML -->
+<!-- Extension Modal -->
+<div class="modal-overlay" id="extensionModal">
+    <div class="modal-container">
+        <!-- Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Extension Manager</h2>
+            <button class="close-btn" onclick="closeExtensionModal()">&times;</button>
+        </div>
+        <!-- Search -->
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="extensionSearch" 
+                    placeholder="Search extensions by name, description, or tags..."
+                    oninput="filterExtensions()"
+                >
             </div>
         </div>
-    </div>	  
+        <!-- Extensions List with Category Sidebar -->
+        <div class="extensions-list" id="extensionsList">
+            <!-- Category Sidebar -->
+            <ul class="extension-category-list" id="extensionCategories">
+                <li class="active" data-category="all">All</li>
+                <li data-category="displays">Displays</li>
+                <li data-category="communication">Communication</li>
+                <li data-category="signal">Signal Input/Output</li>
+                <li data-category="sensors">Sensors</li>
+                <li data-category="control">Device Control</li>
+                <li data-category="timing">Timing</li>
+                <li data-category="storage">Data Storage</li>
+                <li data-category="processing">Data Processing</li>
+                <li data-category="other">Other</li>
+                <li class="hr"></li>
+                <li data-category="installed">Installed</li>
+            </ul>
+            <!-- Extensions Grid -->
+            <div class="extension-grid">
+                <ul class="extension-list" id="extensionList">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading extensions...</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>  
+<!-- END of Extension Modal -->
+
+<!-- Firmware Modal HTML (SEPARATE from Extension Modal) -->
+<div class="modal-overlay" id="firmwareModal" style="display: none;">
+    <div class="modal-container" style="max-width: 90%; max-height: 90%;">
+        <!-- Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Flash Firmware</h2>
+            <button class="close-btn" onclick="closeFirmwareModal()">&times;</button>
+        </div>
+        <!-- Firmware Content -->
+        <div style="width: 100%; height: 80vh;">
+            <iframe id="firmware" src="flash/webtools.html" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
       <div class="toolbar">
       <div id="channel_connect">
         <button class="icon" id="channelButton" title="Choose connection channel"></button>
@@ -289,11 +324,11 @@ document.body.appendChild(el);
   </div>
 
 
-
+<!--
 <div id="content_firmware" class="content" style="padding: 0;">
   <iframe id="firmware" src="flash/webtools.html" width="100%" height="1000" frameborder="0"></iframe>
 </div>
-
+  -->
 <div id="content_nodered" class="content" style="padding: 0;">
   <iframe id="nodered" src="https://flows.nodered.org" width="100%" height="1000" frameborder="0"></iframe>
 </div>
@@ -371,12 +406,14 @@ document.body.appendChild(el);
 
   <div>
 
-  <div id="file_save_as" class="py">
-  <input type=text id=content_file_name placeholder="Filename">
-  <button id="editor2DeviceButton" class="button icon text" onclick="Files.files_save_as();">Save on Device</button>
-  <button id="generated2DeviceButton" class="button icon text" onclick="Files.file_save_as.className = 'py';  Files.files_save_as ();">Save a copy</button>
-  <button id="updateXMLButton"  class="button icon text" onclick="Files.editedXML2Workspace();">Push to workspace</button>
+<div id="file_save_as" class="py" style="display: flex; align-items: center; gap: 10px;">
+  <input type="text" id="content_file_name" placeholder="Filename" style="flex: 1;">
+  <div style="display: flex; gap: 10px;">
+    <button id="editor2DeviceButton" class="button icon text" onclick="Files.files_save_as();">Save on Device</button>
+    <button id="generated2DeviceButton" class="button icon text" onclick="Files.file_save_as.className = 'py';  Files.files_save_as ();">Save a copy</button>
+    <button id="updateXMLButton" class="button icon text" onclick="Files.editedXML2Workspace();">Push to workspace</button>
   </div>
+</div>
   <textarea id="content_file_code" wrap="off"></textarea>
 
   <link rel="stylesheet" href="core/codemirror/codemirror.css">
@@ -427,9 +464,8 @@ document.body.appendChild(el);
   </span>
   </details>
 </div>
-<script src="core/extension_ui.js"></script>
-<script>
 
+<script>
 
 // Init blockly
 Code.init ();
@@ -440,7 +476,9 @@ Channel ['websocket'] = new websocket ();
 Channel ['webserial'] = new webserial ();
 Channel ['webbluetooth'] = new webbluetooth ();
 Channel ['mux'] = new mux ();
-
+</script>
+<script src="core/extension_ui.js"></script>
+<script>
 //global terminal variable
 var terminal = new Terminal ();
 term.init('#term') //init expanded class;
@@ -556,7 +594,21 @@ window.onload = function() {
 
 
 
+function openFirmwareModal() {
+    document.getElementById('firmwareModal').style.display = 'flex';
+}
 
+function closeFirmwareModal() {
+    document.getElementById('firmwareModal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+    const firmwareModal = document.getElementById('firmwareModal');
+    if (event.target === firmwareModal) {
+        closeFirmwareModal();
+    }
+});
 
 </script>
 

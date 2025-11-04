@@ -853,11 +853,32 @@ class files {
     mux.bufferPush(rec);
   }
 
+_createDirectory(destDir) {
+    const code = [
+        'import os',
+        'def ensure_dir(path):',
+        '    parts = path.strip(\'/\').split(\'/\')',
+        '    current = \'\'',
+        '    for part in parts:',
+        '        current += \'/\' + part',
+        '        try:',
+        '            os.mkdir(current)',
+        '        except:',
+        '            pass',
+        '',
+        `ensure_dir('${destDir}')`
+    ].join('\r');
+    
+    mux.bufferPush(code + '\r');
+}
+
+
   /**
    * Upload file via WebSerial/WebBluetooth
    * @private
    */
   _putFileSerial() {
+	const destDir = this.put_file_dir;	  
     const destFileName = this.put_file_name;
     const destFileSize = this.put_file_data.length;
 
@@ -883,8 +904,14 @@ class files {
       mux.bufferPush("import storage\r");
       mux.bufferPush("storage.remount(\"/\", False)\r");
     }
-
-    mux.bufferPush(`f=open('${this.put_file_name}', 'w')\r`);
+	
+	if (destDir != '' && destDir != undefined) {
+		this._createDirectory(destDir);
+		mux.bufferPush(`f=open('${destDir}'/'${this.put_file_name}', 'w')\r`);
+	} else {
+		mux.bufferPush(`f=open('${this.put_file_name}', 'w')\r`);		
+	}
+		
     mux.bufferPush(`f.write('${decoderUint8}')\r`, () => {
       files.update_file_status(`Sent ${Files.put_file_data.length} bytes`);
     });
@@ -977,20 +1004,57 @@ class files {
       console.error('ILS: Error in handle_put_file_select_cloud:', error);
     }
   }
-  handle_put_file_extension(url) {
+  
+// Create a NEW async wrapper just for your extension installation
+handle_put_file_extension_async(url,pythonInstallPath) {
+    return new Promise((resolve, reject) => {
+        if (!url || url.trim() === '') {
+            console.log('ILS: No URL provided for extension');
+            resolve();
+            return;
+        }
+        
+        const urlParts = url.split('/');
+        this.put_file_name = urlParts[urlParts.length - 1];
+		this.put_file_dir = pythonInstallPath;
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.arrayBuffer();
+            })
+            .then(arrayBuffer => {
+                this.put_file_data = new Uint8Array(arrayBuffer);
+                this.put_file();
+                
+                // Wait a bit for put_file to complete
+                // Adjust timeout based on typical file size
+                setTimeout(() => {
+                    resolve();
+                }, 2000); // 2 second delay
+            })
+            .catch(error => {
+                console.error('ILS: Error fetching file from cloud:', error);
+                alert('Failed to fetch file: ' + error.message);
+                reject(error);
+            });
+    });
+}
+  
+handle_put_file_extension(url) {
     try {
-      
       if (!url || url.trim() === '') {
         console.log('ILS: No URL provided for extension');
-        return;
+        return Promise.resolve(); // Return resolved promise for early exit
       }
-
+      
       // Extract filename from URL
       const urlParts = url.split('/');
       this.put_file_name = urlParts[urlParts.length - 1];
-
-      // Fetch the file from HTTP location
-      fetch(url)
+      
+      // Return the Promise chain
+      return fetch(url)
         .then(response => {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -999,16 +1063,18 @@ class files {
         })
         .then(arrayBuffer => {
           this.put_file_data = new Uint8Array(arrayBuffer);
-          this.put_file();
+          return this.put_file(); // Make sure put_file() also returns a Promise if it's async
         })
         .catch(error => {
           console.error('ILS: Error fetching file from cloud:', error);
           alert('Failed to fetch file: ' + error.message);
+          throw error; // Re-throw to allow caller to handle
         });
     } catch (error) {
       console.error('ILS: Error in handle_put_file_select_cloud:', error);
+      return Promise.reject(error);
     }
-  }
+}
   /**
    * Save code from editor or workspace and upload
    */
@@ -1091,6 +1157,26 @@ class files {
     }
   }
 
+async delete_async(file) {
+  if (!file) {
+    console.error('ILS: No file specified to delete');
+    return;
+  }
+  try {
+    const msg = `Are you sure you want to delete ${file}?`;
+    if (confirm(msg)) {
+      await new Promise((resolve) => {
+        mux.bufferPush(`os.remove('${file}')\r`, this.listFiles.bind(this));
+        setTimeout(resolve, 100);
+      });
+      files.update_file_status(`Deleted ${file}`);
+    } else {
+      files.update_file_status(`Delete aborted for ${file}`);
+    }
+  } catch (error) {
+    console.error('ILS: Error deleting file:', error);
+  }
+}
   /**
    * View a file in the editor
    * @param {string} file - File name to view
