@@ -165,7 +165,9 @@
 				["IO35 / ADC7 /  GPIO35", "35"],
 				["IO34 / ADC6 /  GPIO34", "34"],
 				["IO36 / ADC0 /  GPIO36", "36"],
-				["IO39 / ADC3 /  GPIO39", "39"],				
+				["IO39 / ADC3 /  GPIO39", "39"],
+				["SCL / GPIO22", "22"],																
+				["SDA / GPIO21", "21"],				
 				["IO18 / D13 / VSPI SCK / GPIO18", "18"],
 				["IO19 / D12 / MISO / GPIO19", "19"],
 				["IO23 / D11 / MOSI / GPIO23", "23"],
@@ -177,9 +179,7 @@
 				["IO16 / D5 / RX2", "16"],												
 				["IO17 / D4 / TX2", "17"],																
 				["IO25 / D3 / DAC1 / ADC18", "25"],																
-				["IO26 / D2 / DAC2 / ADC19", "26"],
-				["SCL / GPIO22", "22"],																
-				["SDA / GPIO21", "21"]																
+				["IO26 / D2 / DAC2 / ADC19", "26"]
 			],
 			"serial_packet_size":"500"
 		},		
