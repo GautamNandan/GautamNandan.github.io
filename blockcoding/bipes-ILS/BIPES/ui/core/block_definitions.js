@@ -12292,7 +12292,7 @@ Blockly.Blocks["onstart"] = {
   init: function () {
     this.appendStatementInput("__statements")
       .setCheck(null)
-      .appendField("🚀 When Gapify Starts");
+      .appendField("🚀 When I Start");
     this.setColour(230);
     this.setTooltip("onstart function");
     this.setHelpUrl("");
