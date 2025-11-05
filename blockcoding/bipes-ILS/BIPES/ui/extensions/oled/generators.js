@@ -18,11 +18,13 @@ Blockly.Python['oled_init'] = function(block) {
   var width = dimensions[0];
   var height = dimensions[1];
   
-  var code = 'i2c = SoftI2C(scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)\n';
-  code += 'display = ssd1306.SSD1306_I2C(' + width + ', ' + height + ', i2c)\n';
-  code += 'oled_width = ' + width + '\n';
-  code += 'oled_height = ' + height + '\n';
-  code += 'display.fill(0)\n';
+  Blockly.Python.definitions_['oled_i2c'] = 'i2c = SoftI2C(scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)';
+  Blockly.Python.definitions_['oled_display'] = 'display = ssd1306.SSD1306_I2C(' + width + ', ' + height + ', i2c)';
+  
+  // Add global variables to definitions (at top of file)
+  Blockly.Python.definitions_['oled_width'] = 'oled_width = ' + width;
+  Blockly.Python.definitions_['oled_height'] = 'oled_height = ' + height;
+  var code = 'display.fill(0)\n';
   code += 'display.show()\n';
   return code;
 };
@@ -39,11 +41,12 @@ Blockly.Python['oled_init_custom'] = function(block) {
   Blockly.Python.definitions_['import_ssd1306'] = 'from ils.oled import ssd1306';
   Blockly.Python.definitions_['import_time'] = 'import time';  
   
-  var code = 'i2c = SoftI2C(scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)\n';
-  code += 'display = ssd1306.SSD1306_I2C(' + width + ', ' + height + ', i2c)\n';
-  code += 'oled_width = ' + width + '\n';
-  code += 'oled_height = ' + height + '\n';
-  code += 'display.fill(0)\n';
+  Blockly.Python.definitions_['oled_i2c'] = 'i2c = SoftI2C(scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)';
+  Blockly.Python.definitions_['oled_display'] = 'display = ssd1306.SSD1306_I2C(' + width + ', ' + height + ', i2c)';
+    // Add global variables to definitions (at top of file)
+  Blockly.Python.definitions_['oled_width'] = 'oled_width = ' + width;
+  Blockly.Python.definitions_['oled_height'] = 'oled_height = ' + height;
+  var code = 'display.fill(0)\n';
   code += 'display.show()\n';
   return code;
 };

@@ -651,7 +651,7 @@ workspace.prototype.saveXML = async function (uid) {
   if ('showSaveFilePicker' in window) {
     try {
       let xmlText = '';
-      let defaultFilename = 'workspace.bipes.xml';
+      let defaultFilename = 'ils.gapify.xml';
       
       // Get project name for default filename
       try {
@@ -717,7 +717,7 @@ workspace.prototype.saveXML = async function (uid) {
  */
 workspace.prototype.saveXMLTraditional = function (uid) {
   let xmlText = '';
-  let defaultFilename = 'workspace.bipes.xml';
+  let defaultFilename = 'ils.gapify.xml';
   
   // Get project name for default filename if available
   try {
@@ -778,10 +778,12 @@ workspace.prototype.saveXMLTraditional = function (uid) {
  */
 workspace.prototype.readWorkspace = function (xml, prettyText) {
   let regex_;
-  if (prettyText)
-    regex_ = /(<workspace>.*<\/workspace>\n)/s;
-  else
-    regex_ = /(<workspace>.*<\/workspace>)/;
+
+	if (prettyText)
+		regex_ = /(<workspace>.*<\/workspace>\n?)/s;  // \n? makes newline optional
+	else
+		regex_ = /(<workspace>.*<\/workspace>)/s;
+
   if (regex_.test(xml)) {
     let workspace_chunk = xml.match (regex_) [0];
     xml = xml.replace (regex_,'');

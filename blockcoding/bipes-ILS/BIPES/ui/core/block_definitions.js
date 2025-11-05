@@ -12290,17 +12290,17 @@ Blockly.Blocks["async_sleep"] = {
 };
 Blockly.Blocks["onstart"] = {
   init: function () {
+    this.appendDummyInput()
+      .appendField("🚀 OnStart");
     this.appendStatementInput("__statements")
-      .setCheck(null)
-      .appendField("🚀 When I Start");
+      .setCheck(null);
     this.setColour(230);
     this.setTooltip("onstart function");
     this.setHelpUrl("");
     this.setDeletable(false);
     this.contextMenu = false;
   },
-};
-// Mutator container block (sensor container)
+};// Mutator container block (sensor container)
 Blockly.Blocks['sensor_container'] = {
   init: function() {
     this.appendDummyInput()
