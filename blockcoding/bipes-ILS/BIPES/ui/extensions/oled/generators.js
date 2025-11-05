@@ -10,17 +10,15 @@ Blockly.Python['oled_init'] = function(block) {
 
   Blockly.Python.definitions_['import_uasyncio'] = 'import uasyncio';
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-  Blockly.Python.definitions_['import_i2c'] = 'from machine import I2C';
-  Blockly.Python.definitions_['import_ssd1306'] = 'import ssd1306';
-  Blockly.Python.definitions_['import_gfx'] = 'import gfx';
-  Blockly.Python.definitions_['import_tank'] = 'import tank';
+  Blockly.Python.definitions_['import_i2c'] = 'from machine import SoftI2C';
+  Blockly.Python.definitions_['import_ssd1306'] = 'from ils.oled import ssd1306';
   Blockly.Python.definitions_['import_time'] = 'import time';  
   
   var dimensions = display_size.split(',');
   var width = dimensions[0];
   var height = dimensions[1];
   
-  var code = 'i2c = I2C(0, scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)\n';
+  var code = 'i2c = SoftI2C(scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)\n';
   code += 'display = ssd1306.SSD1306_I2C(' + width + ', ' + height + ', i2c)\n';
   code += 'oled_width = ' + width + '\n';
   code += 'oled_height = ' + height + '\n';
@@ -37,13 +35,11 @@ Blockly.Python['oled_init_custom'] = function(block) {
   
   Blockly.Python.definitions_['import_uasyncio'] = 'import uasyncio';
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
-  Blockly.Python.definitions_['import_i2c'] = 'from machine import I2C';
-  Blockly.Python.definitions_['import_ssd1306'] = 'import ssd1306';
-  Blockly.Python.definitions_['import_gfx'] = 'import gfx';
-  Blockly.Python.definitions_['import_tank'] = 'import tank';
+  Blockly.Python.definitions_['import_i2c'] = 'from machine import SoftI2C';
+  Blockly.Python.definitions_['import_ssd1306'] = 'from ils.oled import ssd1306';
   Blockly.Python.definitions_['import_time'] = 'import time';  
   
-  var code = 'i2c = I2C(0, scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)\n';
+  var code = 'i2c = SoftI2C(scl=Pin(' + scl_pin + '), sda=Pin(' + sda_pin + '), freq=400000)\n';
   code += 'display = ssd1306.SSD1306_I2C(' + width + ', ' + height + ', i2c)\n';
   code += 'oled_width = ' + width + '\n';
   code += 'oled_height = ' + height + '\n';
@@ -89,6 +85,8 @@ Blockly.Python['oled_line'] = function(block) {
   var x2 = Blockly.Python.valueToCode(block, 'X2', Blockly.Python.ORDER_ATOMIC) || '10';
   var y2 = Blockly.Python.valueToCode(block, 'Y2', Blockly.Python.ORDER_ATOMIC) || '10';
   
+  Blockly.Python.definitions_['import_gfx'] = 'from ils.oled import gfx';
+  
   var code = 'gfx_obj = gfx.GFX(oled_width, oled_height, display.pixel)\n';
   code += 'gfx_obj.line(' + x1 + ', ' + y1 + ', ' + x2 + ', ' + y2 + ', 1)\n';
   code += 'display.show()\n';
@@ -101,6 +99,8 @@ Blockly.Python['oled_rect'] = function(block) {
   var width = Blockly.Python.valueToCode(block, 'WIDTH', Blockly.Python.ORDER_ATOMIC) || '20';
   var height = Blockly.Python.valueToCode(block, 'HEIGHT', Blockly.Python.ORDER_ATOMIC) || '20';
   var filled = block.getFieldValue('FILLED') === 'TRUE';
+  
+  Blockly.Python.definitions_['import_gfx'] = 'from ils.oled import gfx';
   
   var code = 'gfx_obj = gfx.GFX(oled_width, oled_height, display.pixel)\n';
   if (filled) {
@@ -117,6 +117,8 @@ Blockly.Python['oled_circle'] = function(block) {
   var y = Blockly.Python.valueToCode(block, 'Y', Blockly.Python.ORDER_ATOMIC) || '32';
   var radius = Blockly.Python.valueToCode(block, 'RADIUS', Blockly.Python.ORDER_ATOMIC) || '10';
   var filled = block.getFieldValue('FILLED') === 'TRUE';
+  
+  Blockly.Python.definitions_['import_gfx'] = 'from ils.oled import gfx';
   
   var code = 'gfx_obj = gfx.GFX(oled_width, oled_height, display.pixel)\n';
   if (filled) {
@@ -136,6 +138,8 @@ Blockly.Python['oled_triangle'] = function(block) {
   var x3 = Blockly.Python.valueToCode(block, 'X3', Blockly.Python.ORDER_ATOMIC) || '15';
   var y3 = Blockly.Python.valueToCode(block, 'Y3', Blockly.Python.ORDER_ATOMIC) || '5';
   var filled = block.getFieldValue('FILLED') === 'TRUE';
+  
+  Blockly.Python.definitions_['import_gfx'] = 'from ils.oled import gfx';
   
   var code = 'gfx_obj = gfx.GFX(oled_width, oled_height, display.pixel)\n';
   if (filled) {
@@ -177,6 +181,8 @@ Blockly.Python['tank_create'] = function(block) {
   var number_xpos = Blockly.Python.valueToCode(block, 'XPOS', Blockly.Python.ORDER_ATOMIC) || '64';
   var number_ypos = Blockly.Python.valueToCode(block, 'YPOS', Blockly.Python.ORDER_ATOMIC) || '32';
   var dropdown_direction = block.getFieldValue('DIRECTION');
+  
+  Blockly.Python.definitions_['import_tank'] = 'from ils.oled import tank';
   
   var code = 'tank_obj = tank.Tank(' + number_xpos + ', ' + number_ypos + ', ' + 
              dropdown_direction + ', display, oled_width, oled_height, i2c)\n';

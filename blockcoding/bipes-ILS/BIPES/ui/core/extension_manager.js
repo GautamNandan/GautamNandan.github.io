@@ -231,6 +231,41 @@ class ExtensionManager {
     }
   }
 
+
+async loadToolboxModules() {
+  const modules = [
+    'extensions/oled/toolbox.xml'
+    // Add more modules as needed
+  ];
+  
+  for (const moduleFile of modules) {
+    try {
+      const response = await fetch(moduleFile);
+      const xmlText = await response.text();
+      
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+      
+      // Get all categories from this module
+      const categories = xmlDoc.querySelectorAll('category');
+      
+      categories.forEach(categoryNode => {
+        const ext = {
+          id: categoryNode.getAttribute('name'),
+          name: categoryNode.getAttribute('name'),
+          category: categoryNode.getAttribute('name'), // Main category
+          toolboxCategory: categoryNode
+        };
+        
+        this.addOrMergeAsSubcategory(ext);
+      });
+      
+    } catch (error) {
+      console.error(`Failed to load ${moduleFile}:`, error);
+    }
+  }
+}
+
   addOrMergeAsSubcategory(ext) {
     if (!this.workspace) return;
 

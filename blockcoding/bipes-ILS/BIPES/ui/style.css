@@ -1657,10 +1657,9 @@ button.icon.medium:before  {
 }
 
 #firmwareButton {
-    background-image: url('path/to/firmware-icon.png'); /* Add your icon path */
+    background-image: url('./media/firmwareicon.svg'); /* Add your icon path */
 }
 
 #firmwareButton::before {
-    content: "⚡"; /* Or use an icon font like Font Awesome */
     font-size: 1.2em;
 }

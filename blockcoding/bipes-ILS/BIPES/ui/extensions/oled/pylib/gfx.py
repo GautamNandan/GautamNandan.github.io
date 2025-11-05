@@ -15,11 +15,11 @@ class GFX:
         #            and then any number of optional color or other parameters.
         #  You can also provide the following optional keyword argument to
         #  improve the performance of drawing:
-        #  - hline = A function to quickly draw a horizontal line on the displ.
+        #  - hline = A function to quickly draw a horizontal line on the display.
         #            This should take at least an x, y, and width parameter and
         #            any number of optional color or other parameters.
         #  - vline = A function to quickly draw a vertical line on the display.
-        #            This should take at least an x, y, and height paraemter a
+        #            This should take at least an x, y, and height paraemter and
         #            any number of optional color or other parameters.
         self.width = width
         self.height = height
@@ -55,7 +55,7 @@ class GFX:
 
     def rect(self, x0, y0, width, height, *args, **kwargs):
         # Rectangle drawing function.  Will draw a single pixel wide rectangle
-        # starting in the upper left x0, y0 position and width, height pixels
+        # starting in the upper left x0, y0 position and width, height pixels in
         # size.
         if y0 < -height or y0 > self.height or x0 < -width or x0 > self.width:
             return
@@ -66,7 +66,7 @@ class GFX:
 
     def fill_rect(self, x0, y0, width, height, *args, **kwargs):
         # Filled rectangle drawing function.  Will draw a single pixel wide
-        # rectangle starting in the upper left x0, y0 position and width, heig
+        # rectangle starting in the upper left x0, y0 position and width, height
         # pixels in size.
         if y0 < -height or y0 > self.height or x0 < -width or x0 > self.width:
             return
@@ -74,7 +74,7 @@ class GFX:
             self.vline(i, y0, height, *args, **kwargs)
 
     def line(self, x0, y0, x1, y1, *args, **kwargs):
-        # Line drawing function.  Will draw a single pixel wide line starting
+        # Line drawing function.  Will draw a single pixel wide line starting at
         # x0, y0 and ending at x1, y1.
         steep = abs(y1 - y0) > abs(x1 - x0)
         if steep:

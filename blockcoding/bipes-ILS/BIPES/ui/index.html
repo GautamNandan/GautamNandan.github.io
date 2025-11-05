@@ -83,6 +83,10 @@ function checkCookie() {
   <script src="core/block_definitions.js?ver=0.2.3.11011813"></script> <!-- Rafael 24/03/2020 -->
   <script src="core/generator_stubs.js?ver=0.2.3.11011813"></script> <!-- Rafael 24/03/2020 -->
 
+  <!-- Extensions -->
+  <script src="extensions/oled/blocks.js"></script>
+  <script src="extensions/oled/generators.js"></script>
+  
   <!-- xterm part -->
   <script src="core/xterm.js?ver=4.13.0"></script>
 
@@ -92,6 +96,8 @@ function checkCookie() {
 
   <!-- Progressive Web Application setup -->
   <script type="module">
+  
+
   // This is the "Offline copy of pages" service worker
 
 /*
@@ -477,7 +483,10 @@ Channel ['webserial'] = new webserial ();
 Channel ['webbluetooth'] = new webbluetooth ();
 Channel ['mux'] = new mux ();
 </script>
-<script src="core/extension_ui.js"></script>
+<script src="core/extension_ui.js">
+
+</script>
+
 <script>
 //global terminal variable
 var terminal = new Terminal ();
@@ -587,8 +596,12 @@ window.onload = function() {
 
         console.log('Initializing extension manager...');
         extensionManager.init(Code.getWorkspace());
+/*
+		(async function() {
+		  await extensionManager.loadToolboxModules();
 
-
+		})();
+*/
 };
 
 

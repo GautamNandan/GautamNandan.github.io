@@ -1,18 +1,42 @@
 // Block Definition
 
-Blockly.Blocks['comment'] = {
+// Section divider comment block
+Blockly.Blocks['comment_section'] = {
   init: function() {
-    this.appendDummyInput("comment")
-        .appendField("# Comment:")
-        .appendField(new Blockly.FieldTextInput("Add your comment here"), "TEXT");
+    this.appendDummyInput()
+        .appendField("📋 Section:")
+        .appendField(new Blockly.FieldTextInput("Section Name"), "TITLE");
+    this.appendDummyInput()
+        .appendField("Description:")
+        .appendField(new Blockly.FieldMultilineInput("Optional description"), "DESC");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("Add a comment to your code");
+    this.setTooltip("Add a section header with divider");
     this.setHelpUrl("");
   }
 };
 
+Blockly.Python['comment_section'] = function(block) {
+  var title = block.getFieldValue('TITLE');
+  var desc = block.getFieldValue('DESC');
+  
+  var code = '# ' + '='.repeat(50) + '\n';
+  code += '# ' + title.toUpperCase() + '\n';
+  
+  if (desc && desc.trim() !== '' && desc.trim() !== 'Optional description') {
+    code += '# ' + '-'.repeat(50) + '\n';
+    var descLines = desc.split('\n');
+    descLines.forEach(line => {
+      if (line.trim()) {
+        code += '# ' + line + '\n';
+      }
+    });
+  }
+  
+  code += '# ' + '='.repeat(50) + '\n';
+  return code;
+};
 
 Blockly.Blocks['show_blename'] = {
   init: function() {
@@ -12268,7 +12292,7 @@ Blockly.Blocks["onstart"] = {
   init: function () {
     this.appendStatementInput("__statements")
       .setCheck(null)
-      .appendField("onStart");
+      .appendField("🚀 When Gapify Starts");
     this.setColour(230);
     this.setTooltip("onstart function");
     this.setHelpUrl("");

@@ -23,11 +23,29 @@ Blockly.Python['project_metadata'] = function(block) {
   return code;
 };
 
+// Simple multi-line comment block
+Blockly.Blocks['comment'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("💬 Comment:");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldMultilineInput("Add your comment here"), "TEXT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Add a comment to your code");
+    this.setHelpUrl("");
+  }
+};
+
 Blockly.Python['comment'] = function(block) {
   var text = block.getFieldValue('TEXT');
-  var code = '# ' + text + '\n';
+  var lines = text.split('\n');
+  var code = lines.map(line => '# ' + line).join('\n') + '\n';
   return code;
 };
+
+
 
 Blockly.Python['show_blename'] = function(block) {
   var code = 'ils.printBleName()';  

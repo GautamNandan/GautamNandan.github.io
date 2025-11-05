@@ -16,7 +16,7 @@
     "generators": "generators.js",
     "toolbox": "toolbox.xml",
     "icon": "icon.png",
-	"python_module": ["ssd1306.py","gfx.py","tank.py"],
+	"python_module": ["gfx.py","ssd1306.py","tank.py"],
     "examples": ["test1.xml", "test2.xml"]
   },
   "settings": {
