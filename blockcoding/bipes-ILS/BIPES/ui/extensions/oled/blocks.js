@@ -6,8 +6,8 @@ Blockly.Blocks['oled_init'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/oled/icon.png",
-          55,
-          55,
+          155,
+          105,
           "*"));		
     this.appendDummyInput()
         .appendField("Display Size")
@@ -40,6 +40,12 @@ Blockly.Blocks['oled_init_custom'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🖥️ Initialize OLED custom size");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/oled/icon.png",
+          155,
+          105,
+          "*"));			
     this.appendValueInput("WIDTH")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
