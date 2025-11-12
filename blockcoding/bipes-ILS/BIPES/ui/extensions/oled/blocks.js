@@ -4,7 +4,14 @@ Blockly.Blocks['oled_init'] = {
     this.appendDummyInput()
         .appendField("🖥️ Initialize OLED display");
     this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/oled/icon.png",
+          55,
+          55,
+          "*"));		
+    this.appendDummyInput()
         .appendField("Display Size")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(new Blockly.FieldDropdown([
           ["128x64 (0.96\")", "128,64"],
           ["128x32 (0.91\")", "128,32"],
@@ -13,14 +20,16 @@ Blockly.Blocks['oled_init'] = {
         ]), "DISPLAY_SIZE");
     this.appendValueInput("SCL_PIN")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField("SCL Pin");
     this.appendValueInput("SDA_PIN")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField("SDA Pin");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Initialize the OLED display with I2C pins (default: 128x64)");
     this.setHelpUrl("");
   }
@@ -33,20 +42,24 @@ Blockly.Blocks['oled_init_custom'] = {
         .appendField("🖥️ Initialize OLED custom size");
     this.appendValueInput("WIDTH")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField("Width");
     this.appendValueInput("HEIGHT")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField("Height");
     this.appendValueInput("SCL_PIN")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField("SCL Pin");
     this.appendValueInput("SDA_PIN")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField("SDA Pin");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Initialize OLED with custom dimensions");
     this.setHelpUrl("");
   }
@@ -59,7 +72,7 @@ Blockly.Blocks['oled_clear'] = {
         .appendField("🗑️ Clear display");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Clear all content from display");
     this.setHelpUrl("");
   }
@@ -72,7 +85,7 @@ Blockly.Blocks['oled_show'] = {
         .appendField("🔄 Update display");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Update display to show changes");
     this.setHelpUrl("");
   }
@@ -96,7 +109,7 @@ Blockly.Blocks['oled_text'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Display text at specified position");
     this.setHelpUrl("");
   }
@@ -126,7 +139,7 @@ Blockly.Blocks['oled_pixel'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Draw a single pixel");
     this.setHelpUrl("");
   }
@@ -156,7 +169,7 @@ Blockly.Blocks['oled_line'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Draw a line between two points");
     this.setHelpUrl("");
   }
@@ -191,7 +204,7 @@ Blockly.Blocks['oled_rect'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Draw a rectangle");
     this.setHelpUrl("");
   }
@@ -221,7 +234,7 @@ Blockly.Blocks['oled_circle'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Draw a circle");
     this.setHelpUrl("");
   }
@@ -263,7 +276,7 @@ Blockly.Blocks['oled_triangle'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Draw a triangle with three points");
     this.setHelpUrl("");
   }
@@ -281,7 +294,7 @@ Blockly.Blocks['oled_invert'] = {
         ]), "INVERT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Invert all colors on display");
     this.setHelpUrl("");
   }
@@ -295,7 +308,7 @@ Blockly.Blocks['oled_contrast'] = {
         .appendField("💡 Set contrast");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Set display brightness (0-255)");
     this.setHelpUrl("");
   }
@@ -316,7 +329,7 @@ Blockly.Blocks['oled_scroll'] = {
         .appendField("dy");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour('#cc0000');
     this.setTooltip("Scroll the display content");
     this.setHelpUrl("");
   }
@@ -351,7 +364,7 @@ Blockly.Blocks['tank_create'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Create a tank at the specified position and direction");
     this.setHelpUrl("");
   }
@@ -364,7 +377,7 @@ Blockly.Blocks['tank_pen_down'] = {
         .appendField("🖊️ Pen down");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Put pen down - tank will draw when moving");
     this.setHelpUrl("");
   }
@@ -377,7 +390,7 @@ Blockly.Blocks['tank_pen_up'] = {
         .appendField("✏️ Pen up");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Lift pen - tank will move without drawing");
     this.setHelpUrl("");
   }
@@ -398,7 +411,7 @@ Blockly.Blocks['tank_move'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Move the tank forward or backward (respects pen state)");
     this.setHelpUrl("");
   }
@@ -419,7 +432,7 @@ Blockly.Blocks['tank_turn'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Turn the tank left or right by specified degrees");
     this.setHelpUrl("");
   }
@@ -444,7 +457,7 @@ Blockly.Blocks['tank_turn_preset'] = {
         ]), "ANGLE");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Turn the tank by a preset angle");
     this.setHelpUrl("");
   }
@@ -463,7 +476,7 @@ Blockly.Blocks['tank_orient'] = {
         ]), "DIRECTION");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Point the tank in an absolute direction");
     this.setHelpUrl("");
   }
@@ -480,7 +493,7 @@ Blockly.Blocks['tank_orient_custom'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Point the tank to a custom angle");
     this.setHelpUrl("");
   }
@@ -502,7 +515,7 @@ Blockly.Blocks['tank_goto'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Jump to specified coordinates");
     this.setHelpUrl("");
   }
@@ -516,7 +529,7 @@ Blockly.Blocks['tank_home'] = {
         .appendField("🏠 Go to home (0, 0)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Return tank to origin (0, 0)");
     this.setHelpUrl("");
   }
@@ -529,7 +542,7 @@ Blockly.Blocks['tank_centre'] = {
         .appendField("⊙ Go to center of screen");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Move tank to center of screen");
     this.setHelpUrl("");
   }
@@ -555,7 +568,7 @@ Blockly.Blocks['tank_draw_shape'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Draw a preset shape");
     this.setHelpUrl("");
   }
@@ -567,7 +580,7 @@ Blockly.Blocks['tank_get_x'] = {
     this.appendDummyInput()
         .appendField("Tank x position");
     this.setOutput(true, "Number");
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Get current X position of tank");
     this.setHelpUrl("");
   }
@@ -579,7 +592,7 @@ Blockly.Blocks['tank_get_y'] = {
     this.appendDummyInput()
         .appendField("Tank y position");
     this.setOutput(true, "Number");
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Get current Y position of tank");
     this.setHelpUrl("");
   }
@@ -591,7 +604,7 @@ Blockly.Blocks['tank_get_direction'] = {
     this.appendDummyInput()
         .appendField("Tank direction");
     this.setOutput(true, "Number");
-    this.setColour(160);
+    this.setColour('#cc0000');
     this.setTooltip("Get current direction of tank (0-360°)");
     this.setHelpUrl("");
   }

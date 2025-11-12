@@ -1,0 +1,167 @@
+
+<category name="ILS Stepper Motor" colour="#666600" id="stepper_category">
+  
+  <!-- SETUP SECTION -->
+  <label text="⚙️ Setup" web-class="boldtext"></label>
+  <block type="stepper_init">
+    <comment pinned="true" h="120" w="300">Connect your stepper motor:
+• IN1, IN2, IN3, IN4 to ESP32 GPIO pins
+• Use different Motor IDs (0-9) for multiple motors
+• 28BYJ-48 uses 2048 steps/revolution</comment>
+    <value name="IN1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="IN2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="IN3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="IN4_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- BASIC MOVEMENT SECTION -->
+  <label text="🎯 Basic Movement" web-class="boldtext"></label>
+  
+  <block type="stepper_rotate_degrees">
+    <comment pinned="false" h="80" w="250">Rotate motor by angle:
+• 90° = quarter turn
+• 180° = half turn
+• 360° = full turn</comment>
+    <value name="DEGREES">
+      <shadow type="math_number">
+        <field name="NUM">90</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="stepper_move_steps">
+    <comment pinned="false" h="80" w="250">Move by exact steps:
+• 1 full rotation = steps/revolution
+• 28BYJ-48: 2048 steps = 360°
+• Use for precise control</comment>
+    <value name="STEPS">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="stepper_move_to_position">
+    <comment pinned="false" h="80" w="250">Go to absolute position:
+• 0° = starting position
+• Motor remembers where it is
+• Great for returning to positions</comment>
+    <value name="POSITION">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- SPEED CONTROL SECTION -->
+  <label text="🚀 Speed Control" web-class="boldtext"></label>
+  
+  <block type="stepper_set_speed_preset">
+    <comment pinned="false" h="60" w="250">Choose easy speed presets:
+• Very Slow = careful movements
+• Fast = quick actions</comment>
+  </block>
+  
+  <block type="stepper_set_speed_rpm">
+    <comment pinned="false" h="80" w="250">Set exact speed in RPM:
+• RPM = Rotations Per Minute
+• 28BYJ-48: 1-15 RPM typical
+• Higher = faster (may skip steps)</comment>
+    <value name="RPM">
+      <shadow type="math_number">
+        <field name="NUM">10</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- ADVANCED MOVEMENT SECTION -->
+  <label text="✨ Advanced Movement" web-class="boldtext"></label>
+  
+  <block type="stepper_rotate_smooth">
+    <comment pinned="false" h="80" w="250">Smooth rotation with acceleration:
+• Smooth = gradual speed changes
+• Normal = standard movement
+• Quick = fast start and stop</comment>
+    <value name="DEGREES">
+      <shadow type="math_number">
+        <field name="NUM">180</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="stepper_spin_continuous">
+    <comment pinned="true" h="80" w="280">⚠️ WARNING: This blocks your code!
+Use only when you want continuous rotation.
+Put a "Stop" block to halt spinning.</comment>
+  </block>
+  
+  <block type="stepper_stop">
+    <comment pinned="false" h="60" w="250">Emergency stop:
+• Halts motor immediately
+• Turns off all coils</comment>
+  </block>
+  
+  <block type="stepper_dance">
+    <comment pinned="false" h="60" w="250">Fun dance pattern!
+Motor moves back and forth.
+Great for testing your setup.</comment>
+    <value name="REPETITIONS">
+      <shadow type="math_number">
+        <field name="NUM">3</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- STATUS & SENSORS SECTION -->
+  <label text="📊 Status & Info" web-class="boldtext"></label>
+  
+  <block type="stepper_get_position">
+    <comment pinned="false" h="60" w="250">Get current position in degrees.
+Returns number from 0° onwards.</comment>
+  </block>
+  
+  <block type="stepper_is_moving">
+    <comment pinned="false" h="60" w="250">Check if motor is moving.
+Returns true or false.</comment>
+  </block>
+  
+  <block type="stepper_reset_position">
+    <comment pinned="false" h="60" w="250">Reset position to 0°.
+Current position becomes new start.</comment>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- EXAMPLE PROJECTS SECTION -->
+  <label text="💡 Example Projects" web-class="boldtext"></label>
+  <label text="• Robot Arm" web-class="plaintext"></label>
+  <label text="• Clock Hands" web-class="plaintext"></label>
+  <label text="• Rotating Display" web-class="plaintext"></label>
+  <label text="• Automatic Door" web-class="plaintext"></label>
+  <label text="• Drawing Machine" web-class="plaintext"></label>
+  
+</category>

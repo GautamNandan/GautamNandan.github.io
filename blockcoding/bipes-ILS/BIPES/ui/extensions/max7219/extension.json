@@ -1,0 +1,61 @@
+{
+  "name": "ILS MAX7219 LED Matrix",
+  "description": "Control MAX7219 8x8 LED matrix displays with support for cascading multiple units. Display text, numbers, custom patterns and animations.",
+  "version": "1.0.0",
+  "author": "Infinity Learning Space",
+  "brand": "ILS",
+  "device": "MAX7219 LED matrix",
+  "blockly_version": "6.20210701.0",
+  "target": "micropython",
+  "category": "Display",
+  "color": "#9C27B0",
+  "files": {
+    "toolbox": "toolbox.xml",
+    "blocks": "blocks.js",
+    "generators": "generators.js"
+  },
+  "dependencies": {
+    "micropython_modules": [
+      "machine.Pin",
+      "machine.SPI",
+      "framebuf",
+      "time"
+    ],
+    "custom_modules": [
+      "ils.max7219"
+    ]
+  },
+  "default_pins": {
+    "CLK": 14,
+    "DIO": 13,
+    "CS": 12
+  },
+  "features": [
+    "Support for cascading multiple 8x8 LED matrices",
+    "Display text with automatic positioning",
+    "Display numbers at specific coordinates",
+    "Scroll text across display with adjustable speed",
+    "Set individual pixels (pixel art)",
+    "Fill entire matrix on/off",
+    "Create custom 8x8 patterns using visual grid",
+    "Adjustable brightness (0-15)",
+    "Power management (wake/shutdown)",
+    "Clear display buffer",
+    "Show/update display content"
+  ],
+  "matrix_specs": {
+    "size": "8x8 pixels per unit",
+    "cascading": "Support multiple units",
+    "brightness_levels": 16,
+    "protocol": "SPI"
+  },
+  "age_group": "8-14 years",
+  "difficulty": "Beginner to Intermediate",
+  "examples": [
+    "Display scrolling messages",
+    "Show numbers and counters",
+    "Create pixel art and animations",
+    "Build simple games",
+    "Design custom patterns"
+  ]
+}

@@ -29,6 +29,7 @@ Blockly.Python['oled_init'] = function(block) {
   return code;
 };
 
+
 Blockly.Python['oled_init_custom'] = function(block) {
   var width = Blockly.Python.valueToCode(block, 'WIDTH', Blockly.Python.ORDER_ATOMIC) || '128';
   var height = Blockly.Python.valueToCode(block, 'HEIGHT', Blockly.Python.ORDER_ATOMIC) || '64';

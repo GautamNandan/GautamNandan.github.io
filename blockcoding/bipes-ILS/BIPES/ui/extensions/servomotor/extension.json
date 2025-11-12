@@ -1,0 +1,79 @@
+{
+  "name": "ILS Servo Motor",
+  "description": "Control standard 180° and continuous 360° servo motors. Perfect for robot arms, doors, wheels and more!",
+  "author": "ILS",
+  "version": "1.0.0",
+  "category": "actuator",
+  "icon": "servo.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#666600",
+  "tags": ["servo", "motor", "180", "360", "continuous", "actuator", "robot"],
+  "helpUrl": "",
+  "dependencies": {
+    "python": ["machine.Pin", "machine.PWM", "time"],
+    "modules": ["ils.servo"]
+  },
+  "hardware": {
+    "name": "Servo Motor",
+    "description": "Standard 180° and continuous 360° servo motors",
+    "types": {
+      "standard": {
+        "name": "180° Servo",
+        "description": "Standard servo with 180° rotation range",
+        "range": "0-180 degrees",
+        "uses": ["Robot arms", "Doors", "Camera pan/tilt", "Steering"]
+      },
+      "continuous": {
+        "name": "360° Continuous Servo",
+        "description": "Modified servo for continuous rotation like a motor",
+        "range": "Full 360° rotation",
+        "uses": ["Robot wheels", "Conveyor belts", "Rotating platforms", "Propellers"]
+      }
+    },
+    "pins": {
+      "Signal": "Control signal (PWM) - connect to ESP32 GPIO",
+      "VCC": "Power supply (5V) - red wire",
+      "GND": "Ground - brown/black wire"
+    },
+    "connections": [
+      "Connect signal wire (orange/yellow/white) to ESP32 GPIO pin",
+      "Connect VCC (red) to 5V power supply",
+      "Connect GND (brown/black) to ground",
+      "Use external 5V power for multiple servos (not ESP32 5V pin)",
+      "Connect ESP32 GND to external power GND"
+    ],
+    "power_notes": [
+      "Single servo: Can use ESP32 5V pin (be careful)",
+      "Multiple servos: Use external 5V power supply (recommended)",
+      "Typical servo: 100-300mA under load",
+      "Always connect grounds together (ESP32 GND + Power Supply GND)"
+    ]
+  },
+  "educational": {
+    "ageGroup": "8-14 years",
+    "difficulty": "beginner",
+    "concepts": ["servo motors", "PWM", "angles", "rotation", "position control", "speed control"],
+    "projects": [
+      "Robot arm grabber",
+      "Automatic pet feeder",
+      "Door lock mechanism",
+      "Solar panel tracker",
+      "Drawing robot",
+      "Robot car with steering",
+      "Camera pan-tilt mount",
+      "Spinning display",
+      "Automatic window opener",
+      "Waving hand project"
+    ]
+  },
+  "tips": [
+    "Standard servo: Angle 90° is center position",
+    "Standard servo: Angle 0° is full left, 180° is full right",
+    "Continuous servo: Speed 0 stops, 50 is slow, 100 is fast",
+    "Use detach() when not moving to save power",
+    "Smooth move creates gradual motion for realistic movements",
+    "Sweep is great for back-and-forth motions like waving"
+  ]
+}

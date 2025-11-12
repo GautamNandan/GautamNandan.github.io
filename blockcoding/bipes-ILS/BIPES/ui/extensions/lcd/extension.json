@@ -1,0 +1,61 @@
+{
+  "name": "ILS Character LCD",
+  "version": "1.0.0",
+  "description": "Control character LCD displays (16x2, 20x4, etc.) using PCF8574 I2C controller with ILS blocks. Perfect for displaying text and data.",
+  "author": "ILS",
+  "category": "Display",
+  "tags": ["lcd", "display", "i2c", "pcf8574", "character", "text", "16x2", "20x4"],
+  "icon": "media/lcd.png",
+  "color": "#cc0000",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "requirements": {
+    "micropython": ">=1.19",
+    "modules": ["lcd"]
+  },
+  "hardware": {
+    "compatible": ["ESP32", "ESP8266", "Raspberry Pi Pico"],
+    "connections": {
+      "scl": "I2C Clock (default: GPIO 22 on ESP32)",
+      "sda": "I2C Data (default: GPIO 21 on ESP32)",
+      "vcc": "5V or 3.3V (check your LCD module)",
+      "gnd": "GND"
+    }
+  },
+  "features": [
+    "Single LCD display support",
+    "16x2 and 20x4 LCD support",
+    "PCF8574 I2C controller",
+    "Backlight control",
+    "Cursor positioning",
+    "Text scrolling",
+    "Kid-friendly interface (ages 8-14)"
+  ],
+  "documentation": {
+    "quickstart": "Connect LCD via I2C using PCF8574 controller. Use Setup block to initialize, then write text using Write Text block. Position cursor with Move Cursor block.",
+    "examples": [
+      {
+        "name": "Hello World",
+        "description": "Display 'Hello World!' on the first line"
+      },
+      {
+        "name": "Temperature Display",
+        "description": "Show sensor readings on LCD"
+      },
+      {
+        "name": "Scrolling Text",
+        "description": "Create scrolling text effect"
+      }
+    ],
+    "tips": [
+      "Row and column numbers start at 0",
+      "Most common LCD sizes are 16x2 (16 columns, 2 rows) and 20x4 (20 columns, 4 rows)",
+      "Default I2C address is 0x27 (some modules use 0x3F)",
+      "Use Clear Display before writing new text for best results",
+      "Backlight can be turned off to save power"
+    ]
+  },
+  "blockly_version": "6.20210701.0",
+  "brand": "ILS"
+}

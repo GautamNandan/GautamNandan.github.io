@@ -1296,111 +1296,6 @@ Blockly.Blocks['tank_turn'] = {
   }
 };
 */
-Blockly.Blocks['init_servo'] = {
-  init: function() {
-    this.appendDummyInput()
-      .appendField(new Blockly.FieldImage("media/servo.png", 55, 55, "*"))
-      .appendField("Init RC Servo Motor");
-
-    this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Servo Name")
-      .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
-
-    this.appendValueInput("pin")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Pin");
-
-    this.appendValueInput("servo_frequency")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("frequency");
-      
-    this.appendValueInput("servo_min_us")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("min_us");      
-      
-
-    this.appendValueInput("servo_max_us")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("max_us");
-      
-    this.appendValueInput("servo_angle")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("max_angle");
-                        
-    this.setColour(230);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setTooltip("Init RC servo motor");
-    this.setHelpUrl("http://www.bipes.net.ebr");
-  }
-};
-
-
-
-Blockly.Blocks['move_servo_angle'] = {
-  init: function() {
-    this.appendDummyInput()
-      .appendField("Move Servo Motor")
-      .appendField("Servo Name")
-      .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
-
-    this.appendValueInput("angle")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Angle");
-
-    this.setColour(230);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setTooltip("Move RC servo motor to degrees");
-    this.setHelpUrl("http://www.bipes.net.ebr");
-  }
-};
-
-Blockly.Blocks['move_servo_time'] = {
-  init: function() {
-    this.appendDummyInput()
-      .appendField("Move Servo Motor")
-      .appendField("Servo Name")
-      .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
-
-    this.appendValueInput("time")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("utime");
-
-    this.setColour(230);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setTooltip("Move RC servo motor for us time");
-    this.setHelpUrl("http://www.bipes.net.ebr");
-  }
-};
-
-Blockly.Blocks['servo_stop'] = {
-  init: function() {
-    this.appendDummyInput()
-	  .appendField("Servo_stop")
-      .appendField("Servo Name")
-      .appendField(new Blockly.FieldTextInput("servo1"), "servo_name");  // Adicionando o campo de nome
-
-    this.setColour(230);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setTooltip("Stops Servo Motor");
-    this.setHelpUrl("http://www.bipes.net.ebr");
-  }
-};
 
 Blockly.Blocks['net_get_request'] = {
   init: function() {
@@ -1786,153 +1681,6 @@ Blockly.Blocks['max7219_custom'] = {
 
     }
 };
-
-Blockly.Blocks['tm1637_init'] = {
-  init: function() {
-
- this.appendDummyInput()
-      .appendField(new Blockly.FieldImage(
-        "media/tm1637led.png",
-        55,
-        55,
-        "*"))
-      .appendField("Start tm1637 LED")
-	  ;
-
-    this.appendValueInput("clk")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("CLK");
-
-    this.appendValueInput("dio")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("DO");
-		
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("Start tm1637 LED");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tm1637_write'] = {
-  init: function() {
-   this.appendDummyInput()
-        .appendField("Write to Led");
-
- this.appendValueInput("text")
-        .setCheck("String")
-        .appendField("LED Text value");
-
- this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setColour(230);
- this.setTooltip("Write to tm1637 LED");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tm1637_scroll'] = {
-  init: function() {
-   this.appendDummyInput()
-        .appendField("Scroll Text on Led");
-
- this.appendValueInput("text")
-        .setCheck("String")
-        .appendField("LED Text value");
-		
- this.appendValueInput("delay")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("DELAY(ms)");
-		
- this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setColour(230);
- this.setTooltip("Write to tm1637 LED");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tm1637_temp'] = {
-  init: function() {
-   this.appendDummyInput()
-        .appendField("Write Temperature on Led");
-
-    this.appendValueInput("temp")
-        .setCheck("Number")
-        .appendField("value");
-
-
- this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-
-    this.setColour(230);
- this.setTooltip("Write number on tm1637 LED");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tm1637_brig'] = {
-  init: function() {
-   this.appendDummyInput()
-        .appendField("Set Brightness of Led");
-
-    this.appendValueInput("brig")
-        .setCheck("Number")
-        .appendField("Percentage (1-100)");
-
-
- this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-
-    this.setColour(230);
- this.setTooltip("Set brightness of tm1637 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tm1637_time'] = {
-  init: function() {
-
-   this.appendDummyInput()
-        .appendField("Set Time on Led");
-		
-    this.appendValueInput("hrs")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("HRS");
-
-    this.appendValueInput("mns")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("MNS");
-		
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("Show temperature");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tm1637_clear'] = {
-  init: function() {
-    this.setColour(230);
-    this.appendDummyInput()
-        .appendField("Clear 7 segment");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
 
 Blockly.Blocks['file_open_write'] = {
   init: function() {
@@ -2626,9 +2374,39 @@ Blockly.Blocks['easymqtt_disconnect'] = {
   }
 };
 
+
+Blockly.Blocks['servo_init_standard'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🔧 Servo Setup (180°)");	
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/servo/icon.png",
+          55,
+          55,
+          "*"));
+    this.appendValueInput("PIN")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Signal Pin");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Servo ID")
+        .appendField(new Blockly.FieldNumber(1, 1, 16), "SERVO_ID");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour("#666600");
+    this.setTooltip("Setup a standard 180° servo motor. ID helps control multiple servos");
+    this.setHelpUrl("");
+  }
+};
+
+
 /// Relay Switch
 Blockly.Blocks['relay_switch'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField("🎛️ Relay Control");	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
                      "media/relay.png",
@@ -2636,7 +2414,6 @@ Blockly.Blocks['relay_switch'] = {
                      55,
                      "*"))
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(MSG["relay"]);
     this.appendValueInput("pin")
         .setCheck("Number")
         .appendField('')
@@ -2647,7 +2424,7 @@ Blockly.Blocks['relay_switch'] = {
         .appendField(MSG["relay_on"]);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour("#666600");
     this.setTooltip("Turn On Relay on GPIO digital pin");
     this.setHelpUrl("bipes.net.br");
   }
@@ -9761,182 +9538,7 @@ Blockly.Blocks['predict'] = {
 
 
 
-//I2C Char LCD
 
-Blockly.Blocks['char_lcd_init'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Init I2C Character LCD Display");
-
- this.appendDummyInput()
-      .appendField(new Blockly.FieldImage(
-        "media/lcd20x4.jpg",
-        55,
-        55,
-        "*"));
-        //.setAlign(Blockly.ALIGN_CENTRE);
-	  //
-
-    this.appendValueInput("sda")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("SDA");
-
-    this.appendValueInput("scl")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("SCL");
-
-    this.appendValueInput("lines")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Lines");
-
-    this.appendValueInput("columns")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Columns");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_clear'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Clear LCD");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-
-Blockly.Blocks['char_lcd_putstr'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Write text on LCD");
-
-    this.appendValueInput("text")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Text");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_moveto'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Move LCD Cursor to");
-
-    this.appendValueInput("x")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("X");
-
-    this.appendValueInput("y")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Y");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_backlight'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("LCD Backlight");
-
-    this.appendValueInput("state")
-        .setCheck("Boolean")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("TRUE/FALSE");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_scroll_left'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Scroll Left");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_scroll_right'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Scroll Right");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_show_cursor'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Show Cursor");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['char_lcd_hide_cursor'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Hide Cursor");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-
-Blockly.Blocks['char_lcd_display'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("LCD Power");
-
-    this.appendValueInput("state")
-        .setCheck("Boolean")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("TRUE/FALSE");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
 
 //RC522 RFID module
 
@@ -10872,169 +10474,9 @@ Blockly.Blocks['encoder_button'] = {
   }
 };
 
-//Stepper Motor
-//
-//
-
-Blockly.Blocks['stepper_init'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Init Stepper Motor");
-
- this.appendDummyInput()
-      .appendField(new Blockly.FieldImage(
-        "media/stepper.png",
-        55,
-        55,
-        "*"));
-        //.setAlign(Blockly.ALIGN_CENTRE);
-
-    this.appendValueInput("p0")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Pin0");
-
-    this.appendValueInput("p1")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Pin1");
-
-    this.appendValueInput("p2")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Pin2");
-
-    this.appendValueInput("p3")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Pin3");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['stepper_step'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Stepper Step");
-
-    this.appendValueInput("steps")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Steps");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setTooltip('');
-  }
-};
 
 
 
-//DC Motor with H-Bridge
-Blockly.Blocks['dc_motor_init'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Init DC Motor");
-
-    this.appendDummyInput()
-      .appendField(new Blockly.FieldImage(
-        "media/dcmotor.png",
-        55,
-        55,
-        "*"));
-
-    this.appendValueInput("pwm")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("PWM");
-
-    this.appendValueInput("dir1")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Dir1");
-
-    this.appendValueInput("dir2")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Dir2");
-
-    this.appendDummyInput()
-        .appendField("Motor Name")
-        .appendField(new Blockly.FieldTextInput('motor1'), 'motor_name');
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['dc_motor_power'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Set DC Motor Power");
-
-    this.appendValueInput("power")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Power");
-
-    this.appendDummyInput()
-        //.appendField("Motor Name")
-        .appendField(new Blockly.FieldTextInput('motor1'), 'motor_name');
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['dc_motor_direction'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Set DC Motor Direction");
-
-    this.appendValueInput("dir")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Direction");
-
-    this.appendDummyInput()
-        //.appendField("Motor Name")
-        .appendField(new Blockly.FieldTextInput('motor1'), 'motor_name');
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['dc_motor_stop'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Stop DC Motor");
-
-    this.appendDummyInput()
-        //.appendField("Motor Name")
-        .appendField(new Blockly.FieldTextInput('motor1'), 'motor_name');
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setTooltip('');
-  }
-};
 
 
 //ESP32 specific functions
@@ -11148,175 +10590,6 @@ Blockly.Blocks['python_try_catch'] = {
 
 
 
-//neopixel
-Blockly.Blocks['neopixel_init'] = {
-  init: function() {
-    this.setColour(135);
-    this.appendDummyInput()
-        .appendField("Init NeoPixel");
-
- this.appendDummyInput()
-      .appendField(new Blockly.FieldImage(
-        "media/neopixel.png",
-        55,
-        55,
-        "*"));
-
-    this.appendValueInput("pin")
-        .setCheck(null)
-	.appendField("Pin");
-
-    this.appendValueInput("number")
-        .setCheck("Number")
-	  .appendField("Number of LEDs");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip("Init NeoPixel on the specified pin");
-  }
-};
-
-
-Blockly.Blocks['neopixel_control_CPY'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabel("Control NeoPixel"), "MSG_NEOPIXEL");
-
-    this.appendValueInput("pin")
-        .setCheck(null)
-	.appendField("Pin");
-
-    this.appendValueInput("color")
-        .setCheck("Number")
-	  .appendField("Color");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setColour(230);
- this.setTooltip("Set NeoPixel");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-}
-
-Blockly.Blocks['neopixel_control'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabel("Control NeoPixel"), "MSG_NEOPIXEL");
-
-    this.appendValueInput("address")
-        .setCheck(null)
-	.appendField("LED");
-
-    this.appendValueInput("color")
-        .setCheck("Number")
-	  .appendField("Color");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setColour(230);
- this.setTooltip("Set NeoPixel");
- this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-
-Blockly.Blocks['neopixel_write'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldLabel("Write NeoPixel"), "MSG_NEOPIXEL");
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-
-    this.setColour(230);
-    this.setTooltip("Write NeoPixel");
-    this.setHelpUrl("http://www.bipes.net.br");
-  }
-};
-
-function componentToHex(c) {
-  var hex =  parseInt(c).toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
-
-Blockly.Blocks['neopixel_color_numbers'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Red");
-    this.appendValueInput("red")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField("Green");
-    this.appendValueInput("green")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField("Blue");
-    this.appendValueInput("blue")
-        .setCheck(null);
-    this.setInputsInline(true);
-    this.setOutput(true, null);
-    this.setColour(230);
-    this.setTooltip("NeoPixel LED RGB URL");
-    this.setHelpUrl("https://bipes.net.br/wp/?page_id=177");
-  },
-  styleBlock: function(colours) {
-    colours = colours.map(x => parseInt(x))
-    colours = colours.includes(NaN) ? [89,102,166] : colours
-    if(colours.every((e) => {return e <= 255}) && colours.every((e) => {return e >= 0})) {
-      let hex_ = Tool.RGB2HEX (colours [0], colours [1], colours [2]);
-      this.setColour(hex_);
-    } else
-      this.setColour("#FF0000");
-  }
-};
-
-Blockly.Blocks['neopixel_color_colors'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Color")
-        .appendField(new Blockly.FieldColour("#ff0000"), "color");
-    this.setInputsInline(true);
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("NeoPixel LED Color");
- this.setHelpUrl("https://bipes.net.br/wp/?page_id=177");
-  }
-};
-
-Blockly.Blocks['HSL_to_RGB'] = {
-  init: function  () {
-    this.appendDummyInput()
-        .appendField("Hue");
-    this.appendValueInput("hue")
-        .setCheck('Number');
-    this.appendDummyInput()
-        .appendField("Saturation");
-    this.appendValueInput("saturation")
-        .setCheck('Number');
-    this.appendDummyInput()
-        .appendField("Lightness");
-    this.appendValueInput("lightness")
-        .setCheck('Number');
-
-    this.setInputsInline(true);
-    this.setOutput(true, null);
-    this.setColour(230);
-    this.setTooltip("HUE to RGB color, Hue from 0º to 360º, Saturation and Lightness from 0% to 100%.");
-    this.setHelpUrl("https://bipes.net.br/wp/?page_id=177");
-  },
-
-  styleBlock: function(colours) {
-    colours = colours.map(x => parseFloat(x))
-    colours = colours.includes(NaN) ? [230,30,50] : colours
-    if (colours[0] <= 360 && colours[0] >= 0 && colours[1] >= 0 && colours[1] <= 100 && colours[2] >= 0 && colours[2] <= 100) {
-      let hex_ = Tool.HUE2HEX (colours [0], colours [1], colours [2]);
-      this.setColour(hex_);
-    } else
-      this.setColour("#FF0000");
-  }
-};
 
 
 Blockly.Blocks['bipes_plot'] = {
@@ -11733,99 +11006,6 @@ Blockly.Blocks['esp32_cam_white_led'] = {
     this.setColour(230);
  this.setTooltip("Control ESP32-CAM White LED (flashlight)");
  this.setHelpUrl("bipes.net.br");
-  }
-};
-
-//Sound
-Blockly.Blocks['tone'] = {
-  init: function(){
-    this.appendDummyInput()
-        .appendField("Tone (Hz)");
-
-    this.appendValueInput("pin")
-        .setCheck(null)
-	.appendField("Pin");
-    this.appendValueInput("frequency")
-        .setCheck("Number")
-	  .appendField("Frequency");
-
-    this.appendValueInput("duration")
-        .setCheck("Number")
-	.appendField("Duration (s):");
-
-    this.appendDummyInput()
-        .appendField("(0 for infinite duration)");
-
-
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("Sound - tone generator");
- this.setHelpUrl("http://www.bipes.net.br");
- }
-};
-
-Blockly.Blocks['note'] = {
-  init: function(){
-    this.appendDummyInput()
-        .appendField("Play music note");
-    this.appendValueInput("pin")
-        .setCheck(null)
-	.appendField("Pin");
-
-    this.appendValueInput("note")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Note");
-
-    this.appendValueInput("duration")
-        .setCheck("Number")
-	.appendField("Duration (s):");
-
-    this.appendDummyInput()
-        .appendField("(0 for infinite duration)");
-
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("Sound - tone generator (music note)");
- this.setHelpUrl("http://www.bipes.net.br");
- }
-};
-
-
-
-Blockly.Blocks['rtttl_play'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Play song (RTTTL)");
-
-    this.appendValueInput("pin")
-        .setCheck(null)
-	.appendField("Pin");
-
-    this.appendValueInput("song")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Song");
-
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("Control ESP32-CAM White LED (flashlight)");
- this.setHelpUrl("bipes.net.br");
-  }
-};
-
-Blockly.Blocks['tone_type'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Note:")
-//        .appendField(new Blockly.FieldDropdown([["B1","31"], ["C2","33"], ["CS2","35"], ["D2","37"], ["DS2","39"], ["E2","41"], ["F2","44"], ["FS2","46"], ["G2","49"], ["GS2","52"], ["A2","55"], ["AS2","58"]]), "tone");
-        .appendField(new Blockly.FieldDropdown([["B1","31"],["C2","33"],["CS2","35"],["D2","37"],["DS2","39"],["E2","41"],["F2","44"],["FS2","46"],["G2","49"],["GS2","52"],["A2","55"],["AS2","58"],["B2","62"],["C3","65"],["CS3","69"],["D3","73"],["DS3","78"],["E3","82"],["F3","87"],["FS3","93"],["G3","98"],["GS3","104"],["A3","110"],["AS3","117"],["B3","123"],["C4","131"],["CS4","139"],["D4","147"],["DS4","156"],["E4","165"],["F4","175"],["FS4","185"],["G4","196"],["GS4","208"],["A4","220"],["AS4","233"],["B4","247"],["C5","262"],["CS5","277"],["D5","294"],["DS5","311"],["E5","330"],["F5","349"],["FS5","370"],["G5","392"],["GS5","415"],["A5","440"],["AS5","466"],["B5","494"],["C6","523"],["CS6","554"],["D6","587"],["DS6","622"],["E6","659"],["F6","698"],["FS6","740"],["G6","784"],["GS6","831"],["A6","880"],["AS6","932"],["B6","988"],["C7","1047"],["CS7","1109"],["D7","1175"],["DS7","1245"],["E7","1319"],["F7","1397"],["FS7","1480"],["G7","1568"],["GS7","1661"],["A7","1760"],["AS7","1865"],["B7","1976"],["C8","2093"],["CS8","2217"],["D8","2349"],["DS8","2489"],["E8","2637"],["F8","2794"],["FS8","2960"],["G8","3136"],["GS8","3322"],["A8","3520"],["AS8","3729"],["B8","3951"],["C9","4186"],["CS9","4435"],["D9","4699"],["DS9","4978"],["P","0"]]), "tone");
-
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
   }
 };
 

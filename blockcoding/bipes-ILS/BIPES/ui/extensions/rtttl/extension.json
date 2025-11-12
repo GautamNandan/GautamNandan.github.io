@@ -1,0 +1,22 @@
+{
+  "name": "ILS RTTTL Player",
+  "description": "Play popular songs and custom melodies using RTTTL format with buzzer",
+  "author": "ILS",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "translations": {
+    "en": {
+      "name": "ILS RTTTL Player",
+      "description": "Play popular songs and custom melodies using RTTTL format"
+    }
+  },
+  "tags": ["music", "buzzer", "sound", "melody", "rtttl"],
+  "platform": ["esp32"],
+  "dependencies": {
+    "micropython": ">=1.19",
+    "hardware": ["buzzer", "passive_buzzer"]
+  }
+}

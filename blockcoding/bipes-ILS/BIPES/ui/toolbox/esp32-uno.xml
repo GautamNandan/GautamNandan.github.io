@@ -572,9 +572,9 @@
 </category>
 
 
-<category name="%{BKY_CAT_DISPLAYS}" colour="%{BKY_DISPLAYS_HUE}">
+<category name="%{BKY_CAT_DISPLAYS}" colour="#cc0000">
 <!-- OLED DISPLAY CATEGORY -->
-  <category name="OLED Display" colour="230">
+  <category name="OLED Display" colour="#cc0000">
     <label text="Setup" web-class="boldtext"></label>
     <block type="oled_init">
       <field name="DISPLAY_SIZE">128,64</field>
@@ -615,7 +615,7 @@
 	
 	
     <sep gap="32"></sep>
-  <category name="Draw Utils" colour="230">
+  <category name="Draw Utils" colour="#cc0000">
     <sep gap="32"></sep>
     <label text="Display Control" web-class="boldtext"></label>
     <block type="oled_clear"></block>
@@ -777,7 +777,7 @@
   </category>
   
   <!-- TANK DRAWING CATEGORY -->
-  <category name="Tank Drawing" colour="160">
+  <category name="Tank Drawing" colour="#cc0000">
     <label text="Setup" web-class="boldtext"></label>
     <block type="tank_create">
       <value name="XPOS">
@@ -871,530 +871,563 @@
   
   </category>
   
-<category name="NeoPixel LED Strip" colour="%{BKY_DISPLAYS_HUE}">
-      <label text="NeoPixel RGB LED Strip"></label>
-
-        <button text="Documentation and how to connect: neopixel" callbackKey="loadDoc"></button>
-
-      <block type="neopixel_init">
-       <value name="pin">
-          <shadow type="pinout">
-            <field name="Pin"></field>
-          </shadow>
-       </value>
-
-       <value name="number">
+  <category name="NeoPixel" colour="#cc0000">
+    
+    <!-- Setup Section -->
+    <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
+    <comment pinned="true">Connect NeoPixel data wire to the GPIO pin you specify below</comment>
+    
+    <block type="neopixel_init">
+      <value name="PIN">
+        <shadow type="pinout">
+          <field name="PIN">25</field>
+        </shadow>
+      </value>
+      <value name="NUMBER">
         <shadow type="math_number">
           <field name="NUM">8</field>
         </shadow>
-       </value>
-      </block>
-
-      <block type="neopixel_color_numbers">
-       <value name="red">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-       </value>
-       <value name="green">
-        <shadow type="math_number">
-          <field name="NUM">152</field>
-        </shadow>
-       </value>
-       <value name="blue">
-        <shadow type="math_number">
-          <field name="NUM">220</field>
-        </shadow>
-       </value>
-      </block>
-
-      <block type="neopixel_color_colors"></block>
-
-      <block type="HSL_to_RGB">
-        <value name="hue">
-        <shadow type="math_number">
-          <field name="NUM">204</field>
-        </shadow>
-        </value>
-        <value name="saturation">
-        <shadow type="math_number">
-          <field name="NUM">70.8</field>
-        </shadow>
-        </value>
-        <value name="lightness">
-        <shadow type="math_number">
-          <field name="NUM">52.9</field>
-        </shadow>
-        </value>
-      </block>
-
-      <block type="neopixel_control">
-       <value name="address">
+      </value>
+      <value name="STRIP">
         <shadow type="math_number">
           <field name="NUM">0</field>
         </shadow>
-       </value>
+      </value>
+	  
+    </block>
+    <sep gap="32"></sep>
 
-       <value name="color">
-        <shadow type="neopixel_color_colors">
-          <field name="PIN"></field>
+    <!-- Color Creation Section -->
+    <label text="🎨 Create Colors" web-class="blocklyTreeLabel"></label>
+    <comment pinned="true">Use these blocks to create colors. RGB values go from 0 to 255</comment>
+    
+    <block type="neopixel_color_picker"></block>
+    
+    <block type="neopixel_color_rgb">
+      <value name="RED">
+        <shadow type="math_number">
+          <field name="NUM">255</field>
         </shadow>
-       </value>
-      </block>
-
-      <block type="neopixel_control">
-       <value name="address">
+      </value>
+      <value name="GREEN">
         <shadow type="math_number">
           <field name="NUM">0</field>
         </shadow>
-       </value>
-
-       <value name="color">
-        <block type="neopixel_color_numbers">
-         <value name="red">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-         </value>
-         <value name="green">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-         </value>
-         <value name="blue">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-         </value>
-        </block>
-       </value>
-      </block>
-
-      <block type="neopixel_write"></block>
-
-
-</category>
-
-
-
-  <category name="Character display" colour="%{BKY_DISPLAYS_HUE}">
-      <label text="PCF8574 Display controller"></label>
-
-	<block type="char_lcd_init">
-        <value name="scl">
-          <shadow type="pinout">
-            <field name="PIN">27</field>
-          </shadow>
-        </value>
-
-        <value name="sda">
-          <shadow type="pinout">
-            <field name="PIN">14</field>
-          </shadow>
-        </value>
-
-	 <value name="lines">
-        <shadow type="math_number">
-          <field name="NUM">2</field>
-        </shadow>
       </value>
-
-	 <value name="columns">
+      <value name="BLUE">
         <shadow type="math_number">
-          <field name="NUM">16</field>
-        </shadow>
-      </value>
-
-
-
-
-	</block>
-	<block type="char_lcd_clear"></block>
-	<block type="char_lcd_putstr"></block>
-	<block type="char_lcd_moveto"></block>
-	<block type="char_lcd_backlight"></block>
-	<block type="char_lcd_display"></block>
-	<block type="char_lcd_scroll_left"></block>
-	<block type="char_lcd_scroll_right"></block>
-	<block type="char_lcd_show_cursor"></block>
-	<block type="char_lcd_hide_cursor"></block>	
-  </category>
-
-    <category name="TFT Display">
-      <label text="ST7789 Display"></label>
-      <label text="Library: https://github.com/devbis/st7789py_mpy"></label>
-      <button text="Install st7789py library" callbackKey="installPyLib"></button>
-
-      <block type="st7789_init">
-        <value name="spi">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-
-        <value name="bl">
-          <shadow type="pinout">
-            <field name="bl"></field>
-          </shadow>
-        </value>
-
-        <value name="sck">
-          <shadow type="pinout">
-            <field name="sck"></field>
-          </shadow>
-        </value>
-
-        <value name="mosi">
-          <shadow type="pinout">
-            <field name="mosi"></field>
-          </shadow>
-        </value>
-
-        <value name="reset">
-          <shadow type="pinout">
-            <field name="reset"></field>
-          </shadow>
-        </value>
-
-        <value name="cs">
-          <shadow type="pinout">
-            <field name="cs"></field>
-          </shadow>
-        </value>
-
-        <value name="dc">
-          <shadow type="pinout">
-            <field name="dc"></field>
-          </shadow>
-        </value>
-       </block>
-
-       <block type="st7789_bl_power">
-        <value name="val">
-         <shadow type="math_number">
-          <field name="NUM">50</field>
-         </shadow>
-        </value>
-      </block>
-
-      <block type="st7789_color_numbers">
-       <value name="red">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-       </value>
-       <value name="green">
-        <shadow type="math_number">
-          <field name="NUM">152</field>
-        </shadow>
-       </value>
-       <value name="blue">
-        <shadow type="math_number">
-          <field name="NUM">220</field>
-        </shadow>
-       </value>
-      </block>
-
-      <block type="st7789_color_colors"></block>
-
-       <block type="st7789_fill">
-        <value name="r">
-         <shadow type="math_number">
-          <field name="NUM">40</field>
-         </shadow>
-        </value>
-        <value name="g">
-         <shadow type="math_number">
-          <field name="NUM">40</field>
-         </shadow>
-        </value>
-        <value name="b">
-         <shadow type="math_number">
-          <field name="NUM">1</field>
-         </shadow>
-        </value>
-      </block>
-
-
-    <block type="st7789_pixel">
-      <value name="x">
-        <shadow type="math_number">
-          <field name="NUM">40</field>
-        </shadow>
-      </value>
-      <value name="y">
-        <shadow type="math_number">
-          <field name="NUM">40</field>
-        </shadow>
-      </value>
-      <value name="color">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
+          <field name="NUM">0</field>
         </shadow>
       </value>
     </block>
 
-    <block type="st7789_line">
-      <value name="x0">
+    <block type="neopixel_color_hsl">
+      <value name="HUE">
         <shadow type="math_number">
-          <field name="NUM">40</field>
+          <field name="NUM">180</field>
         </shadow>
       </value>
-      <value name="x1">
-        <shadow type="math_number">
-          <field name="NUM">40</field>
-        </shadow>
-      </value>
-      <value name="y0">
-        <shadow type="math_number">
-          <field name="NUM">40</field>
-        </shadow>
-      </value>
-      <value name="y1">
-        <shadow type="math_number">
-          <field name="NUM">40</field>
-        </shadow>
-      </value>
-      <value name="color">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    </category>
-
-   <category name="LED Matrix" colour="%{BKY_DISPLAYS_HUE}">
-      <label text="MAX7219 LED Matrix"></label>
-
-    <block type="max7219_init">
-
-
- <value name="clk">
-        <shadow type="math_number">
-          <field name="NUM">14</field>
-        </shadow>
-      </value>
-
- <value name="dio">
-        <shadow type="math_number">
-          <field name="NUM">13</field>
-        </shadow>
-      </value>
- <value name="cs">
-        <shadow type="math_number">
-          <field name="NUM">12</field>
-        </shadow>
-      </value>
- <value name="count">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-      </block>
-
-    <block type="max7219_write">
-  <value name="text">
-        <shadow type="text">
-          <field name="TEXT">INFINITY</field>
-        </shadow>
-      </value>
-       <value name="xpos">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-       <value name="ypos">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-
-    </block>
-
-        <block type="max7219_scroll">
-  <value name="text">
-        <shadow type="text">
-          <field name="TEXT">INFINITY</field>
-        </shadow>
-      </value>
-       <value name="delay">
+      <value name="SATURATION">
         <shadow type="math_number">
           <field name="NUM">100</field>
         </shadow>
       </value>
-
+      <value name="LIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
     </block>
 
-    <block type="max7219_brig">
-    <value name="brig">
+    <sep gap="32"></sep>
+
+    <!-- Control Section -->
+    <label text="💡 Control LEDs" web-class="blocklyTreeLabel"></label>
+    <comment pinned="true">LED numbers start at 0. First LED is 0, second is 1, etc.</comment>
+    
+    <block type="neopixel_set_pixel">
+      <value name="STRIP">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="LED">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="COLOR">
+        <shadow type="neopixel_color_picker"></shadow>
+      </value>
+    </block>
+
+    <block type="neopixel_show">
+      <value name="STRIP">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+    <sep gap="32"></sep>
+
+    <!-- Pattern Section -->
+    <label text="✨ Patterns" web-class="blocklyTreeLabel"></label>
+    
+    <block type="neopixel_fill_all">
+      <value name="STRIP">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="COLOR">
+        <shadow type="neopixel_color_picker"></shadow>
+      </value>
+    </block>
+
+    <block type="neopixel_fill_range">
+      <value name="STRIP">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="START">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="END">
         <shadow type="math_number">
           <field name="NUM">7</field>
         </shadow>
       </value>
-
+      <value name="COLOR">
+        <shadow type="neopixel_color_picker"></shadow>
+      </value>
     </block>
 
-
-    <block type="max7219_num">
-    <value name="num">
+    <block type="neopixel_clear">
+      <value name="STRIP">
         <shadow type="math_number">
           <field name="NUM">0</field>
         </shadow>
       </value>
     </block>
 
-    <block type="max7219_custom">
-                    <field name="A0">FALSE</field>
-                    <field name="A1">FALSE</field>
-                    <field name="A2">FALSE</field>
-                    <field name="A3">FALSE</field>
-                    <field name="A4">FALSE</field>
-                    <field name="A5">FALSE</field>
-                    <field name="A6">FALSE</field>
-                    <field name="A7">FALSE</field>
-                    <field name="B0">FALSE</field>
-                    <field name="B1">FALSE</field>
-                    <field name="B2">FALSE</field>
-                    <field name="B3">FALSE</field>
-                    <field name="B4">FALSE</field>
-                    <field name="B5">FALSE</field>
-                    <field name="B6">FALSE</field>
-                    <field name="B7">FALSE</field>
-                    <field name="C0">FALSE</field>
-                    <field name="C1">FALSE</field>
-                    <field name="C2">FALSE</field>
-                    <field name="C3">FALSE</field>
-                    <field name="C4">FALSE</field>
-                    <field name="C5">FALSE</field>
-                    <field name="C6">FALSE</field>
-                    <field name="C7">FALSE</field>
-                    <field name="D0">FALSE</field>
-                    <field name="D1">FALSE</field>
-                    <field name="D2">FALSE</field>
-                    <field name="D3">FALSE</field>
-                    <field name="D4">FALSE</field>
-                    <field name="D5">FALSE</field>
-                    <field name="D6">FALSE</field>
-                    <field name="D7">FALSE</field>
-                    <field name="E0">FALSE</field>
-                    <field name="E1">FALSE</field>
-                    <field name="E2">FALSE</field>
-                    <field name="E3">FALSE</field>
-                    <field name="E4">FALSE</field>
-                    <field name="E5">FALSE</field>
-                    <field name="E6">FALSE</field>
-                    <field name="E7">FALSE</field>
-                    <field name="F0">FALSE</field>
-                    <field name="F1">FALSE</field>
-                    <field name="F2">FALSE</field>
-                    <field name="F3">FALSE</field>
-                    <field name="F4">FALSE</field>
-                    <field name="F5">FALSE</field>
-                    <field name="F6">FALSE</field>
-                    <field name="F7">FALSE</field>
-                    <field name="G0">FALSE</field>
-                    <field name="G1">FALSE</field>
-                    <field name="G2">FALSE</field>
-                    <field name="G3">FALSE</field>
-                    <field name="G4">FALSE</field>
-                    <field name="G5">FALSE</field>
-                    <field name="G6">FALSE</field>
-                    <field name="G7">FALSE</field>
-                    <field name="H0">FALSE</field>
-                    <field name="H1">FALSE</field>
-                    <field name="H2">FALSE</field>
-                    <field name="H3">FALSE</field>
-                    <field name="H4">FALSE</field>
-                    <field name="H5">FALSE</field>
-                    <field name="H6">FALSE</field>
-                    <field name="H7">FALSE</field>
-                </block>
+    <sep gap="32"></sep>
 
- <block type="max7219_show"></block>
- <block type="max7219_wake"></block>
- <block type="max7219_shutdown"></block>
- <block type="max7219_clear"></block>
+    <!-- Brightness Section -->
+    <label text="🔆 Brightness" web-class="blocklyTreeLabel"></label>
+    <comment pinned="true">Brightness from 0 (off) to 255 (maximum bright)</comment>
+    
+    <block type="neopixel_brightness">
+      <value name="STRIP">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="BRIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
 
   </category>
 
-  <category name="7 Segment LED" colour="%{BKY_DISPLAYS_HUE}">
-      <label text="TM1637 LED"></label>
 
-    <block type="tm1637_init">
-
-
- <value name="clk">
-        <shadow type="math_number">
-          <field name="NUM">4</field>
+ 
+  <category name=" Character LCD" colour="#cc0000">
+    
+    <!-- Setup Section -->
+    <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
+    <comment pinned="true">Connect LCD via I2C using PCF8574 controller. SCL and SDA pins connect to ESP32</comment>
+    
+	
+    <block type="char_lcd_init">
+      <value name="SCL">
+        <shadow type="pinout">
+          <field name="pin">22</field>
         </shadow>
       </value>
-
- <value name="dio">
+      <value name="SDA">
+        <shadow type="pinout">
+          <field name="pin">21</field>
+        </shadow>
+      </value>
+      <value name="LINES">
+        <shadow type="math_number">
+          <field name="NUM">2</field>
+        </shadow>
+      </value>
+      <value name="COLUMNS">
         <shadow type="math_number">
           <field name="NUM">16</field>
         </shadow>
       </value>
+    </block>
 
-      </block>
+		
+    <sep gap="32"></sep>
 
-    <block type="tm1637_write">
-  <value name="text">
+    <!-- Display Control Section -->
+    <label text="📺 Display Control" web-class="blocklyTreeLabel"></label>
+    
+    <block type="char_lcd_clear"></block>
+
+    <block type="char_lcd_display">
+      <value name="STATE">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="char_lcd_backlight">
+      <value name="STATE">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+
+    <sep gap="32"></sep>
+
+    <!-- Text Display Section -->
+    <label text="✏️ Text Display" web-class="blocklyTreeLabel"></label>
+    <comment pinned="true">Row and column numbers start at 0. First position is (0,0)</comment>
+    
+    <block type="char_lcd_putstr">
+      <value name="TEXT">
         <shadow type="text">
-          <field name="TEXT">INFY</field>
+          <field name="TEXT">Hello World!</field>
         </shadow>
       </value>
     </block>
 
-    <block type="tm1637_scroll">
-  <value name="text">
-        <shadow type="text">
-          <field name="TEXT">INFINITY</field>
-        </shadow>
-      </value>
-       <value name="delay">
+    <block type="char_lcd_moveto">
+      <value name="ROW">
         <shadow type="math_number">
-          <field name="NUM">1000</field>
+          <field name="NUM">0</field>
         </shadow>
       </value>
-
-    </block>
-
-    <block type="tm1637_brig">
-    <value name="brig">
-        <shadow type="math_number">
-          <field name="NUM">4</field>
-        </shadow>
-      </value>
-
-    </block>
-
-
-    <block type="tm1637_temp">
-    <value name="temp">
+      <value name="COLUMN">
         <shadow type="math_number">
           <field name="NUM">0</field>
         </shadow>
       </value>
     </block>
 
-        <block type="tm1637_time">
-    <value name="hrs">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-          <value name="mns">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-    </block>
+    <sep gap="32"></sep>
 
-    <block type="tm1637_clear">
-      </block>
+    <!-- Cursor Control Section -->
+    <label text="🔍 Cursor Control" web-class="blocklyTreeLabel"></label>
+    
+    <block type="char_lcd_show_cursor"></block>
+
+    <block type="char_lcd_hide_cursor"></block>
+
+    <sep gap="32"></sep>
+
+    <!-- Scrolling Section -->
+    <label text="⬅️ Scrolling" web-class="blocklyTreeLabel"></label>
+    
+    <block type="char_lcd_scroll_left"></block>
+
+    <block type="char_lcd_scroll_right"></block>
 
   </category>
 
+  <category name="MAX7219 LED Matrix" colour="#cc0000">
+    
+    <label text="Setup"></label>
+    
+    <block type="max7219_init">
+      <comment pinned="false">CLK=Clock, DIO=Data, CS=Chip Select. Count=number of connected matrix modules</comment>
+      <value name="CLK_PIN">
+        <shadow type="pinout">
+          <field name="PIN">14</field>
+        </shadow>
+      </value>
+      <value name="DIO_PIN">
+        <shadow type="pinout">
+          <field name="PIN">16</field>
+        </shadow>
+      </value>
+      <value name="CS_PIN">
+        <shadow type="pinout">
+          <field name="PIN">27</field>
+        </shadow>
+      </value>
+      <value name="COUNT">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="max7219_brightness">
+      <comment pinned="false">Brightness: 0 (dim) to 15 (bright)</comment>
+      <value name="BRIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">7</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Display Control"></label>
+    
+    <block type="max7219_show"></block>
+    
+    <block type="max7219_clear"></block>
+    
+    <block type="max7219_wake"></block>
+    
+    <block type="max7219_shutdown"></block>
+    
+    <label text="Text Display"></label>
+    
+    <block type="max7219_text">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">ILS</field>
+        </shadow>
+      </value>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="max7219_scroll_text">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">INFINITY LEARNING SPACE</field>
+        </shadow>
+      </value>
+      <value name="DELAY">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="max7219_number">
+      <value name="NUMBER">
+        <shadow type="math_number">
+          <field name="NUM">2025</field>
+        </shadow>
+      </value>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Pixel Operations"></label>
+    
+    <block type="max7219_pixel">
+      <comment pinned="false">Set individual pixel: x and y from 0-7 for single matrix</comment>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <field name="STATE">TRUE</field>
+    </block>
+    
+    <block type="max7219_fill">
+      <field name="STATE">TRUE</field>
+    </block>
+    
+    <label text="Custom Pattern"></label>
+    
+    <block type="max7219_custom_pattern">
+      <field name="A0">FALSE</field>
+      <field name="A1">FALSE</field>
+      <field name="A2">FALSE</field>
+      <field name="A3">FALSE</field>
+      <field name="A4">FALSE</field>
+      <field name="A5">FALSE</field>
+      <field name="A6">FALSE</field>
+      <field name="A7">FALSE</field>
+      <field name="B0">FALSE</field>
+      <field name="B1">FALSE</field>
+      <field name="B2">FALSE</field>
+      <field name="B3">FALSE</field>
+      <field name="B4">FALSE</field>
+      <field name="B5">FALSE</field>
+      <field name="B6">FALSE</field>
+      <field name="B7">FALSE</field>
+      <field name="C0">FALSE</field>
+      <field name="C1">FALSE</field>
+      <field name="C2">FALSE</field>
+      <field name="C3">FALSE</field>
+      <field name="C4">FALSE</field>
+      <field name="C5">FALSE</field>
+      <field name="C6">FALSE</field>
+      <field name="C7">FALSE</field>
+      <field name="D0">FALSE</field>
+      <field name="D1">FALSE</field>
+      <field name="D2">FALSE</field>
+      <field name="D3">FALSE</field>
+      <field name="D4">FALSE</field>
+      <field name="D5">FALSE</field>
+      <field name="D6">FALSE</field>
+      <field name="D7">FALSE</field>
+      <field name="E0">FALSE</field>
+      <field name="E1">FALSE</field>
+      <field name="E2">FALSE</field>
+      <field name="E3">FALSE</field>
+      <field name="E4">FALSE</field>
+      <field name="E5">FALSE</field>
+      <field name="E6">FALSE</field>
+      <field name="E7">FALSE</field>
+      <field name="F0">FALSE</field>
+      <field name="F1">FALSE</field>
+      <field name="F2">FALSE</field>
+      <field name="F3">FALSE</field>
+      <field name="F4">FALSE</field>
+      <field name="F5">FALSE</field>
+      <field name="F6">FALSE</field>
+      <field name="F7">FALSE</field>
+      <field name="G0">FALSE</field>
+      <field name="G1">FALSE</field>
+      <field name="G2">FALSE</field>
+      <field name="G3">FALSE</field>
+      <field name="G4">FALSE</field>
+      <field name="G5">FALSE</field>
+      <field name="G6">FALSE</field>
+      <field name="G7">FALSE</field>
+      <field name="H0">FALSE</field>
+      <field name="H1">FALSE</field>
+      <field name="H2">FALSE</field>
+      <field name="H3">FALSE</field>
+      <field name="H4">FALSE</field>
+      <field name="H5">FALSE</field>
+      <field name="H6">FALSE</field>
+      <field name="H7">FALSE</field>
+    </block>
+    
+  </category>
+
+  <category name="TM1637 Display" colour="#cc0000">
+    
+    <label text="Setup" web-class="boldtext"></label>
+      <block type="tm1637_init">
+	  
+        <value name="CLK_PIN">
+        <shadow type="pinout">
+            <field name="PIN">25</field>
+          </shadow>
+        </value>
+      
+	  <value name="DIO_PIN">
+        <shadow type="pinout">
+            <field name="PIN">26</field>
+          </shadow>
+        </value>
+
+        <value name="BRIGHTNESS">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+	  
+      <block type="tm1637_brightness">
+        <value name="BRIGHTNESS">
+		<comment pinned="false">Brightness range: 0 (dim) to 7 (bright)</comment>		
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+    
+    <label text="Display Numbers" web-class="boldtext"></label>	
+      <block type="tm1637_show_number">
+        <value name="NUMBER">
+          <block type="math_number">
+            <field name="NUM">1234</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_show_hex">
+        <value name="HEX_VALUE">
+          <block type="math_number">
+            <field name="NUM">255</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_show_time">
+        <value name="HOURS">
+          <block type="math_number">
+            <field name="NUM">12</field>
+          </block>
+        </value>
+        <value name="MINUTES">
+          <block type="math_number">
+            <field name="NUM">30</field>
+          </block>
+        </value>
+        <field name="COLON">TRUE</field>
+      </block>
+    
+    <label text="Display Text" web-class="boldtext"></label>	
+      <block type="tm1637_show_text">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">ILS</field>
+          </block>
+        </value>
+        <field name="COLON">FALSE</field>
+      </block>
+      
+      <block type="tm1637_scroll_text">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">INFINITY</field>
+          </block>
+        </value>
+        <value name="DELAY">
+          <block type="math_number">
+            <field name="NUM">250</field>
+          </block>
+        </value>
+      </block>
+
+    
+    <label text="Special Display" web-class="boldtext"></label>		
+      <block type="tm1637_show_temperature">
+        <value name="TEMPERATURE">
+          <block type="math_number">
+            <field name="NUM">25</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_clear">
+      </block>
+    
+  </category>
 
   </category>
 
@@ -1701,8 +1734,8 @@
   </category>
   </category>
 
-  <category name="%{BKY_CAT_OUTPUTS}" colour="%{BKY_OUTPUTS_HUE}">
-    <category name="Relay" colour="%{BKY_OUTPUTS_HUE}">
+  <category name="%{BKY_CAT_OUTPUTS}" colour="#666600">
+    <category name="Relay" colour="#666600">
       <label text="Relay"></label>
       <block type="relay_switch">
         <value name="pin">
@@ -1713,226 +1746,511 @@
       </block>
     </category>
 
-  <category name="RC Servo Motor" colour="%{BKY_OUTPUTS_HUE}">
-      <label text="RC Servo Motor"></label>
-    <button text="Learn about:Servos" callbackKey="loadDoc"></button>
-    <button text="Load example: Servo-Basic" callbackKey="loadExample"></button>	
-    <block type="init_servo">
-        <value name="pin">
-          <shadow type="pinout">
-            <field name="PIN">2</field>          
-          </shadow>
-        </value>		  
-      <value name="servo_frequency">		  
-        <shadow type="math_number">
-			<field name="NUM">50</field>
-        </shadow>
-        </value>		  		
-      <value name="servo_min_us">		  		
-        <shadow type="math_number">
-            <field name="NUM">600</field>
-        </shadow>
-        </value>		  		
-      <value name="servo_max_us">		  		
-        <shadow type="math_number">
-            <field name="NUM">2400</field>
-        </shadow>
-        </value>		  		
-      <value name="servo_angle">		  		
-        <shadow type="math_number">
-            <field name="NUM">180</field>	    	     	   
-        </shadow>		
-        </value>		  
-    </block>
+  <category name="Servo Motor" colour="#666600">
+  
+  <!-- Setup Section -->
+  <label text="Setup Servo"></label>
+  <block type="servo_init_standard">
+    <value name="PIN">
+      <shadow type="pinout">
+        <field name="PIN">18</field>
+      </shadow>
+    </value>
+    <comment pinned="true">For 180° servo motors. Connect signal wire to pin, red to 5V, brown to GND</comment>
+  </block>
+  
+  <block type="servo_init_continuous">
+    <value name="PIN">
+      <shadow type="pinout">
+        <field name="PIN">19</field>
+      </shadow>
+    </value>
+    <comment pinned="true">For 360° continuous rotation servo. Connect signal wire to pin</comment>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Standard Servo (180°) Controls -->
+  <label text="180° Servo Control"></label>
+  <block type="servo_angle">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="ANGLE">
+      <shadow type="math_number">
+        <field name="NUM">90</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Angle: 0-180 degrees. 90 is center position</comment>
+  </block>
+  
+  <block type="servo_preset_position">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="servo_sweep">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="START_ANGLE">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="END_ANGLE">
+      <shadow type="math_number">
+        <field name="NUM">180</field>
+      </shadow>
+    </value>
+    <value name="STEP">
+      <shadow type="math_number">
+        <field name="NUM">10</field>
+      </shadow>
+    </value>
+    <value name="DELAY">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Sweep servo back and forth. Delay in milliseconds</comment>
+  </block>
+  
+  <block type="servo_smooth_move">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="TARGET_ANGLE">
+      <shadow type="math_number">
+        <field name="NUM">90</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">5</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Move smoothly to angle. Speed: 1-20 (higher is faster)</comment>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Continuous Servo (360°) Controls -->
+  <label text="360° Servo Control"></label>
+  <block type="servo_continuous_forward">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Speed: 0-100%. Higher is faster</comment>
+  </block>
+  
+  <block type="servo_continuous_backward">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="servo_continuous_stop">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Common Controls -->
+  <label text="Common Controls"></label>
+  <block type="servo_detach">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Turn off servo signal to save power and allow free movement</comment>
+  </block>
+  
+  <block type="servo_attach">
+    <value name="SERVO_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Turn on servo signal after detaching</comment>
+  </block>
 
-    <block type="move_servo_angle">
-    <value name="angle">
-        <shadow type="math_number">
-          <field name="NUM">180</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="move_servo_time">
-    <value name="time">
-        <shadow type="math_number">
-          <field name="NUM">10</field>
-        </shadow>
-      </value>
-    </block>    
+</category>
+
+<category name=" Stepper Motor" colour="#666600" id="stepper_category">
+  
+  <label text="⚙️ Setup" web-class="boldtext"></label>
+  <block type="stepper_init">
+    <comment pinned="true" h="120" w="300">Connect your stepper motor: IN1-IN4 to ESP32 GPIO pins. Use different Motor IDs (0-9) for multiple motors. 28BYJ-48 uses 2048 steps per revolution.</comment>
+    <value name="IN1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="IN2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="IN3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="IN4_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <label text="🎯 Basic Movement" web-class="boldtext"></label>
+  
+  <block type="stepper_rotate_degrees">
+    <comment pinned="false" h="80" w="250">Rotate motor by angle: 90 degrees = quarter turn, 180 degrees = half turn, 360 degrees = full turn</comment>
+    <value name="DEGREES">
+      <shadow type="math_number">
+        <field name="NUM">90</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="stepper_move_steps">
+    <comment pinned="false" h="80" w="250">Move by exact steps: 1 full rotation = steps per revolution. 28BYJ-48: 2048 steps = 360 degrees. Use for precise control.</comment>
+    <value name="STEPS">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="stepper_move_to_position">
+    <comment pinned="false" h="80" w="250">Go to absolute position: 0 degrees = starting position. Motor remembers where it is. Great for returning to positions.</comment>
+    <value name="POSITION">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <label text="🚀 Speed Control" web-class="boldtext"></label>
+  
+  <block type="stepper_set_speed_preset">
+    <comment pinned="false" h="60" w="250">Choose easy speed presets: Very Slow = careful movements, Fast = quick actions</comment>
+  </block>
+  
+  <block type="stepper_set_speed_rpm">
+    <comment pinned="false" h="80" w="250">Set exact speed in RPM: RPM = Rotations Per Minute. 28BYJ-48: 1-15 RPM typical. Higher = faster (may skip steps)</comment>
+    <value name="RPM">
+      <shadow type="math_number">
+        <field name="NUM">10</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <label text="✨ Advanced Movement" web-class="boldtext"></label>
+  
+  <block type="stepper_rotate_smooth">
+    <comment pinned="false" h="80" w="250">Smooth rotation with acceleration: Smooth = gradual speed changes, Normal = standard movement, Quick = fast start and stop</comment>
+    <value name="DEGREES">
+      <shadow type="math_number">
+        <field name="NUM">180</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="stepper_spin_continuous">
+    <comment pinned="true" h="80" w="280">WARNING: This blocks your code! Use only when you want continuous rotation. Put a Stop block to halt spinning.</comment>
+  </block>
+  
+  <block type="stepper_stop">
+    <comment pinned="false" h="60" w="250">Emergency stop: Halts motor immediately and turns off all coils</comment>
+  </block>
+  
+  <block type="stepper_dance">
+    <comment pinned="false" h="60" w="250">Fun dance pattern! Motor moves back and forth. Great for testing your setup.</comment>
+    <value name="REPETITIONS">
+      <shadow type="math_number">
+        <field name="NUM">3</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <label text="📊 Status &amp; Info" web-class="boldtext"></label>
+  
+  <block type="stepper_get_position">
+    <comment pinned="false" h="60" w="250">Get current position in degrees. Returns number from 0 degrees onwards.</comment>
+  </block>
+  
+  <block type="stepper_is_moving">
+    <comment pinned="false" h="60" w="250">Check if motor is moving. Returns true or false.</comment>
+  </block>
+  
+  <block type="stepper_reset_position">
+    <comment pinned="false" h="60" w="250">Reset position to 0 degrees. Current position becomes new start.</comment>
+  </block>
+  
+  <sep gap="32"></sep>
+ 
+</category>
+<category name="DC Motor" colour="#666600">
+  
+  <!-- Setup Section -->
+  <label text="Setup Motor"></label>
+  <block type="l298n_motor_init">
+    <value name="IN1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="IN2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="EN_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Connect motor to L298N driver. IN1/IN2 control direction, EN controls speed</comment>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Basic Control -->
+  <label text="Basic Control"></label>
+  <block type="l298n_motor_forward">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Speed: 0-100%</comment>
+  </block>
+  
+  <block type="l298n_motor_backward">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_stop">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Advanced Control -->
+  <label text="Advanced Control"></label>
+  <block type="l298n_motor_set_direction">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_set_speed">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">75</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_run_time">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <value name="TIME">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Run motor for specified seconds then stop</comment>
+  </block>
+  
+  <block type="l298n_motor_brake">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+
+</category>
+
+  <category name="RTTTL Player" colour="#666600">
     
-
-    <block type="servo_stop">
-    </block>	
-  </category>
-
-
-  <category name="Stepper Motor" colour="%{BKY_OUTPUTS_HUE}">
-      <label text="Stepper Motor"></label>
-    <block type="stepper_init">
-      <value name="p0">
+    <!-- Setup Section -->
+    <label text="Setup" web-class="labelStyle"></label>
+    <block type="rtttl_init">
+      <value name="BUZZER_PIN">
         <shadow type="pinout">
-          <field name="Pin0"></field>
-        </shadow>
-      </value>
-      <value name="p1">
-        <shadow type="pinout">
-          <field name="Pin1"></field>
-        </shadow>
-      </value>
-      <value name="p2">
-        <shadow type="pinout">
-          <field name="Pin2"></field>
-        </shadow>
-      </value>
-      <value name="p3">
-        <shadow type="pinout">
-          <field name="Pin3"></field>
+          <field name="PIN">25</field>
         </shadow>
       </value>
     </block>
-
-    <block type="stepper_step">
-     <value name="steps">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
+    
+    <sep gap="20"></sep>
+    
+    <!-- Popular Songs -->
+    <label text="Popular Songs" web-class="labelStyle"></label>
+    <comment pinned="true" h="60" w="200">Play famous melodies! Choose from pre-loaded popular songs.</comment>
+    
+    <block type="rtttl_play_popular">
+      <field name="SONG">nokia</field>
     </block>
-  </category>
-
-  <category name="DC Motor" colour="%{BKY_OUTPUTS_HUE}">
-      <label text="DC Motor"></label>
-    <block type="dc_motor_init">
-      <value name="pwm">
-        <shadow type="pinout">
-          <field name="PWM"></field>
-        </shadow>
-      </value>
-      <value name="dir1">
-        <shadow type="pinout">
-          <field name="Dir1"></field>
-        </shadow>
-      </value>
-      <value name="dir2">
-        <shadow type="pinout">
-          <field name="Dir2"></field>
-        </shadow>
-      </value>
-
+    
+    <block type="rtttl_play_popular_wait">
+      <field name="SONG">nokia</field>
     </block>
-
-    <block type="dc_motor_power">
-     <value name="power">
-        <shadow type="math_number">
-          <field name="NUM">70</field>
-        </shadow>
-      </value>
-    </block>
-
-    <block type="dc_motor_direction">
-     <value name="dir">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-_
-    <block type="dc_motor_stop">
-    </block>
-  </category>
-
-  <category name="Sounds" colour="%{BKY_OUTPUTS_HUE}">
-        <label text="Sounds and RTTTL:"></label>
-        <label text="Ring Tone Text Transfer Language (RTTTL) "></label>
-        <label text="Library: "></label>
-        <button text="Install rtttl library" callbackKey="installPyLib"></button>
-        <button text="Install songs library" callbackKey="installPyLib"></button>
-        <button text="Load example: songs" callbackKey="loadExample"></button>
-        <button text="Documentation and how to connect: sound" callbackKey="loadDoc"></button>
-
-    <block type="tone">
-      <value name="pin">
-        <shadow type="pinout">
-          <field name="pin"></field>
-        </shadow>
-      </value>
-     <value name="frequency">
-        <shadow type="math_number">
-          <field name="NUM">1200</field>
-        </shadow>
-      </value>
-     <value name="duration">
-        <shadow type="math_number">
-          <field name="NUM">-1</field>
-        </shadow>
-      </value>
-    </block>
-
-    <block type="note">
-      <value name="pin">
-        <shadow type="pinout">
-          <field name="pin"></field>
-        </shadow>
-      </value>
-      <value name="note">
-        <shadow type="tone_type">
-          <field name="note"></field>
-        </shadow>
-      </value>
-     <value name="duration">
-        <shadow type="math_number">
-          <field name="NUM">-1</field>
-        </shadow>
-      </value>
-    </block>
-
-    <block type="tone_type"> </block>
-
-    <block type="rtttl_play">
-      <value name="pin">
-        <shadow type="pinout">
-          <field name="pin"></field>
-        </shadow>
-      </value>
-      <value name="song">
+    
+    <sep gap="20"></sep>
+    
+    <!-- Custom Songs -->
+    <label text="Custom Songs" web-class="labelStyle"></label>
+    <comment pinned="true" h="80" w="200">Play your own RTTTL string! Format: name:settings:notes Example: MySong:d=4,o=5,b=140:8c,8d,8e</comment>
+    
+    <block type="rtttl_play_custom">
+      <value name="RTTTL_STRING">
         <shadow type="text">
-          <field name="TEXT">Super Mario - Main Theme</field>
+          <field name="TEXT">MySong:d=4,o=5,b=140:8c,8d,8e,8f</field>
         </shadow>
       </value>
     </block>
-
-    <label text="Songs:"></label>
-    <button text="Install songs library" callbackKey="installPyLib"></button>
-
-    <block type="text"> <field name="TEXT">Super Mario - Main Theme</field> </block>
-    <block type="text"> <field name="TEXT">Super Mario - Title Music</field> </block>
-    <block type="text"> <field name="TEXT">SMBtheme</field> </block>
-    <block type="text"> <field name="TEXT">SMBwater</field> </block>
-    <block type="text"> <field name="TEXT">SMBunderground</field> </block>
-    <block type="text"> <field name="TEXT">Picaxe</field> </block>
-    <block type="text"> <field name="TEXT">Simpsons</field> </block>
-    <block type="text"> <field name="TEXT">Indiana</field> </block>
-    <block type="text"> <field name="TEXT">TakeOnMe</field> </block>
-    <block type="text"> <field name="TEXT">Entertainer</field> </block>
-    <block type="text"> <field name="TEXT">Muppets</field> </block>
-    <block type="text"> <field name="TEXT">Xfiles</field> </block>
-    <block type="text"> <field name="TEXT">Looney</field> </block>
-    <block type="text"> <field name="TEXT">20thCenFox</field> </block>
-    <block type="text"> <field name="TEXT">Bond</field> </block>
-    <block type="text"> <field name="TEXT">MASH</field> </block>
-    <block type="text"> <field name="TEXT">StarWars</field> </block>
-    <block type="text"> <field name="TEXT">GoodBad</field> </block>
-    <block type="text"> <field name="TEXT">TopGun</field> </block>
-    <block type="text"> <field name="TEXT">A-Team</field> </block>
-    <block type="text"> <field name="TEXT">Flintstones</field> </block>
-    <block type="text"> <field name="TEXT">Jeopardy</field> </block>
-    <block type="text"> <field name="TEXT">Gadget</field> </block>
-    <block type="text"> <field name="TEXT">Smurfs</field> </block>
-    <block type="text"> <field name="TEXT">MahnaMahna</field> </block>
-    <block type="text"> <field name="TEXT">LeisureSuit</field> </block>
-    <block type="text"> <field name="TEXT">MissionImp</field> </block>
-
+    
+    <block type="rtttl_play_custom_wait">
+      <value name="RTTTL_STRING">
+        <shadow type="text">
+          <field name="TEXT">MySong:d=4,o=5,b=140:8c,8d,8e,8f</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="20"></sep>
+    
+    <!-- Play Individual Notes -->
+    <label text="Play Musical Notes" web-class="labelStyle"></label>
+    <comment pinned="true" h="80" w="200">Play individual musical notes! Choose note, octave, and duration. Great for making your own melodies!</comment>
+    
+    <block type="rtttl_play_note">
+      <field name="NOTE">C</field>
+      <value name="OCTAVE">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+      </value>
+      <value name="DURATION">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="rtttl_play_frequency">
+      <value name="FREQUENCY">
+        <shadow type="math_number">
+          <field name="NUM">440</field>
+        </shadow>
+      </value>
+      <value name="DURATION">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep gap="20"></sep>
+    
+    <!-- Playback Control -->
+    <label text="Playback Control" web-class="labelStyle"></label>
+    
+    <block type="rtttl_stop"></block>
+    
+    <block type="rtttl_is_playing"></block>
+    
+    <sep gap="20"></sep>
+    
+    <!-- Volume Control -->
+    <label text="Volume Control" web-class="labelStyle"></label>
+    <comment pinned="true" h="60" w="200">Set buzzer volume (0-100%). Lower values = quieter sound.</comment>
+    
+    <block type="rtttl_set_volume">
+      <value name="VOLUME">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
   </category>
+
 
   </category>
 

@@ -1,0 +1,150 @@
+{
+  "name": "ILS Stepper Motor",
+  "description": "Control stepper motors with easy-to-use blocks for students aged 8-14. Perfect for robotics, automation, and creative projects!",
+  "version": "1.0.0",
+  "author": "Infinity Learning Space",
+  "category": "Actuators",
+  "tags": ["stepper", "motor", "rotation", "actuator", "robotics", "automation"],
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "colour": "#666600",
+  "icon": "stepper.png",
+  "hardware": {
+    "platform": "ESP32",
+    "compatible_motors": [
+      "28BYJ-48 with ULN2003 driver",
+      "NEMA 17",
+      "Other 4-wire stepper motors"
+    ],
+    "default_pins": {
+      "IN1": 12,
+      "IN2": 14,
+      "IN3": 27,
+      "IN4": 26
+    }
+  },
+  "python_module": {
+    "namespace": "ils",
+    "module": "stepper_motor",
+    "class": "StepperMotor"
+  },
+  "features": [
+    "Multiple motor support (Motor ID 0-9)",
+    "Degree-based rotation for easy learning",
+    "Step-based control for precision",
+    "Preset speed levels (Very Slow to Very Fast)",
+    "RPM speed control",
+    "Smooth acceleration movements",
+    "Absolute positioning",
+    "Position tracking and reset",
+    "Fun dance patterns",
+    "Continuous rotation mode",
+    "Emergency stop function"
+  ],
+  "educational_notes": {
+    "age_range": "8-14 years",
+    "difficulty": "Beginner to Intermediate",
+    "learning_outcomes": [
+      "Understanding rotational motion",
+      "Precision control and positioning",
+      "Speed and acceleration concepts",
+      "Sequencing and timing",
+      "Problem-solving with motors"
+    ],
+    "project_ideas": [
+      "Clock with moving hands",
+      "Robot arm joint",
+      "Rotating camera platform",
+      "Automatic curtain opener",
+      "Drawing machine",
+      "Maze-solving robot",
+      "Rotating display stand",
+      "Door lock mechanism"
+    ]
+  },
+  "wiring_guide": {
+    "28BYJ-48": {
+      "driver": "ULN2003",
+      "connections": {
+        "IN1": "GPIO 12 (or any GPIO)",
+        "IN2": "GPIO 14 (or any GPIO)",
+        "IN3": "GPIO 27 (or any GPIO)",
+        "IN4": "GPIO 26 (or any GPIO)",
+        "VCC": "5V (external power recommended)",
+        "GND": "GND"
+      },
+      "notes": [
+        "28BYJ-48 uses 2048 steps per revolution (with gear reduction)",
+        "External 5V power supply recommended for stable operation",
+        "Do not connect motor power to ESP32 5V pin",
+        "Share GND between ESP32 and motor power supply"
+      ]
+    },
+    "NEMA_17": {
+      "driver": "A4988 or DRV8825",
+      "connections": {
+        "Step": "GPIO (connect to IN1 equivalent)",
+        "Direction": "GPIO (connect to IN2 equivalent)",
+        "Enable": "GPIO (optional)"
+      },
+      "notes": [
+        "NEMA 17 typically uses 200 steps per revolution",
+        "Requires stepper driver (A4988, DRV8825, etc.)",
+        "External power supply required (12V typical)",
+        "Adjust current limit on driver for your motor"
+      ]
+    }
+  },
+  "troubleshooting": [
+    {
+      "problem": "Motor not moving",
+      "solutions": [
+        "Check all wire connections",
+        "Verify power supply is connected",
+        "Ensure correct GPIO pins are used",
+        "Check motor ID matches in all blocks"
+      ]
+    },
+    {
+      "problem": "Motor moves erratically or skips steps",
+      "solutions": [
+        "Reduce speed (use slower preset or lower RPM)",
+        "Check power supply is adequate",
+        "Ensure no mechanical binding",
+        "Reduce load on motor"
+      ]
+    },
+    {
+      "problem": "Motor vibrates but doesn't turn",
+      "solutions": [
+        "Check wire order (IN1-IN4)",
+        "Verify correct motor type selected",
+        "Speed might be too high"
+      ]
+    },
+    {
+      "problem": "Position tracking is off",
+      "solutions": [
+        "Motor may have skipped steps (reduce load/speed)",
+        "Use Reset Position block to recalibrate",
+        "Consider adding physical home switch for accuracy"
+      ]
+    }
+  ],
+  "safety_notes": [
+    "Always use external power supply for motors, not ESP32 power",
+    "Share GND between ESP32 and motor power",
+    "Do not touch motor wires while running",
+    "Ensure motor is securely mounted",
+    "Supervise students when working with motors"
+  ],
+  "dependencies": [
+    "MicroPython",
+    "machine module (Pin)",
+    "utime module"
+  ],
+  "license": "MIT",
+  "documentation_url": "https://infinitylearningspace.com/docs/stepper-motor",
+  "support_url": "https://infinitylearningspace.com/support"
+}

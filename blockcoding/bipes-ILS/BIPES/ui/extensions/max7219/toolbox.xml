@@ -1,0 +1,189 @@
+  <category name="MAX7219 LED Matrix" colour="#9C27B0">
+    
+    <label text="Setup"></label>
+    
+    <block type="max7219_init">
+      <comment pinned="false">CLK=Clock, DIO=Data, CS=Chip Select. Count=number of connected matrix modules</comment>
+      <value name="CLK_PIN">
+        <shadow type="pinout">
+          <field name="PIN">14</field>
+        </shadow>
+      </value>
+      <value name="DIO_PIN">
+        <shadow type="pinout">
+          <field name="PIN">16</field>
+        </shadow>
+      </value>
+      <value name="CS_PIN">
+        <shadow type="pinout">
+          <field name="PIN">27</field>
+        </shadow>
+      </value>
+      <value name="COUNT">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="max7219_brightness">
+      <comment pinned="false">Brightness: 0 (dim) to 15 (bright)</comment>
+      <value name="BRIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">7</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Display Control"></label>
+    
+    <block type="max7219_show"></block>
+    
+    <block type="max7219_clear"></block>
+    
+    <block type="max7219_wake"></block>
+    
+    <block type="max7219_shutdown"></block>
+    
+    <label text="Text Display"></label>
+    
+    <block type="max7219_text">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">ILS</field>
+        </shadow>
+      </value>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="max7219_scroll_text">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">INFINITY LEARNING SPACE</field>
+        </shadow>
+      </value>
+      <value name="DELAY">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="max7219_number">
+      <value name="NUMBER">
+        <shadow type="math_number">
+          <field name="NUM">2025</field>
+        </shadow>
+      </value>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Pixel Operations"></label>
+    
+    <block type="max7219_pixel">
+      <comment pinned="false">Set individual pixel: x and y from 0-7 for single matrix</comment>
+      <value name="X">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="Y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <field name="STATE">TRUE</field>
+    </block>
+    
+    <block type="max7219_fill">
+      <field name="STATE">TRUE</field>
+    </block>
+    
+    <label text="Custom Pattern"></label>
+    
+    <block type="max7219_custom_pattern">
+      <field name="A0">FALSE</field>
+      <field name="A1">FALSE</field>
+      <field name="A2">FALSE</field>
+      <field name="A3">FALSE</field>
+      <field name="A4">FALSE</field>
+      <field name="A5">FALSE</field>
+      <field name="A6">FALSE</field>
+      <field name="A7">FALSE</field>
+      <field name="B0">FALSE</field>
+      <field name="B1">FALSE</field>
+      <field name="B2">FALSE</field>
+      <field name="B3">FALSE</field>
+      <field name="B4">FALSE</field>
+      <field name="B5">FALSE</field>
+      <field name="B6">FALSE</field>
+      <field name="B7">FALSE</field>
+      <field name="C0">FALSE</field>
+      <field name="C1">FALSE</field>
+      <field name="C2">FALSE</field>
+      <field name="C3">FALSE</field>
+      <field name="C4">FALSE</field>
+      <field name="C5">FALSE</field>
+      <field name="C6">FALSE</field>
+      <field name="C7">FALSE</field>
+      <field name="D0">FALSE</field>
+      <field name="D1">FALSE</field>
+      <field name="D2">FALSE</field>
+      <field name="D3">FALSE</field>
+      <field name="D4">FALSE</field>
+      <field name="D5">FALSE</field>
+      <field name="D6">FALSE</field>
+      <field name="D7">FALSE</field>
+      <field name="E0">FALSE</field>
+      <field name="E1">FALSE</field>
+      <field name="E2">FALSE</field>
+      <field name="E3">FALSE</field>
+      <field name="E4">FALSE</field>
+      <field name="E5">FALSE</field>
+      <field name="E6">FALSE</field>
+      <field name="E7">FALSE</field>
+      <field name="F0">FALSE</field>
+      <field name="F1">FALSE</field>
+      <field name="F2">FALSE</field>
+      <field name="F3">FALSE</field>
+      <field name="F4">FALSE</field>
+      <field name="F5">FALSE</field>
+      <field name="F6">FALSE</field>
+      <field name="F7">FALSE</field>
+      <field name="G0">FALSE</field>
+      <field name="G1">FALSE</field>
+      <field name="G2">FALSE</field>
+      <field name="G3">FALSE</field>
+      <field name="G4">FALSE</field>
+      <field name="G5">FALSE</field>
+      <field name="G6">FALSE</field>
+      <field name="G7">FALSE</field>
+      <field name="H0">FALSE</field>
+      <field name="H1">FALSE</field>
+      <field name="H2">FALSE</field>
+      <field name="H3">FALSE</field>
+      <field name="H4">FALSE</field>
+      <field name="H5">FALSE</field>
+      <field name="H6">FALSE</field>
+      <field name="H7">FALSE</field>
+    </block>
+    
+  </category>

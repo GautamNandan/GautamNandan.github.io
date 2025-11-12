@@ -1,0 +1,50 @@
+{
+  "name": "ILS DC Motor L298N",
+  "description": "Control DC motors using L298N motor driver. Perfect for building robots and moving projects!",
+  "author": "ILS",
+  "version": "1.0.0",
+  "category": "actuator",
+  "icon": "motor.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#666600",
+  "tags": ["motor", "l298n", "dc motor", "driver", "actuator", "robot"],
+  "helpUrl": "",
+  "dependencies": {
+    "python": ["machine.Pin", "machine.PWM", "time"],
+    "modules": ["ils.l298n_motor"]
+  },
+  "hardware": {
+    "name": "L298N Motor Driver",
+    "description": "Dual H-Bridge motor driver for controlling DC motors",
+    "pins": {
+      "IN1": "Direction control pin 1",
+      "IN2": "Direction control pin 2",
+      "ENA": "Enable/Speed control pin (PWM)",
+      "OUT1": "Motor wire connection 1",
+      "OUT2": "Motor wire connection 2",
+      "12V": "Power supply input (7-12V)",
+      "GND": "Ground connection",
+      "5V": "5V output (when 12V connected)"
+    },
+    "connections": [
+      "Connect IN1, IN2, ENA to ESP32 GPIO pins",
+      "Connect motor wires to OUT1 and OUT2",
+      "Connect power supply to 12V and GND",
+      "Connect ESP32 GND to driver GND"
+    ]
+  },
+  "educational": {
+    "ageGroup": "8-14 years",
+    "difficulty": "beginner",
+    "concepts": ["motors", "PWM", "direction control", "speed control", "H-bridge"],
+    "projects": [
+      "Simple robot car",
+      "Motorized fan",
+      "Conveyor belt",
+      "Spinning art machine",
+      "Automatic door"
+    ]
+  }
+}
