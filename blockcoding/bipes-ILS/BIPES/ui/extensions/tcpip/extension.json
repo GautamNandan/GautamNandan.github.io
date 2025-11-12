@@ -1,0 +1,37 @@
+{
+  "name": "ILS TCP/IP",
+  "description": "TCP/IP networking blocks for ESP32 - Connect to WiFi, create TCP/UDP clients and servers",
+  "version": "1.0.0",
+  "author": "ILS",
+  "category": "Communication",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "helpUrl": "https://docs.micropython.org/en/latest/library/socket.html",
+  "tags": [
+    "tcp",
+    "ip",
+    "udp",
+    "network",
+    "wifi",
+    "socket",
+    "internet",
+    "communication",
+    "server",
+    "client"
+  ],
+  "compatibility": {
+    "device": "ESP32",
+    "platform": "MicroPython",
+    "blockly_version": "6.20210701.0"
+  },
+  "dependencies": {
+    "modules": [
+      "socket",
+      "network",
+      "time"
+    ]
+  },
+  "color": "#336600"
+}

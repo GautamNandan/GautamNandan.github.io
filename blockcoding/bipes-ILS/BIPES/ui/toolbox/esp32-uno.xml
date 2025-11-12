@@ -413,14 +413,14 @@
   </category>
 
   <category name="Connectivity" colour="%{BKY_CONNECTIVITY_HUE}">
-      <category name="Bluetooth" colour="290">
+      <category name="Bluetooth" colour="%{BKY_CONNECTIVITY_HUE}">
         <block type="configure_and_start_bluetooth"></block>
         <block type="handle_ble_data"></block>
         <block type="verificar_dados_ble"></block>
         <block type="show_received_data"></block>
         <block type="chamar_formatar_dados_plotter"></block>
       </category>
-      <category name="Wifi" colour="190">
+      <category name="Wifi" colour="%{BKY_CONNECTIVITY_HUE}">
         <block type="wifi_client_connect">
       <value name="wifi_client_essid">
         <shadow type="text">
@@ -454,6 +454,32 @@
     </block>
 
       </category>
+
+  <category name="REPL" colour="%{BKY_CONNECTIVITY_HUE}">
+    <label text="Bluetooth REPL"></label>
+    <label text="This block allows terminal/console access using bluetooth."></label>
+
+      <label text="Web Bluetooth REPL"></label>
+      <block type="bluetooth_repl_setup">
+      <value name="name">
+          <shadow type="text">
+            <field name="TEXT">BIPES-BLE</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="bluetooth_repl_start">
+      <value name="name">
+          <shadow type="text">
+            <field name="TEXT">BIPES-BLE</field>
+          </shadow>
+        </value>
+      </block>
+      <label text="WebREPL"></label>
+      <block type="webrepl_setup"></block>
+      <block type="webrepl_start"></block>	  
+    </category>
+
+	  
       </category>
 
   <category name="%{BKY_CAT_MACHINE}" colour="%{BKY_MACHINE_HUE}">
@@ -3764,445 +3790,779 @@ Roll: Left/right tilt</comment>
     <block type="net_wiznet5k_ifconfig">
     </block>
 
-    <category name="HTTP Client" colour="%{BKY_NET_HUE}">
-      <label text="HTTP (web) Client"></label>
-      <label text="GET Method"></label>
-
-      <block type="net_get_request"></block>
-    <block type="net_get_request">
-	 <value name="URL">
-	 <block type="text">
-	 <field name="TEXT">http://</field>
-         </block>
-         </value>
+  <category name="🌐 HTTP Server/Client" colour="#336600">
+    
+    <!-- WiFi Setup Section -->
+    <label text="WiFi Connection" web-class="boldtext"></label>
+    
+    <block type="wifi_connect_station">
+      <comment pinned="true">Connect ESP32 to WiFi network. Wait for connection before using HTTP blocks</comment>
+      <value name="SSID">
+        <shadow type="text">
+          <field name="TEXT">MyWiFi</field>
+        </shadow>
+      </value>
+      <value name="PASSWORD">
+        <shadow type="text">
+          <field name="TEXT">password123</field>
+        </shadow>
+      </value>
     </block>
-    <block type="http_get_status"></block>
-    <block type="http_get_content"></block>
-
-    <block type="variables_set" inline="false">
-	    <field name="VAR">request</field>
-            <value name="VALUE">
-		    <block type="net_get_request">
-			 <value name="URL">
-			 <block type="text">
-				<field name="TEXT">http://bipes.net.br/test.txt</field>
-			 </block>
-			 </value>
-		    </block>
-	    </value>
+    
+    <block type="wifi_create_ap">
+      <comment pinned="true">Create WiFi hotspot. Others can connect to your ESP32</comment>
+      <value name="SSID">
+        <shadow type="text">
+          <field name="TEXT">ESP32-AP</field>
+        </shadow>
+      </value>
+      <value name="PASSWORD">
+        <shadow type="text">
+          <field name="TEXT">12345678</field>
+        </shadow>
+      </value>
     </block>
-
-
-<variables>
-<variable id="yFH}K(gY?bu`VLT9NYZ.">request</variable>
-</variables>
-<block type="variables_set" id="!1xIazB)h~sJ/!$o{Sm5" inline="false" x="-613" y="-737">
-<field name="VAR" id="yFH}K(gY?bu`VLT9NYZ.">request</field>
-<value name="VALUE">
-<block type="net_get_request" id="5gsz(fK06Y^`q!^eqfl^">
-<value name="URL">
-<block type="text" id="$YN]pq|;%B-%rxn[)aK}">
-<field name="TEXT">http://bipes.net.br/test.txt</field>
-</block>
-</value>
-</block>
-</value>
-<next>
-<block type="controls_if" id="gXT.6iyw4xuE[DIT|DlZ">
-<mutation else="1"/>
-<value name="IF0">
-<block type="logic_compare" id="MAl#oabnR*]}v{*w!`zM">
-<field name="OP">EQ</field>
-<value name="A">
-<block type="http_get_status" id="wtKQn`[WC=}H%N;~w)2V">
-<field name="request" id="yFH}K(gY?bu`VLT9NYZ.">request</field>
-</block>
-</value>
-<value name="B">
-<block type="math_number" id="tOXrARcB78l}%us2,2?k">
-<field name="NUM">200</field>
-</block>
-</value>
-</block>
-</value>
-<statement name="DO0">
-<block type="text_print" id="~f:`;)0R$FRjhp{cR]@E">
-<value name="TEXT">
-<shadow type="text" id="pr9Ux3[LuPqlVB$8Clx[">
-<field name="TEXT">abc</field>
-</shadow>
-<block type="text_join" id="=(rN|1TYMR;Dm$,@i*q=">
-<mutation items="2"/>
-<value name="ADD0">
-<block type="text" id="CqCB]Gb8.24=oZ!:4sB~">
-<field name="TEXT">Success. Response content: </field>
-</block>
-</value>
-<value name="ADD1">
-<block type="http_get_content" id="EIZ(Vmcg-,^Dt/N7Xc@;">
-<field name="request" id="yFH}K(gY?bu`VLT9NYZ.">request</field>
-</block>
-</value>
-</block>
-</value>
-</block>
-</statement>
-<statement name="ELSE">
-<block type="text_print" id="RpdJo2g.#On;%,bM%LRs">
-<value name="TEXT">
-<shadow type="text">
-<field name="TEXT">abc</field>
-</shadow>
-<block type="text_join" id="bazG!D4x;$0/d[t@aG7]">
-<mutation items="2"/>
-<value name="ADD0">
-<block type="text" id="Gq9,.$(51,A0{y*siaQ~">
-<field name="TEXT">Request Error. Status code = </field>
-</block>
-</value>
-<value name="ADD1">
-<block type="http_get_status" id="gZ+~#AOpOjdmdd=2F%e~">
-<field name="request" id="yFH}K(gY?bu`VLT9NYZ.">request</field>
-</block>
-</value>
-</block>
-</value>
-</block>
-</statement>
-</block>
-</next>
-</block>
-
-
-      <label text="POST Method"></label>
-
-    <block type="net_post_request">
-      <field name="NET_POST_REQUEST_URL">Make HTTP POST Request URL</field>
-      <field name="NET_POST_REQUEST_DATA">Data</field>
+    
+    <block type="wifi_check_connection"></block>
+    
+    <block type="wifi_get_ip"></block>
+    
+    <block type="wifi_disconnect"></block>
+    
+    <!-- HTTP Server Section -->
+    <label text="HTTP Server - Create Web Pages" web-class="boldtext"></label>
+    
+    <block type="http_server_start">
+      <comment pinned="true">Start web server on ESP32. Others can access via IP address</comment>
+      <value name="PORT">
+        <shadow type="math_number">
+          <field name="NUM">80</field>
+        </shadow>
+      </value>
     </block>
-
-    </category>
-
-    <category name="HTTP Server" colour="%{BKY_NET_HUE}">
-      <label text="HTTP Web Server"></label>
-      <button text="Load example: webserver" callbackKey="loadExample"></button>
-      <button text="Documentation: webserver" callbackKey="loadDoc"></button>
-
-    <block type="net_http_server_start">
-        <value name="port">
-          <shadow type="math_number">
-            <field name="NUM">80</field>
-          </shadow>
-        </value>
+    
+    <block type="http_server_add_route">
+      <comment pinned="true">Create a web page at specific URL path (e.g., /home, /led, /sensor)</comment>
+      <value name="PATH">
+        <shadow type="text">
+          <field name="TEXT">/</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_http_server_accept">
+    
+    <block type="http_server_send_html">
+      <value name="HTML">
+        <shadow type="text">
+          <field name="TEXT">&lt;h1&gt;Hello World!&lt;/h1&gt;</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_http_server_requested_page">
+    
+    <block type="http_server_send_json">
+      <value name="JSON_DATA">
+        <shadow type="text">
+          <field name="TEXT">{"status": "ok"}</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_http_server_send_response">
-	 <value name="html">
-          <shadow type="text">
-            <field name="TEXT">You reached BIPES WebServer!</field>
-          </shadow>
-        </value>
+    
+    <block type="http_server_send_text">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">Hello from ESP32!</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_http_server_send_response_jpg">
+    
+    <block type="http_server_get_parameter">
+      <comment pinned="true">Get data from URL. Example: /led?state=on gets "state" value</comment>
+      <value name="PARAM_NAME">
+        <shadow type="text">
+          <field name="TEXT">state</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_http_server_close">
+    
+    <block type="http_server_get_body"></block>
+    
+    <block type="http_server_redirect">
+      <value name="URL">
+        <shadow type="text">
+          <field name="TEXT">/home</field>
+        </shadow>
+      </value>
     </block>
-
-    </category>
-
-    <category name="EMAIL" colour="%{BKY_NET_HUE}">
-      <label text="Email sender using uMail"></label>
-      <label text="Library: https://github.com/shawwwn/uMail"></label>
-        <button text="Install umail library" callbackKey="installPyLib"></button>
-        <button text="Documentation: uMail" callbackKey="loadDoc"></button>
-
-      <block type="umail_init">
-	  <value name="host">
-          <shadow type="text">
-            <field name="TEXT">smtp.gmail.com</field>
-          </shadow>
-        </value>
-        <value name="port">
-          <shadow type="math_number">
-            <field name="NUM">587</field>
-          </shadow>
-        </value>
-        <value name="username">
-          <shadow type="text">
-            <field name="TEXT">email@gmail.com</field>
-          </shadow>
-        </value>
-        <value name="password">
-          <shadow type="text">
-            <field name="TEXT">gmail_password</field>
-          </shadow>
-        </value>
-      </block>
-
-      <block type="umail_send">
-	  <value name="to">
-          <shadow type="text">
-            <field name="TEXT">email@email.com</field>
-          </shadow>
-        </value>
-        <value name="subject">
-          <shadow type="text">
-            <field name="TEXT">Email from BIPES!</field>
-          </shadow>
-        </value>
-        <value name="contents">
-          <shadow type="text">
-            <field name="TEXT">BIPES is nice!</field>
-          </shadow>
-        </value>
-      </block>
-    </category>
-
-
-    <category name="NTP Time" colour="%{BKY_NET_HUE}">
-     <label text="Network Time Protocol (NTP)"></label>
-     <label text="Adjusts RTC using Internet"></label>
-        <button text="Load example: ntp" callbackKey="loadExample"></button>
-        <button text="Documentation: ntp" callbackKey="loadDoc"></button>
-
-
-    <block type="net_ntp_sync">
-	 <value name="tz">
-          <shadow type="math_number">
-            <field name="NUM">3</field>
-          </shadow>
-        </value>
-
-
+    
+    <block type="http_server_stop"></block>
+    
+    <!-- HTTP Client Section -->
+    <label text="HTTP Client - Access Web Services" web-class="boldtext"></label>
+    
+    <block type="http_client_get_request">
+      <comment pinned="true">Download data from a website or API</comment>
+      <value name="URL">
+        <shadow type="text">
+          <field name="TEXT">http://api.example.com/data</field>
+        </shadow>
+      </value>
     </block>
-    </category>
-
-    <category name="TCP/IP Socket" colour="%{BKY_NET_HUE}">
-      <label text="TCP/IP Socket"></label>
-        <button text="Load example: starwars" callbackKey="loadExample"></button>
-        <button text="Documentation: sockets" callbackKey="loadDoc"></button>
-
-
-    <block type="net_socket_connect">
-	 <value name="host">
-          <shadow type="text">
-            <field name="TEXT">towel.blinkenlights.nl</field>
-          </shadow>
-        </value>
-	 <value name="port">
-          <shadow type="math_number">
-            <field name="NUM">23</field>
-          </shadow>
-        </value>
-
+    
+    <block type="http_client_post_request">
+      <comment pinned="true">Send data to a website or API</comment>
+      <value name="URL">
+        <shadow type="text">
+          <field name="TEXT">http://api.example.com/update</field>
+        </shadow>
+      </value>
+      <value name="DATA">
+        <shadow type="text">
+          <field name="TEXT">{"value": 123}</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_socket_receive">
-	<value name="bytes">
-          <shadow type="math_number">
-            <field name="NUM">500</field>
-          </shadow>
-        </value>
-
-
+    
+    <block type="http_client_get_with_headers">
+      <value name="URL">
+        <shadow type="text">
+          <field name="TEXT">http://api.example.com/data</field>
+        </shadow>
+      </value>
+      <value name="HEADERS">
+        <shadow type="text">
+          <field name="TEXT">{"Authorization": "Bearer token123"}</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_socket_send">
-     <value name="bytes">
-          <shadow type="text">
-            <field name="TEXT">Hello</field>
-          </shadow>
-        </value>
-
+    
+    <block type="http_client_download_file">
+      <comment pinned="true">Download file and save to ESP32 storage</comment>
+      <value name="URL">
+        <shadow type="text">
+          <field name="TEXT">http://example.com/file.txt</field>
+        </shadow>
+      </value>
+      <value name="FILENAME">
+        <shadow type="text">
+          <field name="TEXT">data.txt</field>
+        </shadow>
+      </value>
     </block>
-    <block type="net_socket_close">
+    
+    <block type="http_client_get_status_code"></block>
+    
+    <block type="http_client_parse_json">
+      <comment pinned="true">Convert JSON text to usable data</comment>
+      <value name="JSON_TEXT">
+        <shadow type="text">
+          <field name="TEXT">{"temp": 25}</field>
+        </shadow>
+      </value>
+      <value name="KEY">
+        <shadow type="text">
+          <field name="TEXT">temp</field>
+        </shadow>
+      </value>
     </block>
-
-    </category>
-
-    <category name="MQTT" colour="%{BKY_NET_HUE}">
-      <label text="MQTT (Message Queue Telemetry Transport)"></label>
-      <block type="mqtt_init">
-        <field name="BLOCK_MQTT_INIT">Start MQTT Client</field>
-        <value name="server">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-        <value name="port">
-          <shadow type="math_number">
-            <field name="NUM">1883</field>
-          </shadow>
-        </value>
-        <value name="user">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-        <value name="password">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="mqtt_add_to_buffer">
-        <field name="BLOCK_MQTT_ADD_TO_BUFFER">Add data to MQTT Buffer</field>
-        <value name="fieldname">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-        <field name="MQTT_VALUE">Value</field>
-      </block>
-      <block type="mqtt_publish_buffer">
-        <field name="BLOCK_MQTT_PUBLISH">Publish Buffer to MQTT Topic</field>
-        <value name="topic">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="mqtt_publish_payload">
-        <field name="BLOCK_MQTT_PUBLISH">Publish Payload to MQTT Topic</field>
-        <value name="topic">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-        <value name="payload">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="mqtt_set_callback">
-        <field name="BLOCK_MQTT_SET_CALLBACK">Set Callback to MQTT Messages</field>
-        <field name="MQTT_CALLBACK">Callback Function</field>
-      </block>
-      <block type="mqtt_subscribe">
-        <field name="BLOCK_MQTT_SUBSCRIBE">Subscribe to MQTT Topic</field>
-        <value name="topic">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="mqtt_check_msg">
-        <field name="BLOCK_MQTT_CHECK_MSG">Check for MQTT Server messages</field>
-      </block>
-      <block type="mqtt_wait_msg">
-        <field name="BLOCK_MQTT_WAIT_MSG">Wait for MQTT Server messages</field>
-      </block>
-      <block type="mqtt_disconnect">
-        <field name="BLOCK_MQTT_DISCONNECT">Disconnect MQTT Client</field>
-      </block>
-    </category>
-    <category name="EasyMQTT" colour="%{BKY_NET_HUE}">
-      <label text="IoT: EasyMQTT"></label>
-      <block type="easymqtt_init">
-      </block>
-      <block type="easymqtt_publish_data">
-        <value name="topic">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-        <value name="data">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="easymqtt_subscribe">
-        <value name="topic">
-          <shadow type="text">
-            <field name="TEXT"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="easymqtt_receive_data"></block>
-      <block type="easymqtt_disconnect">
-        <field name="BLOCK_EASYMQTT_DISCONNECT">EasyMQTT Stop</field>
-      </block>
-    </category>
-
-  <category name="Bluetooth REPL">
-    <label text="Bluetooth REPL"></label>
-    <label text="This block allows terminal/console access using bluetooth."></label>
-
-      <label text="Web Bluetooth REPL"></label>
-      <block type="bluetooth_repl_setup">
-      <value name="name">
-          <shadow type="text">
-            <field name="TEXT">BIPES-BLE</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="bluetooth_repl_start">
-      <value name="name">
-          <shadow type="text">
-            <field name="TEXT">BIPES-BLE</field>
-          </shadow>
-        </value>
-      </block>
-    </category>
-
-  <category name="WebREPL" colour="%{BKY_NET_HUE}">
-      <label text="WebREPL"></label>
-      <block type="webrepl_setup"></block>
-      <block type="webrepl_start"></block>
-    </category>
-
-
-    <category name="CAN Bus" colour="%{BKY_NET_HUE}">
-     <label text="Controller Area Network (CAN)"></label>
-     <label text="Requires specific firmware"></label>
-     <label text="Compatible with: https://github.com/micropython/micropython/issues/5087#issuecomment-538779410"></label>
-        <button text="Load example: esp32_can" callbackKey="loadExample"></button>
-        <button text="Documentation: esp32_can" callbackKey="loadDoc"></button>
-
-    <block type="esp32_can_init">
+    
+    <!-- HTML Builder Helpers -->
+    <label text="HTML Builder - Easy Web Pages" web-class="boldtext"></label>
+    
+    <block type="html_create_page">
+      <value name="TITLE">
+        <shadow type="text">
+          <field name="TEXT">My ESP32 Page</field>
+        </shadow>
+      </value>
+      <value name="BODY_CONTENT">
+        <shadow type="text">
+          <field name="TEXT">&lt;h1&gt;Welcome!&lt;/h1&gt;</field>
+        </shadow>
+      </value>
     </block>
-
-    <block type="esp32_can_filter">
+    
+    <block type="html_create_button">
+      <value name="BUTTON_TEXT">
+        <shadow type="text">
+          <field name="TEXT">Click Me</field>
+        </shadow>
+      </value>
+      <value name="LINK_URL">
+        <shadow type="text">
+          <field name="TEXT">/action</field>
+        </shadow>
+      </value>
     </block>
-    <block type="esp32_can_send">
+    
+    <block type="html_create_form">
+      <value name="ACTION">
+        <shadow type="text">
+          <field name="TEXT">/submit</field>
+        </shadow>
+      </value>
     </block>
-    <block type="esp32_can_recv">
+    
+    <block type="html_add_input_field">
+      <value name="FIELD_NAME">
+        <shadow type="text">
+          <field name="TEXT">username</field>
+        </shadow>
+      </value>
+      <value name="PLACEHOLDER">
+        <shadow type="text">
+          <field name="TEXT">Enter name</field>
+        </shadow>
+      </value>
     </block>
+    
+    <block type="html_add_slider">
+      <value name="NAME">
+        <shadow type="text">
+          <field name="TEXT">brightness</field>
+        </shadow>
+      </value>
+      <value name="MIN">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="MAX">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+      <value name="VALUE">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="html_create_table">
+      <value name="HEADERS">
+        <shadow type="text">
+          <field name="TEXT">Name,Value,Status</field>
+        </shadow>
+      </value>
+      <value name="ROWS">
+        <shadow type="text">
+          <field name="TEXT">LED,ON,Active</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="html_add_css_style">
+      <value name="CSS">
+        <shadow type="text">
+          <field name="TEXT">body { background: #f0f0f0; }</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <!-- WebSocket Section (Advanced) -->
+    <label text="WebSocket - Live Updates" web-class="boldtext"></label>
+    
+    <block type="websocket_server_start">
+      <comment pinned="true">Enable real-time communication. Updates instantly without refresh</comment>
+      <value name="PORT">
+        <shadow type="math_number">
+          <field name="NUM">8080</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="websocket_send_to_all">
+      <value name="MESSAGE">
+        <shadow type="text">
+          <field name="TEXT">{"sensor": 25}</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="websocket_on_message_received"></block>
+    
+  </category>
 
-    </category>
-
-    <category name="Google Sheets" colour="%{BKY_NET_HUE}">
-      <label text="Send files to a Google Spreadsheet"></label>
-      <label text="Library: https://gist.github.com/SpotlightKid/8637c685626b334e5c0ec341dd269c44"></label>
-        <button text="install prequests library" callbackKey="installPyLib"></button>
-      <block type="google_spreadsheet">
-    <field name="sheet_num">1</field>
-    <value name="deploy_code">
+<category name="📧 Email" colour="#336600">
+  
+  <!-- Setup Section -->
+  <label text="Setup Email" web-class="boldtext"></label>
+  
+  <block type="email_init">
+    <comment pinned="true">Setup email connection. For Gmail, use an App Password (not your regular password)</comment>
+    <value name="SMTP_SERVER">
       <shadow type="text">
-        <field name="TEXT">Deploy code</field>
+        <field name="TEXT">smtp.gmail.com</field>
       </shadow>
     </value>
-    <statement name="cells_values">
-      <block type="cell_value">
-        <value name="value">
-          <shadow type="text">
-            <field name="TEXT">Content</field>
-          </shadow>
-        </value>
-      </block>
-    </statement>
+    <value name="SMTP_PORT">
+      <shadow type="math_number">
+        <field name="NUM">465</field>
+      </shadow>
+    </value>
+    <value name="SENDER_EMAIL">
+      <shadow type="text">
+        <field name="TEXT">your_email@gmail.com</field>
+      </shadow>
+    </value>
+    <value name="SENDER_PASSWORD">
+      <shadow type="text">
+        <field name="TEXT">your_app_password</field>
+      </shadow>
+    </value>
   </block>
-      <block type="cell_value">
-        <value name="value">
-          <shadow type="text">
-            <field name="TEXT">content</field>
-          </shadow>
-        </value>
-      </block>
-    </category>
+  
+  <!-- Send Email Section -->
+  <label text="Send Email" web-class="boldtext"></label>
+  
+  <block type="email_send">
+    <comment pinned="true">Send an email to someone</comment>
+    <value name="RECIPIENT">
+      <shadow type="text">
+        <field name="TEXT">friend@example.com</field>
+      </shadow>
+    </value>
+    <value name="SUBJECT">
+      <shadow type="text">
+        <field name="TEXT">Hello!</field>
+      </shadow>
+    </value>
+    <value name="MESSAGE">
+      <shadow type="text">
+        <field name="TEXT">This is my message</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="email_send_with_from">
+    <comment pinned="true">Send email and specify who it's from</comment>
+    <value name="RECIPIENT">
+      <shadow type="text">
+        <field name="TEXT">friend@example.com</field>
+      </shadow>
+    </value>
+    <value name="FROM_EMAIL">
+      <shadow type="text">
+        <field name="TEXT">me@example.com</field>
+      </shadow>
+    </value>
+    <value name="SUBJECT">
+      <shadow type="text">
+        <field name="TEXT">Hello!</field>
+      </shadow>
+    </value>
+    <value name="MESSAGE">
+      <shadow type="text">
+        <field name="TEXT">This is my message</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Email Status Section -->
+  <label text="Email Status" web-class="boldtext"></label>
+  
+  <block type="email_check_status">
+    <comment pinned="true">Check if email was sent successfully</comment>
+  </block>
+  
+  <block type="email_get_error">
+    <comment pinned="true">Get the error message if email failed</comment>
+  </block>
+  
+  <!-- Advanced Section -->
+  <label text="Advanced" web-class="boldtext"></label>
+  
+  <block type="email_send_multiple">
+    <comment pinned="true">Send email to multiple people at once</comment>
+    <value name="RECIPIENTS">
+      <shadow type="text">
+        <field name="TEXT">friend1@example.com,friend2@example.com</field>
+      </shadow>
+    </value>
+    <value name="SUBJECT">
+      <shadow type="text">
+        <field name="TEXT">Hello Everyone!</field>
+      </shadow>
+    </value>
+    <value name="MESSAGE">
+      <shadow type="text">
+        <field name="TEXT">This is my message</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="email_disconnect">
+    <comment pinned="true">Close email connection</comment>
+  </block>
+
+</category>
+
+<category name="🕐 NTP Time" colour="#336600">
+  
+  <label text="Get Internet Time" web-class="boldtext"></label>
+  
+  <block type="ntp_get_time">
+    <comment pinned="true">Get current time from the internet. Make sure WiFi is connected first! You can adjust timezone offset (e.g., +5.5 for India, -5 for EST)</comment>
+    <value name="NTP_SERVER">
+      <shadow type="text">
+        <field name="TEXT">pool.ntp.org</field>
+      </shadow>
+    </value>
+    <value name="TIMEZONE_OFFSET">
+      <shadow type="math_number">
+        <field name="NUM">5.5</field>
+      </shadow>
+    </value>
+  </block>
+
+</category>
+
+<category name="📡 TCP/IP" colour="#336600">
+  
+  <label text="🌐 Utils"></label>
+  <block type="ils_wifi_is_connected"></block>
+  
+  <block type="ils_wifi_get_ip"></block>
+  
+  <label text="🌐 TCP Client"></label>
+  <block type="ils_tcp_client_connect">
+    <value name="HOST">
+      <shadow type="text">
+        <field name="TEXT">192.168.1.100</field>
+      </shadow>
+    </value>
+    <value name="PORT">
+      <shadow type="math_number">
+        <field name="NUM">80</field>
+      </shadow>
+    </value>
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_tcp_send">
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="DATA">
+      <shadow type="text">
+        <field name="TEXT">Hello</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_tcp_receive">
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="BYTES">
+      <shadow type="math_number">
+        <field name="NUM">1024</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_tcp_close">
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <label text="🖥️ TCP Server"></label>
+  <block type="ils_tcp_server_start">
+    <value name="PORT">
+      <shadow type="math_number">
+        <field name="NUM">80</field>
+      </shadow>
+    </value>
+    <value name="SERVER_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_tcp_server_accept">
+    <value name="SERVER_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_tcp_server_stop">
+    <value name="SERVER_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <label text="📨 UDP Communication"></label>
+  <block type="ils_udp_create">
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_udp_send_to">
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="DATA">
+      <shadow type="text">
+        <field name="TEXT">Hello</field>
+      </shadow>
+    </value>
+    <value name="HOST">
+      <shadow type="text">
+        <field name="TEXT">192.168.1.100</field>
+      </shadow>
+    </value>
+    <value name="PORT">
+      <shadow type="math_number">
+        <field name="NUM">8080</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_udp_receive_from">
+    <value name="SOCKET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="BYTES">
+      <shadow type="math_number">
+        <field name="NUM">1024</field>
+      </shadow>
+    </value>
+  </block>
+  
+</category>
+<category name="🔐 MQTT" colour="#336600">
+  
+  <!-- Setup Section -->
+  <label text="Setup Connection" web-class="boldtext"></label>
+  
+  <block type="mqtt_init">
+    <comment pinned="true">Setup MQTT connection. Connect to WiFi first! Use a free broker like broker.hivemq.com or test.mosquitto.org</comment>
+    <value name="CLIENT_ID">
+      <shadow type="text">
+        <field name="TEXT">esp32_client</field>
+      </shadow>
+    </value>
+    <value name="BROKER">
+      <shadow type="text">
+        <field name="TEXT">broker.hivemq.com</field>
+      </shadow>
+    </value>
+    <value name="PORT">
+      <shadow type="math_number">
+        <field name="NUM">1883</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="mqtt_init_with_auth">
+    <comment pinned="true">Setup MQTT with username and password (for private brokers)</comment>
+    <value name="CLIENT_ID">
+      <shadow type="text">
+        <field name="TEXT">esp32_client</field>
+      </shadow>
+    </value>
+    <value name="BROKER">
+      <shadow type="text">
+        <field name="TEXT">broker.hivemq.com</field>
+      </shadow>
+    </value>
+    <value name="PORT">
+      <shadow type="math_number">
+        <field name="NUM">1883</field>
+      </shadow>
+    </value>
+    <value name="USERNAME">
+      <shadow type="text">
+        <field name="TEXT">myusername</field>
+      </shadow>
+    </value>
+    <value name="PASSWORD">
+      <shadow type="text">
+        <field name="TEXT">mypassword</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="mqtt_connect">
+    <comment pinned="true">Connect to MQTT broker</comment>
+  </block>
+  
+  <!-- Publish Section -->
+  <label text="Send Messages" web-class="boldtext"></label>
+  
+  <block type="mqtt_publish">
+    <comment pinned="true">Send a message to a topic. Anyone subscribed to this topic will receive it!</comment>
+    <value name="TOPIC">
+      <shadow type="text">
+        <field name="TEXT">home/temperature</field>
+      </shadow>
+    </value>
+    <value name="MESSAGE">
+      <shadow type="text">
+        <field name="TEXT">25</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="mqtt_publish_with_qos">
+    <comment pinned="true">Send message with Quality of Service (QoS). Higher QoS = more reliable delivery</comment>
+    <value name="TOPIC">
+      <shadow type="text">
+        <field name="TEXT">home/temperature</field>
+      </shadow>
+    </value>
+    <value name="MESSAGE">
+      <shadow type="text">
+        <field name="TEXT">25</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Subscribe Section -->
+  <label text="Receive Messages" web-class="boldtext"></label>
+  
+  <block type="mqtt_subscribe">
+    <comment pinned="true">Subscribe to a topic to receive messages. Use wildcards: + for one level, # for multiple levels</comment>
+    <value name="TOPIC">
+      <shadow type="text">
+        <field name="TEXT">home/temperature</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="mqtt_set_callback">
+    <comment pinned="true">Set what to do when a message arrives. The 'topic' and 'message' variables will be available inside</comment>
+  </block>
+  
+  <block type="mqtt_check_messages">
+    <comment pinned="true">Check for new messages (call this regularly in a loop)</comment>
+  </block>
+  
+  <!-- Message Info Section -->
+  <label text="Message Information" web-class="boldtext"></label>
+  
+  <block type="mqtt_last_topic">
+    <comment pinned="true">Get the topic of the last received message</comment>
+  </block>
+  
+  <block type="mqtt_last_message">
+    <comment pinned="true">Get the content of the last received message</comment>
+  </block>
+  
+  <!-- Status Section -->
+  <label text="Connection Status" web-class="boldtext"></label>
+  
+  <block type="mqtt_is_connected">
+    <comment pinned="true">Check if connected to MQTT broker</comment>
+  </block>
+  
+  <block type="mqtt_disconnect">
+    <comment pinned="true">Disconnect from MQTT broker</comment>
+  </block>
+  
+  <block type="mqtt_ping">
+    <comment pinned="true">Send keepalive ping to broker</comment>
+  </block>
+
+</category>
+<category name="📊 Google Sheets" colour="#336600">
+  
+  <label text="📊 Setup &amp; Configuration"></label>
+  <block type="ils_sheets_init">
+    <value name="DEPLOY_CODE">
+      <shadow type="text">
+        <field name="TEXT">your-deployment-id-here</field>
+      </shadow>
+    </value>
+    <value name="SHEET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <label text="📝 Add Data to Row"></label>
+  <block type="ils_sheets_add_cell">
+    <value name="SHEET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="VALUE">
+      <shadow type="text">
+        <field name="TEXT">Hello</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_sheets_add_number">
+    <value name="SHEET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="VALUE">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <label text="📤 Send Data"></label>
+  <block type="ils_sheets_post_data">
+    <value name="SHEET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <label text="🔄 Complete Workflow"></label>
+  <block type="ils_sheets_send_row">
+    <value name="DEPLOY_CODE">
+      <shadow type="text">
+        <field name="TEXT">your-deployment-id-here</field>
+      </shadow>
+    </value>
+    <value name="SHEET_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <label text="📋 Cell Value Builder"></label>
+  <block type="ils_sheets_cell_value">
+    <value name="VALUE">
+      <shadow type="text">
+        <field name="TEXT">data</field>
+      </shadow>
+    </value>
+  </block>
+  
+</category>
   </category>
  <category name="%{BKY_CAT_COMM}" colour="%{BKY_COMM_HUE}">
       <label text="%{BKY_CAT_COMM}"></label>

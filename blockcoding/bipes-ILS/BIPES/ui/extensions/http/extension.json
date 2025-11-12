@@ -1,0 +1,72 @@
+{
+  "name": "ILS Network - HTTP Server & Client",
+  "description": "WiFi connectivity, HTTP web server, REST API client, and WebSocket support for ESP32",
+  "version": "1.0.0",
+  "author": "ILS",
+  "category": "communication",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#3399cc",
+  "tags": [
+    "WiFi",
+    "HTTP",
+    "Web Server",
+    "REST API",
+    "WebSocket",
+    "IoT",
+    "Network"
+  ],
+  "hardware": {
+    "platform": "ESP32",
+    "features": [
+      "WiFi Station Mode",
+      "WiFi Access Point Mode",
+      "HTTP Server",
+      "HTTP Client",
+      "WebSocket"
+    ]
+  },
+  "dependencies": {
+    "micropython": {
+      "modules": [
+        "network",
+        "socket",
+        "urequests",
+        "json",
+        "time"
+      ],
+      "custom": [
+        "ils.network_utils",
+        "ils.http_server",
+        "ils.http_client",
+        "ils.html_builder",
+        "ils.websocket_server"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "name": "WiFi LED Control",
+      "description": "Control LED brightness from web browser"
+    },
+    {
+      "name": "Sensor Dashboard",
+      "description": "Display sensor data on web page"
+    },
+    {
+      "name": "REST API Client",
+      "description": "Send data to cloud service"
+    },
+    {
+      "name": "Real-time WebSocket Updates",
+      "description": "Live sensor data streaming"
+    }
+  ],
+  "compatibility": {
+    "blockly_version": "6.20210701.0",
+    "micropython_version": ">=1.19",
+    "esp32_required": true
+  }
+}

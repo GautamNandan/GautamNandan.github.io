@@ -1,0 +1,103 @@
+ <category name="TM1637 Display" colour="#FF6B35">
+    
+    <label text="Setup" web-class="boldtext"></label>
+      <block type="tm1637_init">
+	  
+        <value name="CLK_PIN">
+        <shadow type="pinout">
+            <field name="PIN">25</field>
+          </shadow>
+        </value>
+      
+	  <value name="DIO_PIN">
+        <shadow type="pinout">
+            <field name="PIN">26</field>
+          </shadow>
+        </value>
+
+        <value name="BRIGHTNESS">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_brightness">
+        <value name="BRIGHTNESS">
+		<comment pinned="false">Brightness range: 0 (dim) to 7 (bright)</comment>		
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+    
+    <category name="Display Utils" colour="#FF6B35">
+    <label text="Display Numbers" web-class="boldtext"></label>	
+      <block type="tm1637_show_number">
+        <value name="NUMBER">
+          <block type="math_number">
+            <field name="NUM">1234</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_show_hex">
+        <value name="HEX_VALUE">
+          <block type="math_number">
+            <field name="NUM">255</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_show_time">
+        <value name="HOURS">
+          <block type="math_number">
+            <field name="NUM">12</field>
+          </block>
+        </value>
+        <value name="MINUTES">
+          <block type="math_number">
+            <field name="NUM">30</field>
+          </block>
+        </value>
+        <field name="COLON">TRUE</field>
+      </block>
+    
+    <label text="Display Text" web-class="boldtext"></label>	
+      <block type="tm1637_show_text">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">ILS</field>
+          </block>
+        </value>
+        <field name="COLON">FALSE</field>
+      </block>
+      
+      <block type="tm1637_scroll_text">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">INFINITY</field>
+          </block>
+        </value>
+        <value name="DELAY">
+          <block type="math_number">
+            <field name="NUM">250</field>
+          </block>
+        </value>
+      </block>
+
+    
+    <label text="Special Display" web-class="boldtext"></label>		
+      <block type="tm1637_show_temperature">
+        <value name="TEMPERATURE">
+          <block type="math_number">
+            <field name="NUM">25</field>
+          </block>
+        </value>
+      </block>
+      
+      <block type="tm1637_clear">
+      </block>
+    </category>
+    
+  </category>

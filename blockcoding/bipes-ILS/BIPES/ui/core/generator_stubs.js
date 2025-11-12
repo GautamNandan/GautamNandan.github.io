@@ -4549,34 +4549,70 @@ Blockly.Python['umail_send'] = function(block) {
 
 };
 
+// NTP Get Time Generator
+Blockly.Python['ntp_get_time'] = function(block) {
+  var ntp_server = Blockly.Python.valueToCode(block, 'NTP_SERVER', Blockly.Python.ORDER_ATOMIC) || '"pool.ntp.org"';
+  var timezone_offset = Blockly.Python.valueToCode(block, 'TIMEZONE_OFFSET', Blockly.Python.ORDER_ATOMIC) || '5.5';
+  var return_type = block.getFieldValue('RETURN_TYPE');
 
-//New Network related functions
-
-Blockly.Python['net_ntp_sync'] = function(block) {
-//  var server = Blockly.Python.valueToCode(block, 'server', Blockly.Python.ORDER_ATOMIC);
-  var tz = Blockly.Python.valueToCode(block, 'tz', Blockly.Python.ORDER_ATOMIC);
-
+  // Add imports
   Blockly.Python.definitions_['import_ntptime'] = 'import ntptime';
-  Blockly.Python.definitions_['import_machine'] = 'import machine';
-  Blockly.Python.definitions_['import_utime'] = 'import utime';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  Blockly.Python.definitions_['import_machine'] = 'from machine import RTC';
+  
+  // Add NTP helper function
+  Blockly.Python.definitions_['ntp_get_time_func'] = 
+    'def ntp_get_time(server, tz_offset):\n' +
+    '    try:\n' +
+    '        ntptime.host = server\n' +
+    '        ntptime.settime()\n' +
+    '        rtc = RTC()\n' +
+    '        tm = rtc.datetime()\n' +
+    '        # Adjust for timezone (tm is: year, month, day, weekday, hour, minute, second, subsecond)\n' +
+    '        hour = tm[4] + int(tz_offset)\n' +
+    '        minute = tm[5] + int((tz_offset % 1) * 60)\n' +
+    '        if minute >= 60:\n' +
+    '            hour += 1\n' +
+    '            minute -= 60\n' +
+    '        if minute < 0:\n' +
+    '            hour -= 1\n' +
+    '            minute += 60\n' +
+    '        day = tm[2]\n' +
+    '        month = tm[1]\n' +
+    '        year = tm[0]\n' +
+    '        if hour >= 24:\n' +
+    '            hour -= 24\n' +
+    '            day += 1\n' +
+    '        if hour < 0:\n' +
+    '            hour += 24\n' +
+    '            day -= 1\n' +
+    '        return (year, month, day, hour, minute, tm[6])\n' +
+    '    except Exception as e:\n' +
+    '        print("NTP sync failed:", e)\n' +
+    '        return None\n';
 
-  var code = 'ntptime.settime()\n';
-	code += 'rtc = machine.RTC()\n';
-	code += 'utc_shift=' + tz + '\n';
-	code += 'tm = utime.localtime(utime.mktime(utime.localtime()) + utc_shift*3600)\n';
-	code += 'tm = tm[0:3] + (0,) + tm[3:6] + (0,)\n';
-	code += 'rtc.datetime(tm)\n';
-	code += "rtc.datetime()\n";
+  var code = '';
+  
+  // Generate code based on return type
+  if (return_type === 'TUPLE') {
+    code = 'ntp_get_time(' + ntp_server + ', ' + timezone_offset + ')';
+  } else if (return_type === 'TEXT') {
+    code = '(lambda dt: "{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}".format(dt[0], dt[1], dt[2], dt[3], dt[4], dt[5]) if dt else "Error")(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  } else if (return_type === 'HOUR') {
+    code = '(lambda dt: dt[3] if dt else 0)(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  } else if (return_type === 'MINUTE') {
+    code = '(lambda dt: dt[4] if dt else 0)(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  } else if (return_type === 'SECOND') {
+    code = '(lambda dt: dt[5] if dt else 0)(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  } else if (return_type === 'DAY') {
+    code = '(lambda dt: dt[2] if dt else 0)(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  } else if (return_type === 'MONTH') {
+    code = '(lambda dt: dt[1] if dt else 0)(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  } else if (return_type === 'YEAR') {
+    code = '(lambda dt: dt[0] if dt else 0)(ntp_get_time(' + ntp_server + ', ' + timezone_offset + '))';
+  }
 
-	/*Useful:
-	 * >>>from machine import RTC
->>>(year, month, mday, week_of_year, hour, minute, second, milisecond)=RTC().datetime()
->>>RTC().init((year, month, mday, week_of_year, hour+2, minute, second, milisecond)) # GMT correction. GMT+2
->>>print ("Fecha/Hora (year, month, mday, week of year, hour, minute, second, milisecond):", RTC().datetime())
->>>print ("{:02d}/{:02d}/{} {:02d}:{:02d}:{:02d}".format(RTC().datetime()[2],RTC().datetime()[1],RTC().datetime()[0],RTC().datetime()[4],RTC().datetime()[5],RTC
-*/
-  return code;
-
+  return [code, Blockly.Python.ORDER_FUNCTION_CALL];
 };
 
 

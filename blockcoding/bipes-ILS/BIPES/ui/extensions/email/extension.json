@@ -1,0 +1,23 @@
+{
+  "name": "ILS Email",
+  "description": "Send emails from ESP32 using SMTP",
+  "author": "ILS",
+  "version": "1.0.0",
+  "category": "communication",
+  "icon": "icon.png",
+  "color": "#cc9933",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "dependencies": {
+    "micropython": ["umail.py"]
+  },
+  "tags": [
+    "email",
+    "smtp",
+    "communication",
+    "internet",
+    "esp32"
+  ],
+  "readme": "## ILS Email Extension\n\nSend emails from your ESP32 using SMTP protocol.\n\n### Features\n- Send emails using Gmail, Outlook, or other SMTP servers\n- Support for SSL/TLS encryption\n- Send to single or multiple recipients\n- Track email send status\n- Kid-friendly interface for ages 8-14\n\n### Getting Started\n\n1. **Setup WiFi First**: Make sure your ESP32 is connected to WiFi\n2. **Use Setup Block**: Drag the 'Setup ILS Email' block\n3. **Configure Email Settings**:\n   - For Gmail: Use `smtp.gmail.com` and port `465`\n   - For Outlook: Use `smtp-mail.outlook.com` and port `587`\n   - **Important**: For Gmail, you need an App Password (not your regular password)\n4. **Send Email**: Use the 'Send Email' block\n\n### Gmail App Password Setup\n\n1. Go to your Google Account settings\n2. Enable 2-Factor Authentication\n3. Go to Security → 2-Step Verification → App passwords\n4. Create a new App password for 'Mail'\n5. Use this 16-character password in your blocks\n\n### Common SMTP Servers\n\n- **Gmail**: smtp.gmail.com (port 465 with SSL)\n- **Outlook**: smtp-mail.outlook.com (port 587)\n- **Yahoo**: smtp.mail.yahoo.com (port 465 or 587)\n\n### Example Usage\n\n```\nConnect to WiFi\n↓\nSetup ILS Email\n  - SMTP server: smtp.gmail.com\n  - Port: 465\n  - Your email: myemail@gmail.com\n  - Password: app_password_here\n  - Use SSL: ✓\n↓\nSend Email\n  - To: friend@example.com\n  - Subject: Hello!\n  - Message: Hi from my ESP32!\n```\n\n### Tips\n\n- Always connect to WiFi before sending emails\n- Use SSL (port 465) for secure connections\n- Keep your password safe and don't share it\n- Check 'Email sent successfully?' block to verify sending\n- Use 'Get email error' block to see what went wrong if email fails\n\n### Troubleshooting\n\n- **Can't connect**: Check your WiFi connection first\n- **Authentication failed**: Make sure you're using an App Password for Gmail\n- **Timeout**: Your internet might be slow, try again\n- **Port blocked**: Some networks block email ports, try a different network\n\n### Safety Note\n\nNever share your email password with anyone. Always use App Passwords instead of your main password when possible."
+}

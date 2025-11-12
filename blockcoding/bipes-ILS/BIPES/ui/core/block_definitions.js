@@ -9054,23 +9054,44 @@ Blockly.Blocks['umail_send'] = {
 
 //New Network related functions
 //
-Blockly.Blocks['net_ntp_sync'] = {
+//New Network related functions
+
+// NTP Get Time Block
+Blockly.Blocks['ntp_get_time'] = {
   init: function() {
-    this.setColour(135);
     this.appendDummyInput()
-        .appendField(MSG["ntp_sync"]);
-
+        .appendField("🕐 Get Internet Time");
     this.appendDummyInput()
-        .appendField("NTP: Network Time Protocol");
-
-    this.appendValueInput("tz")
+        .appendField(new Blockly.FieldImage(
+          "extensions/ntp/icon.png",
+          55,
+          55,
+          "*"));
+    this.appendValueInput("NTP_SERVER")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("NTP server");
+    this.appendValueInput("TIMEZONE_OFFSET")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(MSG["timezone"]);
-
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
+        .appendField("Timezone offset (hours)");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Return as")
+        .appendField(new Blockly.FieldDropdown([
+          ["Date & Time (tuple)", "TUPLE"],
+          ["Formatted text", "TEXT"],
+          ["Hour only", "HOUR"],
+          ["Minute only", "MINUTE"],
+          ["Second only", "SECOND"],
+          ["Day only", "DAY"],
+          ["Month only", "MONTH"],
+          ["Year only", "YEAR"]
+        ]), "RETURN_TYPE");
+    this.setOutput(true, null);
+    this.setColour("#336600");
+    this.setTooltip("Get current time from internet using NTP. Connect to WiFi first!");
+    this.setHelpUrl("");
   }
 };
 
