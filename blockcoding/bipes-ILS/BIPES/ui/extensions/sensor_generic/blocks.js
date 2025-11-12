@@ -60,7 +60,7 @@ Blockly.Blocks['digital_sensor_is_active'] = {
 Blockly.Blocks['analog_sensor_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📊 Setup Analog Sensor");
+        .appendField("📊 Setup Analog Sensor (Pot)");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/sensor_generic/analog_icon.png",
