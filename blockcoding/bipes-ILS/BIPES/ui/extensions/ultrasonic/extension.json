@@ -1,0 +1,13 @@
+{
+  "name": "ILS Ultrasonic Sensor",
+  "description": "Ultrasonic distance sensor with optional RGB LED",
+  "author": "ILS",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "tags": ["sensor", "ultrasonic", "distance", "rgb"],
+  "blocklyVersion": "6.20210701.0",
+  "platform": ["esp32"]
+}

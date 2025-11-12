@@ -1,0 +1,42 @@
+{
+  "name": "ILS Humidity Sensor (DHT11/DHT22)",
+  "description": "Measure temperature and humidity using DHT11 or DHT22 sensor. Perfect for weather stations and environmental monitoring!",
+  "author": "ILS",
+  "category": "Sensors",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "color": "#cc9933",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "tags": ["temperature", "humidity", "sensor", "dht11", "dht22", "weather", "environment"],
+  "helpUrl": "",
+  "hardware": {
+    "board": ["ESP32", "ESP8266"],
+    "pins": {
+      "data": "Digital pin for sensor data (3.3V compatible)"
+    },
+    "notes": "DHT11: 0-50°C, 20-80% humidity. DHT22: -40-80°C, 0-100% humidity (more accurate)"
+  },
+  "dependencies": {
+    "micropython": ["dht", "machine", "time", "math"]
+  },
+  "examples": [
+    {
+      "name": "Simple Weather Station",
+      "description": "Read and display temperature and humidity"
+    },
+    {
+      "name": "Heat Index Monitor",
+      "description": "Calculate how hot it really feels with humidity"
+    },
+    {
+      "name": "Dew Point Tracker",
+      "description": "Monitor when condensation will form"
+    },
+    {
+      "name": "DHT11 vs DHT22",
+      "description": "Compare readings from both sensor types"
+    }
+  ]
+}

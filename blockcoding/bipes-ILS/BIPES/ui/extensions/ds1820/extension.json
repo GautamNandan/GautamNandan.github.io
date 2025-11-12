@@ -1,0 +1,37 @@
+{
+  "name": "ILS Temperature Sensor (DS1820)",
+  "description": "Read temperature using DS1820/DS18B20 digital temperature sensor. Supports multiple sensors on one wire!",
+  "author": "ILS",
+  "category": "Sensors",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "color": "#cc9933",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "tags": ["temperature", "sensor", "ds1820", "ds18b20", "onewire", "thermometer"],
+  "helpUrl": "",
+  "hardware": {
+    "board": ["ESP32", "ESP8266"],
+    "pins": {
+      "data": "Digital pin with pull-up resistor (4.7K ohm recommended)"
+    }
+  },
+  "dependencies": {
+    "micropython": ["onewire", "ds18x20", "machine", "time"]
+  },
+  "examples": [
+    {
+      "name": "Simple Temperature Reading",
+      "description": "Read temperature in Celsius from one sensor"
+    },
+    {
+      "name": "Multiple Sensors",
+      "description": "Read from multiple DS1820 sensors on same wire"
+    },
+    {
+      "name": "Temperature Monitor",
+      "description": "Display temperature with unit conversion"
+    }
+  ]
+}

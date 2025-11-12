@@ -574,7 +574,7 @@
 
 <category name="%{BKY_CAT_DISPLAYS}" colour="#cc0000">
 <!-- OLED DISPLAY CATEGORY -->
-  <category name="OLED Display" colour="#cc0000">
+  <category name="🖥 OLED Display" colour="#cc0000">
     <label text="Setup" web-class="boldtext"></label>
     <block type="oled_init">
       <field name="DISPLAY_SIZE">128,64</field>
@@ -871,7 +871,7 @@
   
   </category>
   
-  <category name="NeoPixel" colour="#cc0000">
+  <category name="💡 NeoPixel" colour="#cc0000">
     
     <!-- Setup Section -->
     <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
@@ -1037,7 +1037,7 @@
 
 
  
-  <category name=" Character LCD" colour="#cc0000">
+  <category name="📺 Character LCD" colour="#cc0000">
     
     <!-- Setup Section -->
     <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
@@ -1138,7 +1138,7 @@
 
   </category>
 
-  <category name="MAX7219 LED Matrix" colour="#cc0000">
+  <category name="🔌 MAX7219 LED Matrix" colour="#cc0000">
     
     <label text="Setup"></label>
     
@@ -1327,7 +1327,7 @@
     
   </category>
 
-  <category name="TM1637 Display" colour="#cc0000">
+  <category name="🔧 TM1637 Display" colour="#cc0000">
     
     <label text="Setup" web-class="boldtext"></label>
       <block type="tm1637_init">
@@ -1431,56 +1431,470 @@
 
   </category>
 
-  <category name="Input" colour="%{BKY_INPUT_HUE}">
-     <category name="Joystick" colour="%{BKY_INPUT_HUE}">
-	    <block type="joy_init">
-        <field name="JOYSTICK_INIT">Start Joystick Controller</field>
-        <value name="xpin">
-          <shadow type="pinout">
-            <field name="PIN"></field>
-          </shadow>
-        </value>		
-        <value name="ypin">
-          <shadow type="pinout">
-            <field name="PIN"></field>
-          </shadow>
-        </value>			
-        <value name="button1">
-          <shadow type="pinout">
-            <field name="PIN"></field>
-          </shadow>
-        </value>	
-		<value name="xcenter">
-          <shadow type="math_number">
-            <field name="NUM">3212</field>
-          </shadow>
-        </value>	
-		<value name="ycenter">
-          <shadow type="math_number">
-            <field name="NUM">3152</field>
-          </shadow>
-        </value>			
-		</block>	
-	  <block type="joy_update"> </block>
-	  <block type="joy_read"> </block>
-	  <block type="joy_button"> </block>
-	 </category>
+  <category name="Input" colour="#333399">
+<category name="🕹️ Joystick" colour="#333399">
+  
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="joystick_init">
+    <value name="X_PIN">
+      <shadow type="pinout">
+        <field name="PIN">34</field>
+      </shadow>
+    </value>
+    <value name="Y_PIN">
+      <shadow type="pinout">
+        <field name="PIN">35</field>
+      </shadow>
+    </value>
+    <value name="BUTTON_PIN">
+      <shadow type="pinout">
+        <field name="PIN">32</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Read Values -->
+  <label text="Read Values"></label>
+  <block type="joystick_read_x">
+    <comment pinned="true">Returns raw X-axis value (0-4095)</comment>
+  </block>
+  
+  <block type="joystick_read_y">
+    <comment pinned="true">Returns raw Y-axis value (0-4095)</comment>
+  </block>
+  
+  <block type="joystick_read_button"></block>
+  
+  <!-- Normalized Values -->
+  <label text="Normalized Values (-100 to 100)"></label>
+  <block type="joystick_get_x_normalized">
+    <comment pinned="true">Returns X position from -100 (left) to 100 (right), 0 is center</comment>
+  </block>
+  
+  <block type="joystick_get_y_normalized">
+    <comment pinned="true">Returns Y position from -100 (down) to 100 (up), 0 is center</comment>
+  </block>
+  
+  <!-- Direction Detection -->
+  <label text="Direction Detection"></label>
+  <block type="joystick_is_direction">
+    <value name="THRESHOLD">
+      <shadow type="math_number">
+        <field name="NUM">30</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="joystick_get_direction">
+    <value name="THRESHOLD">
+      <shadow type="math_number">
+        <field name="NUM">30</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Position Check -->
+  <label text="Position Check"></label>
+  <block type="joystick_is_centered">
+    <value name="DEADZONE">
+      <shadow type="math_number">
+        <field name="NUM">20</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Calibration -->
+  <label text="Calibration"></label>
+  <block type="joystick_calibrate"></block>
+  
+  <block type="joystick_set_center">
+    <value name="X_CENTER">
+      <shadow type="math_number">
+        <field name="NUM">2048</field>
+      </shadow>
+    </value>
+    <value name="Y_CENTER">
+      <shadow type="math_number">
+        <field name="NUM">2048</field>
+      </shadow>
+    </value>
+  </block>
+  
+</category>
+<category name="⌨️ Keypad" colour="#333399">
+  
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="keypad_init_4x3">
+    <comment pinned="true">Common 4x3 keypad with numbers 1-9, *, 0, #</comment>
+    <value name="ROW1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="ROW2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="ROW3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="ROW4_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="COL1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="COL2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="COL3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">33</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="keypad_init_4x4">
+    <comment pinned="true">4x4 keypad with numbers, letters A-D</comment>
+    <value name="ROW1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="ROW2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="ROW3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="ROW4_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="COL1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="COL2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="COL3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">33</field>
+      </shadow>
+    </value>
+    <value name="COL4_PIN">
+      <shadow type="pinout">
+        <field name="PIN">32</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="keypad_init_3x3">
+    <comment pinned="true">3x3 keypad with numbers 1-9</comment>
+    <value name="ROW1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="ROW2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="ROW3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="COL1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="COL2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="COL3_PIN">
+      <shadow type="pinout">
+        <field name="PIN">33</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="keypad_init_custom">
+    <comment pinned="true">Custom keypad size - enter your own key layout</comment>
+  </block>
+  
+  <!-- Read Keys -->
+  <label text="Read Keys"></label>
+  <block type="keypad_get_key">
+    <comment pinned="true">Returns the key being pressed, or empty text if no key pressed</comment>
+  </block>
+  
+  <block type="keypad_wait_for_key">
+    <comment pinned="true">Waits until a key is pressed and returns it</comment>
+  </block>
+  
+  <block type="keypad_is_key_pressed">
+    <value name="KEY">
+      <shadow type="text">
+        <field name="TEXT">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Key Events -->
+  <label text="Key Events"></label>
+  <block type="keypad_on_key_press">
+    <comment pinned="true">Run code when any key is pressed</comment>
+  </block>
+  
+  <block type="keypad_on_specific_key">
+    <value name="KEY">
+      <shadow type="text">
+        <field name="TEXT">5</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Key Input -->
+  <label text="Multi-Key Input"></label>
+  <block type="keypad_get_number">
+    <value name="MAX_DIGITS">
+      <shadow type="math_number">
+        <field name="NUM">4</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Collect multiple digits to form a number. Press # to finish</comment>
+  </block>
+  
+  <block type="keypad_get_password">
+    <value name="LENGTH">
+      <shadow type="math_number">
+        <field name="NUM">4</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Collect password/PIN. Press # to finish</comment>
+  </block>
+  
+  <!-- Settings -->
+  <label text="Settings"></label>
+  <block type="keypad_set_debounce">
+    <value name="DELAY">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Set debounce delay in milliseconds (default 50ms)</comment>
+  </block>
+  
+</category>
+
   </category>
-  <category name="%{BKY_CAT_SENSORS}" colour="%{BKY_SENSORS_HUE}">
-    <category name="DHT11/22 Sensor" colour="%{BKY_SENSORS_HUE}">
-      <label text="DHT11/22 Temperature and Humidity Sensor"></label>
-      <block type="dht_init">
-        <field name="BLOCK_DHT_INIT">Start DHT11/22 sensor</field>
-        <value name="pin">
-          <shadow type="pinout">
-            <field name="PIN"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="dht_measure"></block>
-      <block type="dht_read_temp"></block>
-      <block type="dht_read_humidity"></block>
-    </category>
+  <category name="%{BKY_CAT_SENSORS}" colour="#cc9933">
+  <category name="📡📊🔀 Generic Sensors" colour="#cc9933">
+    
+    <label text="Setup Sensors" web-class="boldtext"></label>
+    <block type="digital_sensor_init">
+      <comment pinned="true">For sensors with VCC, GND and one DIGITAL pin (e.g., motion sensor, touch sensor, tilt sensor)</comment>
+      <value name="PIN">
+        <shadow type="pinout">
+          <field name="PIN">15</field>
+        </shadow>
+      </value>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="analog_sensor_init">
+      <comment pinned="true">For sensors with VCC, GND and one ANALOG pin (e.g., light sensor, sound sensor, potentiometer). Use pins 32-39 for analog</comment>
+      <value name="PIN">
+        <shadow type="pinout">
+          <field name="PIN">34</field>
+        </shadow>
+      </value>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="dual_sensor_init">
+      <comment pinned="true">For sensors with VCC, GND, DIGITAL pin and ANALOG pin (e.g., soil moisture, some gas sensors)</comment>
+      <value name="DIGITAL_PIN">
+        <shadow type="pinout">
+          <field name="PIN">15</field>
+        </shadow>
+      </value>
+      <value name="ANALOG_PIN">
+        <shadow type="pinout">
+          <field name="PIN">34</field>
+        </shadow>
+      </value>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Read Digital Sensor" web-class="boldtext"></label>
+    <block type="digital_sensor_read">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="digital_sensor_is_active">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Read Analog Sensor" web-class="boldtext"></label>
+    <block type="analog_sensor_read">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="analog_sensor_read_percent">
+      <comment pinned="true">Returns value as percentage (0-100%) instead of raw number</comment>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="analog_sensor_threshold">
+      <comment pinned="true">Check if analog value is above a threshold. Useful for detecting light/sound levels</comment>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="THRESHOLD">
+        <shadow type="math_number">
+          <field name="NUM">2000</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Read Dual Sensor" web-class="boldtext"></label>
+    <block type="dual_sensor_read_digital">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="dual_sensor_read_analog">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="dual_sensor_is_detected">
+      <comment pinned="true">Combines both digital and analog readings for smart detection</comment>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="THRESHOLD">
+        <shadow type="math_number">
+          <field name="NUM">2000</field>
+        </shadow>
+      </value>
+    </block>
+    
+  </category>
+  
+<category name="🌡️💧 Humidity Sensor" colour="#cc9933">
+  
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="dht_init">
+    <field name="SENSOR_TYPE">DHT11</field>
+    <value name="DATA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">15</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Read Sensors -->
+  <label text="Read Values"></label>
+  <block type="dht_read_all"></block>
+  
+  <block type="dht_read_temperature">
+    <value name="UNIT">
+      <shadow type="dht_temp_unit_dropdown"></shadow>
+    </value>
+  </block>
+  
+  <block type="dht_read_humidity"></block>
+  
+  <comment pinned="true" h="80" w="220">💡 Tip: Always call "Read DHT sensor" before reading temperature or humidity values!</comment>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Computed Values -->
+  <label text="Advanced Reading"></label>
+  <block type="dht_heat_index">
+    <value name="UNIT">
+      <shadow type="dht_temp_unit_dropdown"></shadow>
+    </value>
+  </block>
+  
+  <block type="dht_dew_point">
+    <value name="UNIT">
+      <shadow type="dht_temp_unit_dropdown"></shadow>
+    </value>
+  </block>
+  
+  <comment pinned="true" h="80" w="220">🌡️ Heat Index: How hot it "feels" with humidity
+💧 Dew Point: Temperature where moisture forms</comment>
+
+</category>
 <!--Adicionando os blocos do Anenmômetro-->
     <!--
 
@@ -1532,210 +1946,766 @@
       </block>
   </category>
 -->
-  <category name="Ultrasound" colour="%{BKY_SENSORS_HUE}">
-      <label text="HCSR04 ultrasound distance sensor"></label>
-      <block type="hcsr_init">
-        <field name="BLOCK_HCSR_INIT">Start HCSR04 Ultrasound sensor</field>
-        <value name="echo">
-          <shadow type="pinout">
-            <field name="PIN">2</field>
-          </shadow>
-        </value>
- <value name="trigger">
-          <shadow type="pinout">
-            <field name="PIN">3</field>
-          </shadow>
-        </value>
+<category name="📏 Ultrasonic" colour="#cc9933">
   
-      </block>
-      <block type="hcsr_read">
-      </block>
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="ultrasonic_init_simple">
+    <comment pinned="true">Simple ultrasonic sensor (HC-SR04 compatible)</comment>
+    <value name="TRIG_PIN">
+      <shadow type="pinout">
+        <field name="PIN">5</field>
+      </shadow>
+    </value>
+    <value name="ECHO_PIN">
+      <shadow type="pinout">
+        <field name="PIN">18</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ultrasonic_init_rgb">
+    <comment pinned="true">Ultrasonic sensor with built-in RGB LED</comment>
+    <value name="TRIG_PIN">
+      <shadow type="pinout">
+        <field name="PIN">5</field>
+      </shadow>
+    </value>
+    <value name="ECHO_PIN">
+      <shadow type="pinout">
+        <field name="PIN">18</field>
+      </shadow>
+    </value>
+    <value name="RGB_PIN">
+      <shadow type="pinout">
+        <field name="PIN">23</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Measure Distance -->
+  <label text="Measure Distance"></label>
+  <block type="ultrasonic_get_distance_cm">
+    <comment pinned="true">Returns distance in centimeters (2-400 cm range)</comment>
+  </block>
+  
+  <block type="ultrasonic_get_distance_inch">
+    <comment pinned="true">Returns distance in inches</comment>
+  </block>
+  
+  <block type="ultrasonic_get_distance_mm"></block>
+  
+  <!-- Distance Check -->
+  <label text="Distance Check"></label>
+  <block type="ultrasonic_is_within_range">
+    <value name="MIN_DISTANCE">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="MAX_DISTANCE">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ultrasonic_is_closer_than">
+    <value name="DISTANCE">
+      <shadow type="math_number">
+        <field name="NUM">20</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ultrasonic_is_farther_than">
+    <value name="DISTANCE">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- RGB LED Control (for RGB version) -->
+  <label text="RGB LED Control"></label>
+  <block type="ultrasonic_rgb_set_color">
+    <comment pinned="true">Set RGB LED color (0-255 for each)</comment>
+    <value name="RED">
+      <shadow type="math_number">
+        <field name="NUM">255</field>
+      </shadow>
+    </value>
+    <value name="GREEN">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="BLUE">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ultrasonic_rgb_set_preset"></block>
+  
+  <block type="ultrasonic_rgb_off"></block>
+  
+  <block type="ultrasonic_rgb_rainbow">
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Advanced -->
+  <label text="Advanced"></label>
+  <block type="ultrasonic_set_timeout">
+    <value name="TIMEOUT">
+      <shadow type="math_number">
+        <field name="NUM">30000</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Set measurement timeout in microseconds (default 30000)</comment>
+  </block>
+  
+  <block type="ultrasonic_get_raw_time">
+    <comment pinned="true">Returns raw echo time in microseconds</comment>
+  </block>
+  
+</category>
 
-  </category>
+  <category name="🛰️ GPS" colour="#cc9933">
+  
+  <label text="Setup"></label>
+  <block type="gps_init">
+    <value name="TX_PIN">
+      <shadow type="pinout">
+        <field name="PIN">17</field>
+      </shadow>
+    </value>
+    <value name="RX_PIN">
+      <shadow type="pinout">
+        <field name="PIN">16</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Update GPS Data"></label>
+  <block type="gps_update"></block>
+  
+  <comment pinned="true" h="80" w="220">📡 Always call "Update GPS" in a loop to read new data from the GPS module!</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Location"></label>
+  <block type="gps_has_fix"></block>
+  
+  <block type="gps_latitude"></block>
+  
+  <block type="gps_longitude"></block>
+  
+  <block type="gps_latitude_string"></block>
+  
+  <block type="gps_longitude_string"></block>
+  
+  <block type="gps_altitude"></block>
+  
+  <comment pinned="true" h="100" w="240">📍 Latitude: North/South position
+📍 Longitude: East/West position
+⛰️ Altitude: Height above sea level
+Check "Has GPS fix?" first!</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Movement"></label>
+  <block type="gps_speed">
+    <field name="UNIT">kph</field>
+  </block>
+  
+  <block type="gps_course"></block>
+  
+  <block type="gps_direction"></block>
+  
+  <comment pinned="true" h="80" w="220">🧭 Course: Direction in degrees (0-360)
+🧭 Direction: N, NE, E, SE, S, SW, W, NW</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Date &amp; Time"></label>
+  <block type="gps_time_hour"></block>
+  <block type="gps_time_minute"></block>
+  <block type="gps_time_second"></block>
+  
+  <block type="gps_date_day"></block>
+  <block type="gps_date_month"></block>
+  <block type="gps_date_year"></block>
+  
+  <block type="gps_date_string">
+    <field name="FORMAT">s_dmy</field>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Satellite Info"></label>
+  <block type="gps_satellites"></block>
+  
+  <block type="gps_hdop"></block>
 
-  <category name="GPS" colour="%{BKY_SENSORS_HUE}">
-      <label text="Global Positioning System sensor"></label>
-   <label text="Library: https://github.com/"></label>
-        <button text="Install GPS library" callbackKey="installPyLib"></button>
+</category>
+<category name="❤️ Heart Sensor" colour="#cc9933">
+  
+  <label text="Setup"></label>
+  <block type="max30100_init">
+    <value name="SCL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="SDA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Read Sensor Data"></label>
+  <block type="max30100_read_sensor"></block>
+  
+  <block type="max30100_get_red"></block>
+  
+  <block type="max30100_get_ir"></block>
+  
+  <comment pinned="true" h="100" w="240">💓 Red LED: Measures heart rate
+🩸 Infrared LED: Measures blood oxygen
+Always call "Read sensor" before getting values!</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Heart Rate &amp; SpO2"></label>
+  <block type="max30100_heart_rate"></block>
+  
+  <block type="max30100_spo2"></block>
+  
+  <comment pinned="true" h="80" w="240">❤️ Heart Rate: Beats per minute (BPM)
+🫁 SpO2: Blood oxygen level (95-100% normal)</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Temperature"></label>
+  <block type="max30100_temperature"></block>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Advanced Settings"></label>
+  <block type="max30100_set_mode">
+    <field name="MODE">HR</field>
+  </block>
+  
+  <block type="max30100_set_led_current">
+    <value name="RED_CURRENT">
+      <shadow type="math_number">
+        <field name="NUM">11</field>
+      </shadow>
+    </value>
+    <value name="IR_CURRENT">
+      <shadow type="math_number">
+        <field name="NUM">11</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <comment pinned="true" h="80" w="220">⚡ LED Current: 0 to 50 mA
+Higher = brighter but uses more power
+Default: 11 mA works well</comment>
 
-	<block type="gps_init">
-      </block>
-	<block type="gps_update">
-      </block>
-	<block type="gps_get_lat">
-      </block>
-	<block type="gps_get_long">
-      </block>
-	<block type="gps_get_height">
-      </block>
-	<block type="gps_get_speed">
-      </block>
-	<block type="gps_get_datetime">
-      </block>
+</category>
 
+<category name="🎯 Motion Sensor" colour="#cc9933">
+  
+  <label text="Setup"></label>
+  <block type="mpu6050_init">
+    <value name="SCL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="SDA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Accelerometer (Movement)"></label>
+  <block type="mpu6050_accel_x"></block>
+  <block type="mpu6050_accel_y"></block>
+  <block type="mpu6050_accel_z"></block>
+  <block type="mpu6050_accel_all"></block>
+  
+  <comment pinned="true" h="80" w="220">📊 Accelerometer measures movement and tilt. Values in m/s²</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Gyroscope (Rotation)"></label>
+  <block type="mpu6050_gyro_x"></block>
+  <block type="mpu6050_gyro_y"></block>
+  <block type="mpu6050_gyro_z"></block>
+  <block type="mpu6050_gyro_all"></block>
+  
+  <comment pinned="true" h="80" w="220">🔄 Gyroscope measures rotation speed. Values in rad/s</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Temperature Sensor"></label>
+  <block type="mpu6050_temperature"></block>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Tilt Angles (Filtered)"></label>
+  <block type="mpu6050_pitch_kalman"></block>
+  <block type="mpu6050_roll_kalman"></block>
+  <block type="mpu6050_pitch_complementary"></block>
+  <block type="mpu6050_roll_complementary"></block>
+  
+  <comment pinned="true" h="120" w="240">📐 Kalman Filter: More accurate, removes noise
+📐 Complementary: Faster, good for most uses
+Pitch: Forward/back tilt
+Roll: Left/right tilt</comment>
+  
+  <sep gap="32"></sep>
+  
+  <label text="Calibration"></label>
+  <block type="mpu6050_calibrate">
+    <value name="SAMPLES">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
 
-  </category>
+</category>
+<category name="🌡️ Digital Thermometer" colour="#cc9933">
+  
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="ds1820_init">
+    <value name="DATA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">4</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Temperature Reading -->
+  <label text="Read Temperature"></label>
+  <block type="ds1820_read_temp">
+    <value name="UNIT">
+      <shadow type="ds1820_unit_dropdown"></shadow>
+    </value>
+  </block>
+  
+  <block type="ds1820_convert_temp"></block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Device Management -->
+  <label text="Multiple Sensors"></label>
+  <block type="ds1820_scan_devices"></block>
+  
+  <block type="ds1820_count_devices"></block>
+  
+  <block type="ds1820_read_temp_by_index">
+    <value name="INDEX">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="UNIT">
+      <shadow type="ds1820_unit_dropdown"></shadow>
+    </value>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Utilities -->
+  <label text="Sensor Info"></label>
+  <block type="ds1820_get_rom">
+    <value name="INDEX">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <comment pinned="true" h="80" w="200">💡 Tip: Use index 0 for first sensor, 1 for second, etc.</comment>
 
-  <category name="Oximeter" colour="%{BKY_SENSORS_HUE}">
-      <label text="MAX30100 pulse oximeter sensor"></label>
-   <label text="Library: https://github.com/"></label>
-        <button text="Install MAX30100 library" callbackKey="installPyLib"></button>
+</category>
 
-	<block type="max30100_init">
-      </block>
-	<block type="max30100_read">
-      </block>
-	<block type="max30100_red">
-      </block>
-	<block type="max30100_ir">
-      </block>
+<category name="🔖 RFID" colour="#cc9933">
+  
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="rfid_init">
+    <comment pinned="true">MFRC522 RFID reader with SPI interface</comment>
+    <value name="SCK_PIN">
+      <shadow type="pinout">
+        <field name="PIN">18</field>
+      </shadow>
+    </value>
+    <value name="MOSI_PIN">
+      <shadow type="pinout">
+        <field name="PIN">23</field>
+      </shadow>
+    </value>
+    <value name="MISO_PIN">
+      <shadow type="pinout">
+        <field name="PIN">19</field>
+      </shadow>
+    </value>
+    <value name="CS_PIN">
+      <shadow type="pinout">
+        <field name="PIN">5</field>
+      </shadow>
+    </value>
+    <value name="RST_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Card Detection -->
+  <label text="Card Detection"></label>
+  <block type="rfid_card_present">
+    <comment pinned="true">Check if a card/tag is near the reader</comment>
+  </block>
+  
+  <block type="rfid_wait_for_card">
+    <value name="TIMEOUT">
+      <shadow type="math_number">
+        <field name="NUM">5</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Wait for card with timeout in seconds (0 = wait forever)</comment>
+  </block>
+  
+  <!-- Read Card -->
+  <label text="Read Card Info"></label>
+  <block type="rfid_get_uid">
+    <comment pinned="true">Returns card UID as text (e.g., "A1:B2:C3:D4")</comment>
+  </block>
+  
+  <block type="rfid_get_uid_bytes">
+    <comment pinned="true">Returns UID as list of bytes</comment>
+  </block>
+  
+  <block type="rfid_get_card_type"></block>
+  
+  <!-- Card Check -->
+  <label text="Card Verification"></label>
+  <block type="rfid_is_card_uid">
+    <value name="UID">
+      <shadow type="text">
+        <field name="TEXT">A1:B2:C3:D4</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Check if current card matches this UID</comment>
+  </block>
+  
+  <block type="rfid_uid_matches">
+    <value name="UID1">
+      <shadow type="text">
+        <field name="TEXT">A1:B2:C3:D4</field>
+      </shadow>
+    </value>
+    <value name="UID2">
+      <shadow type="text">
+        <field name="TEXT">E5:F6:G7:H8</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Read/Write Data -->
+  <label text="Read/Write Data"></label>
+  <block type="rfid_read_block">
+    <value name="BLOCK">
+      <shadow type="math_number">
+        <field name="NUM">8</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Read 16 bytes from block (blocks 0-63 for 1K cards)</comment>
+  </block>
+  
+  <block type="rfid_write_block">
+    <value name="BLOCK">
+      <shadow type="math_number">
+        <field name="NUM">8</field>
+      </shadow>
+    </value>
+    <value name="DATA">
+      <shadow type="text">
+        <field name="TEXT">Hello RFID!</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Write text to block (max 16 characters)</comment>
+  </block>
+  
+  <block type="rfid_read_text">
+    <value name="START_BLOCK">
+      <shadow type="math_number">
+        <field name="NUM">8</field>
+      </shadow>
+    </value>
+    <value name="NUM_BLOCKS">
+      <shadow type="math_number">
+        <field name="NUM">3</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Read text from multiple blocks</comment>
+  </block>
+  
+  <block type="rfid_write_text">
+    <value name="START_BLOCK">
+      <shadow type="math_number">
+        <field name="NUM">8</field>
+      </shadow>
+    </value>
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">Hello from ILS RFID!</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Write long text across multiple blocks</comment>
+  </block>
+  
+  <!-- Authentication -->
+  <label text="Authentication"></label>
+  <block type="rfid_authenticate">
+    <value name="BLOCK">
+      <shadow type="math_number">
+        <field name="NUM">8</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Authenticate before read/write (default key A)</comment>
+  </block>
+  
+  <block type="rfid_set_key">
+    <value name="KEY">
+      <shadow type="text">
+        <field name="TEXT">FF:FF:FF:FF:FF:FF</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Set authentication key (default: FF:FF:FF:FF:FF:FF)</comment>
+  </block>
+  
+  <!-- Control -->
+  <label text="Control"></label>
+  <block type="rfid_stop_crypto"></block>
+  
+  <block type="rfid_antenna_on"></block>
+  
+  <block type="rfid_antenna_off"></block>
+  
+</category>
 
-
-
-
-  </category>
-
-  <category name="Inertial Measurement" colour="%{BKY_SENSORS_HUE}">
-      <label text="MPU6050 IMU"></label>
-
-    <block type="init_mpu6050">
-
- <value name="scl">
-        <shadow type="math_number">
-          <field name="NUM">5</field>
+  <category name="🔄 Rotary Encoder" colour="#cc9933">
+  
+  <!-- Setup -->
+  <label text="Setup"></label>
+  <block type="rotary_encoder_init">
+    <comment pinned="true">Rotary encoder with CLK, DT, and optional SW (button) pins</comment>
+    <value name="CLK_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="DT_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="SW_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="rotary_encoder_init_no_button">
+    <comment pinned="true">Rotary encoder without button (2-pin version)</comment>
+    <value name="CLK_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="DT_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <!-- Read Values -->
+  <label text="Read Values"></label>
+  <block type="rotary_encoder_get_value">
+    <comment pinned="true">Get current encoder position (can be negative)</comment>
+  </block>
+  
+  <block type="rotary_encoder_get_delta">
+    <comment pinned="true">Get change since last read (positive = clockwise, negative = counterclockwise)</comment>
+  </block>
+  
+  <block type="rotary_encoder_get_direction"></block>
+  
+  <!-- Button (if available) -->
+  <label text="Button Control"></label>
+  <block type="rotary_encoder_button_pressed"></block>
+  
+  <block type="rotary_encoder_wait_for_button">
+    <value name="TIMEOUT">
+      <shadow type="math_number">
+        <field name="NUM">5</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Wait for button press with timeout in seconds (0 = wait forever)</comment>
+  </block>
+  
+  <!-- Rotation Detection -->
+  <label text="Rotation Detection"></label>
+  <block type="rotary_encoder_rotated_cw">
+    <comment pinned="true">True if rotated clockwise since last check</comment>
+  </block>
+  
+  <block type="rotary_encoder_rotated_ccw">
+    <comment pinned="true">True if rotated counterclockwise since last check</comment>
+  </block>
+  
+  <block type="rotary_encoder_has_moved"></block>
+  
+  <!-- Set/Reset -->
+  <label text="Position Control"></label>
+  <block type="rotary_encoder_set_value">
+    <value name="VALUE">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="rotary_encoder_reset"></block>
+  
+  <block type="rotary_encoder_set_limits">
+    <value name="MIN">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="MAX">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Constrain encoder value within min and max range</comment>
+  </block>
+  
+  <block type="rotary_encoder_clear_limits"></block>
+  
+  <!-- Advanced -->
+  <label text="Advanced Settings"></label>
+  <block type="rotary_encoder_set_scale">
+    <value name="SCALE">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Multiply rotation by scale factor (e.g., 5 = count by 5s)</comment>
+  </block>
+  
+  <block type="rotary_encoder_set_reverse"></block>
+  
+</category>
+  <category name="🌡️ Pressure Sensor" colour="#cc9933">
+    
+    <label text="Setup" web-class="boldtext"></label>
+    <block type="bmp180_init">
+      <comment pinned="true">Connect SDA to pin 21 and SCL to pin 22 on ESP32. This sensor measures temperature, pressure and altitude!</comment>
+      <value name="SDA_PIN">
+        <shadow type="pinout">
+          <field name="PIN">21</field>
         </shadow>
       </value>
-
- <value name="sda">
-        <shadow type="math_number">
-          <field name="NUM">4</field>
+      <value name="SCL_PIN">
+        <shadow type="pinout">
+          <field name="PIN">22</field>
         </shadow>
       </value>
-
     </block>
-
-    <block type="mpu6050_read_acc_x"> </block>
-    <block type="mpu6050_read_acc_y"> </block>
-    <block type="mpu6050_read_acc_z"> </block>
-
-    <block type="mpu6050_read_gyro_x"> </block>
-    <block type="mpu6050_read_gyro_y"> </block>
-    <block type="mpu6050_read_gyro_z"> </block>
-
-
+    
+    <label text="Basic Readings" web-class="boldtext"></label>
+    <block type="bmp180_read_temperature">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="bmp180_read_pressure">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="bmp180_read_altitude">
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Advanced Settings" web-class="boldtext"></label>
+    <block type="bmp180_set_accuracy">
+      <comment pinned="true">Higher accuracy takes more time but gives better readings. Good for precise measurements!</comment>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="bmp180_set_baseline">
+      <comment pinned="true">Set baseline pressure (in Pa) for accurate altitude calculation. Default is 101325 Pa (sea level)</comment>
+      <value name="SENSOR_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="BASELINE">
+        <shadow type="math_number">
+          <field name="NUM">101325</field>
+        </shadow>
+      </value>
+    </block>
+    
   </category>
 
-      <category name="OneWire" colour="%{BKY_SENSORS_HUE}">
-      <label text="OneWire"></label>
-
-        <button text="Load example: ds1820" callbackKey="loadExample"></button>
-        <button text="Documentation and how to connect: ds1820" callbackKey="loadDoc"></button>
-
-      <block type="onewire_ds18x20_init">
-        <value name="pin">
-          <shadow type="pinout">
-            <field name="PIN"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="onewire_ds18x20_scan"></block>
-      <block type="onewire_ds18x20_convert"></block>
-      <block type="onewire_ds18x20_read_temp">
-	  <value name="rom">
-          <shadow type="math_number">
-            <field name="NUM">10000</field>
-          </shadow>
-        </value>
-
-      </block>
-      </category>
-
-
-  <category name="RFID Reader" colour="%{BKY_SENSORS_HUE}">
-      <label text="RC522 13.56MHz RFID Reader"></label>
-
-      <block type="rfid_rc522_init">
-        <value name="sck">
-          <shadow type="pinout">
-            <field name="SCK"></field>
-          </shadow>
-        </value>
-
-        <value name="mosi">
-          <shadow type="pinout">
-            <field name="MOSI"></field>
-          </shadow>
-        </value>
-
-         <value name="miso">
-          <shadow type="pinout">
-            <field name="MISO"></field>
-          </shadow>
-        </value>
-
-        <value name="rst">
-          <shadow type="pinout">
-            <field name="RST"></field>
-          </shadow>
-        </value>
-
-        <value name="cs">
-          <shadow type="pinout">
-            <field name="RST"></field>
-          </shadow>
-        </value>
-
-      </block>
-      <block type="rfid_rc522_detect_card"></block>
-      <block type="rfid_rc522_anticoll"></block>
-      <block type="rfid_rc522_read_card"></block>
-      <block type="rfid_rc522_write_card"></block>
-
-  </category>
-
-
-  <category name="Rotatory Encoder" colour="%{BKY_SENSORS_HUE}">
-      <label text="Rotatory Incremental Encoder"></label>
-        <button text="Load example: encoder" callbackKey="loadExample"></button>
-        <button text="Documentation and how to connect: encoder" callbackKey="loadDoc"></button>
-
-      <block type="encoder_init">
-        <value name="p0">
-          <shadow type="pinout">
-            <field name="ch0"></field>
-          </shadow>
-        </value>
-
-        <value name="p1">
-          <shadow type="pinout">
-            <field name="ch1"></field>
-          </shadow>
-        </value>
-        <value name="button">
-          <shadow type="pinout">
-            <field name="button"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="encoder_reset"></block>
-      <block type="encoder_read"></block>
-	  <block type="encoder_button"></block>
-  </category>
-
-  <category name="Camera (ESP32CAM)">
-      <label text="OV2640 Camera on ESP32-CAM Board"></label>
-        <button text="Load example: esp32cam" callbackKey="loadExample"></button>
-      <label text="More info: https://rafaelaroca.wordpress.com/2021/07/15/esp32-camera-micropython-and-no-esptool/"></label>
-
-      <block type="esp32_cam_init"> </block>
-      <block type="esp32_cam_capture"> </block>
-      <block type="esp32_cam_red_led"> </block>
-      <block type="esp32_cam_white_led"> </block>
-  </category>
   </category>
 
   <category name="%{BKY_CAT_OUTPUTS}" colour="#666600">
-    <category name="Relay" colour="#666600">
+    <category name="🎛️ Relay" colour="#666600">
       <label text="Relay"></label>
       <block type="relay_switch">
         <value name="pin">
@@ -1746,7 +2716,7 @@
       </block>
     </category>
 
-  <category name="Servo Motor" colour="#666600">
+  <category name="🔄 Servo Motor" colour="#666600">
   
   <!-- Setup Section -->
   <label text="Setup Servo"></label>
@@ -1905,7 +2875,7 @@
 
 </category>
 
-<category name=" Stepper Motor" colour="#666600" id="stepper_category">
+<category name="⚙️ Stepper Motor" colour="#666600" id="stepper_category">
   
   <label text="⚙️ Setup" web-class="boldtext"></label>
   <block type="stepper_init">
@@ -2029,7 +2999,7 @@
   <sep gap="32"></sep>
  
 </category>
-<category name="DC Motor" colour="#666600">
+<category name="🎡 DC Motor" colour="#666600">
   
   <!-- Setup Section -->
   <label text="Setup Motor"></label>
@@ -2145,7 +3115,7 @@
 
 </category>
 
-  <category name="RTTTL Player" colour="#666600">
+  <category name="🎵 RTTTL Player" colour="#666600">
     
     <!-- Setup Section -->
     <label text="Setup" web-class="labelStyle"></label>
@@ -2254,91 +3224,6 @@
 
   </category>
 
-  <category name="%{BKY_CAT_COMM}" colour="%{BKY_COMM_HUE}">
-      <label text="%{BKY_CAT_COMM}"></label>
-      <category name="UART" colour="%{BKY_COMM_HUE}">
-      <label text="UART Serial Port"></label>
-<block type="uart_init">
-</block>
-
-<block type="uart_write">
-</block>
-<block type="uart_read">
-</block>
-<block type="uart_read_into">
-</block>
-<block type="uart_readline">
-</block>
-<block type="uart_read_all">
-</block>
-
-      </category>
-      <category name="SPI" colour="%{BKY_COMM_HUE}">
-      <label text="SPI"></label>
-<block type="machine.SPI_SPI.init">
-</block>
-<block type="machine.SPI_SPI.deinit">
-</block>
-<block type="machine.SPI_SPI.read">
-</block>
-<block type="machine.SPI_SPI.readinto">
-</block>
-<block type="machine.SPI_SPI.write">
-</block>
-<block type="machine.SPI_SPI.write_readinto">
-</block>
-
-      </category>
-
-      <category name="GSM Modem" colour="%{BKY_COMM_HUE}">
-
-      <block type="gsm_modem_init">
-</block>
-      <block type="gsm_modem_send_sms">
-</block>
-      <block type="gsm_modem_send_at">
-</block>
-      <block type="gsm_modem_http_get">
-</block>
-      <block type="gsm_modem_response">
-</block>
-
-
-
-      </category>
-      <category name="I2C" colour="%{BKY_COMM_HUE}">
-      <label text="I2c"></label>
-<block type="machine.I2C_I2C.init">
-</block>
-<block type="machine.I2C_I2C.deinit">
-</block>
-<block type="machine.I2C_I2C.scan">
-</block>
-<block type="machine.I2C_I2C.start">
-</block>
-<block type="machine.I2C_I2C.stop">
-</block>
-<block type="machine.I2C_I2C.readinto">
-</block>
-<block type="machine.I2C_I2C.write">
-</block>
-<block type="machine.I2C_I2C.readfrom">
-</block>
-<block type="machine.I2C_I2C.readfrom_into">
-</block>
-<block type="machine.I2C_I2C.writeto">
-</block>
-<block type="machine.I2C_I2C.writevto">
-</block>
-<block type="machine.I2C_I2C.readfrom_mem">
-</block>
-<block type="machine.I2C_I2C.readfrom_mem_into">
-</block>
-<block type="machine.I2C_I2C.writeto_mem">
-</block>
-
-      </category>
-  </category>
  
    <category name="%{BKY_CAT_FILES}" colour="%{BKY_FILES_HUE}">
   <label text="Read and write files"></label>
@@ -2983,7 +3868,91 @@
       </block>
     </category>
   </category>
+ <category name="%{BKY_CAT_COMM}" colour="%{BKY_COMM_HUE}">
+      <label text="%{BKY_CAT_COMM}"></label>
+      <category name="UART" colour="%{BKY_COMM_HUE}">
+      <label text="UART Serial Port"></label>
+<block type="uart_init">
+</block>
 
+<block type="uart_write">
+</block>
+<block type="uart_read">
+</block>
+<block type="uart_read_into">
+</block>
+<block type="uart_readline">
+</block>
+<block type="uart_read_all">
+</block>
+
+      </category>
+      <category name="SPI" colour="%{BKY_COMM_HUE}">
+      <label text="SPI"></label>
+<block type="machine.SPI_SPI.init">
+</block>
+<block type="machine.SPI_SPI.deinit">
+</block>
+<block type="machine.SPI_SPI.read">
+</block>
+<block type="machine.SPI_SPI.readinto">
+</block>
+<block type="machine.SPI_SPI.write">
+</block>
+<block type="machine.SPI_SPI.write_readinto">
+</block>
+
+      </category>
+
+      <category name="GSM Modem" colour="%{BKY_COMM_HUE}">
+
+      <block type="gsm_modem_init">
+</block>
+      <block type="gsm_modem_send_sms">
+</block>
+      <block type="gsm_modem_send_at">
+</block>
+      <block type="gsm_modem_http_get">
+</block>
+      <block type="gsm_modem_response">
+</block>
+
+
+
+      </category>
+      <category name="I2C" colour="%{BKY_COMM_HUE}">
+      <label text="I2c"></label>
+<block type="machine.I2C_I2C.init">
+</block>
+<block type="machine.I2C_I2C.deinit">
+</block>
+<block type="machine.I2C_I2C.scan">
+</block>
+<block type="machine.I2C_I2C.start">
+</block>
+<block type="machine.I2C_I2C.stop">
+</block>
+<block type="machine.I2C_I2C.readinto">
+</block>
+<block type="machine.I2C_I2C.write">
+</block>
+<block type="machine.I2C_I2C.readfrom">
+</block>
+<block type="machine.I2C_I2C.readfrom_into">
+</block>
+<block type="machine.I2C_I2C.writeto">
+</block>
+<block type="machine.I2C_I2C.writevto">
+</block>
+<block type="machine.I2C_I2C.readfrom_mem">
+</block>
+<block type="machine.I2C_I2C.readfrom_mem_into">
+</block>
+<block type="machine.I2C_I2C.writeto_mem">
+</block>
+
+      </category>
+  </category>
 <category name="%{BKY_CAT_CONTROL}" colour="%{BKY_CONTROL_HUE}">
   <category name="PID" colour="%{BKY_CONTROL_HUE}">
     <button text="Install control library" callbackKey="installPyLib"></button>
@@ -4118,8 +5087,4 @@
 </category>
 </category>
 
-<category name="Custom Libs" colour="%{BKY_CUSTOMLIB_HUE}">
-  <label text="Device should be connected to Internet"></label>
-  <button text="InstallCustomLib" callbackKey="installPyLib"></button>
-</category>  
 </document>

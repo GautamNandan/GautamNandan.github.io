@@ -1,0 +1,13 @@
+{
+  "name": "ILS Matrix Keypad",
+  "description": "Matrix keypad controller for 3x3, 4x3, and 4x4 keypads",
+  "author": "ILS",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "tags": ["input", "keypad", "matrix", "buttons"],
+  "blocklyVersion": "6.20210701.0",
+  "platform": ["esp32"]
+}

@@ -3,7 +3,7 @@
 Blockly.Blocks['servo_init_standard'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Servo Setup (180°)");	
+        .appendField("⚙️ Servo Setup (180°)");	
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/servomotor/icon.png",
@@ -29,7 +29,7 @@ Blockly.Blocks['servo_init_standard'] = {
 Blockly.Blocks['servo_init_continuous'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Servo Setup (360°)");	
+        .appendField("⚙️ Servo Setup (360°)");	
 	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(

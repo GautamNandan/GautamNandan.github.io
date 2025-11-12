@@ -1,0 +1,74 @@
+{
+  "name": "ILS Motion Sensor (MPU6050 IMU)",
+  "description": "6-axis motion tracking with accelerometer and gyroscope. Uses professional MPU6500 library with Kalman and Complementary filtering for accurate tilt angles!",
+  "author": "ILS",
+  "category": "Sensors",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "color": "#cc9933",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "tags": ["motion", "accelerometer", "gyroscope", "imu", "mpu6050", "tilt", "rotation", "6-axis", "kalman", "filter"],
+  "helpUrl": "",
+  "hardware": {
+    "board": ["ESP32", "ESP8266"],
+    "interface": "I2C",
+    "pins": {
+      "scl": "I2C Clock (usually GPIO 22 on ESP32)",
+      "sda": "I2C Data (usually GPIO 21 on ESP32)"
+    },
+    "address": "0x68 (default) or 0x69 if AD0 pin is high",
+    "voltage": "3.3V or 5V compatible"
+  },
+  "dependencies": {
+    "micropython": ["machine", "time", "math"],
+    "ils": ["mpu6500"]
+  },
+  "features": {
+    "accelerometer": "3-axis acceleration measurement (m/s²)",
+    "gyroscope": "3-axis rotation speed measurement (rad/s)",
+    "temperature": "Built-in temperature sensor (°C)",
+    "kalman_filter": "Advanced Kalman filtering for smooth, accurate angles",
+    "complementary_filter": "Fast complementary filtering for real-time control",
+    "calibration": "Gyroscope offset calibration for drift-free readings"
+  },
+  "filters": {
+    "kalman": {
+      "description": "Most accurate angle estimation, removes sensor noise",
+      "use_case": "Projects requiring precision (drones, robots, stabilization)",
+      "performance": "Slightly slower, but very smooth"
+    },
+    "complementary": {
+      "description": "Fast angle estimation with good accuracy",
+      "use_case": "Real-time control, gaming, interactive projects",
+      "performance": "Very fast, good for quick responses"
+    }
+  },
+  "examples": [
+    {
+      "name": "Simple Motion Detector",
+      "description": "Detect when sensor is moved or shaken"
+    },
+    {
+      "name": "Tilt Display with Kalman",
+      "description": "Show smooth pitch and roll angles on OLED"
+    },
+    {
+      "name": "Gaming Controller",
+      "description": "Use complementary filter for fast tilt control"
+    },
+    {
+      "name": "Self-Balancing Robot",
+      "description": "Use Kalman filter for stable balance control"
+    },
+    {
+      "name": "Gesture Recognition",
+      "description": "Detect gestures from motion patterns"
+    },
+    {
+      "name": "Activity Tracker",
+      "description": "Count steps and measure movement intensity"
+    }
+  ]
+}

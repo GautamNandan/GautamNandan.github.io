@@ -1,0 +1,67 @@
+{
+  "name": "ILS Heart Sensor (MAX30100)",
+  "description": "Measure heart rate and blood oxygen (SpO2) with MAX30100 pulse oximetry sensor. Perfect for health monitoring and fitness projects!",
+  "author": "ILS",
+  "category": "Sensors",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "color": "#cc9933",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "tags": ["health", "heart", "pulse", "oximeter", "max30100", "spo2", "heartrate", "bpm", "oxygen"],
+  "helpUrl": "",
+  "hardware": {
+    "board": ["ESP32", "ESP8266"],
+    "interface": "I2C",
+    "pins": {
+      "scl": "I2C Clock (usually GPIO 22 on ESP32)",
+      "sda": "I2C Data (usually GPIO 21 on ESP32)"
+    },
+    "address": "0x57 (fixed I2C address)",
+    "voltage": "3.3V or 5V compatible"
+  },
+  "dependencies": {
+    "micropython": ["machine", "time"],
+    "ils": ["max30100"]
+  },
+  "features": {
+    "heart_rate": "Measures heart rate in beats per minute (BPM)",
+    "spo2": "Measures blood oxygen saturation (SpO2) percentage",
+    "temperature": "Built-in temperature sensor",
+    "dual_mode": "Heart rate only mode or combined HR + SpO2 mode",
+    "adjustable_leds": "Configurable LED brightness (0-50 mA)",
+    "real_time": "Fast sampling for real-time monitoring"
+  },
+  "usage_notes": {
+    "placement": "Place finger gently on sensor, do not press too hard",
+    "timing": "Wait 5-10 seconds for stable readings",
+    "normal_values": {
+      "heart_rate": "60-100 BPM for adults at rest",
+      "spo2": "95-100% is normal, below 90% may indicate issues"
+    },
+    "led_current": "Start with 11 mA, increase if readings are weak"
+  },
+  "examples": [
+    {
+      "name": "Simple Heart Rate Monitor",
+      "description": "Display heart rate on OLED screen"
+    },
+    {
+      "name": "Fitness Tracker",
+      "description": "Monitor heart rate during exercise"
+    },
+    {
+      "name": "Health Dashboard",
+      "description": "Show heart rate, SpO2, and temperature"
+    },
+    {
+      "name": "Alert System",
+      "description": "Buzzer alert when heart rate is too high/low"
+    },
+    {
+      "name": "Data Logger",
+      "description": "Record heart rate and SpO2 over time"
+    }
+  ]
+}

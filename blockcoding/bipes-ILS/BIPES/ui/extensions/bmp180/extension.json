@@ -1,0 +1,21 @@
+{
+  "name": "ILS Pressure Sensor (BMP180)",
+  "description": "Measure temperature, atmospheric pressure, and altitude with the BMP180 sensor",
+  "author": "ILS",
+  "category": "sensors",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#cc9933",
+  "tags": ["sensor", "temperature", "pressure", "altitude", "weather", "environment", "bmp180", "i2c"],
+  "helpUrl": "",
+  "dependencies": {
+    "micropython": ["bmp180.py"]
+  },
+  "compatibility": {
+    "devices": ["ESP32", "ESP8266"],
+    "blocklyVersion": "6.20210701.0"
+  }
+}
