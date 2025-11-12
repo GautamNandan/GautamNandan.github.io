@@ -1,0 +1,61 @@
+{
+  "name": "ILS LED Control",
+  "description": "Control LEDs with PWM brightness, RGB colors, and fun patterns for learning",
+  "version": "1.0.0",
+  "author": "ILS",
+  "category": "actuator",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#cc9933",
+  "tags": [
+    "LED",
+    "PWM",
+    "RGB",
+    "Lighting",
+    "Patterns",
+    "Education"
+  ],
+  "hardware": {
+    "platform": "ESP32",
+    "pins": {
+      "digital": true,
+      "pwm": true
+    }
+  },
+  "dependencies": {
+    "micropython": {
+      "modules": [
+        "machine.Pin",
+        "machine.PWM",
+        "time"
+      ],
+      "custom": [
+        "ils.led_control"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "name": "Simple LED Brightness",
+      "description": "Control a single LED brightness"
+    },
+    {
+      "name": "RGB Color Mixing",
+      "description": "Create different colors with RGB LED"
+    },
+    {
+      "name": "Traffic Light",
+      "description": "Simulate a traffic light with 3 LEDs"
+    },
+    {
+      "name": "LED Chase Effect",
+      "description": "Create a running light effect"
+    }
+  ],
+  "compatibility": {
+    "blockly_version": "6.20210701.0",
+    "micropython_version": ">=1.19"
+  }
+}

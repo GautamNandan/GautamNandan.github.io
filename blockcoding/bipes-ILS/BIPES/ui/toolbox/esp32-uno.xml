@@ -573,6 +573,228 @@
 
 
 <category name="%{BKY_CAT_DISPLAYS}" colour="#cc0000">
+  <category name="🚦 LED Control" colour="#cc0000">
+    
+    <!-- Setup Section -->
+    <label text="Setup" web-class="boldtext"></label>
+    
+    <block type="pwm_led_init">
+      <comment pinned="true">Set up a single LED with brightness control</comment>
+      <value name="LED_PIN">
+        <shadow type="pinout">
+          <field name="PIN">25</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="rgb_led_init">
+      <comment pinned="true">Common Cathode: RGB pins connect to positive voltage. Common Anode: RGB pins connect to ground</comment>
+      <value name="RED_PIN">
+        <shadow type="pinout">
+          <field name="PIN">25</field>
+        </shadow>
+      </value>
+      <value name="GREEN_PIN">
+        <shadow type="pinout">
+          <field name="PIN">26</field>
+        </shadow>
+      </value>
+      <value name="BLUE_PIN">
+        <shadow type="pinout">
+          <field name="PIN">27</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="three_led_init">
+      <comment pinned="true">Set up Red, Green, and Yellow LEDs for patterns</comment>
+      <value name="RED_PIN">
+        <shadow type="pinout">
+          <field name="PIN">25</field>
+        </shadow>
+      </value>
+      <value name="GREEN_PIN">
+        <shadow type="pinout">
+          <field name="PIN">26</field>
+        </shadow>
+      </value>
+      <value name="YELLOW_PIN">
+        <shadow type="pinout">
+          <field name="PIN">27</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <!-- Basic Control Section -->
+    <label text="Basic LED Control" web-class="boldtext"></label>
+    
+    <block type="pwm_led_set_brightness">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="BRIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pwm_led_fade">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="FROM_BRIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="TO_BRIGHTNESS">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+      <value name="DURATION">
+        <shadow type="math_number">
+          <field name="NUM">1000</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pwm_led_off">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <!-- RGB LED Control Section -->
+    <label text="RGB LED Control" web-class="boldtext"></label>
+    
+    <block type="rgb_led_set_color">
+      <comment pinned="true">Values: 0-100 for each color</comment>
+      <value name="RGB_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="RED">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+      <value name="GREEN">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="BLUE">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="rgb_led_preset_color">
+      <value name="RGB_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="rgb_led_fade_color">
+      <value name="RGB_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="DURATION">
+        <shadow type="math_number">
+          <field name="NUM">2000</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="rgb_led_off">
+      <value name="RGB_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <!-- LED Patterns Section -->
+    <label text="LED Patterns" web-class="boldtext"></label>
+    
+    <block type="three_led_traffic_light">
+      <comment pinned="true">Run a traffic light sequence</comment>
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="DURATION">
+        <shadow type="math_number">
+          <field name="NUM">1000</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="three_led_chase">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">200</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="three_led_blink_all">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="COUNT">
+        <shadow type="math_number">
+          <field name="NUM">3</field>
+        </shadow>
+      </value>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="three_led_control">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="three_led_all_off">
+      <value name="LED_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+  </category>
+
+
 <!-- OLED DISPLAY CATEGORY -->
   <category name="🖥 OLED Display" colour="#cc0000">
     <label text="Setup" web-class="boldtext"></label>
