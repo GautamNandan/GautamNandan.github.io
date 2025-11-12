@@ -1,0 +1,28 @@
+{
+  "name": "ILS Push Button",
+  "description": "Smart push button with short press, long press, and repeat action detection",
+  "author": "ILS",
+  "category": "input",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#cc9933",
+  "tags": ["button", "input", "switch", "press", "click", "interaction", "control"],
+  "helpUrl": "",
+  "compatibility": {
+    "devices": ["ESP32", "ESP8266"],
+    "blocklyVersion": "6.20210701.0"
+  },
+  "features": [
+    "Short press detection",
+    "Long press detection", 
+    "Continuous press monitoring",
+    "Press counting",
+    "Press duration tracking",
+    "Customizable long press timing",
+    "Multiple button support",
+    "Debouncing built-in"
+  ]
+}

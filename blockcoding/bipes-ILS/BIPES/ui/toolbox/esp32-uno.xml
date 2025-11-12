@@ -1432,6 +1432,120 @@
   </category>
 
   <category name="Input" colour="#333399">
+
+  <category name="🔘 Push Button" colour="#333399">
+    
+    <label text="Setup" web-class="boldtext"></label>
+    <block type="pushbutton_init">
+      <comment pinned="true">Connect button between pin and GND. Use internal pull-up resistor. Long press = hold for 1 second</comment>
+      <value name="PIN">
+        <shadow type="pinout">
+          <field name="PIN">13</field>
+        </shadow>
+      </value>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pushbutton_init_advanced">
+      <comment pinned="true">Customize long press time (in milliseconds). Default is 1000ms (1 second)</comment>
+      <value name="PIN">
+        <shadow type="pinout">
+          <field name="PIN">13</field>
+        </shadow>
+      </value>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="LONG_PRESS_TIME">
+        <shadow type="math_number">
+          <field name="NUM">1000</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Check Button State" web-class="boldtext"></label>
+    <block type="pushbutton_is_pressed">
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pushbutton_was_short_pressed">
+      <comment pinned="true">True if button was quickly pressed and released</comment>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pushbutton_was_long_pressed">
+      <comment pinned="true">True if button was held down for long press time</comment>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pushbutton_is_long_pressing">
+      <comment pinned="true">True while button is being held down (continuously)</comment>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Get Button Info" web-class="boldtext"></label>
+    <block type="pushbutton_press_count">
+      <comment pinned="true">How many times button was pressed since last check</comment>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pushbutton_press_duration">
+      <comment pinned="true">How long (in milliseconds) the button is currently held</comment>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <label text="Update &amp; Reset" web-class="boldtext"></label>
+    <block type="pushbutton_update">
+      <comment pinned="true">Call this in your main loop to update button state</comment>
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pushbutton_reset_count">
+      <value name="BUTTON_ID">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+  </category>
+
+ 
+  
 <category name="🕹️ Joystick" colour="#333399">
   
   <!-- Setup -->
