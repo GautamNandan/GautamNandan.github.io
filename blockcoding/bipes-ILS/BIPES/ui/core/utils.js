@@ -168,7 +168,7 @@ class Tool {
    * @param {string} code - Python code to process
    * @returns {string} Modified code with async/await
    */
- static fixAsyncInCode(code) {
+static fixAsyncInCode(code) {
   if (!code || typeof code !== 'string') {
     console.error('ILS: Invalid code provided to fixAsyncInCode');
     return '';
@@ -176,9 +176,9 @@ class Tool {
   try {
     const lines = code.split('\n');
     const functionNames = [];
-    const excludeFunctions = ['on_cretile_iot_data'];
+    const excludeFunctions = ['on_cretile_iot_data', '__init__', '__new__', '__del__'];
     let hasOnStart = false;
-
+    
     // First pass: Convert function definitions to async and collect function names
     lines.forEach((line, index) => {
       if (line.trim().startsWith('def ')) {
@@ -201,7 +201,7 @@ class Tool {
         hasOnStart = true;
       }
     });
-
+    
     // Second pass: Add await to function calls
     if (hasOnStart) {
       lines.forEach((line, index) => {
@@ -211,25 +211,38 @@ class Tool {
         if (line.trim().startsWith('async def') || line.trim().startsWith('def')) {
           return;
         }
-
+        
         // Check for function calls with parentheses
         for (const funcName of functionNames) {
-          // Create regex to match function calls: funcName(
-          const funcCallRegex = new RegExp(`\\b${funcName}\\s*\\(`, 'g');
+          // Look for function calls - either direct or as methods
+          const directCallPattern = new RegExp(`(^|[^\\w.])${funcName}\\s*\\(`);
+          const methodCallPattern = new RegExp(`\\.${funcName}\\s*\\(`);
           
-          if (funcCallRegex.test(line)) {
+          if (directCallPattern.test(line) || methodCallPattern.test(line)) {
             // Check if await is already present before this function call
-            const awaitCheckRegex = new RegExp(`await\\s+${funcName}\\s*\\(`);
+            const awaitCheckRegex = new RegExp(`await\\s+(?:[\\w.]+\\.)?${funcName}\\s*\\(`);
             if (!awaitCheckRegex.test(line)) {
               // Get the indentation
               const leadingSpaces = line.match(/^\s*/)[0];
               const trimmedLine = line.trim();
               
               // Add await before the function call
-              const updatedLine = trimmedLine.replace(
-                new RegExp(`\\b${funcName}\\s*\\(`), 
-                `await ${funcName}(`
+              // This handles both direct calls and method calls
+              let updatedLine = trimmedLine;
+              
+              // Handle method calls (obj.funcName())
+              updatedLine = updatedLine.replace(
+                new RegExp(`([\\w]+)(\\.)${funcName}(\\s*\\()`), 
+                `await $1$2${funcName}$3`
               );
+              
+              // Handle direct calls (funcName())
+              if (updatedLine === trimmedLine) {
+                updatedLine = updatedLine.replace(
+                  new RegExp(`(^|[^\\w])${funcName}(\\s*\\()`), 
+                  `$1await ${funcName}$2`
+                );
+              }
               
               lines[index] = leadingSpaces + updatedLine;
             }
@@ -238,7 +251,7 @@ class Tool {
         }
       });
     }
-
+    
     return lines.join('\n');
   } catch (error) {
     console.error('ILS: Error in fixAsyncInCode:', error);

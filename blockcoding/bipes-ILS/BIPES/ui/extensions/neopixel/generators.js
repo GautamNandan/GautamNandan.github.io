@@ -120,8 +120,7 @@ Blockly.Python['neopixel_fill_all'] = function(block) {
 
   var code = `for i in range(len(neopixel_strips[${strip_id}])):\n`;
   code += `    neopixel_strips[${strip_id}][i] = ${color}\n`;
-  code += `neopixel_strips[${strip_id}].write()\n`;
-  
+ 
   return code;
 };
 
@@ -133,8 +132,7 @@ Blockly.Python['neopixel_fill_range'] = function(block) {
 
   var code = `for i in range(${start}, ${end} + 1):\n`;
   code += `    neopixel_strips[${strip_id}][i] = ${color}\n`;
-  code += `neopixel_strips[${strip_id}].write()\n`;
-  
+ 
   return code;
 };
 

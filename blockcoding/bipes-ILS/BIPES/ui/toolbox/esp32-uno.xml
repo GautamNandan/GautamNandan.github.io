@@ -824,42 +824,50 @@
 <!-- OLED DISPLAY CATEGORY -->
   <category name="🖥 OLED Display" colour="#cc0000">
     <label text="Setup" web-class="boldtext"></label>
-    <block type="oled_init">
-      <field name="DISPLAY_SIZE">128,64</field>
-      <value name="SCL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="SDA_PIN">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="oled_init_custom">
-      <value name="WIDTH">
-        <shadow type="math_number">
-          <field name="NUM">128</field>
-        </shadow>
-      </value>
-      <value name="HEIGHT">
-        <shadow type="math_number">
-          <field name="NUM">64</field>
-        </shadow>
-      </value>
-      <value name="SCL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="SDA_PIN">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-    </block>
-    
+	<block type="oled_init">
+	  <comment pinned="true">Initialize OLED display using I2C.
+	Connect SCL and SDA pins to ESP32.
+	Common sizes: 128x64 or 128x32 pixels.</comment>
+	  
+	  <field name="DISPLAY_SIZE">128,64</field>
+	  <value name="SCL_PIN">
+		<shadow type="pinout">
+		  <field name="PIN">22</field>
+		</shadow>
+	  </value>
+	  <value name="SDA_PIN">
+		<shadow type="pinout">
+		  <field name="PIN">21</field>
+		</shadow>
+	  </value>
+	</block>
+
+	<block type="oled_init_custom">
+	  <comment pinned="true">Initialize OLED with custom width and height.
+	Use this for non-standard display sizes.
+	Standard I2C pins: SCL=22, SDA=21</comment>
+	  
+	  <value name="WIDTH">
+		<shadow type="math_number">
+		  <field name="NUM">128</field>
+		</shadow>
+	  </value>
+	  <value name="HEIGHT">
+		<shadow type="math_number">
+		  <field name="NUM">64</field>
+		</shadow>
+	  </value>
+	  <value name="SCL_PIN">
+		<shadow type="pinout">
+		  <field name="PIN">22</field>
+		</shadow>
+	  </value>
+	  <value name="SDA_PIN">
+		<shadow type="pinout">
+		  <field name="PIN">21</field>
+		</shadow>
+	  </value>
+	</block>
 	
 	
     <sep gap="32"></sep>
@@ -1125,24 +1133,28 @@
     <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
     <comment pinned="true">Connect NeoPixel data wire to the GPIO pin you specify below</comment>
     
-    <block type="neopixel_init">
-      <value name="PIN">
-        <shadow type="pinout">
-          <field name="PIN">25</field>
-        </shadow>
-      </value>
-      <value name="NUMBER">
-        <shadow type="math_number">
-          <field name="NUM">8</field>
-        </shadow>
-      </value>
-      <value name="STRIP">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
+	<block type="neopixel_init">
+	  <comment pinned="true">Initialize NeoPixel LED strip.
+	PIN: Data pin connected to strip
+	NUMBER: Total LEDs in strip
+	STRIP: Strip ID (use 0 for single strip)</comment>
 	  
-    </block>
+	  <value name="PIN">
+		<shadow type="pinout">
+		  <field name="PIN">25</field>
+		</shadow>
+	  </value>
+	  <value name="NUMBER">
+		<shadow type="math_number">
+		  <field name="NUM">8</field>
+		</shadow>
+	  </value>
+	  <value name="STRIP">
+		<shadow type="math_number">
+		  <field name="NUM">0</field>
+		</shadow>
+	  </value>
+	</block>
     <sep gap="32"></sep>
 
     <!-- Color Creation Section -->
@@ -1578,26 +1590,30 @@
   <category name="🔧 TM1637 Display" colour="#cc0000">
     
     <label text="Setup" web-class="boldtext"></label>
-      <block type="tm1637_init">
-	  
-        <value name="CLK_PIN">
-        <shadow type="pinout">
-            <field name="PIN">25</field>
-          </shadow>
-        </value>
-      
-	  <value name="DIO_PIN">
-        <shadow type="pinout">
-            <field name="PIN">26</field>
-          </shadow>
-        </value>
+<block type="tm1637_init">
+  <comment pinned="true">Initialize TM1637 4-digit 7-segment display.
+Connect CLK and DIO pins to Microcontroller.
+Brightness: 0 (dimmest) to 7 (brightest).
+VCC=3.3/5V, GND=GND</comment>
+  
+  <value name="CLK_PIN">
+    <shadow type="pinout">
+      <field name="PIN">25</field>
+    </shadow>
+  </value>
 
-        <value name="BRIGHTNESS">
-          <block type="math_number">
-            <field name="NUM">5</field>
-          </block>
-        </value>
-      </block>
+  <value name="DIO_PIN">
+    <shadow type="pinout">
+      <field name="PIN">26</field>
+    </shadow>
+  </value>
+  
+  <value name="BRIGHTNESS">
+    <block type="math_number">
+      <field name="NUM">5</field>
+    </block>
+  </value>
+</block>
 	  
       <block type="tm1637_brightness">
         <value name="BRIGHTNESS">
