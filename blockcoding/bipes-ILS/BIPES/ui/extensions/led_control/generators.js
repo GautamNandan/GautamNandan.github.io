@@ -78,10 +78,16 @@ Blockly.Python['pwm_led_fade'] = function(block) {
 };
 
 // PWM LED Off
-Blockly.Python['pwm_led_off'] = function(block) {
+Blockly.Python['pwm_led_on_off'] = function(block) {
   var led_id = Blockly.Python.valueToCode(block, 'LED_ID', Blockly.Python.ORDER_ATOMIC) || '1';
+  var action = block.getFieldValue('ACTION');
   
-  var code = 'pwm_leds[' + led_id + '].off()\n';
+  var code = '';
+  if (action === 'OFF') {
+    code = 'pwm_leds[' + led_id + '].off()\n';
+  } else {
+    code = 'pwm_leds[' + led_id + '].set_brightness(100)\n';
+  }
   return code;
 };
 
@@ -130,10 +136,16 @@ Blockly.Python['rgb_led_fade_color'] = function(block) {
 };
 
 // RGB LED Off
-Blockly.Python['rgb_led_off'] = function(block) {
+Blockly.Python['rgb_led_on_off'] = function(block) {
   var rgb_id = Blockly.Python.valueToCode(block, 'RGB_ID', Blockly.Python.ORDER_ATOMIC) || '1';
+  var action = block.getFieldValue('ACTION');
   
-  var code = 'rgb_leds[' + rgb_id + '].off()\n';
+  var code = '';
+  if (action === 'OFF') {
+    code = 'rgb_leds[' + rgb_id + '].off()\n';
+  } else {
+    code = 'rgb_leds[' + rgb_id + '].set_color(100, 100, 100)\n';
+  }
   return code;
 };
 
@@ -178,9 +190,15 @@ Blockly.Python['three_led_control'] = function(block) {
 };
 
 // Three LED All Off
-Blockly.Python['three_led_all_off'] = function(block) {
+Blockly.Python['three_led_all_on_off'] = function(block) {
   var led_id = Blockly.Python.valueToCode(block, 'LED_ID', Blockly.Python.ORDER_ATOMIC) || '1';
+  var action = block.getFieldValue('ACTION');
   
-  var code = 'three_leds[' + led_id + '].all_off()\n';
+  var code = '';
+  if (action === 'OFF') {
+    code = 'three_leds[' + led_id + '].all_off()\n';
+  } else {
+    code = 'three_leds[' + led_id + '].set_leds(1, 1, 1)\n';
+  }
   return code;
 };

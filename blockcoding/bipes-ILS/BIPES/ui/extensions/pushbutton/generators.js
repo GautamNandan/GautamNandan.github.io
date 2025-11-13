@@ -1,19 +1,3 @@
-Blockly.Python['pushbutton_init'] = function(block) {
-  var pin = Blockly.Python.valueToCode(block, 'PIN', Blockly.Python.ORDER_ATOMIC) || '13';
-  var button_id = Blockly.Python.valueToCode(block, 'BUTTON_ID', Blockly.Python.ORDER_ATOMIC) || '1';
-
-  // Add import for PushButton class
-  Blockly.Python.definitions_['import_pushbutton'] = 'from ils.pushbutton import PushButton';
-  
-  // Create button instance
-  var button_var = 'button_' + button_id;
-  Blockly.Python.definitions_['button_' + button_id] = 
-    button_var + ' = PushButton(' + pin + ')';
-  
-  var code = '# Push button ' + button_id + ' initialized\n';
-  return code;
-};
-
 Blockly.Python['pushbutton_init_advanced'] = function(block) {
   var pin = Blockly.Python.valueToCode(block, 'PIN', Blockly.Python.ORDER_ATOMIC) || '13';
   var button_id = Blockly.Python.valueToCode(block, 'BUTTON_ID', Blockly.Python.ORDER_ATOMIC) || '1';

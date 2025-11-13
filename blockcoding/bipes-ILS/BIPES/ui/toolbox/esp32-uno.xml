@@ -690,13 +690,14 @@
       </value>
     </block>
     
-    <block type="pwm_led_off">
-      <value name="LED_ID">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
+	<block type="pwm_led_on_off">
+	  <field name="ACTION">ON</field>
+	  <value name="LED_ID">
+		<shadow type="math_number">
+		  <field name="NUM">1</field>
+		</shadow>
+	  </value>
+	</block>
     
     <!-- RGB LED Control Section -->
     <label text="RGB LED Control" web-class="boldtext"></label>
@@ -746,13 +747,14 @@
       </value>
     </block>
     
-    <block type="rgb_led_off">
-      <value name="RGB_ID">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
+	<block type="rgb_led_on_off">
+	  <field name="ACTION">ON</field>
+	  <value name="RGB_ID">
+		<shadow type="math_number">
+		  <field name="NUM">1</field>
+		</shadow>
+	  </value>
+	</block>
     
     <!-- LED Patterns Section -->
     <label text="LED Patterns" web-class="boldtext"></label>
@@ -810,13 +812,14 @@
       </value>
     </block>
     
-    <block type="three_led_all_off">
-      <value name="LED_ID">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
+	<block type="three_led_all_on_off">
+	  <field name="ACTION">ON</field>
+	  <value name="LED_ID">
+		<shadow type="math_number">
+		  <field name="NUM">1</field>
+		</shadow>
+	  </value>
+	</block>
     
   </category>
 
@@ -1700,20 +1703,7 @@ VCC=3.3/5V, GND=GND</comment>
   <category name="🔘 Push Button" colour="#333399">
     
     <label text="Setup" web-class="boldtext"></label>
-    <block type="pushbutton_init">
-      <comment pinned="true">Connect button between pin and GND. Use internal pull-up resistor. Long press = hold for 1 second</comment>
-      <value name="PIN">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-      <value name="BUTTON_ID">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    
+   
     <block type="pushbutton_init_advanced">
       <comment pinned="true">Customize long press time (in milliseconds). Default is 1000ms (1 second)</comment>
       <value name="PIN">

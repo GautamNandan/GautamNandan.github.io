@@ -1,33 +1,7 @@
-Blockly.Blocks['pushbutton_init'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🔘 Setup Push Button");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/pushbutton/icon.png",
-          55,
-          55,
-          "*"));
-    this.appendValueInput("PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Button pin");
-    this.appendValueInput("BUTTON_ID")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Button ID");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#333399");
-    this.setTooltip("Setup push button with short/long press detection");
-    this.setHelpUrl("");
-  }
-};
-
 Blockly.Blocks['pushbutton_init_advanced'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔘 Setup Push Button (Advanced)");
+        .appendField("🔘 Setup Push Button");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/pushbutton/icon.png",

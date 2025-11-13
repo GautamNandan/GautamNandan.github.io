@@ -5,7 +5,7 @@ Blockly.Blocks['pwm_led_init'] = {
         .appendField("💡 Setup LED with Brightness");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
-          "extensions/led_control/icon.png",
+          "extensions/led_control/led.png",
           55,
           55,
           "*"));
@@ -32,7 +32,7 @@ Blockly.Blocks['rgb_led_init'] = {
         .appendField("🌈 Setup RGB LED");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
-          "extensions/led_control/rgb_icon.png",
+          "extensions/led_control/rgb-led.png",
           55,
           55,
           "*"));
@@ -74,7 +74,7 @@ Blockly.Blocks['three_led_init'] = {
         .appendField("🚦 Setup 3-LED Pattern");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
-          "extensions/led_control/three_led_icon.png",
+          "extensions/led_control/traffic_light.png",
           55,
           55,
           "*"));
@@ -82,14 +82,14 @@ Blockly.Blocks['three_led_init'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Red pin");
-    this.appendValueInput("GREEN_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Green pin");
     this.appendValueInput("YELLOW_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Yellow pin");
+    this.appendValueInput("GREEN_PIN")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Green pin");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("LED Group ID")
@@ -155,10 +155,14 @@ Blockly.Blocks['pwm_led_fade'] = {
 };
 
 // PWM LED Off
-Blockly.Blocks['pwm_led_off'] = {
+Blockly.Blocks['pwm_led_on_off'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💤 LED Turn Off");
+        .appendField("💡 LED")
+        .appendField(new Blockly.FieldDropdown([
+          ["Turn OFF", "OFF"],
+          ["Turn ON", "ON"]
+        ]), "ACTION");
     this.appendValueInput("LED_ID")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -167,7 +171,7 @@ Blockly.Blocks['pwm_led_off'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#cc0000");
-    this.setTooltip("Turn off LED");
+    this.setTooltip("Turn LED on or off");
     this.setHelpUrl("");
   }
 };
@@ -268,10 +272,14 @@ Blockly.Blocks['rgb_led_fade_color'] = {
 };
 
 // RGB LED Off
-Blockly.Blocks['rgb_led_off'] = {
+Blockly.Blocks['rgb_led_on_off'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💤 RGB Turn Off");
+        .appendField("🌈 RGB LED")
+        .appendField(new Blockly.FieldDropdown([
+          ["Turn OFF", "OFF"],
+          ["Turn ON", "ON"]
+        ]), "ACTION");
     this.appendValueInput("RGB_ID")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -280,7 +288,7 @@ Blockly.Blocks['rgb_led_off'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#cc0000");
-    this.setTooltip("Turn off RGB LED");
+    this.setTooltip("Turn RGB LED on or off");
     this.setHelpUrl("");
   }
 };
@@ -381,18 +389,18 @@ Blockly.Blocks['three_led_control'] = {
         ]), "RED_STATE");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Green")
-        .appendField(new Blockly.FieldDropdown([
-          ["ON", "1"],
-          ["OFF", "0"]
-        ]), "GREEN_STATE");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Yellow")
         .appendField(new Blockly.FieldDropdown([
           ["ON", "1"],
           ["OFF", "0"]
         ]), "YELLOW_STATE");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Green")
+        .appendField(new Blockly.FieldDropdown([
+          ["ON", "1"],
+          ["OFF", "0"]
+        ]), "GREEN_STATE");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -403,10 +411,14 @@ Blockly.Blocks['three_led_control'] = {
 };
 
 // Three LED All Off
-Blockly.Blocks['three_led_all_off'] = {
+Blockly.Blocks['three_led_all_on_off'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💤 Turn Off All LEDs");
+        .appendField("🚦 All LEDs")
+        .appendField(new Blockly.FieldDropdown([
+          ["Turn OFF", "OFF"],
+          ["Turn ON", "ON"]
+        ]), "ACTION");
     this.appendValueInput("LED_ID")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -415,7 +427,7 @@ Blockly.Blocks['three_led_all_off'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#cc0000");
-    this.setTooltip("Turn off all 3 LEDs");
+    this.setTooltip("Turn all 3 LEDs on or off");
     this.setHelpUrl("");
   }
 };// ========== DIGITAL SENSOR BLOCKS ==========

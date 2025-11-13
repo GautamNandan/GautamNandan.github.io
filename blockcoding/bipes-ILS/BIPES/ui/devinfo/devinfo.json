@@ -174,12 +174,15 @@
 				["IO5 / D10 / VSPI SS", "5"],
 				["IO13 / D9 / TOUCH4 / ADC14", "13"],
 				["IO12 / D8 / TOUCH5 / ADC15", "12"],				
-				["IO14 / D7 / TOUCH6 / ADC16", "14"],								
+				["IO14 / D7 / TOUCH6 / ADC16", "14"],				
 				["IO27 / D6 / TOUCH7 / ADC17", "27"],												
 				["IO16 / D5 / RX2", "16"],												
 				["IO17 / D4 / TX2", "17"],																
 				["IO25 / D3 / DAC1 / ADC18", "25"],																
-				["IO26 / D2 / DAC2 / ADC19", "26"]
+				["IO26 / D2 / DAC2 / ADC19", "26"],
+				["IO15 / GPIO15", "15"],				
+				["IO32 / GPIO32", "32"],				
+				["IO33 / GPIO33", "33"]				
 			],
 			"serial_packet_size":"500"
 		},		
