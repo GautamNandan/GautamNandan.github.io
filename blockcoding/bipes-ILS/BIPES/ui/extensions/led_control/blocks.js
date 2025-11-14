@@ -6,8 +6,8 @@ Blockly.Blocks['pwm_led_init'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/led_control/led.png",
-          55,
-          55,
+          155,
+          80,
           "*"));
     this.appendValueInput("LED_PIN")
         .setCheck("Number")
@@ -33,8 +33,8 @@ Blockly.Blocks['rgb_led_init'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/led_control/rgb-led.png",
-          55,
-          55,
+          155,
+          100,
           "*"));
     this.appendValueInput("RED_PIN")
         .setCheck("Number")
@@ -75,8 +75,8 @@ Blockly.Blocks['three_led_init'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/led_control/traffic_light.png",
-          55,
-          55,
+          155,
+          80,
           "*"));
     this.appendValueInput("RED_PIN")
         .setCheck("Number")

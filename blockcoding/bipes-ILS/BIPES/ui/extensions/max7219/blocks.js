@@ -7,8 +7,8 @@ Blockly.Blocks['max7219_init'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/max7219/icon.png",
-          55,
-          55,
+          255,
+          100,
           "*"));		
     this.appendValueInput("CLK_PIN")
         .setCheck("Number")
@@ -40,7 +40,7 @@ Blockly.Blocks['max7219_brightness'] = {
     this.appendValueInput("BRIGHTNESS")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("💡 MAX7219 Matrix Brightness");
+        .appendField("💡 MAX7219 Matrix Brightness(0-15)");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

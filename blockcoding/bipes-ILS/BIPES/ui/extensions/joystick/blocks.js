@@ -1,52 +1,17 @@
-// DC Motor L298N Blocks
-Blockly.Blocks['l298n_motor_init'] = {
-  init: function() {
-	  
-    this.appendDummyInput()
-        .appendField("⚙️ DC Motor Setup");	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/dcmotor/icon.png",
-          55,
-          55,
-          "*"));
-    this.appendValueInput("IN1_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("IN1 Pin");
-		
-    this.appendValueInput("IN2_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("IN2 Pin");
-		
-    this.appendValueInput("EN_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Enable Pin");
-		
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Motor ID")
-        .appendField(new Blockly.FieldNumber(1, 1, 10), "MOTOR_ID");
-		
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#333399");
-    this.setTooltip("Setup DC motor with L298N driver. Connect motor wires to OUT1/OUT2 on driver");
-    this.setHelpUrl("");
-  }
-};
 // Joystick Controller Blocks
 
 Blockly.Blocks['joystick_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🕹️ Setup Joystick");
+        .appendField("🕹️ Setup Joystick.");
+    this.appendDummyInput()
+        .appendField("🚫 Connect VCC to 3.3 V Only");		
+    this.appendDummyInput()
+        .appendField("🚫 If connected to 5V, might demage your ESP");				
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/joystick/icon.png",
-          55,
+          100,
           55,
           "*"));
 

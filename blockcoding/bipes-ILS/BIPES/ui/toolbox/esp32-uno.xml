@@ -608,7 +608,7 @@
       <comment pinned="true">Set up a single LED with brightness control</comment>
       <value name="LED_PIN">
         <shadow type="pinout">
-          <field name="PIN">25</field>
+          <field name="PIN">19</field>
         </shadow>
       </value>
     </block>
@@ -617,17 +617,17 @@
       <comment pinned="true">Common Cathode: RGB pins connect to positive voltage. Common Anode: RGB pins connect to ground</comment>
       <value name="RED_PIN">
         <shadow type="pinout">
-          <field name="PIN">25</field>
+          <field name="PIN">13</field>
         </shadow>
       </value>
       <value name="GREEN_PIN">
         <shadow type="pinout">
-          <field name="PIN">26</field>
+          <field name="PIN">5</field>
         </shadow>
       </value>
       <value name="BLUE_PIN">
         <shadow type="pinout">
-          <field name="PIN">27</field>
+          <field name="PIN">23</field>
         </shadow>
       </value>
     </block>
@@ -636,17 +636,17 @@
       <comment pinned="true">Set up Red, Green, and Yellow LEDs for patterns</comment>
       <value name="RED_PIN">
         <shadow type="pinout">
-          <field name="PIN">25</field>
+          <field name="PIN">15</field>
         </shadow>
       </value>
       <value name="GREEN_PIN">
         <shadow type="pinout">
-          <field name="PIN">26</field>
+          <field name="PIN">33</field>
         </shadow>
       </value>
       <value name="YELLOW_PIN">
         <shadow type="pinout">
-          <field name="PIN">27</field>
+          <field name="PIN">32s</field>
         </shadow>
       </value>
     </block>
@@ -835,12 +835,12 @@
 	  <field name="DISPLAY_SIZE">128,64</field>
 	  <value name="SCL_PIN">
 		<shadow type="pinout">
-		  <field name="PIN">22</field>
+		  <field name="PIN">33</field>
 		</shadow>
 	  </value>
 	  <value name="SDA_PIN">
 		<shadow type="pinout">
-		  <field name="PIN">21</field>
+		  <field name="PIN">15</field>
 		</shadow>
 	  </value>
 	</block>
@@ -1144,7 +1144,7 @@
 	  
 	  <value name="PIN">
 		<shadow type="pinout">
-		  <field name="PIN">25</field>
+		  <field name="PIN">33</field>
 		</shadow>
 	  </value>
 	  <value name="NUMBER">
@@ -1310,12 +1310,12 @@
     <block type="char_lcd_init">
       <value name="SCL">
         <shadow type="pinout">
-          <field name="pin">22</field>
+          <field name="pin">33</field>
         </shadow>
       </value>
       <value name="SDA">
         <shadow type="pinout">
-          <field name="pin">21</field>
+          <field name="pin">15</field>
         </shadow>
       </value>
       <value name="LINES">
@@ -1409,17 +1409,17 @@
       <comment pinned="false">CLK=Clock, DIO=Data, CS=Chip Select. Count=number of connected matrix modules</comment>
       <value name="CLK_PIN">
         <shadow type="pinout">
-          <field name="PIN">14</field>
+          <field name="PIN">32</field>
         </shadow>
       </value>
       <value name="DIO_PIN">
         <shadow type="pinout">
-          <field name="PIN">16</field>
+          <field name="PIN">15</field>
         </shadow>
       </value>
       <value name="CS_PIN">
         <shadow type="pinout">
-          <field name="PIN">27</field>
+          <field name="PIN">33</field>
         </shadow>
       </value>
       <value name="COUNT">
@@ -1601,13 +1601,13 @@ VCC=3.3/5V, GND=GND</comment>
   
   <value name="CLK_PIN">
     <shadow type="pinout">
-      <field name="PIN">25</field>
+      <field name="PIN">33</field>
     </shadow>
   </value>
 
   <value name="DIO_PIN">
     <shadow type="pinout">
-      <field name="PIN">26</field>
+      <field name="PIN">15</field>
     </shadow>
   </value>
   
@@ -1807,17 +1807,17 @@ VCC=3.3/5V, GND=GND</comment>
   <block type="joystick_init">
     <value name="X_PIN">
       <shadow type="pinout">
-        <field name="PIN">34</field>
+        <field name="PIN">36</field>
       </shadow>
     </value>
     <value name="Y_PIN">
       <shadow type="pinout">
-        <field name="PIN">35</field>
+        <field name="PIN">39</field>
       </shadow>
     </value>
     <value name="BUTTON_PIN">
       <shadow type="pinout">
-        <field name="PIN">32</field>
+        <field name="PIN">16</field>
       </shadow>
     </value>
   </block>
@@ -1898,37 +1898,37 @@ VCC=3.3/5V, GND=GND</comment>
     <comment pinned="true">Common 4x3 keypad with numbers 1-9, *, 0, #</comment>
     <value name="ROW1_PIN">
       <shadow type="pinout">
-        <field name="PIN">13</field>
+        <field name="PIN">14</field>
       </shadow>
     </value>
     <value name="ROW2_PIN">
       <shadow type="pinout">
-        <field name="PIN">12</field>
+        <field name="PIN">27</field>
       </shadow>
     </value>
     <value name="ROW3_PIN">
       <shadow type="pinout">
-        <field name="PIN">14</field>
+        <field name="PIN">16</field>
       </shadow>
     </value>
     <value name="ROW4_PIN">
       <shadow type="pinout">
-        <field name="PIN">27</field>
+        <field name="PIN">17</field>
       </shadow>
     </value>
     <value name="COL1_PIN">
       <shadow type="pinout">
-        <field name="PIN">26</field>
+        <field name="PIN">13</field>
       </shadow>
     </value>
     <value name="COL2_PIN">
       <shadow type="pinout">
-        <field name="PIN">25</field>
+        <field name="PIN">5</field>
       </shadow>
     </value>
     <value name="COL3_PIN">
       <shadow type="pinout">
-        <field name="PIN">33</field>
+        <field name="PIN">23</field>
       </shadow>
     </value>
   </block>
@@ -3515,13 +3515,34 @@ Roll: Left/right tilt</comment>
     <label text="Custom Songs" web-class="labelStyle"></label>
     <comment pinned="true" h="80" w="200">Play your own RTTTL string! Format: name:settings:notes Example: MySong:d=4,o=5,b=140:8c,8d,8e</comment>
     
-    <block type="rtttl_play_custom">
-      <value name="RTTTL_STRING">
-        <shadow type="text">
-          <field name="TEXT">MySong:d=4,o=5,b=140:8c,8d,8e,8f</field>
-        </shadow>
-      </value>
-    </block>
+<!-- RTTTL Music Player Section -->
+	<block type="comment">
+	  <field name="TEXT">🎵 TEXT TO MUSIC! 🎵
+	Write music using letters!
+	c = Do  d = Re  e = Mi
+	f = Fa  g = Sol  a = La
+	b = Ti  p = Rest (silent)
+	Numbers before notes = how fast: 
+	8c = quick  4c = normal  2c = long
+	Make it higher: 
+	add 6 after note, 	
+	Example: c6 = high Do
+	Simple song:
+	"Song:d=4,o=5,b=120:c,e,g,c6"
+	Change the letters to make new music!
+
+	🎼 Infinity Learning Space 🎼</field>
+	</block>
+
+	<sep gap="12"></sep>
+
+	<block type="rtttl_play_custom">
+	  <value name="RTTTL_STRING">
+		<shadow type="text">
+		  <field name="TEXT">Happy:d=4,o=5,b=140:c,c,d,c,f,e</field>
+		</shadow>
+	  </value>
+	</block>
     
     <block type="rtttl_play_custom_wait">
       <value name="RTTTL_STRING">

@@ -4,9 +4,9 @@ Blockly.Blocks['pushbutton_init_advanced'] = {
         .appendField("🔘 Setup Push Button");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
-          "extensions/pushbutton/icon.png",
-          55,
-          55,
+          "extensions/pushbutton/Push-button-Pinout.gif",
+          155,
+          155,
           "*"));
     this.appendValueInput("PIN")
         .setCheck("Number")

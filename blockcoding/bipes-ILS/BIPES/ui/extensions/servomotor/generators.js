@@ -26,7 +26,7 @@ Blockly.Python['servo_init_continuous'] = function(block) {
   Blockly.Python.definitions_['import_pin'] = 'from machine import Pin';
   Blockly.Python.definitions_['import_pwm'] = 'from machine import PWM';
   Blockly.Python.definitions_['import_time'] = 'import time';
-  Blockly.Python.definitions_['import_servo'] = 'from ils.servo import Servo';
+  Blockly.Python.definitions_['import_servo'] = 'from ils.servomotor import Servo';
   
   // Create servo instance
   var servo_var = 'servo_' + servo_id;

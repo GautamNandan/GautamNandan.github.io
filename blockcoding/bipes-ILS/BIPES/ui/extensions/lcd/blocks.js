@@ -6,13 +6,13 @@
 Blockly.Blocks['char_lcd_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📺 ILS LCD Setup");
+        .appendField("📺 LCD Setup");
     
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/lcd/icon.png",
-          55,
-          55,
+          200,
+          100,
           "*"));
     
     this.appendValueInput("SCL")

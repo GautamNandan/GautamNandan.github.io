@@ -7,8 +7,8 @@ Blockly.Blocks['keypad_init_4x3'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/keypad/icon.png",
-          55,
-          55,
+          155,
+          155,
           "*"));
     this.appendValueInput("ROW1_PIN")
         .setCheck("Number")
@@ -207,17 +207,17 @@ Blockly.Blocks['keypad_is_key_pressed'] = {
 Blockly.Blocks['keypad_on_key_press'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🎯 When keypad key pressed");
+        .appendField("🎯 Wait for keypad key press");
     this.appendStatementInput("DO")
         .setCheck(null)
-        .appendField("do");
+        .appendField("then do");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("(key stored in variable 'key')");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#333399");
-    this.setTooltip("Run code when any key is pressed");
+    this.setTooltip("Wait until a key is pressed, then run code once");
     this.setHelpUrl("");
   }
 };

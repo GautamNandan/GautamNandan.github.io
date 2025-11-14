@@ -118,8 +118,13 @@ Blockly.Python['keypad_is_key_pressed'] = function(block) {
 Blockly.Python['keypad_on_key_press'] = function(block) {
   var statements_do = Blockly.Python.statementToCode(block, 'DO');
   
-  var code = 'key = kp.wait_for_key()\n';
-  code += statements_do;
+  var code = 'key = kp.get_key()  # Non-blocking\n';
+  code += 'if key:\n';
+  code += Blockly.Python.INDENT + statements_do;
+  if (!statements_do.trim()) {
+    code += Blockly.Python.INDENT + 'pass\n';
+  }
+  code += 'await uasyncio.sleep_ms(50)  # Small delay\n';
   return code;
 };
 
@@ -128,7 +133,11 @@ Blockly.Python['keypad_on_specific_key'] = function(block) {
   var statements_do = Blockly.Python.statementToCode(block, 'DO');
   
   var code = 'if kp.is_key_pressed(' + key + '):\n';
-  code += statements_do || '  pass\n';
+  code += statements_do;
+  if (!statements_do.trim()) {
+    code += Blockly.Python.INDENT + 'pass\n';
+  }
+  code += 'await uasyncio.sleep_ms(10)  # Small delay for async\n';
   return code;
 };
 
