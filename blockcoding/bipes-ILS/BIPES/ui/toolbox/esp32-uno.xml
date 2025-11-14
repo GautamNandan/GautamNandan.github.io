@@ -2141,19 +2141,11 @@ VCC=3.3/5V, GND=GND</comment>
       </value>
     </block>
     
-    <block type="digital_sensor_is_active">
-      <value name="SENSOR_ID">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    
     <label text="Read Analog Sensor" web-class="boldtext"></label>
     <block type="analog_sensor_read">
       <value name="SENSOR_ID">
         <shadow type="math_number">
-          <field name="NUM">1</field>
+          <field name="NUM">12</field>
         </shadow>
       </value>
     </block>
