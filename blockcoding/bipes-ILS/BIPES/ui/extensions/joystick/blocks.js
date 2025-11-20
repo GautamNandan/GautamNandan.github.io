@@ -1,20 +1,35 @@
+// Separate reference block (no code generation)
+Blockly.Blocks['joystick_pinout'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🕹 Joystick Pinout Reference");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/joystick/joystick.png",
+          200,
+          200,
+          "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#333399");
+    this.setTooltip("Reference diagram for Joystick wiring");
+    this.setHelpUrl("");
+  }
+};
+
+
 // Joystick Controller Blocks
 
 Blockly.Blocks['joystick_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🕹️ Setup Joystick.");
+        .appendField("🕹️ Setup Joystick");
     this.appendDummyInput()
         .appendField("🚫 Connect VCC to 3.3 V Only");		
     this.appendDummyInput()
         .appendField("🚫 If connected to 5V, might demage your ESP");				
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/joystick/icon.png",
-          100,
-          55,
-          "*"));
-
     this.appendValueInput("X_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

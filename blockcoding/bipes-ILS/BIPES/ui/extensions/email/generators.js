@@ -7,7 +7,7 @@ Blockly.Python['email_init'] = function(block) {
   var use_ssl = block.getFieldValue('USE_SSL') === 'TRUE';
 
   // Add imports
-  Blockly.Python.definitions_['import_umail'] = 'from ils import umail';
+  Blockly.Python.definitions_['import_umail'] = 'from ils.email import umail';
   
   // Add global email variables
   Blockly.Python.definitions_['email_smtp_server'] = 'email_smtp_server = ' + smtp_server;

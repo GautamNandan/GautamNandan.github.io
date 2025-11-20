@@ -2,16 +2,30 @@
 // Color: #666600
 // For students aged 8-14 years
 
-// ==================== SETUP BLOCK ====================
-Blockly.Blocks['stepper_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['stepper_pinout'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField("🔄  Stepper Motor Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/stepper/icon.png",
           55,
           55,
-          "*"))
-        .appendField("⚙️ Setup  Stepper Motor");
+          "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#666600");
+    this.setTooltip("Reference diagram for Stepper Motor wiring");
+    this.setHelpUrl("");
+  }
+};
+
+// ==================== SETUP BLOCK ====================
+Blockly.Blocks['stepper_init'] = {
+  init: function() {
     this.appendDummyInput()
         .appendField("                          Motor ID")
         .appendField(new Blockly.FieldNumber(0, 0, 9, 1), "MOTOR_ID");
@@ -31,10 +45,11 @@ Blockly.Blocks['stepper_init'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("              Steps/Revolution")
         .appendField(new Blockly.FieldDropdown([
-          ["2048 (28BYJ-48)", "2048"],
+          ["4096 (28BYJ-48)", "4096"],
           ["200 (NEMA 17)", "200"],
           ["400 (Half-step)", "400"]
         ]), "STEPS_PER_REV");
+    this.setInputsInline(false);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");

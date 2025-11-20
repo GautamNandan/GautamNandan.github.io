@@ -1,14 +1,30 @@
-// A1. INITIALIZE OLED BLOCK (IMPROVED - with display size presets)
-Blockly.Blocks['oled_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['oled_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🖥️ Initialize OLED display");
+        .appendField("🖥️ OLED Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/oled/icon.png",
           155,
           105,
-          "*"));		
+          "*"));	
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for OLED wiring");
+    this.setHelpUrl("");
+  }
+};
+
+// A1. INITIALIZE OLED BLOCK (IMPROVED - with display size presets)
+Blockly.Blocks['oled_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🖥️ Initialize OLED display");
+	
     this.appendDummyInput()
         .appendField("Display Size")
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -39,13 +55,7 @@ Blockly.Blocks['oled_init'] = {
 Blockly.Blocks['oled_init_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🖥️ Initialize OLED custom size");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/oled/icon.png",
-          155,
-          105,
-          "*"));			
+        .appendField("🖥️ Initialize OLED custom size");	
     this.appendValueInput("WIDTH")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		

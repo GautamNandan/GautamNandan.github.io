@@ -1,15 +1,30 @@
+// Separate reference block (no code generation)
+Blockly.Blocks['keypad_pinout'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("⌨️ Push Button Pinout Reference");
+	this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/keypad/keypad.png",
+          155,
+          155,
+          "*"));
+        this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#333399");
+    this.setTooltip("Reference diagram for push button wiring");
+    this.setHelpUrl("");
+  }
+};
+
 // Matrix Keypad Blocks
 
 Blockly.Blocks['keypad_init_4x3'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("⌨️ Setup Keypad 4×3");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/keypad/icon.png",
-          155,
-          155,
-          "*"));
     this.appendValueInput("ROW1_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -50,12 +65,6 @@ Blockly.Blocks['keypad_init_4x4'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("⌨️ Setup Keypad 4×4");	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/keypad/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("ROW1_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -100,12 +109,6 @@ Blockly.Blocks['keypad_init_3x3'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("⌨️ Setup Keypad 3×3");	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/keypad/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("ROW1_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -142,12 +145,6 @@ Blockly.Blocks['keypad_init_custom'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("⌨️ Setup Custom Keypad");	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/keypad/icon.png",
-          55,
-          55,
-          "*"));
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Row pins (comma-separated)")

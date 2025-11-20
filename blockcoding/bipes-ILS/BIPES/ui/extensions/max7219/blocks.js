@@ -1,15 +1,30 @@
 // MAX7219 LED Matrix Blocks for Blockly
-
-Blockly.Blocks['max7219_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['max7219_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔌 MAX7219 Matrix Initialize");
+        .appendField("🔌 max7219 Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/max7219/icon.png",
           255,
           100,
-          "*"));		
+          "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for max7219 wiring");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['max7219_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🔌 MAX7219 Matrix Initialize");
+		
     this.appendValueInput("CLK_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

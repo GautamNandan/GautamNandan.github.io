@@ -2,19 +2,32 @@
 // Color: #cc0000 (Purple for NeoPixel)
 
 // ==================== SETUP ====================
-
-Blockly.Blocks['neopixel_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['neopixel_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💡 NeoPixel Setup");
-    
+        .appendField("💡 NeoPixel Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/neopixel/icon.png",
           55,
           55,
           "*"));
-    
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for Neopixel wiring");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['neopixel_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("💡 NeoPixel Setup");
+       
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

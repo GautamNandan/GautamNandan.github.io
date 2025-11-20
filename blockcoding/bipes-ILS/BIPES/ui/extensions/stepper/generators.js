@@ -2,6 +2,11 @@
 // Generates MicroPython code for ESP32
 
 // ==================== SETUP GENERATOR ====================
+
+Blockly.Python['stepper_pinout'] = function(block) {
+	return '';
+}
+
 Blockly.Python['stepper_init'] = function(block) {
   var motor_id = block.getFieldValue('MOTOR_ID');
   var in1_pin = Blockly.Python.valueToCode(block, 'IN1_PIN', Blockly.Python.ORDER_ATOMIC) || '12';

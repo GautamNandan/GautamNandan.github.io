@@ -3,7 +3,18 @@
  *
  */
 let UPythonClass = {}
-
+Blockly.Python['while_true'] = function(block) {
+  var statements = Blockly.Python.statementToCode(block, 'DO');
+  
+  var code = 'while True:\n';
+  if (statements) {
+    code += statements;
+  } else {
+    code += '  pass\n';
+  }
+  
+  return code;
+};
 
 Blockly.Python['project_metadata'] = function(block) {
   var value_project_author = Blockly.Python.valueToCode(block, 'project_author', Blockly.Python.ORDER_ATOMIC);

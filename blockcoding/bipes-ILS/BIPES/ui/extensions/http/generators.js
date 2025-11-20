@@ -76,7 +76,7 @@ Blockly.Python['http_server_add_route'] = function(block) {
   // Create a unique function name for this route
   var func_name = 'route_handler_' + block.id.replace(/[^a-zA-Z0-9]/g, '_');
   
-  Blockly.Python.definitions_['import_ils_http'] = 'from ils import http_server';
+  Blockly.Python.definitions_['import_ils_http'] = 'from ils.http import http_server';
   
   // Define the handler function
   var func_def = 'def ' + func_name + '(request, response):\n';
@@ -147,7 +147,7 @@ Blockly.Python['http_client_get_request'] = function(block) {
   var url = Blockly.Python.valueToCode(block, 'URL', Blockly.Python.ORDER_ATOMIC) || '""';
 
   Blockly.Python.definitions_['import_urequests'] = 'import urequests';
-  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils import http_client';
+  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils.http import http_client';
   
   var code = 'http_client.get(' + url + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -159,7 +159,7 @@ Blockly.Python['http_client_post_request'] = function(block) {
   var content_type = block.getFieldValue('CONTENT_TYPE');
 
   Blockly.Python.definitions_['import_urequests'] = 'import urequests';
-  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils import http_client';
+  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils.http import http_client';
   
   var code = 'http_client.post(' + url + ', ' + data + ', content_type="' + content_type + '")';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -171,7 +171,7 @@ Blockly.Python['http_client_get_with_headers'] = function(block) {
 
   Blockly.Python.definitions_['import_urequests'] = 'import urequests';
   Blockly.Python.definitions_['import_json'] = 'import json';
-  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils import http_client';
+  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils.http import http_client';
   
   var code = 'http_client.get_with_headers(' + url + ', json.loads(' + headers + '))';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -182,14 +182,14 @@ Blockly.Python['http_client_download_file'] = function(block) {
   var filename = Blockly.Python.valueToCode(block, 'FILENAME', Blockly.Python.ORDER_ATOMIC) || '"file.txt"';
 
   Blockly.Python.definitions_['import_urequests'] = 'import urequests';
-  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils import http_client';
+  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils.http import http_client';
   
   var code = 'http_client.download_file(' + url + ', ' + filename + ')\n';
   return code;
 };
 
 Blockly.Python['http_client_get_status_code'] = function(block) {
-  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils import http_client';
+  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils.http import http_client';
   
   var code = 'http_client.last_status_code';
   return [code, Blockly.Python.ORDER_ATOMIC];
@@ -200,7 +200,7 @@ Blockly.Python['http_client_parse_json'] = function(block) {
   var key = Blockly.Python.valueToCode(block, 'KEY', Blockly.Python.ORDER_ATOMIC) || '""';
 
   Blockly.Python.definitions_['import_json'] = 'import json';
-  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils import http_client';
+  Blockly.Python.definitions_['import_ils_http_client'] = 'from ils.http import http_client';
   
   var code = 'http_client.parse_json(' + json_text + ', ' + key + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -212,7 +212,7 @@ Blockly.Python['html_create_page'] = function(block) {
   var title = Blockly.Python.valueToCode(block, 'TITLE', Blockly.Python.ORDER_ATOMIC) || '"Page"';
   var body = Blockly.Python.valueToCode(block, 'BODY_CONTENT', Blockly.Python.ORDER_ATOMIC) || '""';
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   var code = 'html_builder.create_page(' + title + ', ' + body + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -223,7 +223,7 @@ Blockly.Python['html_create_button'] = function(block) {
   var url = Blockly.Python.valueToCode(block, 'LINK_URL', Blockly.Python.ORDER_ATOMIC) || '"/"';
   var color = block.getFieldValue('COLOR');
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   var code = 'html_builder.create_button(' + text + ', ' + url + ', color="' + color + '")';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -234,7 +234,7 @@ Blockly.Python['html_create_form'] = function(block) {
   var method = block.getFieldValue('METHOD');
   var fields = Blockly.Python.statementToCode(block, 'FIELDS');
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   // For simplicity, just create basic form structure
   var code = 'html_builder.create_form(' + action + ', method="' + method + '")';
@@ -246,7 +246,7 @@ Blockly.Python['html_add_input_field'] = function(block) {
   var placeholder = Blockly.Python.valueToCode(block, 'PLACEHOLDER', Blockly.Python.ORDER_ATOMIC) || '""';
   var input_type = block.getFieldValue('INPUT_TYPE');
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   var code = 'html_builder.create_input(' + name + ', ' + placeholder + ', input_type="' + input_type + '")';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -258,7 +258,7 @@ Blockly.Python['html_add_slider'] = function(block) {
   var max = Blockly.Python.valueToCode(block, 'MAX', Blockly.Python.ORDER_ATOMIC) || '100';
   var value = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC) || '50';
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   var code = 'html_builder.create_slider(' + name + ', ' + min + ', ' + max + ', ' + value + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -268,7 +268,7 @@ Blockly.Python['html_create_table'] = function(block) {
   var headers = Blockly.Python.valueToCode(block, 'HEADERS', Blockly.Python.ORDER_ATOMIC) || '""';
   var rows = Blockly.Python.valueToCode(block, 'ROWS', Blockly.Python.ORDER_ATOMIC) || '""';
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   var code = 'html_builder.create_table(' + headers + ', ' + rows + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -277,7 +277,7 @@ Blockly.Python['html_create_table'] = function(block) {
 Blockly.Python['html_add_css_style'] = function(block) {
   var css = Blockly.Python.valueToCode(block, 'CSS', Blockly.Python.ORDER_ATOMIC) || '""';
 
-  Blockly.Python.definitions_['import_ils_html'] = 'from ils import html_builder';
+  Blockly.Python.definitions_['import_ils_html'] = 'from ils.http import html_builder';
   
   var code = 'html_builder.add_css(' + css + ')';
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
@@ -288,7 +288,7 @@ Blockly.Python['html_add_css_style'] = function(block) {
 Blockly.Python['websocket_server_start'] = function(block) {
   var port = Blockly.Python.valueToCode(block, 'PORT', Blockly.Python.ORDER_ATOMIC) || '8080';
 
-  Blockly.Python.definitions_['import_ils_websocket'] = 'from ils import websocket_server';
+  Blockly.Python.definitions_['import_ils_websocket'] = 'from ils.http import websocket_server';
   
   if (!Blockly.Python.definitions_['websocket_server_init']) {
     Blockly.Python.definitions_['websocket_server_init'] = 'ws_server = None';
@@ -302,7 +302,7 @@ Blockly.Python['websocket_server_start'] = function(block) {
 Blockly.Python['websocket_send_to_all'] = function(block) {
   var message = Blockly.Python.valueToCode(block, 'MESSAGE', Blockly.Python.ORDER_ATOMIC) || '""';
 
-  Blockly.Python.definitions_['import_ils_websocket'] = 'from ils import websocket_server';
+  Blockly.Python.definitions_['import_ils_websocket'] = 'from ils.http import websocket_server';
   
   var code = 'ws_server.broadcast(' + message + ')\n';
   return code;

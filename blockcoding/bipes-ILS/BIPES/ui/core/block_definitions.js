@@ -1,5 +1,20 @@
 // Block Definition
 
+Blockly.Blocks['while_true'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("♾️ while True (forever)");
+    this.appendStatementInput("DO")
+        .setCheck(null)
+        .appendField("do");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(120);
+    this.setTooltip("Loop forever - most programs need this");
+    this.setHelpUrl("");
+  }
+};
+
 // Section divider comment block
 Blockly.Blocks['comment_section'] = {
   init: function() {

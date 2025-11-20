@@ -1,3 +1,7 @@
+Blockly.Python['oled_pinout'] = function(block) {
+	return '';
+}
+
 // ============================================================================
 // SECTION A: OLED DISPLAY CODE GENERATORS (IMPROVED)
 // ============================================================================

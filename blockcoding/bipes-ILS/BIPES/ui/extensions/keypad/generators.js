@@ -1,4 +1,7 @@
 // Matrix Keypad Code Generators
+Blockly.Python['keypad_pinout'] = function(block) {
+	return '';
+}
 
 Blockly.Python['keypad_init_4x3'] = function(block) {
   var row1 = Blockly.Python.valueToCode(block, 'ROW1_PIN', Blockly.Python.ORDER_ATOMIC) || '13';

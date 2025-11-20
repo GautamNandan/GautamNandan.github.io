@@ -1,13 +1,29 @@
+// Separate reference block (no code generation)
+Blockly.Blocks['pushbutton_pinout'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🔘 Push Button Pinout Reference");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/pushbutton/Push-button-Pinout.gif",
+          200,
+          200,
+          "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#333399");
+    this.setTooltip("Reference diagram for push button wiring");
+    this.setHelpUrl("");
+  }
+};
+
+// Compact functional block
 Blockly.Blocks['pushbutton_init_advanced'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🔘 Setup Push Button");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/pushbutton/Push-button-Pinout.gif",
-          155,
-          155,
-          "*"));
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -23,10 +39,11 @@ Blockly.Blocks['pushbutton_init_advanced'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#333399");
-    this.setTooltip("Setup push button with custom long press duration");
+    this.setTooltip("Setup push button with custom long press duration. See 'Push Button Pinout' block for wiring diagram.");
     this.setHelpUrl("");
   }
 };
+
 
 Blockly.Blocks['pushbutton_is_pressed'] = {
   init: function() {

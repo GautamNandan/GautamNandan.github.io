@@ -2,18 +2,32 @@
 // Color: #cc0000 (Teal for LCD displays)
 
 // ==================== SETUP ====================
-
-Blockly.Blocks['char_lcd_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['char_lcd_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📺 LCD Setup");
-    
+        .appendField("📺 LCD Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/lcd/icon.png",
           200,
           100,
           "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for LCD wiring");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['char_lcd_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("📺 LCD Setup");
+   
     
     this.appendValueInput("SCL")
         .setCheck("Number")

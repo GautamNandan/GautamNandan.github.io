@@ -1,7 +1,9 @@
 // ILS Character LCD Code Generators for MicroPython
 
 // ==================== SETUP ====================
-
+Blockly.Python['char_lcd_pinout'] = function(block) {
+	return '';
+}
 Blockly.Python['char_lcd_init'] = function(block) {
   var scl_pin = Blockly.Python.valueToCode(block, 'SCL', Blockly.Python.ORDER_ATOMIC) || '22';
   var sda_pin = Blockly.Python.valueToCode(block, 'SDA', Blockly.Python.ORDER_ATOMIC) || '21';

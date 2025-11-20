@@ -1,15 +1,32 @@
 // DC Motor L298N Blocks
-Blockly.Blocks['l298n_motor_init'] = {
+
+// Separate reference block (no code generation)
+Blockly.Blocks['l298n_pinout'] = {
   init: function() {
-	  
     this.appendDummyInput()
-        .appendField("⚙️ DC Motor Setup");	  
+        .appendField("⚙️DC Motor Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/dcmotor/icon.png",
           55,
           55,
           "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#666600");
+    this.setTooltip("Reference diagram for DC Motor wiring");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['l298n_motor_init'] = {
+  init: function() {
+	  
+    this.appendDummyInput()
+        .appendField("⚙️ DC Motor Setup");	  
+
     this.appendValueInput("IN1_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

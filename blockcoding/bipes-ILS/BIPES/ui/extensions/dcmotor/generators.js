@@ -1,4 +1,7 @@
 // DC Motor L298N Code Generators
+Blockly.Python['l298n_pinout'] = function(block) {
+	return '';
+}
 
 Blockly.Python['l298n_motor_init'] = function(block) {
   var in1_pin = Blockly.Python.valueToCode(block, 'IN1_PIN', Blockly.Python.ORDER_ATOMIC) || '25';

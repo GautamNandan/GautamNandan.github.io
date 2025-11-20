@@ -9,6 +9,8 @@
       <block type="logic_ternary"></block>
     </category>
     <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+      <block type="while_true" id="while-true-main">
+      </block>
       <block type="controls_repeat_ext">
         <value name="TIMES">
           <shadow type="math_number">
@@ -605,7 +607,7 @@
     <label text="Setup" web-class="boldtext"></label>
     
     <block type="pwm_led_init">
-      <comment pinned="true">Set up a single LED with brightness control</comment>
+      <comment pinned="false">Set up a single LED with brightness control</comment>
       <value name="LED_PIN">
         <shadow type="pinout">
           <field name="PIN">19</field>
@@ -614,7 +616,7 @@
     </block>
     
     <block type="rgb_led_init">
-      <comment pinned="true">Common Cathode: RGB pins connect to positive voltage. Common Anode: RGB pins connect to ground</comment>
+      <comment pinned="false">Common Cathode: RGB pins connect to positive voltage. Common Anode: RGB pins connect to ground</comment>
       <value name="RED_PIN">
         <shadow type="pinout">
           <field name="PIN">13</field>
@@ -633,7 +635,7 @@
     </block>
     
     <block type="three_led_init">
-      <comment pinned="true">Set up Red, Green, and Yellow LEDs for patterns</comment>
+      <comment pinned="false">Set up Red, Green, and Yellow LEDs for patterns</comment>
       <value name="RED_PIN">
         <shadow type="pinout">
           <field name="PIN">15</field>
@@ -703,7 +705,7 @@
     <label text="RGB LED Control" web-class="boldtext"></label>
     
     <block type="rgb_led_set_color">
-      <comment pinned="true">Values: 0-100 for each color</comment>
+      <comment pinned="false">Values: 0-100 for each color</comment>
       <value name="RGB_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -760,7 +762,7 @@
     <label text="LED Patterns" web-class="boldtext"></label>
     
     <block type="three_led_traffic_light">
-      <comment pinned="true">Run a traffic light sequence</comment>
+      <comment pinned="false">Run a traffic light sequence</comment>
       <value name="LED_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -820,6 +822,8 @@
 		</shadow>
 	  </value>
 	</block>
+
+	<block type="three_led_pinout"></block>   
     
   </category>
 
@@ -828,7 +832,7 @@
   <category name="🖥 OLED Display" colour="#cc0000">
     <label text="Setup" web-class="boldtext"></label>
 	<block type="oled_init">
-	  <comment pinned="true">Initialize OLED display using I2C.
+	  <comment pinned="false">Initialize OLED display using I2C.
 	Connect SCL and SDA pins to ESP32.
 	Common sizes: 128x64 or 128x32 pixels.</comment>
 	  
@@ -846,7 +850,7 @@
 	</block>
 
 	<block type="oled_init_custom">
-	  <comment pinned="true">Initialize OLED with custom width and height.
+	  <comment pinned="false">Initialize OLED with custom width and height.
 	Use this for non-standard display sizes.
 	Standard I2C pins: SCL=22, SDA=21</comment>
 	  
@@ -871,7 +875,7 @@
 		</shadow>
 	  </value>
 	</block>
-	
+	<block type="oled_pinout"></block>   
 	
     <sep gap="32"></sep>
   <category name="Draw Utils" colour="#cc0000">
@@ -1134,10 +1138,10 @@
     
     <!-- Setup Section -->
     <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
-    <comment pinned="true">Connect NeoPixel data wire to the GPIO pin you specify below</comment>
+    <comment pinned="false">Connect NeoPixel data wire to the GPIO pin you specify below</comment>
     
 	<block type="neopixel_init">
-	  <comment pinned="true">Initialize NeoPixel LED strip.
+	  <comment pinned="false">Initialize NeoPixel LED strip.
 	PIN: Data pin connected to strip
 	NUMBER: Total LEDs in strip
 	STRIP: Strip ID (use 0 for single strip)</comment>
@@ -1162,7 +1166,7 @@
 
     <!-- Color Creation Section -->
     <label text="🎨 Create Colors" web-class="blocklyTreeLabel"></label>
-    <comment pinned="true">Use these blocks to create colors. RGB values go from 0 to 255</comment>
+    <comment pinned="false">Use these blocks to create colors. RGB values go from 0 to 255</comment>
     
     <block type="neopixel_color_picker"></block>
     
@@ -1206,7 +1210,7 @@
 
     <!-- Control Section -->
     <label text="💡 Control LEDs" web-class="blocklyTreeLabel"></label>
-    <comment pinned="true">LED numbers start at 0. First LED is 0, second is 1, etc.</comment>
+    <comment pinned="false">LED numbers start at 0. First LED is 0, second is 1, etc.</comment>
     
     <block type="neopixel_set_pixel">
       <value name="STRIP">
@@ -1281,7 +1285,7 @@
 
     <!-- Brightness Section -->
     <label text="🔆 Brightness" web-class="blocklyTreeLabel"></label>
-    <comment pinned="true">Brightness from 0 (off) to 255 (maximum bright)</comment>
+    <comment pinned="false">Brightness from 0 (off) to 255 (maximum bright)</comment>
     
     <block type="neopixel_brightness">
       <value name="STRIP">
@@ -1295,7 +1299,7 @@
         </shadow>
       </value>
     </block>
-
+	<block type="neopixel_pinout"></block>   
   </category>
 
 
@@ -1304,7 +1308,7 @@
     
     <!-- Setup Section -->
     <label text="⚙️ Setup" web-class="blocklyTreeLabel"></label>
-    <comment pinned="true">Connect LCD via I2C using PCF8574 controller. SCL and SDA pins connect to ESP32</comment>
+    <comment pinned="false">Connect LCD via I2C using PCF8574 controller. SCL and SDA pins connect to ESP32</comment>
     
 	
     <block type="char_lcd_init">
@@ -1358,7 +1362,7 @@
 
     <!-- Text Display Section -->
     <label text="✏️ Text Display" web-class="blocklyTreeLabel"></label>
-    <comment pinned="true">Row and column numbers start at 0. First position is (0,0)</comment>
+    <comment pinned="false">Row and column numbers start at 0. First position is (0,0)</comment>
     
     <block type="char_lcd_putstr">
       <value name="TEXT">
@@ -1398,7 +1402,7 @@
     <block type="char_lcd_scroll_left"></block>
 
     <block type="char_lcd_scroll_right"></block>
-
+	<block type="char_lcd_pinout"></block>   
   </category>
 
   <category name="🔌 MAX7219 LED Matrix" colour="#cc0000">
@@ -1587,14 +1591,14 @@
       <field name="H6">FALSE</field>
       <field name="H7">FALSE</field>
     </block>
-    
+    <block type="max7219_pinout"></block>   
   </category>
 
   <category name="🔧 TM1637 Display" colour="#cc0000">
     
     <label text="Setup" web-class="boldtext"></label>
 <block type="tm1637_init">
-  <comment pinned="true">Initialize TM1637 4-digit 7-segment display.
+  <comment pinned="false">Initialize TM1637 4-digit 7-segment display.
 Connect CLK and DIO pins to Microcontroller.
 Brightness: 0 (dimmest) to 7 (brightest).
 VCC=3.3/5V, GND=GND</comment>
@@ -1693,7 +1697,7 @@ VCC=3.3/5V, GND=GND</comment>
       
       <block type="tm1637_clear">
       </block>
-    
+      <block type="tm1637_pinout"></block>   
   </category>
 
   </category>
@@ -1703,9 +1707,8 @@ VCC=3.3/5V, GND=GND</comment>
   <category name="🔘 Push Button" colour="#333399">
     
     <label text="Setup" web-class="boldtext"></label>
-   
     <block type="pushbutton_init_advanced">
-      <comment pinned="true">Customize long press time (in milliseconds). Default is 1000ms (1 second)</comment>
+      <comment pinned="false">Customize long press time (in milliseconds). Default is 1000ms (1 second)</comment>
       <value name="PIN">
         <shadow type="pinout">
           <field name="PIN">13</field>
@@ -1733,7 +1736,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="pushbutton_was_short_pressed">
-      <comment pinned="true">True if button was quickly pressed and released</comment>
+      <comment pinned="false">True if button was quickly pressed and released</comment>
       <value name="BUTTON_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -1742,7 +1745,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="pushbutton_was_long_pressed">
-      <comment pinned="true">True if button was held down for long press time</comment>
+      <comment pinned="false">True if button was held down for long press time</comment>
       <value name="BUTTON_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -1751,7 +1754,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="pushbutton_is_long_pressing">
-      <comment pinned="true">True while button is being held down (continuously)</comment>
+      <comment pinned="false">True while button is being held down (continuously)</comment>
       <value name="BUTTON_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -1761,7 +1764,7 @@ VCC=3.3/5V, GND=GND</comment>
     
     <label text="Get Button Info" web-class="boldtext"></label>
     <block type="pushbutton_press_count">
-      <comment pinned="true">How many times button was pressed since last check</comment>
+      <comment pinned="false">How many times button was pressed since last check</comment>
       <value name="BUTTON_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -1770,7 +1773,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="pushbutton_press_duration">
-      <comment pinned="true">How long (in milliseconds) the button is currently held</comment>
+      <comment pinned="false">How long (in milliseconds) the button is currently held</comment>
       <value name="BUTTON_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -1780,7 +1783,7 @@ VCC=3.3/5V, GND=GND</comment>
     
     <label text="Update &amp; Reset" web-class="boldtext"></label>
     <block type="pushbutton_update">
-      <comment pinned="true">Call this in your main loop to update button state</comment>
+      <comment pinned="false">Call this in your main loop to update button state</comment>
       <value name="BUTTON_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -1795,6 +1798,8 @@ VCC=3.3/5V, GND=GND</comment>
         </shadow>
       </value>
     </block>
+	<label text="Reference Diagrams"></label>
+	<block type="pushbutton_pinout"></block>   
     
   </category>
 
@@ -1825,11 +1830,11 @@ VCC=3.3/5V, GND=GND</comment>
   <!-- Read Values -->
   <label text="Read Values"></label>
   <block type="joystick_read_x">
-    <comment pinned="true">Returns raw X-axis value (0-4095)</comment>
+    <comment pinned="false">Returns raw X-axis value (0-4095)</comment>
   </block>
   
   <block type="joystick_read_y">
-    <comment pinned="true">Returns raw Y-axis value (0-4095)</comment>
+    <comment pinned="false">Returns raw Y-axis value (0-4095)</comment>
   </block>
   
   <block type="joystick_read_button"></block>
@@ -1837,11 +1842,11 @@ VCC=3.3/5V, GND=GND</comment>
   <!-- Normalized Values -->
   <label text="Normalized Values (-100 to 100)"></label>
   <block type="joystick_get_x_normalized">
-    <comment pinned="true">Returns X position from -100 (left) to 100 (right), 0 is center</comment>
+    <comment pinned="false">Returns X position from -100 (left) to 100 (right), 0 is center</comment>
   </block>
   
   <block type="joystick_get_y_normalized">
-    <comment pinned="true">Returns Y position from -100 (down) to 100 (up), 0 is center</comment>
+    <comment pinned="false">Returns Y position from -100 (down) to 100 (up), 0 is center</comment>
   </block>
   
   <!-- Direction Detection -->
@@ -1888,14 +1893,15 @@ VCC=3.3/5V, GND=GND</comment>
       </shadow>
     </value>
   </block>
-  
+  	<label text="Reference Diagrams"></label>
+	<block type="joystick_pinout"></block>   
 </category>
 <category name="⌨️ Keypad" colour="#333399">
   
   <!-- Setup -->
   <label text="Setup"></label>
   <block type="keypad_init_4x3">
-    <comment pinned="true">Common 4x3 keypad with numbers 1-9, *, 0, #</comment>
+    <comment pinned="false">Common 4x3 keypad with numbers 1-9, *, 0, #</comment>
     <value name="ROW1_PIN">
       <shadow type="pinout">
         <field name="PIN">14</field>
@@ -1934,7 +1940,7 @@ VCC=3.3/5V, GND=GND</comment>
   </block>
   
   <block type="keypad_init_4x4">
-    <comment pinned="true">4x4 keypad with numbers, letters A-D</comment>
+    <comment pinned="false">4x4 keypad with numbers, letters A-D</comment>
     <value name="ROW1_PIN">
       <shadow type="pinout">
         <field name="PIN">13</field>
@@ -1978,7 +1984,7 @@ VCC=3.3/5V, GND=GND</comment>
   </block>
   
   <block type="keypad_init_3x3">
-    <comment pinned="true">3x3 keypad with numbers 1-9</comment>
+    <comment pinned="false">3x3 keypad with numbers 1-9</comment>
     <value name="ROW1_PIN">
       <shadow type="pinout">
         <field name="PIN">13</field>
@@ -2012,17 +2018,17 @@ VCC=3.3/5V, GND=GND</comment>
   </block>
   
   <block type="keypad_init_custom">
-    <comment pinned="true">Custom keypad size - enter your own key layout</comment>
+    <comment pinned="false">Custom keypad size - enter your own key layout</comment>
   </block>
   
   <!-- Read Keys -->
   <label text="Read Keys"></label>
   <block type="keypad_get_key">
-    <comment pinned="true">Returns the key being pressed, or empty text if no key pressed</comment>
+    <comment pinned="false">Returns the key being pressed, or empty text if no key pressed</comment>
   </block>
   
   <block type="keypad_wait_for_key">
-    <comment pinned="true">Waits until a key is pressed and returns it</comment>
+    <comment pinned="false">Waits until a key is pressed and returns it</comment>
   </block>
   
   <block type="keypad_is_key_pressed">
@@ -2036,7 +2042,7 @@ VCC=3.3/5V, GND=GND</comment>
   <!-- Key Events -->
   <label text="Key Events"></label>
   <block type="keypad_on_key_press">
-    <comment pinned="true">Run code when any key is pressed</comment>
+    <comment pinned="false">Run code when any key is pressed</comment>
   </block>
   
   <block type="keypad_on_specific_key">
@@ -2055,7 +2061,7 @@ VCC=3.3/5V, GND=GND</comment>
         <field name="NUM">4</field>
       </shadow>
     </value>
-    <comment pinned="true">Collect multiple digits to form a number. Press # to finish</comment>
+    <comment pinned="false">Collect multiple digits to form a number. Press # to finish</comment>
   </block>
   
   <block type="keypad_get_password">
@@ -2064,7 +2070,7 @@ VCC=3.3/5V, GND=GND</comment>
         <field name="NUM">4</field>
       </shadow>
     </value>
-    <comment pinned="true">Collect password/PIN. Press # to finish</comment>
+    <comment pinned="false">Collect password/PIN. Press # to finish</comment>
   </block>
   
   <!-- Settings -->
@@ -2075,9 +2081,10 @@ VCC=3.3/5V, GND=GND</comment>
         <field name="NUM">50</field>
       </shadow>
     </value>
-    <comment pinned="true">Set debounce delay in milliseconds (default 50ms)</comment>
+    <comment pinned="false">Set debounce delay in milliseconds (default 50ms)</comment>
   </block>
-  
+    <label text="Reference Diagrams"></label>
+	<block type="keypad_pinout"></block>   
 </category>
 
   </category>
@@ -2086,7 +2093,7 @@ VCC=3.3/5V, GND=GND</comment>
     
     <label text="Setup Sensors" web-class="boldtext"></label>
     <block type="digital_sensor_init">
-      <comment pinned="true">For sensors with VCC, GND and one DIGITAL pin (e.g., motion sensor, touch sensor, tilt sensor)</comment>
+      <comment pinned="false">For sensors with VCC, GND and one DIGITAL pin (e.g., motion sensor, touch sensor, tilt sensor)</comment>
       <value name="PIN">
         <shadow type="pinout">
           <field name="PIN">15</field>
@@ -2100,7 +2107,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="analog_sensor_init">
-      <comment pinned="true">For sensors with VCC, GND and one ANALOG pin (e.g., light sensor, sound sensor, potentiometer). Use pins 32-39 for analog</comment>
+      <comment pinned="false">For sensors with VCC, GND and one ANALOG pin (e.g., light sensor, sound sensor, potentiometer). Use pins 32-39 for analog</comment>
       <value name="PIN">
         <shadow type="pinout">
           <field name="PIN">34</field>
@@ -2114,7 +2121,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="dual_sensor_init">
-      <comment pinned="true">For sensors with VCC, GND, DIGITAL pin and ANALOG pin (e.g., soil moisture, some gas sensors)</comment>
+      <comment pinned="false">For sensors with VCC, GND, DIGITAL pin and ANALOG pin (e.g., soil moisture, some gas sensors)</comment>
       <value name="DIGITAL_PIN">
         <shadow type="pinout">
           <field name="PIN">15</field>
@@ -2151,7 +2158,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="analog_sensor_read_percent">
-      <comment pinned="true">Returns value as percentage (0-100%) instead of raw number</comment>
+      <comment pinned="false">Returns value as percentage (0-100%) instead of raw number</comment>
       <value name="SENSOR_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -2160,7 +2167,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="analog_sensor_threshold">
-      <comment pinned="true">Check if analog value is above a threshold. Useful for detecting light/sound levels</comment>
+      <comment pinned="false">Check if analog value is above a threshold. Useful for detecting light/sound levels</comment>
       <value name="SENSOR_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -2191,7 +2198,7 @@ VCC=3.3/5V, GND=GND</comment>
     </block>
     
     <block type="dual_sensor_is_detected">
-      <comment pinned="true">Combines both digital and analog readings for smart detection</comment>
+      <comment pinned="false">Combines both digital and analog readings for smart detection</comment>
       <value name="SENSOR_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -2233,7 +2240,7 @@ VCC=3.3/5V, GND=GND</comment>
   
   <block type="dht_read_humidity"></block>
   
-  <comment pinned="true" h="80" w="220">💡 Tip: Always call "Read DHT sensor" before reading temperature or humidity values!</comment>
+  <comment pinned="false" h="80" w="220">💡 Tip: Always call "Read DHT sensor" before reading temperature or humidity values!</comment>
   
   <sep gap="32"></sep>
   
@@ -2251,7 +2258,7 @@ VCC=3.3/5V, GND=GND</comment>
     </value>
   </block>
   
-  <comment pinned="true" h="80" w="220">🌡️ Heat Index: How hot it "feels" with humidity
+  <comment pinned="false" h="80" w="220">🌡️ Heat Index: How hot it "feels" with humidity
 💧 Dew Point: Temperature where moisture forms</comment>
 
 </category>
@@ -2311,7 +2318,7 @@ VCC=3.3/5V, GND=GND</comment>
   <!-- Setup -->
   <label text="Setup"></label>
   <block type="ultrasonic_init_simple">
-    <comment pinned="true">Simple ultrasonic sensor (HC-SR04 compatible)</comment>
+    <comment pinned="false">Simple ultrasonic sensor (HC-SR04 compatible)</comment>
     <value name="TRIG_PIN">
       <shadow type="pinout">
         <field name="PIN">5</field>
@@ -2325,7 +2332,7 @@ VCC=3.3/5V, GND=GND</comment>
   </block>
   
   <block type="ultrasonic_init_rgb">
-    <comment pinned="true">Ultrasonic sensor with built-in RGB LED</comment>
+    <comment pinned="false">Ultrasonic sensor with built-in RGB LED</comment>
     <value name="TRIG_PIN">
       <shadow type="pinout">
         <field name="PIN">5</field>
@@ -2346,11 +2353,11 @@ VCC=3.3/5V, GND=GND</comment>
   <!-- Measure Distance -->
   <label text="Measure Distance"></label>
   <block type="ultrasonic_get_distance_cm">
-    <comment pinned="true">Returns distance in centimeters (2-400 cm range)</comment>
+    <comment pinned="false">Returns distance in centimeters (2-400 cm range)</comment>
   </block>
   
   <block type="ultrasonic_get_distance_inch">
-    <comment pinned="true">Returns distance in inches</comment>
+    <comment pinned="false">Returns distance in inches</comment>
   </block>
   
   <block type="ultrasonic_get_distance_mm"></block>
@@ -2389,7 +2396,7 @@ VCC=3.3/5V, GND=GND</comment>
   <!-- RGB LED Control (for RGB version) -->
   <label text="RGB LED Control"></label>
   <block type="ultrasonic_rgb_set_color">
-    <comment pinned="true">Set RGB LED color (0-255 for each)</comment>
+    <comment pinned="false">Set RGB LED color (0-255 for each)</comment>
     <value name="RED">
       <shadow type="math_number">
         <field name="NUM">255</field>
@@ -2427,11 +2434,11 @@ VCC=3.3/5V, GND=GND</comment>
         <field name="NUM">30000</field>
       </shadow>
     </value>
-    <comment pinned="true">Set measurement timeout in microseconds (default 30000)</comment>
+    <comment pinned="false">Set measurement timeout in microseconds (default 30000)</comment>
   </block>
   
   <block type="ultrasonic_get_raw_time">
-    <comment pinned="true">Returns raw echo time in microseconds</comment>
+    <comment pinned="false">Returns raw echo time in microseconds</comment>
   </block>
   
 </category>
@@ -2457,7 +2464,7 @@ VCC=3.3/5V, GND=GND</comment>
   <label text="Update GPS Data"></label>
   <block type="gps_update"></block>
   
-  <comment pinned="true" h="80" w="220">📡 Always call "Update GPS" in a loop to read new data from the GPS module!</comment>
+  <comment pinned="false" h="80" w="220">📡 Always call "Update GPS" in a loop to read new data from the GPS module!</comment>
   
   <sep gap="32"></sep>
   
@@ -2474,7 +2481,7 @@ VCC=3.3/5V, GND=GND</comment>
   
   <block type="gps_altitude"></block>
   
-  <comment pinned="true" h="100" w="240">📍 Latitude: North/South position
+  <comment pinned="false" h="100" w="240">📍 Latitude: North/South position
 📍 Longitude: East/West position
 ⛰️ Altitude: Height above sea level
 Check "Has GPS fix?" first!</comment>
@@ -2490,7 +2497,7 @@ Check "Has GPS fix?" first!</comment>
   
   <block type="gps_direction"></block>
   
-  <comment pinned="true" h="80" w="220">🧭 Course: Direction in degrees (0-360)
+  <comment pinned="false" h="80" w="220">🧭 Course: Direction in degrees (0-360)
 🧭 Direction: N, NE, E, SE, S, SW, W, NW</comment>
   
   <sep gap="32"></sep>
@@ -2541,7 +2548,7 @@ Check "Has GPS fix?" first!</comment>
   
   <block type="max30100_get_ir"></block>
   
-  <comment pinned="true" h="100" w="240">💓 Red LED: Measures heart rate
+  <comment pinned="false" h="100" w="240">💓 Red LED: Measures heart rate
 🩸 Infrared LED: Measures blood oxygen
 Always call "Read sensor" before getting values!</comment>
   
@@ -2552,7 +2559,7 @@ Always call "Read sensor" before getting values!</comment>
   
   <block type="max30100_spo2"></block>
   
-  <comment pinned="true" h="80" w="240">❤️ Heart Rate: Beats per minute (BPM)
+  <comment pinned="false" h="80" w="240">❤️ Heart Rate: Beats per minute (BPM)
 🫁 SpO2: Blood oxygen level (95-100% normal)</comment>
   
   <sep gap="32"></sep>
@@ -2580,7 +2587,7 @@ Always call "Read sensor" before getting values!</comment>
     </value>
   </block>
   
-  <comment pinned="true" h="80" w="220">⚡ LED Current: 0 to 50 mA
+  <comment pinned="false" h="80" w="220">⚡ LED Current: 0 to 50 mA
 Higher = brighter but uses more power
 Default: 11 mA works well</comment>
 
@@ -2610,7 +2617,7 @@ Default: 11 mA works well</comment>
   <block type="mpu6050_accel_z"></block>
   <block type="mpu6050_accel_all"></block>
   
-  <comment pinned="true" h="80" w="220">📊 Accelerometer measures movement and tilt. Values in m/s²</comment>
+  <comment pinned="false" h="80" w="220">📊 Accelerometer measures movement and tilt. Values in m/s²</comment>
   
   <sep gap="32"></sep>
   
@@ -2620,7 +2627,7 @@ Default: 11 mA works well</comment>
   <block type="mpu6050_gyro_z"></block>
   <block type="mpu6050_gyro_all"></block>
   
-  <comment pinned="true" h="80" w="220">🔄 Gyroscope measures rotation speed. Values in rad/s</comment>
+  <comment pinned="false" h="80" w="220">🔄 Gyroscope measures rotation speed. Values in rad/s</comment>
   
   <sep gap="32"></sep>
   
@@ -2635,7 +2642,7 @@ Default: 11 mA works well</comment>
   <block type="mpu6050_pitch_complementary"></block>
   <block type="mpu6050_roll_complementary"></block>
   
-  <comment pinned="true" h="120" w="240">📐 Kalman Filter: More accurate, removes noise
+  <comment pinned="false" h="120" w="240">📐 Kalman Filter: More accurate, removes noise
 📐 Complementary: Faster, good for most uses
 Pitch: Forward/back tilt
 Roll: Left/right tilt</comment>
@@ -2707,7 +2714,7 @@ Roll: Left/right tilt</comment>
     </value>
   </block>
   
-  <comment pinned="true" h="80" w="200">💡 Tip: Use index 0 for first sensor, 1 for second, etc.</comment>
+  <comment pinned="false" h="80" w="200">💡 Tip: Use index 0 for first sensor, 1 for second, etc.</comment>
 
 </category>
 
@@ -2716,7 +2723,7 @@ Roll: Left/right tilt</comment>
   <!-- Setup -->
   <label text="Setup"></label>
   <block type="rfid_init">
-    <comment pinned="true">MFRC522 RFID reader with SPI interface</comment>
+    <comment pinned="false">MFRC522 RFID reader with SPI interface</comment>
     <value name="SCK_PIN">
       <shadow type="pinout">
         <field name="PIN">18</field>
@@ -2747,7 +2754,7 @@ Roll: Left/right tilt</comment>
   <!-- Card Detection -->
   <label text="Card Detection"></label>
   <block type="rfid_card_present">
-    <comment pinned="true">Check if a card/tag is near the reader</comment>
+    <comment pinned="false">Check if a card/tag is near the reader</comment>
   </block>
   
   <block type="rfid_wait_for_card">
@@ -2756,17 +2763,17 @@ Roll: Left/right tilt</comment>
         <field name="NUM">5</field>
       </shadow>
     </value>
-    <comment pinned="true">Wait for card with timeout in seconds (0 = wait forever)</comment>
+    <comment pinned="false">Wait for card with timeout in seconds (0 = wait forever)</comment>
   </block>
   
   <!-- Read Card -->
   <label text="Read Card Info"></label>
   <block type="rfid_get_uid">
-    <comment pinned="true">Returns card UID as text (e.g., "A1:B2:C3:D4")</comment>
+    <comment pinned="false">Returns card UID as text (e.g., "A1:B2:C3:D4")</comment>
   </block>
   
   <block type="rfid_get_uid_bytes">
-    <comment pinned="true">Returns UID as list of bytes</comment>
+    <comment pinned="false">Returns UID as list of bytes</comment>
   </block>
   
   <block type="rfid_get_card_type"></block>
@@ -2779,7 +2786,7 @@ Roll: Left/right tilt</comment>
         <field name="TEXT">A1:B2:C3:D4</field>
       </shadow>
     </value>
-    <comment pinned="true">Check if current card matches this UID</comment>
+    <comment pinned="false">Check if current card matches this UID</comment>
   </block>
   
   <block type="rfid_uid_matches">
@@ -2803,7 +2810,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">8</field>
       </shadow>
     </value>
-    <comment pinned="true">Read 16 bytes from block (blocks 0-63 for 1K cards)</comment>
+    <comment pinned="false">Read 16 bytes from block (blocks 0-63 for 1K cards)</comment>
   </block>
   
   <block type="rfid_write_block">
@@ -2817,7 +2824,7 @@ Roll: Left/right tilt</comment>
         <field name="TEXT">Hello RFID!</field>
       </shadow>
     </value>
-    <comment pinned="true">Write text to block (max 16 characters)</comment>
+    <comment pinned="false">Write text to block (max 16 characters)</comment>
   </block>
   
   <block type="rfid_read_text">
@@ -2831,7 +2838,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">3</field>
       </shadow>
     </value>
-    <comment pinned="true">Read text from multiple blocks</comment>
+    <comment pinned="false">Read text from multiple blocks</comment>
   </block>
   
   <block type="rfid_write_text">
@@ -2845,7 +2852,7 @@ Roll: Left/right tilt</comment>
         <field name="TEXT">Hello from ILS RFID!</field>
       </shadow>
     </value>
-    <comment pinned="true">Write long text across multiple blocks</comment>
+    <comment pinned="false">Write long text across multiple blocks</comment>
   </block>
   
   <!-- Authentication -->
@@ -2856,7 +2863,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">8</field>
       </shadow>
     </value>
-    <comment pinned="true">Authenticate before read/write (default key A)</comment>
+    <comment pinned="false">Authenticate before read/write (default key A)</comment>
   </block>
   
   <block type="rfid_set_key">
@@ -2865,7 +2872,7 @@ Roll: Left/right tilt</comment>
         <field name="TEXT">FF:FF:FF:FF:FF:FF</field>
       </shadow>
     </value>
-    <comment pinned="true">Set authentication key (default: FF:FF:FF:FF:FF:FF)</comment>
+    <comment pinned="false">Set authentication key (default: FF:FF:FF:FF:FF:FF)</comment>
   </block>
   
   <!-- Control -->
@@ -2883,7 +2890,7 @@ Roll: Left/right tilt</comment>
   <!-- Setup -->
   <label text="Setup"></label>
   <block type="rotary_encoder_init">
-    <comment pinned="true">Rotary encoder with CLK, DT, and optional SW (button) pins</comment>
+    <comment pinned="false">Rotary encoder with CLK, DT, and optional SW (button) pins</comment>
     <value name="CLK_PIN">
       <shadow type="pinout">
         <field name="PIN">25</field>
@@ -2902,7 +2909,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="rotary_encoder_init_no_button">
-    <comment pinned="true">Rotary encoder without button (2-pin version)</comment>
+    <comment pinned="false">Rotary encoder without button (2-pin version)</comment>
     <value name="CLK_PIN">
       <shadow type="pinout">
         <field name="PIN">25</field>
@@ -2918,11 +2925,11 @@ Roll: Left/right tilt</comment>
   <!-- Read Values -->
   <label text="Read Values"></label>
   <block type="rotary_encoder_get_value">
-    <comment pinned="true">Get current encoder position (can be negative)</comment>
+    <comment pinned="false">Get current encoder position (can be negative)</comment>
   </block>
   
   <block type="rotary_encoder_get_delta">
-    <comment pinned="true">Get change since last read (positive = clockwise, negative = counterclockwise)</comment>
+    <comment pinned="false">Get change since last read (positive = clockwise, negative = counterclockwise)</comment>
   </block>
   
   <block type="rotary_encoder_get_direction"></block>
@@ -2937,17 +2944,17 @@ Roll: Left/right tilt</comment>
         <field name="NUM">5</field>
       </shadow>
     </value>
-    <comment pinned="true">Wait for button press with timeout in seconds (0 = wait forever)</comment>
+    <comment pinned="false">Wait for button press with timeout in seconds (0 = wait forever)</comment>
   </block>
   
   <!-- Rotation Detection -->
   <label text="Rotation Detection"></label>
   <block type="rotary_encoder_rotated_cw">
-    <comment pinned="true">True if rotated clockwise since last check</comment>
+    <comment pinned="false">True if rotated clockwise since last check</comment>
   </block>
   
   <block type="rotary_encoder_rotated_ccw">
-    <comment pinned="true">True if rotated counterclockwise since last check</comment>
+    <comment pinned="false">True if rotated counterclockwise since last check</comment>
   </block>
   
   <block type="rotary_encoder_has_moved"></block>
@@ -2975,7 +2982,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">100</field>
       </shadow>
     </value>
-    <comment pinned="true">Constrain encoder value within min and max range</comment>
+    <comment pinned="false">Constrain encoder value within min and max range</comment>
   </block>
   
   <block type="rotary_encoder_clear_limits"></block>
@@ -2988,7 +2995,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">1</field>
       </shadow>
     </value>
-    <comment pinned="true">Multiply rotation by scale factor (e.g., 5 = count by 5s)</comment>
+    <comment pinned="false">Multiply rotation by scale factor (e.g., 5 = count by 5s)</comment>
   </block>
   
   <block type="rotary_encoder_set_reverse"></block>
@@ -2998,7 +3005,7 @@ Roll: Left/right tilt</comment>
     
     <label text="Setup" web-class="boldtext"></label>
     <block type="bmp180_init">
-      <comment pinned="true">Connect SDA to pin 21 and SCL to pin 22 on ESP32. This sensor measures temperature, pressure and altitude!</comment>
+      <comment pinned="false">Connect SDA to pin 21 and SCL to pin 22 on ESP32. This sensor measures temperature, pressure and altitude!</comment>
       <value name="SDA_PIN">
         <shadow type="pinout">
           <field name="PIN">21</field>
@@ -3038,7 +3045,7 @@ Roll: Left/right tilt</comment>
     
     <label text="Advanced Settings" web-class="boldtext"></label>
     <block type="bmp180_set_accuracy">
-      <comment pinned="true">Higher accuracy takes more time but gives better readings. Good for precise measurements!</comment>
+      <comment pinned="false">Higher accuracy takes more time but gives better readings. Good for precise measurements!</comment>
       <value name="SENSOR_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -3047,7 +3054,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="bmp180_set_baseline">
-      <comment pinned="true">Set baseline pressure (in Pa) for accurate altitude calculation. Default is 101325 Pa (sea level)</comment>
+      <comment pinned="false">Set baseline pressure (in Pa) for accurate altitude calculation. Default is 101325 Pa (sea level)</comment>
       <value name="SENSOR_ID">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -3086,7 +3093,7 @@ Roll: Left/right tilt</comment>
         <field name="PIN">18</field>
       </shadow>
     </value>
-    <comment pinned="true">For 180° servo motors. Connect signal wire to pin, red to 5V, brown to GND</comment>
+    <comment pinned="false">For 180° servo motors. Connect signal wire to pin, red to 5V, brown to GND</comment>
   </block>
   
   <block type="servo_init_continuous">
@@ -3095,7 +3102,7 @@ Roll: Left/right tilt</comment>
         <field name="PIN">19</field>
       </shadow>
     </value>
-    <comment pinned="true">For 360° continuous rotation servo. Connect signal wire to pin</comment>
+    <comment pinned="false">For 360° continuous rotation servo. Connect signal wire to pin</comment>
   </block>
   
   <sep gap="20"></sep>
@@ -3113,7 +3120,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">90</field>
       </shadow>
     </value>
-    <comment pinned="true">Angle: 0-180 degrees. 90 is center position</comment>
+    <comment pinned="false">Angle: 0-180 degrees. 90 is center position</comment>
   </block>
   
   <block type="servo_preset_position">
@@ -3150,7 +3157,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">50</field>
       </shadow>
     </value>
-    <comment pinned="true">Sweep servo back and forth. Delay in milliseconds</comment>
+    <comment pinned="false">Sweep servo back and forth. Delay in milliseconds</comment>
   </block>
   
   <block type="servo_smooth_move">
@@ -3169,7 +3176,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">5</field>
       </shadow>
     </value>
-    <comment pinned="true">Move smoothly to angle. Speed: 1-20 (higher is faster)</comment>
+    <comment pinned="false">Move smoothly to angle. Speed: 1-20 (higher is faster)</comment>
   </block>
   
   <sep gap="20"></sep>
@@ -3187,7 +3194,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">100</field>
       </shadow>
     </value>
-    <comment pinned="true">Speed: 0-100%. Higher is faster</comment>
+    <comment pinned="false">Speed: 0-100%. Higher is faster</comment>
   </block>
   
   <block type="servo_continuous_backward">
@@ -3221,7 +3228,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">1</field>
       </shadow>
     </value>
-    <comment pinned="true">Turn off servo signal to save power and allow free movement</comment>
+    <comment pinned="false">Turn off servo signal to save power and allow free movement</comment>
   </block>
   
   <block type="servo_attach">
@@ -3230,16 +3237,16 @@ Roll: Left/right tilt</comment>
         <field name="NUM">1</field>
       </shadow>
     </value>
-    <comment pinned="true">Turn on servo signal after detaching</comment>
+    <comment pinned="false">Turn on servo signal after detaching</comment>
   </block>
-
+	<block type="servo_pinout"></block> 
 </category>
 
 <category name="⚙️ Stepper Motor" colour="#666600" id="stepper_category">
   
   <label text="⚙️ Setup" web-class="boldtext"></label>
   <block type="stepper_init">
-    <comment pinned="true" h="120" w="300">Connect your stepper motor: IN1-IN4 to ESP32 GPIO pins. Use different Motor IDs (0-9) for multiple motors. 28BYJ-48 uses 2048 steps per revolution.</comment>
+    <comment pinned="false" h="120" w="300">Connect your stepper motor: IN1-IN4 to ESP32 GPIO pins. Use different Motor IDs (0-9) for multiple motors. 28BYJ-48 uses 2048 steps per revolution.</comment>
     <value name="IN1_PIN">
       <shadow type="pinout">
         <field name="PIN">12</field>
@@ -3324,7 +3331,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="stepper_spin_continuous">
-    <comment pinned="true" h="80" w="280">WARNING: This blocks your code! Use only when you want continuous rotation. Put a Stop block to halt spinning.</comment>
+    <comment pinned="false" h="80" w="280">WARNING: This blocks your code! Use only when you want continuous rotation. Put a Stop block to halt spinning.</comment>
   </block>
   
   <block type="stepper_stop">
@@ -3357,7 +3364,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <sep gap="32"></sep>
- 
+ 	<block type="stepper_pinout"></block> 
 </category>
 <category name="🎡 DC Motor" colour="#666600">
   
@@ -3379,7 +3386,7 @@ Roll: Left/right tilt</comment>
         <field name="PIN">27</field>
       </shadow>
     </value>
-    <comment pinned="true">Connect motor to L298N driver. IN1/IN2 control direction, EN controls speed</comment>
+    <comment pinned="false">Connect motor to L298N driver. IN1/IN2 control direction, EN controls speed</comment>
   </block>
   
   <sep gap="20"></sep>
@@ -3397,7 +3404,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">100</field>
       </shadow>
     </value>
-    <comment pinned="true">Speed: 0-100%</comment>
+    <comment pinned="false">Speed: 0-100%</comment>
   </block>
   
   <block type="l298n_motor_backward">
@@ -3462,7 +3469,7 @@ Roll: Left/right tilt</comment>
         <field name="NUM">2</field>
       </shadow>
     </value>
-    <comment pinned="true">Run motor for specified seconds then stop</comment>
+    <comment pinned="false">Run motor for specified seconds then stop</comment>
   </block>
   
   <block type="l298n_motor_brake">
@@ -3472,7 +3479,7 @@ Roll: Left/right tilt</comment>
       </shadow>
     </value>
   </block>
-
+ 	<block type="l298n_pinout"></block> 
 </category>
 
   <category name="🎵 RTTTL Player" colour="#666600">
@@ -3491,7 +3498,7 @@ Roll: Left/right tilt</comment>
     
     <!-- Popular Songs -->
     <label text="Popular Songs" web-class="labelStyle"></label>
-    <comment pinned="true" h="60" w="200">Play famous melodies! Choose from pre-loaded popular songs.</comment>
+    <comment pinned="false" h="60" w="200">Play famous melodies! Choose from pre-loaded popular songs.</comment>
     
     <block type="rtttl_play_popular">
       <field name="SONG">nokia</field>
@@ -3505,7 +3512,7 @@ Roll: Left/right tilt</comment>
     
     <!-- Custom Songs -->
     <label text="Custom Songs" web-class="labelStyle"></label>
-    <comment pinned="true" h="80" w="200">Play your own RTTTL string! Format: name:settings:notes Example: MySong:d=4,o=5,b=140:8c,8d,8e</comment>
+    <comment pinned="false" h="80" w="200">Play your own RTTTL string! Format: name:settings:notes Example: MySong:d=4,o=5,b=140:8c,8d,8e</comment>
     
 <!-- RTTTL Music Player Section -->
 	<block type="comment">
@@ -3548,7 +3555,7 @@ Roll: Left/right tilt</comment>
     
     <!-- Play Individual Notes -->
     <label text="Play Musical Notes" web-class="labelStyle"></label>
-    <comment pinned="true" h="80" w="200">Play individual musical notes! Choose note, octave, and duration. Great for making your own melodies!</comment>
+    <comment pinned="false" h="80" w="200">Play individual musical notes! Choose note, octave, and duration. Great for making your own melodies!</comment>
     
     <block type="rtttl_play_note">
       <field name="NOTE">C</field>
@@ -3590,7 +3597,7 @@ Roll: Left/right tilt</comment>
     
     <!-- Volume Control -->
     <label text="Volume Control" web-class="labelStyle"></label>
-    <comment pinned="true" h="60" w="200">Set buzzer volume (0-100%). Lower values = quieter sound.</comment>
+    <comment pinned="false" h="60" w="200">Set buzzer volume (0-100%). Lower values = quieter sound.</comment>
     
     <block type="rtttl_set_volume">
       <value name="VOLUME">
@@ -3815,7 +3822,7 @@ Roll: Left/right tilt</comment>
     <label text="WiFi Connection" web-class="boldtext"></label>
     
     <block type="wifi_connect_station">
-      <comment pinned="true">Connect ESP32 to WiFi network. Wait for connection before using HTTP blocks</comment>
+      <comment pinned="false">Connect ESP32 to WiFi network. Wait for connection before using HTTP blocks</comment>
       <value name="SSID">
         <shadow type="text">
           <field name="TEXT">MyWiFi</field>
@@ -3829,7 +3836,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="wifi_create_ap">
-      <comment pinned="true">Create WiFi hotspot. Others can connect to your ESP32</comment>
+      <comment pinned="false">Create WiFi hotspot. Others can connect to your ESP32</comment>
       <value name="SSID">
         <shadow type="text">
           <field name="TEXT">ESP32-AP</field>
@@ -3852,7 +3859,7 @@ Roll: Left/right tilt</comment>
     <label text="HTTP Server - Create Web Pages" web-class="boldtext"></label>
     
     <block type="http_server_start">
-      <comment pinned="true">Start web server on ESP32. Others can access via IP address</comment>
+      <comment pinned="false">Start web server on ESP32. Others can access via IP address</comment>
       <value name="PORT">
         <shadow type="math_number">
           <field name="NUM">80</field>
@@ -3861,7 +3868,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="http_server_add_route">
-      <comment pinned="true">Create a web page at specific URL path (e.g., /home, /led, /sensor)</comment>
+      <comment pinned="false">Create a web page at specific URL path (e.g., /home, /led, /sensor)</comment>
       <value name="PATH">
         <shadow type="text">
           <field name="TEXT">/</field>
@@ -3894,7 +3901,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="http_server_get_parameter">
-      <comment pinned="true">Get data from URL. Example: /led?state=on gets "state" value</comment>
+      <comment pinned="false">Get data from URL. Example: /led?state=on gets "state" value</comment>
       <value name="PARAM_NAME">
         <shadow type="text">
           <field name="TEXT">state</field>
@@ -3918,7 +3925,7 @@ Roll: Left/right tilt</comment>
     <label text="HTTP Client - Access Web Services" web-class="boldtext"></label>
     
     <block type="http_client_get_request">
-      <comment pinned="true">Download data from a website or API</comment>
+      <comment pinned="false">Download data from a website or API</comment>
       <value name="URL">
         <shadow type="text">
           <field name="TEXT">http://api.example.com/data</field>
@@ -3927,7 +3934,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="http_client_post_request">
-      <comment pinned="true">Send data to a website or API</comment>
+      <comment pinned="false">Send data to a website or API</comment>
       <value name="URL">
         <shadow type="text">
           <field name="TEXT">http://api.example.com/update</field>
@@ -3954,7 +3961,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="http_client_download_file">
-      <comment pinned="true">Download file and save to ESP32 storage</comment>
+      <comment pinned="false">Download file and save to ESP32 storage</comment>
       <value name="URL">
         <shadow type="text">
           <field name="TEXT">http://example.com/file.txt</field>
@@ -3970,7 +3977,7 @@ Roll: Left/right tilt</comment>
     <block type="http_client_get_status_code"></block>
     
     <block type="http_client_parse_json">
-      <comment pinned="true">Convert JSON text to usable data</comment>
+      <comment pinned="false">Convert JSON text to usable data</comment>
       <value name="JSON_TEXT">
         <shadow type="text">
           <field name="TEXT">{"temp": 25}</field>
@@ -4081,7 +4088,7 @@ Roll: Left/right tilt</comment>
     <label text="WebSocket - Live Updates" web-class="boldtext"></label>
     
     <block type="websocket_server_start">
-      <comment pinned="true">Enable real-time communication. Updates instantly without refresh</comment>
+      <comment pinned="false">Enable real-time communication. Updates instantly without refresh</comment>
       <value name="PORT">
         <shadow type="math_number">
           <field name="NUM">8080</field>
@@ -4107,7 +4114,7 @@ Roll: Left/right tilt</comment>
   <label text="Setup Email" web-class="boldtext"></label>
   
   <block type="email_init">
-    <comment pinned="true">Setup email connection. For Gmail, use an App Password (not your regular password)</comment>
+    <comment pinned="false">Setup email connection. For Gmail, use an App Password (not your regular password)</comment>
     <value name="SMTP_SERVER">
       <shadow type="text">
         <field name="TEXT">smtp.gmail.com</field>
@@ -4134,7 +4141,7 @@ Roll: Left/right tilt</comment>
   <label text="Send Email" web-class="boldtext"></label>
   
   <block type="email_send">
-    <comment pinned="true">Send an email to someone</comment>
+    <comment pinned="false">Send an email to someone</comment>
     <value name="RECIPIENT">
       <shadow type="text">
         <field name="TEXT">friend@example.com</field>
@@ -4153,7 +4160,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="email_send_with_from">
-    <comment pinned="true">Send email and specify who it's from</comment>
+    <comment pinned="false">Send email and specify who it's from</comment>
     <value name="RECIPIENT">
       <shadow type="text">
         <field name="TEXT">friend@example.com</field>
@@ -4180,18 +4187,18 @@ Roll: Left/right tilt</comment>
   <label text="Email Status" web-class="boldtext"></label>
   
   <block type="email_check_status">
-    <comment pinned="true">Check if email was sent successfully</comment>
+    <comment pinned="false">Check if email was sent successfully</comment>
   </block>
   
   <block type="email_get_error">
-    <comment pinned="true">Get the error message if email failed</comment>
+    <comment pinned="false">Get the error message if email failed</comment>
   </block>
   
   <!-- Advanced Section -->
   <label text="Advanced" web-class="boldtext"></label>
   
   <block type="email_send_multiple">
-    <comment pinned="true">Send email to multiple people at once</comment>
+    <comment pinned="false">Send email to multiple people at once</comment>
     <value name="RECIPIENTS">
       <shadow type="text">
         <field name="TEXT">friend1@example.com,friend2@example.com</field>
@@ -4210,7 +4217,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="email_disconnect">
-    <comment pinned="true">Close email connection</comment>
+    <comment pinned="false">Close email connection</comment>
   </block>
 
 </category>
@@ -4220,7 +4227,7 @@ Roll: Left/right tilt</comment>
   <label text="Get Internet Time" web-class="boldtext"></label>
   
   <block type="ntp_get_time">
-    <comment pinned="true">Get current time from the internet. Make sure WiFi is connected first! You can adjust timezone offset (e.g., +5.5 for India, -5 for EST)</comment>
+    <comment pinned="false">Get current time from the internet. Make sure WiFi is connected first! You can adjust timezone offset (e.g., +5.5 for India, -5 for EST)</comment>
     <value name="NTP_SERVER">
       <shadow type="text">
         <field name="TEXT">pool.ntp.org</field>
@@ -4377,7 +4384,7 @@ Roll: Left/right tilt</comment>
   <label text="Setup Connection" web-class="boldtext"></label>
   
   <block type="mqtt_init">
-    <comment pinned="true">Setup MQTT connection. Connect to WiFi first! Use a free broker like broker.hivemq.com or test.mosquitto.org</comment>
+    <comment pinned="false">Setup MQTT connection. Connect to WiFi first! Use a free broker like broker.hivemq.com or test.mosquitto.org</comment>
     <value name="CLIENT_ID">
       <shadow type="text">
         <field name="TEXT">esp32_client</field>
@@ -4396,7 +4403,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="mqtt_init_with_auth">
-    <comment pinned="true">Setup MQTT with username and password (for private brokers)</comment>
+    <comment pinned="false">Setup MQTT with username and password (for private brokers)</comment>
     <value name="CLIENT_ID">
       <shadow type="text">
         <field name="TEXT">esp32_client</field>
@@ -4425,14 +4432,14 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="mqtt_connect">
-    <comment pinned="true">Connect to MQTT broker</comment>
+    <comment pinned="false">Connect to MQTT broker</comment>
   </block>
   
   <!-- Publish Section -->
   <label text="Send Messages" web-class="boldtext"></label>
   
   <block type="mqtt_publish">
-    <comment pinned="true">Send a message to a topic. Anyone subscribed to this topic will receive it!</comment>
+    <comment pinned="false">Send a message to a topic. Anyone subscribed to this topic will receive it!</comment>
     <value name="TOPIC">
       <shadow type="text">
         <field name="TEXT">home/temperature</field>
@@ -4446,7 +4453,7 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="mqtt_publish_with_qos">
-    <comment pinned="true">Send message with Quality of Service (QoS). Higher QoS = more reliable delivery</comment>
+    <comment pinned="false">Send message with Quality of Service (QoS). Higher QoS = more reliable delivery</comment>
     <value name="TOPIC">
       <shadow type="text">
         <field name="TEXT">home/temperature</field>
@@ -4463,7 +4470,7 @@ Roll: Left/right tilt</comment>
   <label text="Receive Messages" web-class="boldtext"></label>
   
   <block type="mqtt_subscribe">
-    <comment pinned="true">Subscribe to a topic to receive messages. Use wildcards: + for one level, # for multiple levels</comment>
+    <comment pinned="false">Subscribe to a topic to receive messages. Use wildcards: + for one level, # for multiple levels</comment>
     <value name="TOPIC">
       <shadow type="text">
         <field name="TEXT">home/temperature</field>
@@ -4472,37 +4479,37 @@ Roll: Left/right tilt</comment>
   </block>
   
   <block type="mqtt_set_callback">
-    <comment pinned="true">Set what to do when a message arrives. The 'topic' and 'message' variables will be available inside</comment>
+    <comment pinned="false">Set what to do when a message arrives. The 'topic' and 'message' variables will be available inside</comment>
   </block>
   
   <block type="mqtt_check_messages">
-    <comment pinned="true">Check for new messages (call this regularly in a loop)</comment>
+    <comment pinned="false">Check for new messages (call this regularly in a loop)</comment>
   </block>
   
   <!-- Message Info Section -->
   <label text="Message Information" web-class="boldtext"></label>
   
   <block type="mqtt_last_topic">
-    <comment pinned="true">Get the topic of the last received message</comment>
+    <comment pinned="false">Get the topic of the last received message</comment>
   </block>
   
   <block type="mqtt_last_message">
-    <comment pinned="true">Get the content of the last received message</comment>
+    <comment pinned="false">Get the content of the last received message</comment>
   </block>
   
   <!-- Status Section -->
   <label text="Connection Status" web-class="boldtext"></label>
   
   <block type="mqtt_is_connected">
-    <comment pinned="true">Check if connected to MQTT broker</comment>
+    <comment pinned="false">Check if connected to MQTT broker</comment>
   </block>
   
   <block type="mqtt_disconnect">
-    <comment pinned="true">Disconnect from MQTT broker</comment>
+    <comment pinned="false">Disconnect from MQTT broker</comment>
   </block>
   
   <block type="mqtt_ping">
-    <comment pinned="true">Send keepalive ping to broker</comment>
+    <comment pinned="false">Send keepalive ping to broker</comment>
   </block>
 
 </category>

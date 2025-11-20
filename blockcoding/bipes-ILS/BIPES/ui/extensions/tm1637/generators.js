@@ -1,5 +1,10 @@
 // TM1637 Python Code Generators for Blockly
 
+Blockly.Python['tm1637_pinout'] = function(block) {
+	return '';
+}
+
+
 Blockly.Python['tm1637_init'] = function(block) {
   var clk_pin = Blockly.Python.valueToCode(block, 'CLK_PIN', Blockly.Python.ORDER_ATOMIC) || '25';
   var dio_pin = Blockly.Python.valueToCode(block, 'DIO_PIN', Blockly.Python.ORDER_ATOMIC) || '26';

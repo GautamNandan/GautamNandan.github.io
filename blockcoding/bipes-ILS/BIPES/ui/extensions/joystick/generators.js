@@ -1,5 +1,9 @@
 // Joystick Controller Code Generators
 
+Blockly.Python['joystick_pinout'] = function(block) {
+	return '';
+}
+
 Blockly.Python['joystick_init'] = function(block) {
   var x_pin = Blockly.Python.valueToCode(block, 'X_PIN', Blockly.Python.ORDER_ATOMIC) || '34';
   var y_pin = Blockly.Python.valueToCode(block, 'Y_PIN', Blockly.Python.ORDER_ATOMIC) || '35';

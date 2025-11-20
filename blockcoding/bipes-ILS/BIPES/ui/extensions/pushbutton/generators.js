@@ -1,3 +1,7 @@
+Blockly.Python['pushbutton_pinout'] = function(block) {
+	return '';
+}
+
 Blockly.Python['pushbutton_init_advanced'] = function(block) {
   var pin = Blockly.Python.valueToCode(block, 'PIN', Blockly.Python.ORDER_ATOMIC) || '13';
   var button_id = Blockly.Python.valueToCode(block, 'BUTTON_ID', Blockly.Python.ORDER_ATOMIC) || '1';

@@ -1,15 +1,29 @@
 // Servo Motor Blocks
-
-Blockly.Blocks['servo_init_standard'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['servo_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⚙️ Servo Setup (180°)");	
+        .appendField("⚙ Servo Motor Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/servomotor/icon.png",
           55,
           55,
           "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#666600");
+    this.setTooltip("Reference diagram for Servo Motor wiring");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['servo_init_standard'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("⚙️ Servo Setup (180°)");	
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -30,14 +44,6 @@ Blockly.Blocks['servo_init_continuous'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("⚙️ Servo Setup (360°)");	
-	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/servomotor/icon.png",
-          55,
-          55,
-          "*"));
-
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

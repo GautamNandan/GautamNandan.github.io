@@ -1,22 +1,38 @@
-// PWM LED Initialization
-Blockly.Blocks['pwm_led_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['three_led_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💡 Setup LED with Brightness");
+        .appendField("🚦 Traffic light Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
-          "extensions/led_control/led.png",
+          "extensions/led_control/traffic_light.png",
           155,
           80,
           "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for traffic light wiring");
+    this.setHelpUrl("");
+  }
+};
+
+// PWM LED Initialization
+Blockly.Blocks['pwm_led_init'] = {
+  init: function() {
     this.appendValueInput("LED_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("LED pin");
+    
+    // Third row: LED ID
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("LED ID")
         .appendField(new Blockly.FieldNumber(1, 1, 10, 1), "LED_ID");
+    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#cc0000");
@@ -30,16 +46,12 @@ Blockly.Blocks['rgb_led_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🌈 Setup RGB LED");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/led_control/rgb-led.png",
-          155,
-          100,
-          "*"));
+		
     this.appendValueInput("RED_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Red pin");
+		
     this.appendValueInput("GREEN_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -72,28 +84,27 @@ Blockly.Blocks['three_led_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🚦 Setup 3-LED Pattern");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/led_control/traffic_light.png",
-          155,
-          80,
-          "*"));
+		
     this.appendValueInput("RED_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Red pin");
+		
     this.appendValueInput("YELLOW_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Yellow pin");
+		
     this.appendValueInput("GREEN_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Green pin");
+		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("LED Group ID")
         .appendField(new Blockly.FieldNumber(1, 1, 10, 1), "LED_ID");
+	this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#cc0000");

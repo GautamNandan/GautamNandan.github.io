@@ -1,5 +1,7 @@
 // Servo Motor Code Generators
-
+Blockly.Python['servo_pinout'] = function(block) {
+	return '';
+}
 Blockly.Python['servo_init_standard'] = function(block) {
   var pin = Blockly.Python.valueToCode(block, 'PIN', Blockly.Python.ORDER_ATOMIC) || '18';
   var servo_id = block.getFieldValue('SERVO_ID');

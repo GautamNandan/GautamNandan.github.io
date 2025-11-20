@@ -5,12 +5,6 @@ Blockly.Blocks['rtttl_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🎵 RTTTL Setup");	
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/rtttl/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("BUZZER_PIN")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Buzzer Pin");

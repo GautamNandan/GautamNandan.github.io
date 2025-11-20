@@ -1,5 +1,9 @@
 // MAX7219 Python Code Generators for Blockly
 
+Blockly.Python['max7219_pinout'] = function(block) {
+	return '';
+}
+
 Blockly.Python['max7219_init'] = function(block) {
   var clk_pin = Blockly.Python.valueToCode(block, 'CLK_PIN', Blockly.Python.ORDER_ATOMIC) || '14';
   var dio_pin = Blockly.Python.valueToCode(block, 'DIO_PIN', Blockly.Python.ORDER_ATOMIC) || '13';

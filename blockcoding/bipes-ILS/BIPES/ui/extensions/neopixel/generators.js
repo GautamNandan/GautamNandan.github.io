@@ -2,6 +2,10 @@
 
 // ==================== SETUP ====================
 
+Blockly.Python['neopixel_pinout'] = function(block) {
+	return '';
+}
+
 Blockly.Python['neopixel_init'] = function(block) {
   var pin_value = Blockly.Python.valueToCode(block, 'PIN', Blockly.Python.ORDER_ATOMIC) || '25';
   var num_leds = Blockly.Python.valueToCode(block, 'NUMBER', Blockly.Python.ORDER_ATOMIC) || '8';

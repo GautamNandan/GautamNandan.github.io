@@ -1,3 +1,7 @@
+Blockly.Python['three_led_pinout'] = function(block) {
+	return '';
+}
+
 // PWM LED Initialization
 Blockly.Python['pwm_led_init'] = function(block) {
   var led_pin = Blockly.Python.valueToCode(block, 'LED_PIN', Blockly.Python.ORDER_ATOMIC) || '25';

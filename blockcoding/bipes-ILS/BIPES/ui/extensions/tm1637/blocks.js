@@ -1,15 +1,30 @@
 // TM1637 7-Segment Display Blocks for Blockly
-
-Blockly.Blocks['tm1637_init'] = {
+// Separate reference block (no code generation)
+Blockly.Blocks['tm1637_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔧 TM1637 Initialize Display");
+        .appendField("🔧 tm1637 Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/tm1637/icon.png",
           255,
           155,
-          "*"));		
+          "*"));	
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for tm1637 wiring");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['tm1637_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🔧 TM1637 Initialize Display");
+	
     this.appendValueInput("CLK_PIN")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)

@@ -11,9 +11,7 @@ Blockly.Python['rtttl_init'] = function(block) {
   Blockly.Python.definitions_['import_uasyncio'] = 'import uasyncio';
   
   // Initialize the RTTTL player
-  Blockly.Python.definitions_['rtttl_buzzer_pin'] = 'rtttl_buzzer = Pin(' + buzzer_pin + ', Pin.OUT)';
-  Blockly.Python.definitions_['rtttl_pwm'] = 'rtttl_pwm = PWM(rtttl_buzzer)';
-  Blockly.Python.definitions_['rtttl_player_init'] = 'rtttl = rtttl_player.RTTTLPlayer(rtttl_pwm)';
+  Blockly.Python.definitions_['rtttl_player_init'] = 'rtttl = rtttl_player.RTTTLPlayer(' + buzzer_pin + ')';
   
   var code = '';
   return code;
