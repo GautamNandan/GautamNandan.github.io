@@ -34,6 +34,7 @@ Blockly.Python['max7219_show'] = function(block) {
 
 Blockly.Python['max7219_clear'] = function(block) {
   var code = 'matrix_display.zero()\n';
+  code += 'matrix_display.show()\n';
   return code;
 };
 

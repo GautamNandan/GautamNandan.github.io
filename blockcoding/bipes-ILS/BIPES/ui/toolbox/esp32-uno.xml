@@ -9,8 +9,6 @@
       <block type="logic_ternary"></block>
     </category>
     <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
-      <block type="while_true" id="while-true-main">
-      </block>
       <block type="controls_repeat_ext">
         <value name="TIMES">
           <shadow type="math_number">
@@ -37,6 +35,15 @@
         </value>
       </block>
       <block type="controls_forEach"></block>
+  <!-- Pre-configured While TRUE block -->
+  <block type="controls_whileUntil">
+    <field name="MODE">WHILE</field>
+    <value name="BOOL">
+      <shadow type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </shadow>
+    </value>
+  </block>	  
       <block type="controls_flow_statements"></block>
     </category>
     <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
