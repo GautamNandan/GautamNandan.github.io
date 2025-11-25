@@ -1,0 +1,115 @@
+<category name="ILS DC Motor" colour="#666600">
+  
+  <!-- Setup Section -->
+  <label text="Setup Motor"></label>
+  <block type="l298n_motor_init">
+    <value name="IN1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="IN2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="EN_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Connect motor to L298N driver. IN1/IN2 control direction, EN controls speed</comment>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Basic Control -->
+  <label text="Basic Control"></label>
+  <block type="l298n_motor_forward">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Speed: 0-100%</comment>
+  </block>
+  
+  <block type="l298n_motor_backward">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_stop">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Advanced Control -->
+  <label text="Advanced Control"></label>
+  <block type="l298n_motor_set_direction">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_set_speed">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">75</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_run_time">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <value name="TIME">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <comment pinned="true">Run motor for specified seconds then stop</comment>
+  </block>
+  
+  <block type="l298n_motor_brake">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+
+</category>

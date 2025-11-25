@@ -2093,8 +2093,66 @@ VCC=3.3/5V, GND=GND</comment>
     <label text="Reference Diagrams"></label>
 	<block type="keypad_pinout"></block>   
 </category>
+<category name="🕹🔘 ESP Remote" colour="#333399">
+  
+  <!-- Setup Block -->
+  <label text="Setup" web-class="boldtext"></label>
+  <block type="remote_receiver_init">
+    <comment pinned="false">Setup the remote control receiver. Beacon time helps the remote find this device.</comment>
+	  <value name="BEACON_TIME">
+		<shadow type="math_number">
+		 <field name="NUM">3</field>
+		</shadow>
+      </value>	
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Control Blocks -->
+  <label text="Control" web-class="boldtext"></label>
+  <block type="remote_update">
+    <comment pinned="false">Put this in your main loop to receive remote signals</comment>
+  </block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Joystick Blocks -->
+  <label text="Joystick" web-class="boldtext"></label>
 
+  <block type="remote_on_direction">
+    <comment pinned="false">Triggers only when joystick moves to a specific direction</comment>
+  </block>  
+
+  <block type="remote_get_direction"></block>
+  
+  <sep gap="32"></sep>
+  
+  <!-- Button Blocks -->
+  <label text="Buttons" web-class="boldtext"></label>
+  <block type="remote_on_button">
+    <comment pinned="false">Triggers when a button is pressed. Choose button (A-F or Joystick) and press type.</comment>
+  </block>
+
+  
+  <sep gap="32"></sep>
+  
+  <!-- Advanced -->
+  <label text="Advanced" web-class="boldtext"></label>
+  <block type="remote_on_any_button">
+    <comment pinned="false">Triggers for any button press. Use button name and event type in your code.</comment>
+  </block>  
+  <block type="remote_get_joystick">
+    <comment pinned="false">Get current joystick position as numbers (-1 to +1)</comment>
+  </block>  
+  <block type="remote_on_joystick_move">
+    <comment pinned="false">Triggers when joystick moves. Returns direction (up, down, left, right, etc.)</comment>
+  </block>
+  <block type="remote_is_connected"></block>
+  <block type="remote_stop"></block>
+  <block type="remote_start"></block>  
+</category>
   </category>
+  
   <category name="%{BKY_CAT_SENSORS}" colour="#cc9933">
   <category name="📡📊🔀 Generic Sensors" colour="#cc9933">
     
@@ -4683,6 +4741,7 @@ Roll: Left/right tilt</comment>
       </category>
   </category>
 <category name="%{BKY_CAT_CONTROL}" colour="%{BKY_CONTROL_HUE}">
+
   <category name="PID" colour="%{BKY_CONTROL_HUE}">
     <button text="Install control library" callbackKey="installPyLib"></button>
     <label text="Proportional–integral–derivative Controller"></label>

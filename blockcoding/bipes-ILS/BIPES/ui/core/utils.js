@@ -176,14 +176,18 @@ static fixAsyncInCode(code) {
   try {
     const lines = code.split('\n');
     const functionNames = [];
-    const excludeFunctions = ['on_cretile_iot_data', '__init__', '__new__', '__del__'];
+    const excludeFunctions = ['__init__', '__new__', '__del__']; // Keep magic methods excluded
     let hasOnStart = false;
     
     // First pass: Convert function definitions to async and collect function names
     lines.forEach((line, index) => {
       if (line.trim().startsWith('def ')) {
+        // Check for @no_async marker in the line above
+        const prevLine = index > 0 ? lines[index - 1].trim() : '';
+        const hasMarker = prevLine === '#@no_async';
+        
         // Check if function should be excluded
-        const shouldExclude = excludeFunctions.some(excludedFunc => 
+        const shouldExclude = hasMarker || excludeFunctions.some(excludedFunc => 
           line.trim().indexOf(excludedFunc) >= 0
         );
         

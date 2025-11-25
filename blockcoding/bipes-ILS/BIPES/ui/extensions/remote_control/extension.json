@@ -1,0 +1,37 @@
+{
+  "name": "ILS Remote Control",
+  "description": "ESP-NOW wireless remote control receiver for ESP32. Control your projects wirelessly with joystick and buttons!",
+  "author": "Infinity Learning Space",
+  "category": "Communication",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  "color": "#336600",
+  "tags": ["ESP32", "Remote Control", "ESP-NOW", "Wireless", "Joystick", "ILS"],
+  "helpUrl": "https://infinitylearningspace.com/docs/remote-control",
+  "required_libraries": [
+    {
+      "name": "espnow_remote",
+      "path": "ils/espnow_remote.py",
+      "description": "ESP-NOW remote control receiver library"
+    }
+  ],
+  "compatibility": {
+    "boards": ["ESP32"],
+    "micropython": ">=1.19"
+  },
+  "examples": [
+    {
+      "name": "Basic Remote Control",
+      "description": "Simple example to control an LED with joystick",
+      "file": "examples/basic_led_control.xml"
+    },
+    {
+      "name": "Robot Control",
+      "description": "Control a robot with joystick and buttons",
+      "file": "examples/robot_control.xml"
+    }
+  ]
+}
