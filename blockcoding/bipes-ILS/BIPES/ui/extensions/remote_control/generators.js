@@ -6,11 +6,14 @@ Blockly.Python['remote_receiver_init'] = function(block) {
   
   // Add imports (only in setup block)
   Blockly.Python.definitions_['import_uasyncio'] = 'import uasyncio';
+  Blockly.Python.definitions_['import_wdt'] = 'from machine import WDT';
   Blockly.Python.definitions_['import_remote'] = 'from ils import espnow_remote';
+  
   
 
   // Setup receiver with beacon time in milliseconds
-  var code = 'espnow_remote.setup_receiver(' + beacon_time + ' * 1000)\n';
+  var code = 'wdt = WDT(timeout=10000)\n';
+  code += 'espnow_remote.setup_receiver(' + beacon_time + ' * 1000)\n';
   
   return code;
 };
@@ -18,6 +21,8 @@ Blockly.Python['remote_receiver_init'] = function(block) {
 // ============= CONTROL BLOCKS =============
 Blockly.Python['remote_update'] = function(block) {
   var code = 'espnow_remote.update_remote()\n';
+  code += 'wdt.feed()\n';
+  code += 'await uasyncio.sleep_ms(0)\n';
   return code;
 };
 
@@ -28,12 +33,23 @@ Blockly.Python['remote_on_joystick_move'] = function(block) {
   var dir_var = Blockly.Python.variableDB_.getName(block.getFieldValue('DIR_VAR'), Blockly.Variables.NAME_TYPE);
   var statements = Blockly.Python.statementToCode(block, 'DO');
   
+  // Generate unique wrapper function name
+  var wrapperName = Blockly.Python.provideFunction_(
+    'async_wrapper_joystick',
+    ['async def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
+     statements || Blockly.Python.PASS]);
+  
+  // Wrap statements to handle async calls
+  var wrappedStatements = statements ? 
+    '  uasyncio.create_task(' + wrapperName + '())' : 
+    Blockly.Python.PASS;
+  
   // Generate unique function name
   var funcName = Blockly.Python.provideFunction_(
     'on_joystick_callback',
     ['#@no_async',
      'def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + x_var + ', ' + y_var + ', ' + dir_var + '):',
-     statements || Blockly.Python.PASS]);
+     wrappedStatements]);
   
   var code = 'espnow_remote.on_joystick_move(' + funcName + ')\n';
   return code;
@@ -43,12 +59,23 @@ Blockly.Python['remote_on_direction'] = function(block) {
   var direction = block.getFieldValue('DIRECTION');
   var statements = Blockly.Python.statementToCode(block, 'DO');
   
+  // Generate unique wrapper function name based on direction
+  var wrapperName = Blockly.Python.provideFunction_(
+    'async_wrapper_direction_' + direction,
+    ['async def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
+     statements || Blockly.Python.PASS]);
+  
+  // Wrap statements to handle async calls
+  var wrappedStatements = statements ? 
+    '  uasyncio.create_task(' + wrapperName + '())' : 
+    Blockly.Python.PASS;
+  
   // Generate unique function name based on direction
   var funcName = Blockly.Python.provideFunction_(
     'on_direction_' + direction,
     ['#@no_async',
      'def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
-     statements || Blockly.Python.PASS]);
+     wrappedStatements]);
   
   var code = 'espnow_remote.on_direction("' + direction + '", ' + funcName + ')\n';
   return code;
@@ -78,12 +105,23 @@ Blockly.Python['remote_on_button'] = function(block) {
   var event = block.getFieldValue('EVENT');
   var statements = Blockly.Python.statementToCode(block, 'DO');
   
+  // Generate unique wrapper function name based on button and event
+  var wrapperName = Blockly.Python.provideFunction_(
+    'async_wrapper_button_' + button + '_' + event,
+    ['async def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
+     statements || Blockly.Python.PASS]);
+  
+  // Wrap statements to handle async calls
+  var wrappedStatements = statements ? 
+    '  uasyncio.create_task(' + wrapperName + '())' : 
+    Blockly.Python.PASS;
+  
   // Generate unique function name based on button and event
   var funcName = Blockly.Python.provideFunction_(
     'on_button_' + button + '_' + event,
     ['#@no_async',
      'def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
-     statements || Blockly.Python.PASS]);
+     wrappedStatements]);
   
   var code = 'espnow_remote.on_button("' + button + '", "' + event + '", ' + funcName + ')\n';
   return code;
@@ -94,12 +132,23 @@ Blockly.Python['remote_on_any_button'] = function(block) {
   var event_var = Blockly.Python.variableDB_.getName(block.getFieldValue('EVENT_VAR'), Blockly.Variables.NAME_TYPE);
   var statements = Blockly.Python.statementToCode(block, 'DO');
   
+  // Generate unique wrapper function name
+  var wrapperName = Blockly.Python.provideFunction_(
+    'async_wrapper_any_button',
+    ['async def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
+     statements || Blockly.Python.PASS]);
+  
+  // Wrap statements to handle async calls
+  var wrappedStatements = statements ? 
+    '  uasyncio.create_task(' + wrapperName + '())' : 
+    Blockly.Python.PASS;
+  
   // Generate unique function name
   var funcName = Blockly.Python.provideFunction_(
     'on_any_button_callback',
     ['#@no_async',
      'def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + btn_var + ', ' + event_var + '):',
-     statements || Blockly.Python.PASS]);
+     wrappedStatements]);
   
   var code = 'espnow_remote.on_any_button(' + funcName + ')\n';
   return code;
