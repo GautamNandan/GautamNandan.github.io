@@ -1,4 +1,7 @@
 // Ultrasonic Sensor Code Generators
+Blockly.Python['ultrasonic_pinout'] = function(block) {
+	return '';
+}
 
 Blockly.Python['ultrasonic_init_simple'] = function(block) {
   var trig_pin = Blockly.Python.valueToCode(block, 'TRIG_PIN', Blockly.Python.ORDER_ATOMIC) || '5';
