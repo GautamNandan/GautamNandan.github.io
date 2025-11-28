@@ -655,7 +655,7 @@
       </value>
       <value name="YELLOW_PIN">
         <shadow type="pinout">
-          <field name="PIN">32s</field>
+          <field name="PIN">32</field>
         </shadow>
       </value>
     </block>
@@ -1612,13 +1612,13 @@ VCC=3.3/5V, GND=GND</comment>
   
   <value name="CLK_PIN">
     <shadow type="pinout">
-      <field name="PIN">33</field>
+      <field name="PIN">27</field>
     </shadow>
   </value>
 
   <value name="DIO_PIN">
     <shadow type="pinout">
-      <field name="PIN">15</field>
+      <field name="PIN">14</field>
     </shadow>
   </value>
   
@@ -2386,12 +2386,12 @@ VCC=3.3/5V, GND=GND</comment>
     <comment pinned="false">Simple ultrasonic sensor (HC-SR04 compatible)</comment>
     <value name="TRIG_PIN">
       <shadow type="pinout">
-        <field name="PIN">5</field>
+        <field name="PIN">23</field>
       </shadow>
     </value>
     <value name="ECHO_PIN">
       <shadow type="pinout">
-        <field name="PIN">18</field>
+        <field name="PIN">5</field>
       </shadow>
     </value>
   </block>
@@ -2505,7 +2505,8 @@ VCC=3.3/5V, GND=GND</comment>
   <block type="ultrasonic_get_raw_time">
     <comment pinned="false">Returns raw echo time in microseconds</comment>
   </block>
-  
+    <block type="ultrasonic_pinout"></block>
+
 </category>
 
   <category name="🛰️ GPS" colour="#cc9933">

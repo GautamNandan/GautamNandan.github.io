@@ -12,8 +12,8 @@ Blockly.Python['remote_receiver_init'] = function(block) {
   
 
   // Setup receiver with beacon time in milliseconds
-  var code = 'wdt = WDT(timeout=10000)\n';
-  code += 'espnow_remote.setup_receiver(' + beacon_time + ' * 1000)\n';
+  //var code = 'wdt = WDT(timeout=10000)\n';
+  var code = 'espnow_remote.setup_receiver(' + beacon_time + ' * 1000)\n';
   
   return code;
 };
@@ -21,7 +21,7 @@ Blockly.Python['remote_receiver_init'] = function(block) {
 // ============= CONTROL BLOCKS =============
 Blockly.Python['remote_update'] = function(block) {
   var code = 'espnow_remote.update_remote()\n';
-  code += 'wdt.feed()\n';
+  //code += 'wdt.feed()\n';
   code += 'await uasyncio.sleep_ms(0)\n';
   return code;
 };

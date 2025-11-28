@@ -10,8 +10,8 @@ Blockly.Blocks['neopixel_pinout'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/neopixel/icon.png",
-          55,
-          55,
+          155,
+          155,
           "*"));
     this.appendDummyInput()
         .appendField("Reference diagram only");

@@ -1,15 +1,28 @@
 // Ultrasonic Sensor Blocks
+Blockly.Blocks['ultrasonic_pinout'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("💡 NeoPixel Pinout Reference");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage(
+          "extensions/ultrasonic/ultrasonic-connections.png",
+          155,
+          155,
+          "*"));
+    this.appendDummyInput()
+        .appendField("Reference diagram only");
+    this.appendDummyInput()
+        .appendField("Delete after viewing");
+    this.setColour("#cc0000");
+    this.setTooltip("Reference diagram for Neopixel wiring");
+    this.setHelpUrl("");
+  }
+};
 
 Blockly.Blocks['ultrasonic_init_simple'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📏 Setup Ultrasonic");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/ultrasonic/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("TRIG_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -30,12 +43,6 @@ Blockly.Blocks['ultrasonic_init_rgb'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📏 Setup Ultrasonic RGB");	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/ultrasonic/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("TRIG_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
