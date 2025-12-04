@@ -4,12 +4,6 @@ Blockly.Blocks['digital_sensor_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📡 Setup Digital Sensor");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/sensor_generic/digital_icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -61,12 +55,6 @@ Blockly.Blocks['analog_sensor_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📊 Setup Analog Sensor (Pot)");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/sensor_generic/analog_icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -132,12 +120,6 @@ Blockly.Blocks['dual_sensor_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🔀 Setup Dual Sensor");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/sensor_generic/dual_icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("DIGITAL_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

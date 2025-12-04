@@ -2,7 +2,7 @@
 Blockly.Blocks['ultrasonic_pinout'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💡 NeoPixel Pinout Reference");
+        .appendField("💡 Ultrasonic Pinout Reference");
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage(
           "extensions/ultrasonic/ultrasonic-connections.png",
@@ -13,7 +13,7 @@ Blockly.Blocks['ultrasonic_pinout'] = {
         .appendField("Reference diagram only");
     this.appendDummyInput()
         .appendField("Delete after viewing");
-    this.setColour("#cc0000");
+    this.setColour("#cc9933");
     this.setTooltip("Reference diagram for Neopixel wiring");
     this.setHelpUrl("");
   }
