@@ -4,12 +4,6 @@ Blockly.Blocks['ils_sheets_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📊 Setup Google Sheet");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/googlesheet/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("DEPLOY_CODE")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)

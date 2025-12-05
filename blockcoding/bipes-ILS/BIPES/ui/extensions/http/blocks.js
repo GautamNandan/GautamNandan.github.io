@@ -4,12 +4,6 @@ Blockly.Blocks['wifi_connect_station'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📶 Connect to WiFi");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/ils_network/wifi_icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("SSID")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -34,12 +28,6 @@ Blockly.Blocks['wifi_create_ap'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📡 Create WiFi Hotspot");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/ils_network/ap_icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("SSID")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -100,12 +88,6 @@ Blockly.Blocks['http_server_start'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🌐 Start Web Server");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/ils_network/server_icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("PORT")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

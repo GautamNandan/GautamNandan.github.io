@@ -3,12 +3,6 @@ Blockly.Blocks['mqtt_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📡 Setup ILS MQTT");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/mqtt/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("CLIENT_ID")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -34,12 +28,6 @@ Blockly.Blocks['mqtt_init_with_auth'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🔐 Setup ILS MQTT (with login)");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/mqtt/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("CLIENT_ID")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)

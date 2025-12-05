@@ -3,7 +3,7 @@
 Blockly.Blocks['digital_sensor_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📡 Setup Digital Sensor");
+        .appendField("📡 Setup Digital Sensor1");
     this.appendValueInput("PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -15,7 +15,7 @@ Blockly.Blocks['digital_sensor_init'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#cc9933");
-    this.setTooltip("Setup digital sensor (motion, touch, tilt, etc.)");
+    this.setTooltip("Setup digital sensor (motion, touch, tilt etc.)");
     this.setHelpUrl("");
   }
 };

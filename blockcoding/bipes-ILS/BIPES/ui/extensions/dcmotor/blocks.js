@@ -46,7 +46,7 @@ Blockly.Blocks['l298n_motor_init'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Motor ID")
         .appendField(new Blockly.FieldNumber(1, 1, 10), "MOTOR_ID");
-		
+	this.setInputsInline(false);	
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");

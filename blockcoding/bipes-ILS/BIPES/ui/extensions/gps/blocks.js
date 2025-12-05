@@ -4,12 +4,6 @@ Blockly.Blocks['gps_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🛰️ Setup ILS GPS");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/gps/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("TX_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

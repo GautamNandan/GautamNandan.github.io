@@ -4,12 +4,6 @@ Blockly.Blocks['rfid_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🔖 Setup RFID");	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/rfid/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("SCK_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

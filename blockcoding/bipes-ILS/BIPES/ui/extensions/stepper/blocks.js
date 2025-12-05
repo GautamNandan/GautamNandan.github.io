@@ -27,7 +27,8 @@ Blockly.Blocks['stepper_pinout'] = {
 Blockly.Blocks['stepper_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("                          Motor ID")
+        .appendField("🔄 Motor ID")
+		.setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldNumber(0, 0, 9, 1), "MOTOR_ID");
     this.appendValueInput("IN1_PIN")
         .setAlign(Blockly.ALIGN_RIGHT)

@@ -4,12 +4,6 @@ Blockly.Blocks['rotary_encoder_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🔄 Setup Rotary Encoder");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/rotary_encoder/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("CLK_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

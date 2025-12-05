@@ -1,0 +1,76 @@
+{
+  "name": "ILS Servo Car",
+  "description": "Control a 4-wheel servo motor car using PCA9685 PWM driver. Perfect for young makers (ages 8-14) to build and program their own robotic car!",
+  "author": "ILS",
+  "version": "1.0.0",
+  "image": "extensions/ils_servo_car/icon.png",
+  "extensions": ["colours"],
+  "category": "actuator",
+  "board": ["esp32"],
+  "tags": ["servo", "car", "robot", "motor", "pca9685", "vehicle", "movement"],
+  
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  
+  "helpUrl": "https://github.com/ILS/servo-car",
+  
+  "featured": true,
+  
+  "metadata": {
+    "difficulty": "intermediate",
+    "ageRange": "8-14",
+    "learningOutcomes": [
+      "Understanding PWM control",
+      "I2C communication",
+      "Motor coordination",
+      "Basic robotics programming"
+    ],
+    "requirements": {
+      "hardware": [
+        "ESP32 development board",
+        "PCA9685 16-channel PWM driver",
+        "4x continuous rotation servo motors",
+        "Power supply (5-6V, 2-3A recommended)",
+        "4-wheel car chassis",
+        "I2C cables"
+      ],
+      "connections": {
+        "PCA9685": {
+          "VCC": "5V power supply",
+          "GND": "Ground",
+          "SDA": "GPIO 21 (default)",
+          "SCL": "GPIO 22 (default)",
+          "V+": "Servo power supply (5-6V)"
+        },
+        "servos": "Connect to PCA9685 channels 0-3 (or custom channels)"
+      }
+    },
+    "tips": [
+      "Start with low speeds (30-50) when testing",
+      "Servos may need calibration - adjust range if car doesn't move straight",
+      "Front left and rear left servos are mirrored automatically",
+      "Use curve functions for smooth turning movements",
+      "Drift functions create fun sliding turns!",
+      "Ensure adequate power supply for all 4 servos"
+    ],
+    "exampleProjects": [
+      {
+        "name": "Basic Navigation",
+        "description": "Make the car move in a square pattern"
+      },
+      {
+        "name": "Remote Control",
+        "description": "Control car with buttons or sensors"
+      },
+      {
+        "name": "Line Follower",
+        "description": "Add IR sensors for line following"
+      },
+      {
+        "name": "Obstacle Avoider",
+        "description": "Use ultrasonic sensor to avoid obstacles"
+      }
+    ]
+  }
+}

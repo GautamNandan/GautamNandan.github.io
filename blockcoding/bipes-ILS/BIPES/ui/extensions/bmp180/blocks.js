@@ -2,12 +2,6 @@ Blockly.Blocks['bmp180_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🌡️ Setup Pressure Sensor");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/bmp180/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("SDA_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

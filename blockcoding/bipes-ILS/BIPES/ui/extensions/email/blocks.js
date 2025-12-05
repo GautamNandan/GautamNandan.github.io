@@ -3,12 +3,6 @@ Blockly.Blocks['email_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("📧 Setup Email");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/email/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("SMTP_SERVER")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)

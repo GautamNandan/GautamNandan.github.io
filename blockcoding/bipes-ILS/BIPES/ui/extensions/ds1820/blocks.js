@@ -4,12 +4,6 @@ Blockly.Blocks['ds1820_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🌡️ Setup ILS Temperature Sensor");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/Ds1820/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("DATA_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

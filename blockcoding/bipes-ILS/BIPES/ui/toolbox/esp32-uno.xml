@@ -3307,7 +3307,124 @@ Roll: Left/right tilt</comment>
   </block>
 	<block type="servo_pinout"></block> 
 </category>
+ 
 
+
+<category name="🎡 DC Motor" colour="#666600">
+  
+  <!-- Setup Section -->
+  <label text="Setup Motor"></label>
+  <block type="l298n_motor_init">
+    <value name="IN1_PIN">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="IN2_PIN">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="EN_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <comment pinned="false">Connect motor to L298N driver. IN1/IN2 control direction, EN controls speed</comment>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Basic Control -->
+  <label text="Basic Control"></label>
+  <block type="l298n_motor_forward">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <comment pinned="false">Speed: 0-100%</comment>
+  </block>
+  
+  <block type="l298n_motor_backward">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_stop">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep gap="20"></sep>
+  
+  <!-- Advanced Control -->
+  <label text="Advanced Control"></label>
+  <block type="l298n_motor_set_direction">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_set_speed">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">75</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="l298n_motor_run_time">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">100</field>
+      </shadow>
+    </value>
+    <value name="TIME">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <comment pinned="false">Run motor for specified seconds then stop</comment>
+  </block>
+  
+  <block type="l298n_motor_brake">
+    <value name="MOTOR_ID">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+ 	<block type="l298n_pinout"></block> 
+</category>
 <category name="⚙️ Stepper Motor" colour="#666600" id="stepper_category">
   
   <label text="⚙️ Setup" web-class="boldtext"></label>
@@ -3432,122 +3549,6 @@ Roll: Left/right tilt</comment>
   <sep gap="32"></sep>
  	<block type="stepper_pinout"></block> 
 </category>
-<category name="🎡 DC Motor" colour="#666600">
-  
-  <!-- Setup Section -->
-  <label text="Setup Motor"></label>
-  <block type="l298n_motor_init">
-    <value name="IN1_PIN">
-      <shadow type="pinout">
-        <field name="PIN">25</field>
-      </shadow>
-    </value>
-    <value name="IN2_PIN">
-      <shadow type="pinout">
-        <field name="PIN">26</field>
-      </shadow>
-    </value>
-    <value name="EN_PIN">
-      <shadow type="pinout">
-        <field name="PIN">27</field>
-      </shadow>
-    </value>
-    <comment pinned="false">Connect motor to L298N driver. IN1/IN2 control direction, EN controls speed</comment>
-  </block>
-  
-  <sep gap="20"></sep>
-  
-  <!-- Basic Control -->
-  <label text="Basic Control"></label>
-  <block type="l298n_motor_forward">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-    <value name="SPEED">
-      <shadow type="math_number">
-        <field name="NUM">100</field>
-      </shadow>
-    </value>
-    <comment pinned="false">Speed: 0-100%</comment>
-  </block>
-  
-  <block type="l298n_motor_backward">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-    <value name="SPEED">
-      <shadow type="math_number">
-        <field name="NUM">100</field>
-      </shadow>
-    </value>
-  </block>
-  
-  <block type="l298n_motor_stop">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-  </block>
-  
-  <sep gap="20"></sep>
-  
-  <!-- Advanced Control -->
-  <label text="Advanced Control"></label>
-  <block type="l298n_motor_set_direction">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-  </block>
-  
-  <block type="l298n_motor_set_speed">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-    <value name="SPEED">
-      <shadow type="math_number">
-        <field name="NUM">75</field>
-      </shadow>
-    </value>
-  </block>
-  
-  <block type="l298n_motor_run_time">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-    <value name="SPEED">
-      <shadow type="math_number">
-        <field name="NUM">100</field>
-      </shadow>
-    </value>
-    <value name="TIME">
-      <shadow type="math_number">
-        <field name="NUM">2</field>
-      </shadow>
-    </value>
-    <comment pinned="false">Run motor for specified seconds then stop</comment>
-  </block>
-  
-  <block type="l298n_motor_brake">
-    <value name="MOTOR_ID">
-      <shadow type="math_number">
-        <field name="NUM">1</field>
-      </shadow>
-    </value>
-  </block>
- 	<block type="l298n_pinout"></block> 
-</category>
-
   <category name="🎵 RTTTL Player" colour="#666600">
     
     <!-- Setup Section -->
@@ -3678,164 +3679,6 @@ Roll: Left/right tilt</comment>
 
   </category>
 
- 
-   <category name="%{BKY_CAT_FILES}" colour="%{BKY_FILES_HUE}">
-  <label text="Read and write files"></label>
-
-  <block type="file_open"> 
-    <value name="file_name">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-    </value>
-  </block>
-
-  <block type="file_open_write"> 
-    <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-    </value>
-  </block>
-
-  <block type="file_open_read"> 
-    <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-    </value>
-  </block>
-<block type="file_write"> 
-  <value name="data">
-        <shadow type="text">
-          <field name="TEXT">contents</field>
-        </shadow>
-      </value>
-</block>
-<block type="file_write_line"> 
-  <value name="data">
-        <shadow type="text">
-          <field name="TEXT">Line contents</field>
-        </shadow>
-      </value>
-</block>
-<block type="file_write_byte"> 
-        <value name="data">
-          <shadow type="math_number">
-            <field name="NUM">80</field>
-          </shadow>
-        </value>
-</block>
-
-
-<block type="file_read"> 
-
-  <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-
-</block>
-<block type="file_close"> 
-
-  <value name="filename">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-
-
-</block>
-
-      <label text="Disk file operations"></label>
-<block type="files_list">
-</block>
-<block type="uos_mkdir">
-  <value name="pIn">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-</block>
-
-<block type="uos_remove">
-  <value name="pIn">
-        <shadow type="text">
-          <field name="TEXT">file.txt</field>
-        </shadow>
-      </value>
-</block>
-
-      <label text="SD Card"></label>
-
-<block type="sd_mount">
-  <value name="pIn">
-        <shadow type="text">
-		<field name="TEXT">/sd</field>
-        </shadow>
-      </value>
-</block>
-
-<block type="uos_listdir">
-  <value name="pIn">
-        <shadow type="text">
-		<field name="TEXT">/sd</field>
-        </shadow>
-      </value>
-</block>
-
-<block type="uos_umount">
-  <value name="pIn">
-        <shadow type="text">
-		<field name="TEXT">/sd</field>
-        </shadow>
-      </value>
-</block>
-
-      <label text="Other file operations"></label>
-
-<block type="uos_listdir">
-</block>
-
-
-<block type="uos_uname"> </block>
-<block type="uos_urandom">
-</block>
-<block type="uos_chdir">
-</block>
-<block type="uos_getcwd">
-</block>
-<block type="uos_ilistdir">
-</block>
-<block type="uos_rmdir">
-</block>
-<block type="uos_rename">
-</block>
-<block type="uos_stat">
-</block>
-<block type="uos_statvfs">
-</block>
-<block type="uos_sync">
-</block>
-<block type="uos_dupterm">
-</block>
-<block type="uos_mount">
-</block>
-<block type="uos_umount">
-</block>
-<block type="uos_readblocks">
-</block>
-<block type="uos_readblocks">
-</block>
-<block type="uos_writeblocks">
-</block>
-<block type="uos_writeblocks">
-</block>
-<block type="uos_ioctl">
-</block>
-
-  </category>
  
 
  
@@ -4656,6 +4499,342 @@ Roll: Left/right tilt</comment>
   
 </category>
   </category>
+<category name="%{BKY_CAT_PROJECTS}" colour="#666600">
+  <category name="Servo Car" colour="#666600">
+    
+    <!-- Setup Section -->
+    <label text="Setup" web-class="boldtext"></label>
+    
+    <block type="ils_servo_car_init">
+      <comment pinned="true">Connect PCA9685 to ESP32 using I2C. Default address is 0x40</comment>
+      <value name="SDA_PIN">
+        <shadow type="pinout">
+          <field name="PIN">21</field>
+        </shadow>
+      </value>
+      <value name="SCL_PIN">
+        <shadow type="pinout">
+          <field name="PIN">22</field>
+        </shadow>
+      </value>
+      <value name="ADDRESS">
+        <shadow type="math_number">
+          <field name="NUM">0x40</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_set_channels">
+      <comment pinned="true">Set PCA9685 channels (0-15) for each wheel. Default: FL=0, FR=1, RL=2, RR=3</comment>
+      <value name="FL_CHANNEL">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="FR_CHANNEL">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="RL_CHANNEL">
+        <shadow type="math_number">
+          <field name="NUM">2</field>
+        </shadow>
+      </value>
+      <value name="RR_CHANNEL">
+        <shadow type="math_number">
+          <field name="NUM">3</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_set_servo_range">
+      <comment pinned="true">Calibrate servo range if needed. Standard servos use 500-2500μs</comment>
+      <value name="MIN_US">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+      <value name="MAX_US">
+        <shadow type="math_number">
+          <field name="NUM">2500</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep></sep>
+    
+    <!-- Basic Movement Section -->
+    <label text="Basic Movement" web-class="boldtext"></label>
+    
+    <block type="ils_car_forward">
+      <comment pinned="false">Move forward at set speed (0-100)</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_backward">
+      <comment pinned="false">Move backward at set speed (0-100)</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_turn_left">
+      <comment pinned="false">Rotate left in place</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_turn_right">
+      <comment pinned="false">Rotate right in place</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_stop">
+      <comment pinned="false">Stop all wheels</comment>
+    </block>
+    
+    <sep></sep>
+    
+    <!-- Advanced Movement Section -->
+    <label text="Advanced Movement" web-class="boldtext"></label>
+    
+    <block type="ils_car_curve_left">
+      <comment pinned="true">Curve while moving forward. Turn sharpness: 0=gentle, 100=sharp</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="TURN_RATIO">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_curve_right">
+      <comment pinned="true">Curve while moving forward. Turn sharpness: 0=gentle, 100=sharp</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="TURN_RATIO">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_drift_left">
+      <comment pinned="false">Drift left - fun sliding turn!</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">60</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_car_drift_right">
+      <comment pinned="false">Drift right - fun sliding turn!</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">60</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep></sep>
+    
+    <!-- Individual Wheel Control Section -->
+    <label text="Individual Wheel Control" web-class="boldtext"></label>
+    
+    <block type="ils_car_wheel_speed">
+      <comment pinned="true">Control single wheel. Speed: -100 (reverse) to 100 (forward)</comment>
+      <value name="SPEED">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+  </category>
+
+
+</category>
+ 
+   <category name="%{BKY_CAT_FILES}" colour="%{BKY_FILES_HUE}">
+  <label text="Read and write files"></label>
+
+  <block type="file_open"> 
+    <value name="file_name">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+    </value>
+  </block>
+
+  <block type="file_open_write"> 
+    <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+    </value>
+  </block>
+
+  <block type="file_open_read"> 
+    <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+    </value>
+  </block>
+<block type="file_write"> 
+  <value name="data">
+        <shadow type="text">
+          <field name="TEXT">contents</field>
+        </shadow>
+      </value>
+</block>
+<block type="file_write_line"> 
+  <value name="data">
+        <shadow type="text">
+          <field name="TEXT">Line contents</field>
+        </shadow>
+      </value>
+</block>
+<block type="file_write_byte"> 
+        <value name="data">
+          <shadow type="math_number">
+            <field name="NUM">80</field>
+          </shadow>
+        </value>
+</block>
+
+
+<block type="file_read"> 
+
+  <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+
+</block>
+<block type="file_close"> 
+
+  <value name="filename">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+
+
+</block>
+
+      <label text="Disk file operations"></label>
+<block type="files_list">
+</block>
+<block type="uos_mkdir">
+  <value name="pIn">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+</block>
+
+<block type="uos_remove">
+  <value name="pIn">
+        <shadow type="text">
+          <field name="TEXT">file.txt</field>
+        </shadow>
+      </value>
+</block>
+
+      <label text="SD Card"></label>
+
+<block type="sd_mount">
+  <value name="pIn">
+        <shadow type="text">
+		<field name="TEXT">/sd</field>
+        </shadow>
+      </value>
+</block>
+
+<block type="uos_listdir">
+  <value name="pIn">
+        <shadow type="text">
+		<field name="TEXT">/sd</field>
+        </shadow>
+      </value>
+</block>
+
+<block type="uos_umount">
+  <value name="pIn">
+        <shadow type="text">
+		<field name="TEXT">/sd</field>
+        </shadow>
+      </value>
+</block>
+
+      <label text="Other file operations"></label>
+
+<block type="uos_listdir">
+</block>
+
+
+<block type="uos_uname"> </block>
+<block type="uos_urandom">
+</block>
+<block type="uos_chdir">
+</block>
+<block type="uos_getcwd">
+</block>
+<block type="uos_ilistdir">
+</block>
+<block type="uos_rmdir">
+</block>
+<block type="uos_rename">
+</block>
+<block type="uos_stat">
+</block>
+<block type="uos_statvfs">
+</block>
+<block type="uos_sync">
+</block>
+<block type="uos_dupterm">
+</block>
+<block type="uos_mount">
+</block>
+<block type="uos_umount">
+</block>
+<block type="uos_readblocks">
+</block>
+<block type="uos_readblocks">
+</block>
+<block type="uos_writeblocks">
+</block>
+<block type="uos_writeblocks">
+</block>
+<block type="uos_ioctl">
+</block>
+
+  </category>  
+  
  <category name="%{BKY_CAT_COMM}" colour="%{BKY_COMM_HUE}">
       <label text="%{BKY_CAT_COMM}"></label>
       <category name="UART" colour="%{BKY_COMM_HUE}">
@@ -4741,71 +4920,6 @@ Roll: Left/right tilt</comment>
 
       </category>
   </category>
-<category name="%{BKY_CAT_CONTROL}" colour="%{BKY_CONTROL_HUE}">
-
-  <category name="PID" colour="%{BKY_CONTROL_HUE}">
-    <button text="Install control library" callbackKey="installPyLib"></button>
-    <label text="Proportional–integral–derivative Controller"></label>
-      <label text="Library: https://github.com/JorgeGMarques/micropython-simple-pid"></label>
-      <button text="Load example: pid_water_boiler" callbackKey="loadExample"></button>
-
-    <block type="control_pid.__init__">
-      <value name="SETPOINT">
-        <shadow type="math_number">
-         <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="control_pid.compute"></block>
-    <block type="control_pid.compute_not_realtime"></block>
-
-    <block type="control_pid.tunings">
-      <value name="KP">
-        <shadow type="math_number">
-         <field name="NUM">1</field>
-        </shadow>
-      </value>
-      <value name="KI">
-        <shadow type="math_number">
-         <field name="NUM">0</field>
-        </shadow>
-      </value>
-      <value name="KD">
-        <shadow type="math_number">
-         <field name="NUM">0</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="control_pid.setpoint">
-      <value name="SETPOINT">
-        <shadow type="math_number">
-         <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="control_pid.auto_mode"></block>
-    <block type="control_pid.output_limits"></block>
-    <block type="control_pid.vars"></block>
-    <!--
-    <block type="control-pid-reset"></block>
-    -->
-  </category>
-
-  <category name="Simulate" colour="%{BKY_CONTROL_HUE}">
-    <button text="Install control library" callbackKey="installPyLib"></button>
-    <label text="No breadboard or sensors? Just simulate it!"></label>
-    <label text="Realtime simulation:"></label>
-    <button text="Load example: pid_water_boiler" callbackKey="loadExample"></button>
-    <block type="simulate_water_boiler">
-    </block>
-    <label text="Non realtime simulation:"></label>
-    <button text="Load example: pid_dc_motor" callbackKey="loadExample"></button>
-    <block type="simulate_dcmotor.sim">
-    </block>
-    <block type="simulate_dcmotor.vars">
-    </block>
-  </category>
-</category>
 
 <category name="micropython" colour="%{BKY_MICROPYTHON_HUE}">
 <category name="btree">

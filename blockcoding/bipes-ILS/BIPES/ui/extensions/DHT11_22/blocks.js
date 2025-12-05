@@ -5,12 +5,6 @@ Blockly.Blocks['dht_init'] = {
     this.appendDummyInput()
         .appendField("🌡️💧 Setup Humidity Sensor");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/DHT11_22/icon.png",
-          55,
-          55,
-          "*"));
-    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Sensor type")
         .appendField(new Blockly.FieldDropdown([

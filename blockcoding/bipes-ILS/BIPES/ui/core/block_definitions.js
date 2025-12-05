@@ -9076,12 +9076,6 @@ Blockly.Blocks['ntp_get_time'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("🕐 Get Internet Time");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/ntp/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("NTP_SERVER")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)

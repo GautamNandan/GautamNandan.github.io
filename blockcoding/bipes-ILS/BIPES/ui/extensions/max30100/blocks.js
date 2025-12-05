@@ -4,12 +4,6 @@ Blockly.Blocks['max30100_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("❤️ Setup Heart Sensor");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(
-          "extensions/max30100/icon.png",
-          55,
-          55,
-          "*"));
     this.appendValueInput("SCL_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
