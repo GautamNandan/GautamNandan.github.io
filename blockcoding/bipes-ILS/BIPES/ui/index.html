@@ -20,7 +20,7 @@
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162001686-1"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 
 <script>
@@ -173,7 +173,9 @@ function checkCookie() {
   
   <script src="extensions/servocar/blocks.js"></script>
   <script src="extensions/servocar/generators.js"></script>  
-  
+
+  <script src="extensions/dccar/blocks.js"></script>
+  <script src="extensions/dccar/generators.js"></script>    
   <!-- xterm part -->
   <script src="core/xterm.js?ver=4.13.0"></script>
 
@@ -573,7 +575,46 @@ Channel ['mux'] = new mux ();
 
 <script>
 //global terminal variable
-var terminal = new Terminal ();
+const oceanTheme = {
+  background: '#1e3a5f',      // Deep ocean blue
+  foreground: '#e0f7fa',      // Light cyan text
+  cursor: '#ffeb3b',          // Bright yellow cursor
+  cursorAccent: '#1e3a5f',    // Cursor text color
+  selection: '#4dd0e1',       // Turquoise selection
+  black: '#263238',
+  red: '#ff5252',             // Bright red for errors
+  green: '#69f0ae',           // Bright green for success
+  yellow: '#ffd740',          // Bright yellow
+  blue: '#40c4ff',            // Sky blue
+  magenta: '#e040fb',         // Bright purple
+  cyan: '#18ffff',            // Bright cyan
+  white: '#eceff1',
+  brightBlack: '#546e7a',
+  brightRed: '#ff6e40',
+  brightGreen: '#b2ff59',
+  brightYellow: '#ffff00',
+  brightBlue: '#40c4ff',
+  brightMagenta: '#ea80fc',
+  brightCyan: '#84ffff',
+  brightWhite: '#ffffff'
+};
+var terminal = new Terminal({
+    fontFamily: '"Space Mono", monospace', 
+    fontSize: 22,
+    fontWeight: '400',
+    fontWeightBold: '700',
+    lineHeight: 1.2,
+    letterSpacing: 0,
+    theme: oceanTheme,
+    cursorBlink: true,
+    cursorStyle: 'block',
+    cursorWidth: 2,
+    scrollback: 1000,
+    tabStopWidth: 4,
+    screenReaderMode: false,
+    allowProposedApi: true
+  });
+
 term.init('#term') //init expanded class;
 
 //global Utilities variable and functions (see core/utils.js)

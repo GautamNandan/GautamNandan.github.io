@@ -1,0 +1,129 @@
+{
+  "name": "ILS DC Motor Car",
+  "description": "Control a 2 or 4-wheel DC motor car using L298N motor driver. Perfect for young makers (ages 8-14) to build and program their own robotic car!",
+  "author": "ILS",
+  "version": "1.0.0",
+  "image": "extensions/ils_dc_car/icon.png",
+  "extensions": ["colours"],
+  "category": "actuator",
+  "board": ["esp32"],
+  "tags": ["dc motor", "car", "robot", "L298N", "vehicle", "movement", "driver"],
+  
+  "blocks": "blocks.js",
+  "generators": "generators.js",
+  "toolbox": "toolbox.xml",
+  
+  "helpUrl": "https://github.com/ILS/dc-motor-car",
+  
+  "featured": true,
+  
+  "metadata": {
+    "difficulty": "beginner",
+    "ageRange": "8-14",
+    "learningOutcomes": [
+      "Understanding DC motor control",
+      "PWM for speed control",
+      "H-bridge motor drivers",
+      "Basic robotics programming"
+    ],
+    "requirements": {
+      "hardware": [
+        "ESP32 development board",
+        "L298N motor driver module (1 for 2-wheel, 2 for 4-wheel)",
+        "2 or 4 DC motors (6-12V recommended)",
+        "Power supply for motors (7-12V, 2A+ recommended)",
+        "Car chassis with wheels",
+        "Jumper wires"
+      ],
+      "connections": {
+        "L298N_2_wheel": {
+          "Motor_A": {
+            "description": "Left wheel motor",
+            "ENA": "GPIO 12 (PWM - speed control)",
+            "IN1": "GPIO 13 (direction)",
+            "IN2": "GPIO 14 (direction)"
+          },
+          "Motor_B": {
+            "description": "Right wheel motor",
+            "ENB": "GPIO 27 (PWM - speed control)",
+            "IN3": "GPIO 26 (direction)",
+            "IN4": "GPIO 25 (direction)"
+          },
+          "Power": {
+            "12V": "Motor power supply (7-12V)",
+            "GND": "Common ground with ESP32",
+            "5V": "Can power ESP32 if using 12V input"
+          }
+        },
+        "L298N_4_wheel": {
+          "note": "Use 2 L298N modules for 4 motors",
+          "Module_1": "Front Left and Front Right motors",
+          "Module_2": "Rear Left and Rear Right motors"
+        }
+      }
+    },
+    "wiring_notes": [
+      "IMPORTANT: Connect all grounds together (ESP32, L298N, motor power)",
+      "L298N can provide 5V output to power ESP32 if using 7-12V input",
+      "Remove L298N jumpers for ENA/ENB to enable PWM speed control",
+      "Each motor draws 500mA-2A depending on load",
+      "Use adequate power supply (recommended: 9V 2A for 2 motors)",
+      "Test with low speeds first to verify motor directions"
+    ],
+    "tips": [
+      "Start with low speeds (30-50) when testing",
+      "Use mirror mode if car doesn't go straight",
+      "For 4-wheel: ensure all motors are same type/voltage",
+      "If motors don't turn, check IN1-IN4 connections",
+      "If speed doesn't change, check ENA/ENB connections",
+      "Add capacitors across motor terminals to reduce noise",
+      "Secure all wiring to prevent shorts during movement"
+    ],
+    "troubleshooting": {
+      "motors_dont_spin": [
+        "Check motor power supply connected to L298N 12V input",
+        "Verify common ground between ESP32 and L298N",
+        "Test motors directly with power supply",
+        "Check IN1-IN4 connections"
+      ],
+      "car_doesnt_go_straight": [
+        "Enable mirror mode for left or right motors",
+        "Check if all motors are same type",
+        "Calibrate by adjusting individual wheel speeds",
+        "Ensure wheels are properly aligned"
+      ],
+      "speed_doesnt_change": [
+        "Verify ENA/ENB connected to PWM-capable GPIO pins",
+        "Remove jumpers from L298N ENA/ENB if present",
+        "Check PWM pins are not being used elsewhere"
+      ],
+      "esp32_resets_when_motors_run": [
+        "Motor power supply insufficient - use higher amperage",
+        "Add bulk capacitor (1000μF) across motor supply",
+        "Don't power motors from ESP32 - use separate supply"
+      ]
+    },
+    "exampleProjects": [
+      {
+        "name": "Basic Navigation",
+        "description": "Make the car move in a square pattern"
+      },
+      {
+        "name": "Remote Control",
+        "description": "Control car with buttons or Bluetooth"
+      },
+      {
+        "name": "Line Follower",
+        "description": "Add IR sensors for line following"
+      },
+      {
+        "name": "Obstacle Avoider",
+        "description": "Use ultrasonic sensor to avoid obstacles"
+      },
+      {
+        "name": "Speed Test",
+        "description": "Test different speeds and turning ratios"
+      }
+    ]
+  }
+}

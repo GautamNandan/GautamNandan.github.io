@@ -1,146 +1,145 @@
-// Servo Car Blocks - Supports PCA9685 and Direct GPIO
+// DC Motor Car Blocks - L298N Driver
 // Color: #666600
 
-Blockly.Blocks['ils_servo_car_init'] = {
+Blockly.Blocks['ils_dc_car_init'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🚗 Setup Servo Car");
+        .appendField("🚗 Setup DC Motor Car");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Wheels")
+        .appendField("configuration")
         .appendField(new Blockly.FieldDropdown([
           ["4 Wheels", "0"],
           ["2 Wheels + Castor", "1"]
         ]), "CONFIG");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Control mode")
-        .appendField(new Blockly.FieldDropdown([
-          ["PCA9685 (I2C)", "0"],
-          ["Direct GPIO", "1"]
-        ]), "MODE");
-    this.appendValueInput("SDA_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("SDA pin (PCA9685)");
-    this.appendValueInput("SCL_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("SCL pin (PCA9685)");
-    this.appendValueInput("ADDRESS")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("I2C address (PCA9685)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Initialize servo car. Choose wheels and control mode (PCA9685 or Direct GPIO)");
+    this.setTooltip("Initialize DC motor car with L298N driver. Choose 4-wheel or 2-wheel+castor");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_set_pins_4wheel'] = {
+Blockly.Blocks['ils_dc_car_set_pins_4wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📍 Set Car GPIO Pins (4-Wheel)");
-    this.appendValueInput("FL_PIN")
+        .appendField("⚙️ Set DC Car Pins (4-Wheel)");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Front Left Motor (ENA, IN1, IN2)");
+    this.appendValueInput("FL_ENA")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Front Left pin");
-    this.appendValueInput("FR_PIN")
+        .appendField("ENA");
+    this.appendValueInput("FL_IN1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Front Right pin");
-    this.appendValueInput("RL_PIN")
+        .appendField("IN1");
+    this.appendValueInput("FL_IN2")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rear Left pin");
-    this.appendValueInput("RR_PIN")
+        .appendField("IN2");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Front Right Motor (ENB, IN3, IN4)");
+    this.appendValueInput("FR_ENB")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rear Right pin");
+        .appendField("ENB");
+    this.appendValueInput("FR_IN3")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN3");
+    this.appendValueInput("FR_IN4")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN4");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Rear Left Motor (ENA, IN1, IN2)");
+    this.appendValueInput("RL_ENA")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("ENA");
+    this.appendValueInput("RL_IN1")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN1");
+    this.appendValueInput("RL_IN2")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN2");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Rear Right Motor (ENB, IN3, IN4)");
+    this.appendValueInput("RR_ENB")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("ENB");
+    this.appendValueInput("RR_IN3")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN3");
+    this.appendValueInput("RR_IN4")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN4");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Set GPIO pins for 4-wheel Direct mode");
+    this.setTooltip("Set L298N pins for 4-wheel configuration. Need 2 L298N modules for 4 motors.");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_set_pins_2wheel'] = {
+Blockly.Blocks['ils_dc_car_set_pins_2wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📍 Set Car GPIO Pins (2-Wheel)");
-    this.appendValueInput("LEFT_PIN")
+        .appendField("⚙️ Set DC Car Pins (2-Wheel)");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Left Motor (ENA, IN1, IN2)");
+    this.appendValueInput("LEFT_ENA")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Left Wheel pin");
-    this.appendValueInput("RIGHT_PIN")
+        .appendField("ENA");
+    this.appendValueInput("LEFT_IN1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Right Wheel pin");
+        .appendField("IN1");
+    this.appendValueInput("LEFT_IN2")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN2");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Right Motor (ENB, IN3, IN4)");
+    this.appendValueInput("RIGHT_ENB")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("ENB");
+    this.appendValueInput("RIGHT_IN3")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN3");
+    this.appendValueInput("RIGHT_IN4")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IN4");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Set GPIO pins for 2-wheel Direct mode");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_set_channels_4wheel'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("⚙️ Set Car Channels (4-Wheel)");
-    this.appendValueInput("FL_CHANNEL")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Front Left");
-    this.appendValueInput("FR_CHANNEL")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Front Right");
-    this.appendValueInput("RL_CHANNEL")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rear Left");
-    this.appendValueInput("RR_CHANNEL")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rear Right");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#666600");
-    this.setTooltip("Set PCA9685 channels for 4-wheel configuration (0-15)");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_set_channels_2wheel'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("⚙️ Set Car Channels (2-Wheel)");
-    this.appendValueInput("LEFT_CHANNEL")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Left Wheel");
-    this.appendValueInput("RIGHT_CHANNEL")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Right Wheel");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#666600");
-    this.setTooltip("Set PCA9685 channels for 2-wheel configuration (0-15)");
+    this.setTooltip("Set L298N pins for 2-wheel configuration. One L298N module controls both motors.");
     this.setHelpUrl("");
   }
 };
 
 // Basic Movement Blocks
 
-Blockly.Blocks['ils_car_forward'] = {
+Blockly.Blocks['ils_dc_car_forward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⬆️ Car Move Forward");
+        .appendField("⬆️ DC Car Move Forward");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -148,15 +147,15 @@ Blockly.Blocks['ils_car_forward'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Move the car forward at specified speed");
+    this.setTooltip("Move the DC motor car forward at specified speed");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_backward'] = {
+Blockly.Blocks['ils_dc_car_backward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⬇️ Car Move Backward");
+        .appendField("⬇️ DC Car Move Backward");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -164,15 +163,15 @@ Blockly.Blocks['ils_car_backward'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Move the car backward at specified speed");
+    this.setTooltip("Move the DC motor car backward at specified speed");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_turn_left'] = {
+Blockly.Blocks['ils_dc_car_turn_left'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("↪️ Car Turn Left");
+        .appendField("↪️ DC Car Turn Left");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -180,15 +179,15 @@ Blockly.Blocks['ils_car_turn_left'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Rotate the car left in place");
+    this.setTooltip("Rotate the DC motor car left in place");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_turn_right'] = {
+Blockly.Blocks['ils_dc_car_turn_right'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("↩️ Car Turn Right");
+        .appendField("↩️ DC Car Turn Right");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -196,29 +195,29 @@ Blockly.Blocks['ils_car_turn_right'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Rotate the car right in place");
+    this.setTooltip("Rotate the DC motor car right in place");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_stop'] = {
+Blockly.Blocks['ils_dc_car_stop'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🛑 Car Stop");
+        .appendField("🛑 DC Car Stop");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Stop all wheels immediately");
+    this.setTooltip("Stop all DC motors immediately");
     this.setHelpUrl("");
   }
 };
 
 // Advanced Movement Blocks
 
-Blockly.Blocks['ils_car_curve_left'] = {
+Blockly.Blocks['ils_dc_car_curve_left'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔄 Car Curve Left");
+        .appendField("🔄 DC Car Curve Left");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -235,10 +234,10 @@ Blockly.Blocks['ils_car_curve_left'] = {
   }
 };
 
-Blockly.Blocks['ils_car_curve_right'] = {
+Blockly.Blocks['ils_dc_car_curve_right'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔃 Car Curve Right");
+        .appendField("🔃 DC Car Curve Right");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -255,10 +254,10 @@ Blockly.Blocks['ils_car_curve_right'] = {
   }
 };
 
-Blockly.Blocks['ils_car_drift_left'] = {
+Blockly.Blocks['ils_dc_car_drift_left'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💨 Car Drift Left");
+        .appendField("💨 DC Car Drift Left");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -271,10 +270,10 @@ Blockly.Blocks['ils_car_drift_left'] = {
   }
 };
 
-Blockly.Blocks['ils_car_drift_right'] = {
+Blockly.Blocks['ils_dc_car_drift_right'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💨 Car Drift Right");
+        .appendField("💨 DC Car Drift Right");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -289,10 +288,10 @@ Blockly.Blocks['ils_car_drift_right'] = {
 
 // Individual Wheel Control
 
-Blockly.Blocks['ils_car_wheel_speed_4wheel'] = {
+Blockly.Blocks['ils_dc_car_wheel_speed_4wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🎡 Set Wheel Speed (4-Wheel)");
+        .appendField("🎡 Set DC Wheel Speed (4-Wheel)");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("wheel")
@@ -309,15 +308,15 @@ Blockly.Blocks['ils_car_wheel_speed_4wheel'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Control individual wheel speed in 4-wheel mode. Negative = reverse");
+    this.setTooltip("Control individual DC motor speed in 4-wheel mode. Negative = reverse");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_wheel_speed_2wheel'] = {
+Blockly.Blocks['ils_dc_car_wheel_speed_2wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🎡 Set Wheel Speed (2-Wheel)");
+        .appendField("🎡 Set DC Wheel Speed (2-Wheel)");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("wheel")
@@ -332,29 +331,29 @@ Blockly.Blocks['ils_car_wheel_speed_2wheel'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Control individual wheel speed in 2-wheel mode. Negative = reverse");
+    this.setTooltip("Control individual DC motor speed in 2-wheel mode. Negative = reverse");
     this.setHelpUrl("");
   }
 };
 
-// Configuration Blocks
+// Configuration Block
 
-Blockly.Blocks['ils_car_set_servo_range'] = {
+Blockly.Blocks['ils_dc_car_set_mirror'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📏 Set Car Servo Range");
-    this.appendValueInput("MIN_US")
-        .setCheck("Number")
+        .appendField("🔄 Set DC Car Mirror Mode");
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("min pulse (μs)");
-    this.appendValueInput("MAX_US")
-        .setCheck("Number")
+        .appendField("mirror left motors")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "MIRROR_LEFT");
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("max pulse (μs)");
+        .appendField("mirror right motors")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "MIRROR_RIGHT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#666600");
-    this.setTooltip("Calibrate servo pulse range. Default: 500-2500 microseconds");
+    this.setTooltip("Enable mirror mode if motors are mounted in opposite directions");
     this.setHelpUrl("");
   }
 };
