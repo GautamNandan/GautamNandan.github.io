@@ -2123,7 +2123,7 @@ VCC=3.3/5V, GND=GND</comment>
     <comment pinned="false">Triggers only when joystick moves to a specific direction</comment>
   </block>  
 
-  <block type="remote_get_direction"></block>
+   <!--<<block type="remote_get_direction"></block>-->
   
   <sep gap="32"></sep>
   
@@ -4507,7 +4507,7 @@ Roll: Left/right tilt</comment>
     <label text="Option 1: PCA9685 Mode (I2C)" web-class="boldtext"></label>
     
     <block type="ils_car_set_channels_4wheel">
-      <comment pinned="true">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
+      <comment pinned="false">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
       <value name="SDA_PIN">
         <shadow type="pinout">
           <field name="PIN">21</field>
@@ -4546,7 +4546,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_set_channels_2wheel">
-      <comment pinned="true">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
+      <comment pinned="false">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
       <value name="SDA_PIN">
         <shadow type="pinout">
           <field name="PIN">21</field>
@@ -4578,7 +4578,7 @@ Roll: Left/right tilt</comment>
     <label text="Option 2: Direct GPIO Mode" web-class="boldtext"></label>
     
     <block type="ils_car_set_pins_4wheel">
-      <comment pinned="true">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
+      <comment pinned="false">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
       <value name="FL_PIN">
         <shadow type="pinout">
           <field name="PIN">12</field>
@@ -4602,7 +4602,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_set_pins_2wheel">
-      <comment pinned="true">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
+      <comment pinned="false">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
       <value name="LEFT_PIN">
         <shadow type="pinout">
           <field name="PIN">12</field>
@@ -4619,7 +4619,7 @@ Roll: Left/right tilt</comment>
     <label text="Calibration" web-class="boldtext"></label>
     
     <block type="ils_car_set_servo_range">
-      <comment pinned="true">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
+      <comment pinned="false">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
       <value name="MIN_US">
         <shadow type="math_number">
           <field name="NUM">500</field>
@@ -4683,7 +4683,7 @@ Roll: Left/right tilt</comment>
     <label text="Advanced Movement" web-class="boldtext"></label>
     
     <block type="ils_car_curve_left">
-      <comment pinned="true">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
+      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4697,7 +4697,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_curve_right">
-      <comment pinned="true">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
+      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4734,7 +4734,7 @@ Roll: Left/right tilt</comment>
     <label text="Individual Wheel Control" web-class="boldtext"></label>
     
     <block type="ils_car_wheel_speed_4wheel">
-      <comment pinned="true">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
+      <comment pinned="false">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4743,7 +4743,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_wheel_speed_2wheel">
-      <comment pinned="true">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
+      <comment pinned="false">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
