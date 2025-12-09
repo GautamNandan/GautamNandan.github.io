@@ -1,44 +1,7 @@
 // Servo Car Blocks - Supports PCA9685 and Direct GPIO
-// Color: #666600
+// Color: #9999ff
 
-Blockly.Blocks['ils_servo_car_init'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🚗 Setup Servo Car");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Wheels")
-        .appendField(new Blockly.FieldDropdown([
-          ["4 Wheels", "0"],
-          ["2 Wheels + Castor", "1"]
-        ]), "CONFIG");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Control mode")
-        .appendField(new Blockly.FieldDropdown([
-          ["PCA9685 (I2C)", "0"],
-          ["Direct GPIO", "1"]
-        ]), "MODE");
-    this.appendValueInput("SDA_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("SDA pin (PCA9685)");
-    this.appendValueInput("SCL_PIN")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("SCL pin (PCA9685)");
-    this.appendValueInput("ADDRESS")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("I2C address (PCA9685)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#666600");
-    this.setTooltip("Initialize servo car. Choose wheels and control mode (PCA9685 or Direct GPIO)");
-    this.setHelpUrl("");
-  }
-};
-
+// Direct GPIO mode - 4 wheel pins
 Blockly.Blocks['ils_car_set_pins_4wheel'] = {
   init: function() {
     this.appendDummyInput()
@@ -61,7 +24,7 @@ Blockly.Blocks['ils_car_set_pins_4wheel'] = {
         .appendField("Rear Right pin");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Set GPIO pins for 4-wheel Direct mode");
     this.setHelpUrl("");
   }
@@ -81,7 +44,7 @@ Blockly.Blocks['ils_car_set_pins_2wheel'] = {
         .appendField("Right Wheel pin");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Set GPIO pins for 2-wheel Direct mode");
     this.setHelpUrl("");
   }
@@ -90,27 +53,39 @@ Blockly.Blocks['ils_car_set_pins_2wheel'] = {
 Blockly.Blocks['ils_car_set_channels_4wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⚙️ Set Car Channels (4-Wheel)");
+        .appendField("⚙️ Set Car PCA9685 (4-Wheel)");
+    this.appendValueInput("SDA_PIN")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("SDA pin");
+    this.appendValueInput("SCL_PIN")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("SCL pin");
+    this.appendValueInput("ADDRESS")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("I2C address (hex)");
     this.appendValueInput("FL_CHANNEL")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Front Left");
+        .appendField("Front Left channel");
     this.appendValueInput("FR_CHANNEL")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Front Right");
+        .appendField("Front Right channel");
     this.appendValueInput("RL_CHANNEL")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rear Left");
+        .appendField("Rear Left channel");
     this.appendValueInput("RR_CHANNEL")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rear Right");
+        .appendField("Rear Right channel");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
-    this.setTooltip("Set PCA9685 channels for 4-wheel configuration (0-15)");
+    this.setColour("#9999ff");
+    this.setTooltip("Setup PCA9685 and set channels for 4-wheel configuration (0-15)");
     this.setHelpUrl("");
   }
 };
@@ -118,19 +93,31 @@ Blockly.Blocks['ils_car_set_channels_4wheel'] = {
 Blockly.Blocks['ils_car_set_channels_2wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⚙️ Set Car Channels (2-Wheel)");
+        .appendField("⚙️ Set Car PCA9685 (2-Wheel)");
+    this.appendValueInput("SDA_PIN")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("SDA pin");
+    this.appendValueInput("SCL_PIN")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("SCL pin");
+    this.appendValueInput("ADDRESS")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("I2C address (hex)");
     this.appendValueInput("LEFT_CHANNEL")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Left Wheel");
+        .appendField("Left Wheel channel");
     this.appendValueInput("RIGHT_CHANNEL")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Right Wheel");
+        .appendField("Right Wheel channel");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
-    this.setTooltip("Set PCA9685 channels for 2-wheel configuration (0-15)");
+    this.setColour("#9999ff");
+    this.setTooltip("Setup PCA9685 and set channels for 2-wheel configuration (0-15)");
     this.setHelpUrl("");
   }
 };
@@ -147,7 +134,7 @@ Blockly.Blocks['ils_car_forward'] = {
         .appendField("speed (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Move the car forward at specified speed");
     this.setHelpUrl("");
   }
@@ -163,7 +150,7 @@ Blockly.Blocks['ils_car_backward'] = {
         .appendField("speed (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Move the car backward at specified speed");
     this.setHelpUrl("");
   }
@@ -179,7 +166,7 @@ Blockly.Blocks['ils_car_turn_left'] = {
         .appendField("speed (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Rotate the car left in place");
     this.setHelpUrl("");
   }
@@ -195,7 +182,7 @@ Blockly.Blocks['ils_car_turn_right'] = {
         .appendField("speed (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Rotate the car right in place");
     this.setHelpUrl("");
   }
@@ -207,7 +194,7 @@ Blockly.Blocks['ils_car_stop'] = {
         .appendField("🛑 Car Stop");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Stop all wheels immediately");
     this.setHelpUrl("");
   }
@@ -229,7 +216,7 @@ Blockly.Blocks['ils_car_curve_left'] = {
         .appendField("turn sharpness (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Move forward while curving left. Higher turn ratio = sharper turn");
     this.setHelpUrl("");
   }
@@ -249,7 +236,7 @@ Blockly.Blocks['ils_car_curve_right'] = {
         .appendField("turn sharpness (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Move forward while curving right. Higher turn ratio = sharper turn");
     this.setHelpUrl("");
   }
@@ -265,7 +252,7 @@ Blockly.Blocks['ils_car_drift_left'] = {
         .appendField("speed (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Drift left - works best in 4-wheel mode");
     this.setHelpUrl("");
   }
@@ -281,7 +268,7 @@ Blockly.Blocks['ils_car_drift_right'] = {
         .appendField("speed (0-100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Drift right - works best in 4-wheel mode");
     this.setHelpUrl("");
   }
@@ -308,7 +295,7 @@ Blockly.Blocks['ils_car_wheel_speed_4wheel'] = {
         .appendField("speed (-100 to 100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Control individual wheel speed in 4-wheel mode. Negative = reverse");
     this.setHelpUrl("");
   }
@@ -331,7 +318,7 @@ Blockly.Blocks['ils_car_wheel_speed_2wheel'] = {
         .appendField("speed (-100 to 100)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Control individual wheel speed in 2-wheel mode. Negative = reverse");
     this.setHelpUrl("");
   }
@@ -353,7 +340,7 @@ Blockly.Blocks['ils_car_set_servo_range'] = {
         .appendField("max pulse (μs)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#666600");
+    this.setColour("#9999ff");
     this.setTooltip("Calibrate servo pulse range. Default: 500-2500 microseconds");
     this.setHelpUrl("");
   }

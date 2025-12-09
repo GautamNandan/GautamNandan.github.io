@@ -31,31 +31,6 @@ Blockly.Blocks['remote_update'] = {
 };
 
 // ============= JOYSTICK BLOCKS =============
-Blockly.Blocks['remote_on_joystick_move'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🕹️ When joystick moves");
-    this.appendStatementInput("DO")
-        .setCheck(null);
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("X position:")
-        .appendField(new Blockly.FieldVariable("x_pos"), "X_VAR");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Y position:")
-        .appendField(new Blockly.FieldVariable("y_pos"), "Y_VAR");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Direction:")
-        .appendField(new Blockly.FieldVariable("direction"), "DIR_VAR");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#333399");
-    this.setTooltip("Run code when joystick moves. Gets X, Y positions and direction name.");
-    this.setHelpUrl("");
-  }
-};
 
 Blockly.Blocks['remote_on_direction'] = {
   init: function() {
@@ -184,14 +159,3 @@ Blockly.Blocks['remote_stop'] = {
   }
 };
 
-Blockly.Blocks['remote_start'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🛑 Start ESP-NOW Remote");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#333399");
-    this.setTooltip("Start the remote receiver");
-    this.setHelpUrl("");
-  }
-};

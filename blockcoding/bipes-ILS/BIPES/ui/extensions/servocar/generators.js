@@ -1,52 +1,66 @@
 // ILS Servo Car Code Generators - Supports PCA9685 and Direct GPIO
 
-Blockly.Python['ils_servo_car_init'] = function(block) {
-  var sda_pin = Blockly.Python.valueToCode(block, 'SDA_PIN', Blockly.Python.ORDER_ATOMIC) || '21';
-  var scl_pin = Blockly.Python.valueToCode(block, 'SCL_PIN', Blockly.Python.ORDER_ATOMIC) || '22';
-  var address = Blockly.Python.valueToCode(block, 'ADDRESS', Blockly.Python.ORDER_ATOMIC) || '0x40';
-  var config = block.getFieldValue('CONFIG');
-  var mode = block.getFieldValue('MODE');
-
-  Blockly.Python.definitions_['import_servo_car'] = 'from ils.servocar import ServoCar';
-  Blockly.Python.definitions_['import_time'] = 'import time';
-  
-  Blockly.Python.definitions_['ils_car_init'] = 'ils_car = ServoCar(config=' + config + ', mode=' + mode + ', sda_pin=' + sda_pin + ', scl_pin=' + scl_pin + ', address=' + address + ')';
-  
-  var code = '# ILS Servo Car initialized\n';
-  return code;
-};
-
+// Direct GPIO mode - 4 wheel
 Blockly.Python['ils_car_set_pins_4wheel'] = function(block) {
   var fl = Blockly.Python.valueToCode(block, 'FL_PIN', Blockly.Python.ORDER_ATOMIC) || '12';
   var fr = Blockly.Python.valueToCode(block, 'FR_PIN', Blockly.Python.ORDER_ATOMIC) || '13';
   var rl = Blockly.Python.valueToCode(block, 'RL_PIN', Blockly.Python.ORDER_ATOMIC) || '14';
   var rr = Blockly.Python.valueToCode(block, 'RR_PIN', Blockly.Python.ORDER_ATOMIC) || '27';
+
+  Blockly.Python.definitions_['import_servo_car'] = 'from ils.servo_car import ServoCar';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  
+  Blockly.Python.definitions_['ils_car_init'] = 'ils_car = ServoCar(config=ServoCar.CONFIG_4_WHEEL, mode=ServoCar.MODE_DIRECT)';
   
   var code = 'ils_car.set_servo_pins(' + fl + ', ' + fr + ', ' + rl + ', ' + rr + ')\n';
   return code;
 };
 
+// Direct GPIO mode - 2 wheel
 Blockly.Python['ils_car_set_pins_2wheel'] = function(block) {
   var left = Blockly.Python.valueToCode(block, 'LEFT_PIN', Blockly.Python.ORDER_ATOMIC) || '12';
   var right = Blockly.Python.valueToCode(block, 'RIGHT_PIN', Blockly.Python.ORDER_ATOMIC) || '13';
+
+  Blockly.Python.definitions_['import_servo_car'] = 'from ils.servo_car import ServoCar';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  
+  Blockly.Python.definitions_['ils_car_init'] = 'ils_car = ServoCar(config=ServoCar.CONFIG_2_WHEEL, mode=ServoCar.MODE_DIRECT)';
   
   var code = 'ils_car.set_servo_pins(' + left + ', ' + right + ')\n';
   return code;
 };
 
+// PCA9685 mode - 4 wheel
 Blockly.Python['ils_car_set_channels_4wheel'] = function(block) {
+  var sda_pin = Blockly.Python.valueToCode(block, 'SDA_PIN', Blockly.Python.ORDER_ATOMIC) || '21';
+  var scl_pin = Blockly.Python.valueToCode(block, 'SCL_PIN', Blockly.Python.ORDER_ATOMIC) || '22';
+  var address = Blockly.Python.valueToCode(block, 'ADDRESS', Blockly.Python.ORDER_ATOMIC) || '0x40';
   var fl = Blockly.Python.valueToCode(block, 'FL_CHANNEL', Blockly.Python.ORDER_ATOMIC) || '0';
   var fr = Blockly.Python.valueToCode(block, 'FR_CHANNEL', Blockly.Python.ORDER_ATOMIC) || '1';
   var rl = Blockly.Python.valueToCode(block, 'RL_CHANNEL', Blockly.Python.ORDER_ATOMIC) || '2';
   var rr = Blockly.Python.valueToCode(block, 'RR_CHANNEL', Blockly.Python.ORDER_ATOMIC) || '3';
+
+  Blockly.Python.definitions_['import_servo_car'] = 'from ils.servo_car import ServoCar';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  
+  Blockly.Python.definitions_['ils_car_init'] = 'ils_car = ServoCar(config=ServoCar.CONFIG_4_WHEEL, mode=ServoCar.MODE_PCA9685, sda_pin=' + sda_pin + ', scl_pin=' + scl_pin + ', address=' + address + ')';
   
   var code = 'ils_car.set_servo_channels(' + fl + ', ' + fr + ', ' + rl + ', ' + rr + ')\n';
   return code;
 };
 
+// PCA9685 mode - 2 wheel
 Blockly.Python['ils_car_set_channels_2wheel'] = function(block) {
+  var sda_pin = Blockly.Python.valueToCode(block, 'SDA_PIN', Blockly.Python.ORDER_ATOMIC) || '21';
+  var scl_pin = Blockly.Python.valueToCode(block, 'SCL_PIN', Blockly.Python.ORDER_ATOMIC) || '22';
+  var address = Blockly.Python.valueToCode(block, 'ADDRESS', Blockly.Python.ORDER_ATOMIC) || '0x40';
   var left = Blockly.Python.valueToCode(block, 'LEFT_CHANNEL', Blockly.Python.ORDER_ATOMIC) || '0';
   var right = Blockly.Python.valueToCode(block, 'RIGHT_CHANNEL', Blockly.Python.ORDER_ATOMIC) || '1';
+
+  Blockly.Python.definitions_['import_servo_car'] = 'from ils.servo_car import ServoCar';
+  Blockly.Python.definitions_['import_time'] = 'import time';
+  
+  Blockly.Python.definitions_['ils_car_init'] = 'ils_car = ServoCar(config=ServoCar.CONFIG_2_WHEEL, mode=ServoCar.MODE_PCA9685, sda_pin=' + sda_pin + ', scl_pin=' + scl_pin + ', address=' + address + ')';
   
   var code = 'ils_car.set_servo_channels(' + left + ', ' + right + ')\n';
   return code;

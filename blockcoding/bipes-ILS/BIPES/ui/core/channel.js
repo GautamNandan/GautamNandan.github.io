@@ -29,9 +29,9 @@ class mux {
     }
 
     this.ifunavailable = {
-      webserial: ['https://bipes.net.br/beta2/ui', 'the HTTPS version'],
-      websocket: ['http:///bipes.net.br/beta2/ui', 'the HTTP version'],
-      webbluetooth: ['https://bipes.net.br/beta2/ui', 'the HTTPS version']
+      webserial: ['https://gapreelabs.com/beta2/ui', 'the HTTPS version'],
+      websocket: ['http:///gapreelabs.com/beta2/ui', 'the HTTP version'],
+      webbluetooth: ['https://gapreelabs.com/beta2/ui', 'the HTTPS version']
     }
   }
 	/**

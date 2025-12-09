@@ -2144,12 +2144,8 @@ VCC=3.3/5V, GND=GND</comment>
   <block type="remote_get_joystick">
     <comment pinned="false">Get current joystick position as numbers (-1 to +1)</comment>
   </block>  
-  <block type="remote_on_joystick_move">
-    <comment pinned="false">Triggers when joystick moves. Returns direction (up, down, left, right, etc.)</comment>
-  </block>
   <block type="remote_is_connected"></block>
   <block type="remote_stop"></block>
-  <block type="remote_start"></block>  
 </category>
   </category>
   
@@ -4499,17 +4495,19 @@ Roll: Left/right tilt</comment>
   
 </category>
   </category>
-<category name="%{BKY_CAT_PROJECTS}" colour="#666600">
+<category name="%{BKY_CAT_PROJECTS}" colour="#9999ff">
+
   
-  <category name="Servo Car" colour="#666600">
+  <category name="Servo Car" colour="#9999ff">
     
     <!-- Setup Section -->
-    <label text="Setup" web-class="boldtext"></label>
+    <label text="Setup - Choose ONE option below" web-class="boldtext"></label>
     
-    <block type="ils_servo_car_init">
-      <comment pinned="false">Choose wheel count (4 or 2+castor) and control mode (PCA9685 or Direct GPIO)</comment>
-      <field name="CONFIG">0</field>
-      <field name="MODE">0</field>
+    <sep></sep>
+    <label text="Option 1: PCA9685 Mode (I2C)" web-class="boldtext"></label>
+    
+    <block type="ils_car_set_channels_4wheel">
+      <comment pinned="true">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
       <value name="SDA_PIN">
         <shadow type="pinout">
           <field name="PIN">21</field>
@@ -4525,13 +4523,6 @@ Roll: Left/right tilt</comment>
           <field name="NUM">0x40</field>
         </shadow>
       </value>
-    </block>
-    
-    <sep></sep>
-    <label text="For PCA9685 Mode" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_channels_4wheel">
-      <comment pinned="false">Set PCA9685 channels (0-15) for 4-wheel mode</comment>
       <value name="FL_CHANNEL">
         <shadow type="math_number">
           <field name="NUM">0</field>
@@ -4555,7 +4546,22 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_set_channels_2wheel">
-      <comment pinned="false">Set PCA9685 channels (0-15) for 2-wheel mode</comment>
+      <comment pinned="true">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
+      <value name="SDA_PIN">
+        <shadow type="pinout">
+          <field name="PIN">21</field>
+        </shadow>
+      </value>
+      <value name="SCL_PIN">
+        <shadow type="pinout">
+          <field name="PIN">22</field>
+        </shadow>
+      </value>
+      <value name="ADDRESS">
+        <shadow type="math_number">
+          <field name="NUM">0x40</field>
+        </shadow>
+      </value>
       <value name="LEFT_CHANNEL">
         <shadow type="math_number">
           <field name="NUM">0</field>
@@ -4569,10 +4575,10 @@ Roll: Left/right tilt</comment>
     </block>
     
     <sep></sep>
-    <label text="For Direct GPIO Mode" web-class="boldtext"></label>
+    <label text="Option 2: Direct GPIO Mode" web-class="boldtext"></label>
     
     <block type="ils_car_set_pins_4wheel">
-      <comment pinned="false">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
+      <comment pinned="true">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
       <value name="FL_PIN">
         <shadow type="pinout">
           <field name="PIN">12</field>
@@ -4596,7 +4602,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_set_pins_2wheel">
-      <comment pinned="false">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
+      <comment pinned="true">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
       <value name="LEFT_PIN">
         <shadow type="pinout">
           <field name="PIN">12</field>
@@ -4613,7 +4619,7 @@ Roll: Left/right tilt</comment>
     <label text="Calibration" web-class="boldtext"></label>
     
     <block type="ils_car_set_servo_range">
-      <comment pinned="false">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
+      <comment pinned="true">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
       <value name="MIN_US">
         <shadow type="math_number">
           <field name="NUM">500</field>
@@ -4677,7 +4683,7 @@ Roll: Left/right tilt</comment>
     <label text="Advanced Movement" web-class="boldtext"></label>
     
     <block type="ils_car_curve_left">
-      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
+      <comment pinned="true">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4691,7 +4697,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_curve_right">
-      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
+      <comment pinned="true">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4728,7 +4734,7 @@ Roll: Left/right tilt</comment>
     <label text="Individual Wheel Control" web-class="boldtext"></label>
     
     <block type="ils_car_wheel_speed_4wheel">
-      <comment pinned="false">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
+      <comment pinned="true">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4737,7 +4743,7 @@ Roll: Left/right tilt</comment>
     </block>
     
     <block type="ils_car_wheel_speed_2wheel">
-      <comment pinned="false">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
+      <comment pinned="true">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
       <value name="SPEED">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -4746,117 +4752,194 @@ Roll: Left/right tilt</comment>
     </block>
     
   </category>
+  
 
-  <category name="DC Motor Car" colour="#666600">
+
+ <category name="DC Motor Car" colour="#9999ff">
     
     <!-- Setup Section -->
     <label text="Setup" web-class="boldtext"></label>
     
     <block type="ils_dc_car_init">
-      <comment pinned="false">Choose 4-wheel or 2-wheel+castor configuration for DC motor car with L298N driver</comment>
+      <comment pinned="false">Choose configuration and driver type. L298N: needs enable pins. DRV8833: only needs IN pins</comment>
       <field name="CONFIG">0</field>
+      <field name="DRIVER">0</field>
     </block>
     
     <sep></sep>
-    <label text="Pin Configuration" web-class="boldtext"></label>
+    <label text="L298N Pin Configuration" web-class="boldtext"></label>
     
-    <block type="ils_dc_car_set_pins_4wheel">
-      <comment pinned="false">Set L298N pins for 4 motors. Need 2 L298N modules. Each motor needs ENA/ENB (PWM) and IN1/IN2 or IN3/IN4 (direction)</comment>
-      <value name="FL_ENA">
+    <block type="ils_dc_car_set_pins_l298n_4wheel">
+      <comment pinned="false">Set pins for L298N driver with 4 motors. Each motor uses 3 pins: ENA/ENB (speed), IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+      <value name="FL_PIN1">
         <shadow type="pinout">
           <field name="PIN">12</field>
         </shadow>
       </value>
-      <value name="FL_IN1">
+      <value name="FL_PIN2">
         <shadow type="pinout">
           <field name="PIN">13</field>
         </shadow>
       </value>
-      <value name="FL_IN2">
+      <value name="FL_PIN3">
         <shadow type="pinout">
           <field name="PIN">14</field>
         </shadow>
       </value>
-      <value name="FR_ENB">
+      <value name="FR_PIN1">
         <shadow type="pinout">
           <field name="PIN">27</field>
         </shadow>
       </value>
-      <value name="FR_IN3">
+      <value name="FR_PIN2">
         <shadow type="pinout">
           <field name="PIN">26</field>
         </shadow>
       </value>
-      <value name="FR_IN4">
+      <value name="FR_PIN3">
         <shadow type="pinout">
           <field name="PIN">25</field>
         </shadow>
       </value>
-      <value name="RL_ENA">
+      <value name="RL_PIN1">
         <shadow type="pinout">
           <field name="PIN">33</field>
         </shadow>
       </value>
-      <value name="RL_IN1">
+      <value name="RL_PIN2">
         <shadow type="pinout">
           <field name="PIN">32</field>
         </shadow>
       </value>
-      <value name="RL_IN2">
+      <value name="RL_PIN3">
         <shadow type="pinout">
           <field name="PIN">35</field>
         </shadow>
       </value>
-      <value name="RR_ENB">
+      <value name="RR_PIN1">
         <shadow type="pinout">
           <field name="PIN">4</field>
         </shadow>
       </value>
-      <value name="RR_IN3">
+      <value name="RR_PIN2">
         <shadow type="pinout">
           <field name="PIN">16</field>
         </shadow>
       </value>
-      <value name="RR_IN4">
+      <value name="RR_PIN3">
         <shadow type="pinout">
           <field name="PIN">17</field>
         </shadow>
       </value>
     </block>
     
-    <block type="ils_dc_car_set_pins_2wheel">
-      <comment pinned="false">Set L298N pins for 2 motors. One L298N module controls both motors. Left motor uses Motor A (ENA, IN1, IN2), Right motor uses Motor B (ENB, IN3, IN4)</comment>
-      <value name="LEFT_ENA">
+    <block type="ils_dc_car_set_pins_l298n_2wheel">
+      <comment pinned="false">Set pins for L298N driver with 2 motors. Each motor uses 3 pins: ENA/ENB (speed), IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+      <value name="LEFT_PIN1">
         <shadow type="pinout">
           <field name="PIN">12</field>
         </shadow>
       </value>
-      <value name="LEFT_IN1">
+      <value name="LEFT_PIN2">
         <shadow type="pinout">
           <field name="PIN">13</field>
         </shadow>
       </value>
-      <value name="LEFT_IN2">
+      <value name="LEFT_PIN3">
         <shadow type="pinout">
           <field name="PIN">14</field>
         </shadow>
       </value>
-      <value name="RIGHT_ENB">
+      <value name="RIGHT_PIN1">
         <shadow type="pinout">
           <field name="PIN">27</field>
         </shadow>
       </value>
-      <value name="RIGHT_IN3">
+      <value name="RIGHT_PIN2">
         <shadow type="pinout">
           <field name="PIN">26</field>
         </shadow>
       </value>
-      <value name="RIGHT_IN4">
+      <value name="RIGHT_PIN3">
         <shadow type="pinout">
           <field name="PIN">25</field>
         </shadow>
       </value>
     </block>
+    
+    <sep></sep>
+    <label text="DRV8833 Pin Configuration" web-class="boldtext"></label>
+    
+    <block type="ils_dc_car_set_pins_drv8833_4wheel">
+      <comment pinned="false">Set pins for DRV8833 driver with 4 motors. Each motor uses 2 pins: IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+      <value name="FL_PIN1">
+        <shadow type="pinout">
+          <field name="PIN">12</field>
+        </shadow>
+      </value>
+      <value name="FL_PIN2">
+        <shadow type="pinout">
+          <field name="PIN">13</field>
+        </shadow>
+      </value>
+      <value name="FR_PIN1">
+        <shadow type="pinout">
+          <field name="PIN">27</field>
+        </shadow>
+      </value>
+      <value name="FR_PIN2">
+        <shadow type="pinout">
+          <field name="PIN">26</field>
+        </shadow>
+      </value>
+      <value name="RL_PIN1">
+        <shadow type="pinout">
+          <field name="PIN">33</field>
+        </shadow>
+      </value>
+      <value name="RL_PIN2">
+        <shadow type="pinout">
+          <field name="PIN">32</field>
+        </shadow>
+      </value>
+      <value name="RR_PIN1">
+        <shadow type="pinout">
+          <field name="PIN">4</field>
+        </shadow>
+      </value>
+      <value name="RR_PIN2">
+        <shadow type="pinout">
+          <field name="PIN">16</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="ils_dc_car_set_pins_drv8833_2wheel">
+      <comment pinned="false">Set pins for DRV8833 driver with 2 motors. Each motor uses 2 pins: IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+      <value name="LEFT_PIN1">
+        <shadow type="pinout">
+          <field name="PIN">22</field>
+        </shadow>
+      </value>
+      <value name="LEFT_PIN2">
+        <shadow type="pinout">
+          <field name="PIN">21</field>
+        </shadow>
+      </value>
+      <value name="RIGHT_PIN1">
+        <shadow type="pinout">
+          <field name="PIN">33</field>
+        </shadow>
+      </value>
+      <value name="RIGHT_PIN2">
+        <shadow type="pinout">
+          <field name="PIN">32</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <sep></sep>
+    <label text="Configuration" web-class="boldtext"></label>
     
     <block type="ils_dc_car_set_mirror">
       <comment pinned="false">Enable mirror mode if motors rotate in wrong direction. Try enabling left or right mirror if car doesn't go straight</comment>
@@ -4984,7 +5067,6 @@ Roll: Left/right tilt</comment>
     </block>
     
   </category>
-
 </category>
  
    <category name="%{BKY_CAT_FILES}" colour="%{BKY_FILES_HUE}">

@@ -27,33 +27,6 @@ Blockly.Python['remote_update'] = function(block) {
 };
 
 // ============= JOYSTICK BLOCKS =============
-Blockly.Python['remote_on_joystick_move'] = function(block) {
-  var x_var = Blockly.Python.variableDB_.getName(block.getFieldValue('X_VAR'), Blockly.Variables.NAME_TYPE);
-  var y_var = Blockly.Python.variableDB_.getName(block.getFieldValue('Y_VAR'), Blockly.Variables.NAME_TYPE);
-  var dir_var = Blockly.Python.variableDB_.getName(block.getFieldValue('DIR_VAR'), Blockly.Variables.NAME_TYPE);
-  var statements = Blockly.Python.statementToCode(block, 'DO');
-  
-  // Generate unique wrapper function name
-  var wrapperName = Blockly.Python.provideFunction_(
-    'async_wrapper_joystick',
-    ['async def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '():',
-     statements || Blockly.Python.PASS]);
-  
-  // Wrap statements to handle async calls
-  var wrappedStatements = statements ? 
-    '  uasyncio.create_task(' + wrapperName + '())' : 
-    Blockly.Python.PASS;
-  
-  // Generate unique function name
-  var funcName = Blockly.Python.provideFunction_(
-    'on_joystick_callback',
-    ['#@no_async',
-     'def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + x_var + ', ' + y_var + ', ' + dir_var + '):',
-     wrappedStatements]);
-  
-  var code = 'espnow_remote.on_joystick_move(' + funcName + ')\n';
-  return code;
-};
 
 Blockly.Python['remote_on_direction'] = function(block) {
   var direction = block.getFieldValue('DIRECTION');
@@ -165,7 +138,3 @@ Blockly.Python['remote_stop'] = function(block) {
   return code;
 };
 
-Blockly.Python['remote_start'] = function(block) {
-  var code = 'espnow_remote.start_receiver()\n';
-  return code;
-};

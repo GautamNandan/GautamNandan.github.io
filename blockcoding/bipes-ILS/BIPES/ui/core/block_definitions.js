@@ -238,7 +238,7 @@ Blockly.Blocks['deep_sleep8266'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Deep sleep process in milliseconds");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -252,7 +252,7 @@ Blockly.Blocks['deep_sleep'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Deep sleep process in milliseconds");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 /*LEGACY_BLOCKS_START:Old timings blocks*/
@@ -265,7 +265,7 @@ Blockly.Blocks['delay_old'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Delay processing in seconds");
- this.setHelpUrl("http://www.bipes.net.br/");
+ this.setHelpUrl("http://www.gapreelabs.com/");
   }
 };
 
@@ -278,7 +278,7 @@ Blockly.Blocks['delay_ms'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Delay processing in milliseconds");
- this.setHelpUrl("http://www.bipes.net.br/");
+ this.setHelpUrl("http://www.gapreelabs.com/");
   }
 };
 
@@ -291,7 +291,7 @@ Blockly.Blocks['delay_us'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Delay processing in microseconds");
- this.setHelpUrl("http://www.bipes.net.br/");
+ this.setHelpUrl("http://www.gapreelabs.com/");
   }
 };
 
@@ -302,7 +302,7 @@ Blockly.Blocks['ticks_ms'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Get millisecond counter");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -322,7 +322,7 @@ Blockly.Blocks['ticks_diff'] = {
     //this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Compute time difference");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -450,7 +450,7 @@ Blockly.Blocks['esp32_set_rtc'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Set RTC value");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -492,7 +492,7 @@ Blockly.Blocks['esp8266_set_rtc'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Set RTC value");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -503,7 +503,7 @@ Blockly.Blocks['esp32_get_rtc'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Get RTC value");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -515,7 +515,7 @@ Blockly.Blocks['esp8266_get_rtc'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Get RTC value");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -600,7 +600,7 @@ Blockly.Blocks['stop_timer'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Stop Timer");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -613,7 +613,7 @@ Blockly.Blocks['webrepl_setup'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Configure WebREPL");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -626,7 +626,7 @@ Blockly.Blocks['webrepl_start'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Start WebREPL Server");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -638,7 +638,7 @@ Blockly.Blocks['reset'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Reset Device");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -648,7 +648,7 @@ Blockly.Blocks['reset_cause_soft'] = {
         .appendField("Cause: soft reset");
     this.setOutput(true, null);
     this.setColour(230);
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -658,7 +658,7 @@ Blockly.Blocks['reset_cause_hard'] = {
         .appendField("Cause: hard reset");
     this.setOutput(true, null);
     this.setColour(230);
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -668,7 +668,7 @@ Blockly.Blocks['reset_cause_wdt'] = {
         .appendField("Cause: reset by watchdog timer");
     this.setOutput(true, null);
     this.setColour(230);
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -678,7 +678,7 @@ Blockly.Blocks['reset_cause_deep'] = {
         .appendField("Cause: woke up from deepsleep");
     this.setOutput(true, null);
     this.setColour(230);
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -705,7 +705,7 @@ Blockly.Blocks['gpio_set'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Write to GPIO digital pin");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -731,7 +731,7 @@ Blockly.Blocks['exec_python'] = {
     this.setNextStatement(true, null);
     this.setColour(240);
  this.setTooltip("Execute custom Python Code");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -744,7 +744,7 @@ Blockly.Blocks['adc'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read ADC input of specified pin");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -757,7 +757,7 @@ Blockly.Blocks['esp32_adc'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read ESP32 ADC input of specified pin");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 */
@@ -807,7 +807,7 @@ Blockly.Blocks['adc_pico'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read ADC input of specified pin from Raspberry Pi Pico");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -828,7 +828,7 @@ Blockly.Blocks['set_freq'] = {
 
     this.setColour(230);
  this.setTooltip("Set ESP8266 CPU Clock Frequency");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -841,7 +841,7 @@ Blockly.Blocks['get_freq'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Get current CPU Clock Frequency");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -861,7 +861,7 @@ Blockly.Blocks['gpio_get'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read digital pin");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -883,7 +883,7 @@ Blockly.Blocks['gpio_interrupt'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
  this.setTooltip("Trigger interrupt when pin state changes");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -899,7 +899,7 @@ Blockly.Blocks['gpio_interrupt_off'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Disable interrupt on a given pin");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -952,7 +952,7 @@ Blockly.Blocks['pinout'] = {
     this.getField('DEVICE').setVisible(false);
     this.setOutput(true, null);
     this.setColour(230);
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   },
 };
 
@@ -969,7 +969,7 @@ Blockly.Blocks['net_get_request'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Make HTTP GET Request");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -985,7 +985,7 @@ Blockly.Blocks['net_post_request'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Make HTTP POST Request");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -996,7 +996,7 @@ Blockly.Blocks['net_ifconfig'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Wifi current IP");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1028,7 +1028,7 @@ Blockly.Blocks['net_ap_mode'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Configure Access Point Mode");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1048,7 +1048,7 @@ Blockly.Blocks['wifi_client_connect'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Connect to a Wifi network");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1059,7 +1059,7 @@ Blockly.Blocks['wifi_client_scan_networks'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Scan wifi networks");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1073,7 +1073,7 @@ Blockly.Blocks['ble_setup'] = {
         .appendField(new Blockly.FieldLabelSerializable(MSG["ble_name"]), "ble_essid");
     this.setColour(230);
  this.setTooltip("Setup BLE name");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1114,7 +1114,7 @@ Blockly.Blocks['max7219_init'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Start MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1132,7 +1132,7 @@ Blockly.Blocks['max7219_write'] = {
 
     this.setColour(230);
  this.setTooltip("Write to MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1155,7 +1155,7 @@ Blockly.Blocks['max7219_scroll'] = {
 
     this.setColour(230);
  this.setTooltip("Write to MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1175,7 +1175,7 @@ Blockly.Blocks['max7219_num'] = {
 
     this.setColour(230);
  this.setTooltip("Write number on MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1194,7 +1194,7 @@ Blockly.Blocks['max7219_brig'] = {
 
     this.setColour(230);
  this.setTooltip("Set brightness of MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1208,7 +1208,7 @@ Blockly.Blocks['max7219_show'] = {
 
     this.setColour(230);
  this.setTooltip("Set brightness of MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1222,7 +1222,7 @@ Blockly.Blocks['max7219_shutdown'] = {
 
     this.setColour(230);
  this.setTooltip("Turn of LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1236,7 +1236,7 @@ Blockly.Blocks['max7219_wake'] = {
 
     this.setColour(230);
  this.setTooltip("Wake up MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1250,7 +1250,7 @@ Blockly.Blocks['max7219_clear'] = {
 
     this.setColour(230);
  this.setTooltip("Clear MAX7219 LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1337,7 +1337,7 @@ Blockly.Blocks['max7219_custom'] = {
         this.setNextStatement(true, null);
         this.setColour(230);
  this.setTooltip("Write to LED Matrix");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
 
     }
 };
@@ -1357,7 +1357,7 @@ Blockly.Blocks['file_open_write'] = {
 
     this.setColour(230);
  this.setTooltip("Open text file for writing on the filesystem");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1376,7 +1376,7 @@ Blockly.Blocks['file_open_read'] = {
 
     this.setColour(230);
  this.setTooltip("Open text file for reading on the filesystem");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1389,7 +1389,7 @@ Blockly.Blocks['file_close'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Close a file");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1408,7 +1408,7 @@ Blockly.Blocks['file_close_old'] = {
 
     this.setColour(230);
  this.setTooltip("Safely close file");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1425,7 +1425,7 @@ Blockly.Blocks['file_write'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Write to a file");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1443,7 +1443,7 @@ Blockly.Blocks['file_write_line'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Write line to a file");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1460,7 +1460,7 @@ Blockly.Blocks['file_write_byte'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Write byte to a file");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1487,7 +1487,7 @@ Blockly.Blocks['file_write_old'] = {
 
     this.setColour(230);
  this.setTooltip("Write string to file");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1511,7 +1511,7 @@ Blockly.Blocks['file_open'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Open File");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1523,7 +1523,7 @@ Blockly.Blocks['file_read'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read data from a file");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1541,7 +1541,7 @@ Blockly.Blocks['file_read_old'] = {
 
     this.setColour(230);
  this.setTooltip("Read string from a file");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1555,7 +1555,7 @@ Blockly.Blocks['files_list'] = {
 
     this.setColour(230);
  this.setTooltip("List files from current directory ");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1585,7 +1585,7 @@ Blockly.Blocks['mqtt_init'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Start MQTT Client");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1605,7 +1605,7 @@ Blockly.Blocks['mqtt_add_to_buffer'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Add Data to MQTT Buffer");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1630,7 +1630,7 @@ Blockly.Blocks['mqtt_publish_buffer'] = {
     this.setColour(230);
     this.setInputsInline(false);
     this.setTooltip("Publish Buffer to MQTT Server");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1658,7 +1658,7 @@ Blockly.Blocks['mqtt_publish_payload'] = {
     this.setColour(230);
     this.setInputsInline(false);
     this.setTooltip("Publish Payload to MQTT Server");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1675,7 +1675,7 @@ Blockly.Blocks['mqtt_subscribe'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Subscribe to MQTT Topic");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1701,7 +1701,7 @@ Blockly.Blocks['mqtt_set_callback'] = {
     this.setColour(230);
     this.setInputsInline(false);
     this.setTooltip("Callback function must have topic and msg parameters");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1714,7 +1714,7 @@ Blockly.Blocks['mqtt_check_msg'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Check if the server has any pending messages. Non-blocking method. Subscription messages will be passed to the callback.");
-     this.setHelpUrl("http://www.bipes.net.br");
+     this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1727,7 +1727,7 @@ Blockly.Blocks['mqtt_wait_msg'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Wait for server sending any message. Blocking method. Subscription messages will be passed to the callback.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1740,7 +1740,7 @@ Blockly.Blocks['mqtt_disconnect'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Disconnect the MQTT Client from Server.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1761,7 +1761,7 @@ Blockly.Blocks['easymqtt_init'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Start EasyMQTT Client");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1782,7 +1782,7 @@ Blockly.Blocks['easymqtt_publish_data'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Publish Data to EasyMQTT Server");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1809,7 +1809,7 @@ Blockly.Blocks['easymqtt_subscribe'] = {
     this.setColour(230);
     this.setInputsInline(false);
     this.setTooltip("Subscribe to a topic and define what to do when data is received from EasyMQTT Server");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1828,7 +1828,7 @@ Blockly.Blocks['easymqtt_receive_data'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Receive Data from EasyMQTT Server");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1841,7 +1841,7 @@ Blockly.Blocks['easymqtt_disconnect'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("Disconnect the EasyMQTT Client from Server.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1897,7 +1897,7 @@ Blockly.Blocks['relay_switch'] = {
     this.setNextStatement(true, null);
     this.setColour("#666600");
     this.setTooltip("Turn On Relay on GPIO digital pin");
-    this.setHelpUrl("bipes.net.br");
+    this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -1909,7 +1909,7 @@ Blockly.Blocks['text_to_str'] = {
     this.setColour(160);
     this.setOutput(true, null);
     this.setTooltip("Convert anything to String.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1921,7 +1921,7 @@ Blockly.Blocks['decode_bytes_to_text'] = {
     this.setColour(160);
     this.setOutput(true, null);
     this.setTooltip("Decode bytes to a String.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1933,7 +1933,7 @@ Blockly.Blocks['var_to_int'] = {
     this.setColour(230);
     this.setOutput(true, null);
     this.setTooltip("Convert anything to Int.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1945,7 +1945,7 @@ Blockly.Blocks['var_to_float'] = {
     this.setColour(230);
     this.setOutput(true, null);
     this.setTooltip("Convert anything to float.");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -1967,7 +1967,7 @@ Blockly.Blocks['project_metadata'] = {
         .appendField(new Blockly.FieldLabel(MSG["project_info_desc"]), "project_description");
     this.setColour(230);
     this.setTooltip("Information about the project");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -8928,7 +8928,7 @@ Blockly.Blocks['run_cmd'] = {
     this.setNextStatement(true, null);
     this.setColour(240);
  this.setTooltip("Run custo Linux command");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -8942,7 +8942,7 @@ Blockly.Blocks['play_mp3'] = {
     this.setNextStatement(true, null);
     this.setColour(240);
  this.setTooltip("Play MP3 file");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -8958,7 +8958,7 @@ Blockly.Blocks['randomforestclassifier'] = {
     this.setOutput(true, null);
     this.setColour(60);
  this.setTooltip("randomforestclassifier");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -8982,7 +8982,7 @@ Blockly.Blocks['fit'] = {
     this.setNextStatement(true, null);
     this.setColour(60);
  this.setTooltip("fit");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -9001,7 +9001,7 @@ Blockly.Blocks['predict'] = {
     this.setOutput(true, null);
     this.setColour(60);
  this.setTooltip("predict");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -9674,7 +9674,7 @@ Blockly.Blocks['python_try_catch'] = {
     this.setColour(230);
     this.setInputsInline(false);
     this.setTooltip("Python Try/Catch");
-    this.setHelpUrl("http://www.bipes.net.br");
+    this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -9705,7 +9705,7 @@ Blockly.Blocks['bipes_plot'] = {
     this.setColour(230);
 
  this.setTooltip("BIPES Plot");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 Blockly.Blocks['localstorage_store'] = {
@@ -9806,7 +9806,7 @@ Blockly.Blocks['bluetooth_repl_start'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Start REPL over Web Bluetooth");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -9825,7 +9825,7 @@ Blockly.Blocks['bluetooth_repl_setup'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Setup Web Bluetooth REPL");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -9901,7 +9901,7 @@ Blockly.Blocks['st7789_bl_power'] = {
     this.setColour(230);
 
  this.setTooltip("Set ST7789 backlight intensity");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -9923,7 +9923,7 @@ Blockly.Blocks['st7789_color_numbers'] = {
     this.setOutput(true, null);
     this.setColour(230);
     this.setTooltip("ST7789 Color");
-    this.setHelpUrl("https://bipes.net.br/wp/?page_id=177");
+    this.setHelpUrl("https://gapreelabs.com/wp/?page_id=177");
   },
   styleBlock: function(colours) {
     colours = colours.map(x => parseInt(x))
@@ -9945,7 +9945,7 @@ Blockly.Blocks['st7789_color_colors'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("ST7789 Color");
- this.setHelpUrl("https://bipes.net.br/wp/?page_id=177");
+ this.setHelpUrl("https://gapreelabs.com/wp/?page_id=177");
   }
 };
 
@@ -9973,7 +9973,7 @@ Blockly.Blocks['st7789_fill'] = {
     this.setColour(230);
 
  this.setTooltip("Plot pixel to ST7789 display");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -10002,7 +10002,7 @@ Blockly.Blocks['st7789_pixel'] = {
     this.setColour(230);
 
  this.setTooltip("Plot pixel to ST7789 display");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -10039,7 +10039,7 @@ Blockly.Blocks['st7789_line'] = {
     this.setColour(230);
 
  this.setTooltip("Draw line on ST7789 display");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -10051,7 +10051,7 @@ Blockly.Blocks['esp32_cam_init'] = {
     this.setNextStatement(true, null);
     this.setColour(0);
  this.setTooltip("Init ESP32-CAM camera");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -10062,7 +10062,7 @@ Blockly.Blocks['esp32_cam_capture'] = {
     this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("Take photo with ESP32-CAM camera");
- this.setHelpUrl("www.bipes.net.br");
+ this.setHelpUrl("www.gapreelabs.com");
   }
 };
 
@@ -10078,7 +10078,7 @@ Blockly.Blocks['esp32_cam_red_led'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Control ESP32-CAM Red LED");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -10095,7 +10095,7 @@ Blockly.Blocks['esp32_cam_white_led'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Control ESP32-CAM White LED (flashlight)");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -10117,7 +10117,7 @@ Blockly.Blocks['snek_uptime'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Get monotonic time counter");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -10132,7 +10132,7 @@ Blockly.Blocks['snek_delay'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Delay processing in seconds");
- this.setHelpUrl("http://www.bipes.net.br/");
+ this.setHelpUrl("http://www.gapreelabs.com/");
   }
 };
 
@@ -10153,7 +10153,7 @@ Blockly.Blocks['snek_gpio_set'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Write to GPIO digital pin");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -10165,7 +10165,7 @@ Blockly.Blocks['snek_gpio_get'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read digital pin");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -10179,7 +10179,7 @@ Blockly.Blocks['snek_adc'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Read ADC input of specified pin");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
   }
 };
 
@@ -10197,7 +10197,7 @@ Blockly.Blocks['snek_setpower'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("Snek Set Power");
- this.setHelpUrl("http://www.bipes.net.br");
+ this.setHelpUrl("http://www.gapreelabs.com");
  }
 };
 
@@ -10382,7 +10382,7 @@ Blockly.Blocks['http_get_status'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Status code of the HTTP GET request");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 
@@ -10394,7 +10394,7 @@ Blockly.Blocks['http_get_content'] = {
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("Content of HTTP GET request");
- this.setHelpUrl("bipes.net.br");
+ this.setHelpUrl("gapreelabs.com");
   }
 };
 

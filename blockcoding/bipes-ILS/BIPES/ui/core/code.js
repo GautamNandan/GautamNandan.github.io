@@ -476,7 +476,7 @@ function loadExampleFromURL(pName){
 	
 /*	
     request.open('GET', '/beta2/ui/examples/' + pName + '.xml', true);
-    //request.open('GET', 'http://bipes.net.br/beta2/ui/examples/' + pName + '.xml', true);
+    //request.open('GET', 'http://gapreelabs.com/beta2/ui/examples/' + pName + '.xml', true);
     request.send(null);
     request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
@@ -871,7 +871,7 @@ if (customUrl !== '') {
 		lib = lib.split('.').slice(0, -1).join('.');
 	} else {
 		installCmd = installCmd + "lib = '" + lib + ".py'" + '\r';
-		installCmd = installCmd + "bipesInstall('http://bipes.net.br/beta2/ui/pylibs/' + lib, lib)";
+		installCmd = installCmd + "bipesInstall('http://gapreelabs.com/beta2/ui/pylibs/' + lib, lib)";
 
 	}
 	
