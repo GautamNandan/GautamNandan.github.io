@@ -63,6 +63,12 @@ Blockly.Python['show_blename'] = function(block) {
   return code;
 };
 
+Blockly.Python['wifi_disable'] = function(block) {
+  Blockly.Python.definitions_['import_network'] = 'import network';
+  
+  var code = 'network.WLAN(network.STA_IF).active(False)\n';
+  return code;
+}; 
  
 Blockly.Python['delay_old'] = function(block) {
   var value_time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);
@@ -5858,7 +5864,7 @@ Blockly.Python['math_max'] = function(block) {
   return [code, Blockly.Python.ORDER_FUNCTION_CALL];
 };
   
-  
+ 
   
 
 

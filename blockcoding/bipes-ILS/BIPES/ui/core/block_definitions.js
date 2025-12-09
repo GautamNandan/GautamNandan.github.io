@@ -10629,3 +10629,14 @@ Blockly.Blocks['math_max'] = {
 };
 
 
+Blockly.Blocks['wifi_disable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("📡 Disable WiFi");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour("#5ba55b");
+    this.setTooltip("Turn off WiFi to save power");
+    this.setHelpUrl("");
+  }
+};

@@ -309,7 +309,7 @@
 
 
 
-
+    <block type="wifi_disable"></block>
     <block type="show_blename"></block>
     <block type="bipes_plot">
     </block>
