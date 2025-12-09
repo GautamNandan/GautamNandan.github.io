@@ -2109,13 +2109,13 @@ VCC=3.3/5V, GND=GND</comment>
   <sep gap="32"></sep>
   
   <!-- Control Blocks -->
-  <label text="Control" web-class="boldtext"></label>
+  <!--<label text="Control" web-class="boldtext"></label>
   <block type="remote_update">
     <comment pinned="false">Put this in your main loop to receive remote signals</comment>
   </block>
   
   <sep gap="32"></sep>
-  
+  -->
   <!-- Joystick Blocks -->
   <label text="Joystick" web-class="boldtext"></label>
 
