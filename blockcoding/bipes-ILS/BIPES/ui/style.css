@@ -1663,3 +1663,31 @@ button.icon.medium:before  {
 #firmwareButton::before {
     font-size: 1.2em;
 }
+
+
+#content_device {
+    width: 100%;
+    height: 100%;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+#content_device center {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Hide text elements */
+#device_title,
+#device_desc {
+    display: none;
+}
+
+/* Make image fill completely */
+#device_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills entire space, may crop */
+    display: block;
+}

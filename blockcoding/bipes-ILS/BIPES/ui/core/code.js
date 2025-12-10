@@ -725,7 +725,7 @@ Code.init = function() {
 
 
   Code.bindClick('forumButton',
-    function () {window.open("https://github.com/BIPES/BIPES/discussions",'_blank')}
+    function () {window.open("https://gapreelabs.com",'_blank')}
   )
 
 
@@ -737,6 +737,7 @@ Code.init = function() {
     BlocklyStorage['LINK_ALERT'] = MSG['linkAlert'];
     BlocklyStorage['HASH_ERROR'] = MSG['hashError'];
     BlocklyStorage['XML_ERROR'] = MSG['xmlError'];
+	
     Code.bindClick(linkButton,
         function () {BlocklyStorage.link(Code.workspace);});
   } else if (linkButton) {

@@ -53,6 +53,18 @@ Blockly.Python['comment_section'] = function(block) {
   return code;
 };
 
+Blockly.Blocks['wifi_disable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("📡 Disable WiFi");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Turn off WiFi to save power");
+    this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['show_blename'] = {
   init: function() {
     this.appendDummyInput()
@@ -10629,14 +10641,4 @@ Blockly.Blocks['math_max'] = {
 };
 
 
-Blockly.Blocks['wifi_disable'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("📡 Disable WiFi");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#5ba55b");
-    this.setTooltip("Turn off WiFi to save power");
-    this.setHelpUrl("");
-  }
-};
+
