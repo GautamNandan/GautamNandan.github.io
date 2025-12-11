@@ -1122,6 +1122,36 @@ handle_put_file_extension(url) {
   }
 
   /**
+   * Save code from editor or workspace and upload as main
+   */
+  files_save_as_main() {
+    try {
+      let codeStr;
+
+      if (Code.current[0] === 'files') {
+        codeStr = Files.editor.getDoc().getValue('\n');
+      } else {
+        codeStr = Blockly.Python.workspaceToCode(Code.workspace);
+        codeStr = Tool.fixAsyncInCode(codeStr);
+      }
+
+      const bufCode = new Uint8Array(codeStr.length);
+      for (let i = 0; i < codeStr.length; i++) {
+        bufCode[i] = codeStr.charCodeAt(i);
+      }
+
+    //this.put_file_name = UI ['workspace'].file.value;
+	this.put_file_name = "main.py";
+      this.put_file_data = bufCode;
+
+      this.put_file();
+      UI['notify'].send(MSG['updatingonDevice']);
+    } catch (error) {
+      console.error('ILS: Error saving file:', error);
+    }
+  }
+  
+  /**
    * List files from device
    */
   listFiles() {

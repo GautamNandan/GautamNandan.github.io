@@ -506,8 +506,9 @@ document.body.appendChild(el);
   <input type="text" id="content_file_name" placeholder="Filename" style="flex: 1;">
   <div style="display: flex; gap: 10px;">
     <button id="editor2DeviceButton" class="button icon text" onclick="Files.files_save_as();">Save on Device</button>
+	<button id="editor3DeviceButton" class="button icon text" onclick="Files.files_save_as_main();">Save as main.py</button>
     <button id="generated2DeviceButton" class="button icon text" onclick="Files.file_save_as.className = 'py';  Files.files_save_as ();">Save a copy</button>
-    <button id="updateXMLButton" class="button icon text" onclick="Files.editedXML2Workspace();">Push to workspace</button>
+    <!--<button id="updateXMLButton" class="button icon text" onclick="Files.editedXML2Workspace();">Push to workspace</button>-->
   </div>
 </div>
   <textarea id="content_file_code" wrap="off"></textarea>

@@ -1290,12 +1290,12 @@ pre.content {
     display: none;
 }
 
-#file_save_as.bipes-xml #editor2DeviceButton,
+#file_save_as.bipes-xml #editor2DeviceButton,#editor3DeviceButton
 #file_save_as.bipes-xml #generated2DeviceButton {
     display: none;
 }
 
-#file_save_as.bipes-py #editor2DeviceButton,
+#file_save_as.bipes-py #editor2DeviceButton,#editor3DeviceButton
 #file_save_as.bipes-py #updateXMLButton {
     display: none;
 }
@@ -1615,6 +1615,9 @@ button.icon.medium:before  {
   background-position: left calc(-1.5rem*18) top;
 }
 #putFileButton:before, #editor2DeviceButton:before, #generated2DeviceButton:before{
+  background-position: left calc(-1.5rem*19) top;
+}
+#putFileButton:before, #editor3DeviceButton:before, #generated2DeviceButton:before{
   background-position: left calc(-1.5rem*19) top;
 }
 #updateXMLButton:before {
