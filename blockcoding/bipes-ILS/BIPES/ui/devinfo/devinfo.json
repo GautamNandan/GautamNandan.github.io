@@ -151,13 +151,13 @@
 			],
 			"serial_packet_size":"500"
 		},
-		"UnoESP32": {
-			"title":"<b>UNO-ESP32</b><br>",
+		"UNOESP32-V1": {
+			"title":"<b>UNO-ESP32-V1</b><br>",
 			"speed":"115200",
 			"boardID":"ESP32", 
 			"img":"devinfo/media/esp32-uno-pinout.png",
 			"description":"",
-			"toolbox":"esp32-uno.xml",
+			"toolbox":"esp32-uno-v1.xml",
 			"pinout": [
 				["IO0 / ADC21 / TOUCH 1 / GPIO0", "0"],			
 				["A0 / IO2 / GPIO2 / ADC12 / TOUCH 2 ", "2"],
@@ -185,6 +185,43 @@
 				["IO33 / GPIO33", "33"]				
 			],
 			"serial_packet_size":"200"
+		},	
+		"UNOESP32-V2": {
+			"title":"<b>UNO-ESP32-V2</b><br>",
+			"speed":"115200",
+			"boardID":"ESP32", 
+			"img":"devinfo/media/ESP32-MAX-V3-Pinout.png",
+			"description":"ESP32 with UNO form factor, built-in charging circuit and battery level display. Input: 8.4V (2x lithium batteries only).",
+			"toolbox":"esp32-uno-v2.xml",
+			"pinout": [
+					["D0 / RX / IO3 / GPIO3", "3"],
+					["D1 / TX / IO1 / GPIO1", "1"],
+					["D2 / IO27 / ADC2_7 / TOUCH7 / GPIO27", "27"],
+					["D3 / IO26 / DAC2 / ADC2_9 / GPIO26", "26"],
+					["D4 / IO25 / DAC1 / ADC2_8 / GPIO25", "25"],
+					["D5 / IO14 / ADC2_6 / TOUCH6 / GPIO14", "14"],
+					["D6 / IO13 / ADC2_4 / TOUCH4 / GPIO13", "13"],
+					["D7 / IO12 / ADC2_5 / TOUCH5 / GPIO12", "12"],
+					["D8 / IO23 / MOSI / GPIO23", "23"],
+					["D9 / IO19 / MISO / GPIO19", "19"],
+					["D10 / IO18 / SCK / GPIO18", "18"],
+					["D11 / IO17 / TX2 / GPIO17", "17"],
+					["D12 / IO16 / RX2 / GPIO16", "16"],
+					["D13 / IO5 / GPIO5", "5"],
+					["A0 / IO32 / ADC1_4 / TOUCH9 / GPIO32", "32"],
+					["A1 / IO33 / ADC1_5 / TOUCH8 / GPIO33", "33"],
+					["A2 (INPUT ONLY) / IO34 / ADC1_6 / GPIO34", "34"],
+					["A3 (INPUT ONLY) / IO35 / ADC1_7 / GPIO35", "35"],
+					["A4 (INPUT ONLY) / IO36 / VP / ADC1_0 / GPIO36", "36"],
+					["A5 (INPUT ONLY) / IO39 / VN / ADC1_3 / GPIO39", "39"],
+					["SDA / IO21 / GPIO21", "21"],
+					["SCL / IO22 / GPIO22", "22"],
+					["IO0 / ADC2_1 / GPIO0", "0"],
+					["IO2 / LED / ADC2_2 / TOUCH2 / GPIO2", "2"],
+					["IO4 / ADC2_0 / TOUCH0 / GPIO4", "4"],
+					["IO15 / ADC2_3 / TOUCH3 / GPIO15", "15"]
+				],
+			"serial_packet_size":"500"
 		},		
 		"ESP32": {
 			"title":"<b>ESP32</b><br>",
