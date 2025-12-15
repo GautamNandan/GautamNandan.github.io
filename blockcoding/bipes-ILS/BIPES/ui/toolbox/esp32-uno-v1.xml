@@ -4498,577 +4498,457 @@ Roll: Left/right tilt</comment>
 <category name="%{BKY_CAT_PROJECTS}" colour="#9999ff">
 
   
-  <category name="Servo Car" colour="#9999ff">
-    
-    <!-- Setup Section -->
-    <label text="Setup - Choose ONE option below" web-class="boldtext"></label>
-    
-    <sep></sep>
-    <label text="Option 1: PCA9685 Mode (I2C)" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_channels_4wheel">
-      <comment pinned="false">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
-      <value name="SDA_PIN">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-      <value name="SCL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="ADDRESS">
-        <shadow type="math_number">
-          <field name="NUM">0x40</field>
-        </shadow>
-      </value>
-      <value name="FL_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-      <value name="FR_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-      <value name="RL_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">2</field>
-        </shadow>
-      </value>
-      <value name="RR_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">3</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_set_channels_2wheel">
-      <comment pinned="false">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
-      <value name="SDA_PIN">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-      <value name="SCL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="ADDRESS">
-        <shadow type="math_number">
-          <field name="NUM">0x40</field>
-        </shadow>
-      </value>
-      <value name="LEFT_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    <label text="Option 2: Direct GPIO Mode" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_pins_4wheel">
-      <comment pinned="false">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
-      <value name="FL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">14</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN">
-        <shadow type="pinout">
-          <field name="PIN">27</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_set_pins_2wheel">
-      <comment pinned="false">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
-      <value name="LEFT_PIN">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    <label text="Calibration" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_servo_range">
-      <comment pinned="false">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
-      <value name="MIN_US">
-        <shadow type="math_number">
-          <field name="NUM">500</field>
-        </shadow>
-      </value>
-      <value name="MAX_US">
-        <shadow type="math_number">
-          <field name="NUM">2500</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Basic Movement Section -->
-    <label text="Basic Movement" web-class="boldtext"></label>
-    
-    <block type="ils_car_forward">
-      <comment pinned="false">Move forward - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_backward">
-      <comment pinned="false">Move backward - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_turn_left">
-      <comment pinned="false">Rotate left - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_turn_right">
-      <comment pinned="false">Rotate right - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_stop">
-      <comment pinned="false">Stop all wheels</comment>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Advanced Movement Section -->
-    <label text="Advanced Movement" web-class="boldtext"></label>
-    
-    <block type="ils_car_curve_left">
-      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="TURN_RATIO">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_curve_right">
-      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="TURN_RATIO">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_drift_left">
-      <comment pinned="false">Drift left - works best in 4-wheel mode</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">60</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_drift_right">
-      <comment pinned="false">Drift right - works best in 4-wheel mode</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">60</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Individual Wheel Control Section -->
-    <label text="Individual Wheel Control" web-class="boldtext"></label>
-    
-    <block type="ils_car_wheel_speed_4wheel">
-      <comment pinned="false">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_wheel_speed_2wheel">
-      <comment pinned="false">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-  </category>
+<category name="Servo Car" colour="#9999ff">
   
-
+  <!-- Setup Section -->
+  <label text="Setup - Choose ONE option below" web-class="boldtext"></label>
+  
+  <sep></sep>
+  <label text="Option 1: PCA9685 Mode (I2C)" web-class="boldtext"></label>
+  
+  <block type="ils_car_set_channels_4wheel">
+    <comment pinned="false">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
+    <value name="SDA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+    <value name="SCL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="ADDRESS">
+      <shadow type="math_number">
+        <field name="NUM">0x40</field>
+      </shadow>
+    </value>
+    <value name="FL_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="FR_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="RL_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <value name="RR_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">3</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_set_channels_2wheel">
+    <comment pinned="false">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
+    <value name="SDA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+    <value name="SCL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="ADDRESS">
+      <shadow type="math_number">
+        <field name="NUM">0x40</field>
+      </shadow>
+    </value>
+    <value name="LEFT_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  <label text="Option 2: Direct GPIO Mode" web-class="boldtext"></label>
+  
+  <block type="ils_car_set_pins_4wheel">
+    <comment pinned="false">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
+    <value name="FL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_set_pins_2wheel">
+    <comment pinned="false">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
+    <value name="LEFT_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  <label text="Calibration" web-class="boldtext"></label>
+  
+  <block type="ils_car_set_servo_range">
+    <comment pinned="false">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
+    <value name="MIN_US">
+      <shadow type="math_number">
+        <field name="NUM">500</field>
+      </shadow>
+    </value>
+    <value name="MAX_US">
+      <shadow type="math_number">
+        <field name="NUM">2500</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Basic Movement Section - Now Combined -->
+  <label text="Basic Movement" web-class="boldtext"></label>
+  
+  <block type="ils_car_move">
+    <comment pinned="false">Control car movement - select direction and set speed</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Advanced Movement Section - Now Consolidated -->
+  <label text="Advanced Movement" web-class="boldtext"></label>
+  
+  <block type="ils_car_curve">
+    <comment pinned="false">Curve while moving forward. Turn sharpness: 0=gentle, 100=sharp</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+    <value name="TURN_RATIO">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_drift">
+    <comment pinned="false">Drift in selected direction - works best in 4-wheel mode</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">60</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Individual Wheel Control Section -->
+  <label text="Individual Wheel Control" web-class="boldtext"></label>
+  
+  <block type="ils_car_wheel_speed_4wheel">
+    <comment pinned="false">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_wheel_speed_2wheel">
+    <comment pinned="false">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+</category>
 
  <category name="DC Motor Car" colour="#9999ff">
-    
-    <!-- Setup Section -->
-    <label text="Setup" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_init">
-      <comment pinned="false">Choose configuration and driver type. L298N: needs enable pins. DRV8833: only needs IN pins</comment>
-      <field name="CONFIG">0</field>
-      <field name="DRIVER">0</field>
-    </block>
-    
-    <sep></sep>
-    <label text="L298N Pin Configuration" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_set_pins_l298n_4wheel">
-      <comment pinned="false">Set pins for L298N driver with 4 motors. Each motor uses 3 pins: ENA/ENB (speed), IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
-      <value name="FL_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="FL_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-      <value name="FL_PIN3">
-        <shadow type="pinout">
-          <field name="PIN">14</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">27</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">26</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN3">
-        <shadow type="pinout">
-          <field name="PIN">25</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">33</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">32</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN3">
-        <shadow type="pinout">
-          <field name="PIN">35</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">4</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">16</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN3">
-        <shadow type="pinout">
-          <field name="PIN">17</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_set_pins_l298n_2wheel">
-      <comment pinned="false">Set pins for L298N driver with 2 motors. Each motor uses 3 pins: ENA/ENB (speed), IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
-      <value name="LEFT_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="LEFT_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-      <value name="LEFT_PIN3">
-        <shadow type="pinout">
-          <field name="PIN">14</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">27</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">26</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN3">
-        <shadow type="pinout">
-          <field name="PIN">25</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    <label text="DRV8833 Pin Configuration" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_set_pins_drv8833_4wheel">
-      <comment pinned="false">Set pins for DRV8833 driver with 4 motors. Each motor uses 2 pins: IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
-      <value name="FL_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="FL_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">27</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">26</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">33</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">32</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">4</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">16</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_set_pins_drv8833_2wheel">
-      <comment pinned="false">Set pins for DRV8833 driver with 2 motors. Each motor uses 2 pins: IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
-      <value name="LEFT_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="LEFT_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN1">
-        <shadow type="pinout">
-          <field name="PIN">33</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN2">
-        <shadow type="pinout">
-          <field name="PIN">32</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    <label text="Configuration" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_set_mirror">
-      <comment pinned="false">Enable mirror mode if motors rotate in wrong direction. Try enabling left or right mirror if car doesn't go straight</comment>
-      <field name="MIRROR_LEFT">FALSE</field>
-      <field name="MIRROR_RIGHT">FALSE</field>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Basic Movement Section -->
-    <label text="Basic Movement" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_forward">
-      <comment pinned="false">Move DC motor car forward</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_backward">
-      <comment pinned="false">Move DC motor car backward</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_turn_left">
-      <comment pinned="false">Rotate DC motor car left</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_turn_right">
-      <comment pinned="false">Rotate DC motor car right</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_stop">
-      <comment pinned="false">Stop all DC motors</comment>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Advanced Movement Section -->
-    <label text="Advanced Movement" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_curve_left">
-      <comment pinned="false">Curve while moving forward. Turn sharpness: 0=gentle, 100=sharp</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="TURN_RATIO">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_curve_right">
-      <comment pinned="false">Curve while moving forward. Turn sharpness: 0=gentle, 100=sharp</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="TURN_RATIO">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_drift_left">
-      <comment pinned="false">Drift left - works best in 4-wheel mode</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">60</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_drift_right">
-      <comment pinned="false">Drift right - works best in 4-wheel mode</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">60</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Individual Wheel Control Section -->
-    <label text="Individual Wheel Control" web-class="boldtext"></label>
-    
-    <block type="ils_dc_car_wheel_speed_4wheel">
-      <comment pinned="false">Control single DC motor in 4-wheel mode. Speed: -100 to 100</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_dc_car_wheel_speed_2wheel">
-      <comment pinned="false">Control single DC motor in 2-wheel mode. Speed: -100 to 100</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-  </category>
+  
+  <!-- Setup Section -->
+  <label text="Setup" web-class="boldtext"></label>
+  
+  <block type="ils_dc_car_init">
+    <comment pinned="false">Choose configuration and driver type. L298N: needs enable pins. DRV8833: only needs IN pins</comment>
+    <field name="CONFIG">0</field>
+    <field name="DRIVER">0</field>
+  </block>
+  
+  <sep></sep>
+  <label text="L298N Pin Configuration" web-class="boldtext"></label>
+  
+  <block type="ils_dc_car_set_pins_l298n_4wheel">
+    <comment pinned="false">Set pins for L298N driver with 4 motors. Each motor uses 3 pins: ENA/ENB (speed), IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+    <value name="FL_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="FL_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="FL_PIN3">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN3">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">33</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">32</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN3">
+      <shadow type="pinout">
+        <field name="PIN">35</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">4</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">16</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN3">
+      <shadow type="pinout">
+        <field name="PIN">17</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_dc_car_set_pins_l298n_2wheel">
+    <comment pinned="false">Set pins for L298N driver with 2 motors. Each motor uses 3 pins: ENA/ENB (speed), IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+    <value name="LEFT_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="LEFT_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="LEFT_PIN3">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN3">
+      <shadow type="pinout">
+        <field name="PIN">25</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  <label text="DRV8833 Pin Configuration" web-class="boldtext"></label>
+  
+  <block type="ils_dc_car_set_pins_drv8833_4wheel">
+    <comment pinned="false">Set pins for DRV8833 driver with 4 motors. Each motor uses 2 pins: IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+    <value name="FL_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="FL_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">26</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">33</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">32</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">4</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">16</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_dc_car_set_pins_drv8833_2wheel">
+    <comment pinned="false">Set pins for DRV8833 driver with 2 motors. Each motor uses 2 pins: IN1/IN3 (direction 1), IN2/IN4 (direction 2)</comment>
+    <value name="LEFT_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="LEFT_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN1">
+      <shadow type="pinout">
+        <field name="PIN">33</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN2">
+      <shadow type="pinout">
+        <field name="PIN">32</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Basic Movement Section - Now Combined -->
+  <label text="Basic Movement" web-class="boldtext"></label>
+  
+  <block type="ils_dc_car_move">
+    <comment pinned="false">Control DC car movement - select direction and set speed</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Advanced Movement Section - Now Consolidated -->
+  <label text="Advanced Movement" web-class="boldtext"></label>
+  
+  <block type="ils_dc_car_curve">
+    <comment pinned="false">Curve while moving forward. Turn sharpness: 0=gentle, 100=sharp</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+    <value name="TURN_RATIO">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_dc_car_drift">
+    <comment pinned="false">Drift in selected direction - works best in 4-wheel mode</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">60</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Individual Wheel Control Section -->
+  <label text="Individual Wheel Control" web-class="boldtext"></label>
+  
+  <block type="ils_dc_car_wheel_speed_4wheel">
+    <comment pinned="false">Control single DC motor in 4-wheel mode. Speed: -100 to 100</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_dc_car_wheel_speed_2wheel">
+    <comment pinned="false">Control single DC motor in 2-wheel mode. Speed: -100 to 100</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
 </category>
- 
+ </category>
    <category name="%{BKY_CAT_FILES}" colour="%{BKY_FILES_HUE}">
   <label text="Read and write files"></label>
 

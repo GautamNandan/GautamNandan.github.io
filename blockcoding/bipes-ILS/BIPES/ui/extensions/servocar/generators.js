@@ -89,30 +89,34 @@ Blockly.Python['ils_car_move'] = function(block) {
   return code;
 };
 
-// Advanced Movement Generators
-Blockly.Python['ils_car_curve_left'] = function(block) {
+// Combined Curve Generator
+Blockly.Python['ils_car_curve'] = function(block) {
+  var direction = block.getFieldValue('DIRECTION');
   var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
   var turn_ratio = Blockly.Python.valueToCode(block, 'TURN_RATIO', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_car.curve_left(' + speed + ', ' + turn_ratio + ')\n';
+  
+  var code = '';
+  if (direction === 'LEFT') {
+    code = 'ils_car.curve_left(' + speed + ', ' + turn_ratio + ')\n';
+  } else {
+    code = 'ils_car.curve_right(' + speed + ', ' + turn_ratio + ')\n';
+  }
+  
   return code;
 };
 
-Blockly.Python['ils_car_curve_right'] = function(block) {
+// Combined Drift Generator
+Blockly.Python['ils_car_drift'] = function(block) {
+  var direction = block.getFieldValue('DIRECTION');
   var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var turn_ratio = Blockly.Python.valueToCode(block, 'TURN_RATIO', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_car.curve_right(' + speed + ', ' + turn_ratio + ')\n';
-  return code;
-};
-
-Blockly.Python['ils_car_drift_left'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_car.drift_left(' + speed + ')\n';
-  return code;
-};
-
-Blockly.Python['ils_car_drift_right'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_car.drift_right(' + speed + ')\n';
+  
+  var code = '';
+  if (direction === 'LEFT') {
+    code = 'ils_car.drift_left(' + speed + ')\n';
+  } else {
+    code = 'ils_car.drift_right(' + speed + ')\n';
+  }
+  
   return code;
 };
 

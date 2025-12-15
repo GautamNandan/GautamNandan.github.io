@@ -1,4 +1,4 @@
-// DC Motor Car Blocks - L298N and DRV8833 Drivers (Separated)
+// DC Motor Car Blocks - L298N and DRV8833 Drivers (Consolidated)
 // Color: #9999ff
 
 Blockly.Blocks['ils_dc_car_init'] = {
@@ -235,12 +235,18 @@ Blockly.Blocks['ils_dc_car_set_pins_drv8833_2wheel'] = {
   }
 };
 
-// Basic Movement Blocks (unchanged)
-
-Blockly.Blocks['ils_dc_car_forward'] = {
+// Combined Basic Movement Block
+Blockly.Blocks['ils_dc_car_move'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⬆️ DC Car Move Forward");
+        .appendField("🚗 DC Car Move")
+        .appendField(new Blockly.FieldDropdown([
+          ["⬆️ Forward", "FORWARD"],
+          ["⬇️ Backward", "BACKWARD"],
+          ["↪️ Turn Left", "LEFT"],
+          ["↩️ Turn Right", "RIGHT"],
+          ["🛑 Stop", "STOP"]
+        ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -248,77 +254,20 @@ Blockly.Blocks['ils_dc_car_forward'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
-    this.setTooltip("Move the DC motor car forward at specified speed");
+    this.setTooltip("Control DC car movement - select direction and speed");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_dc_car_backward'] = {
+// Combined Advanced Movement Block - Curve
+Blockly.Blocks['ils_dc_car_curve'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⬇️ DC Car Move Backward");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Move the DC motor car backward at specified speed");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_dc_car_turn_left'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("↪️ DC Car Turn Left");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Rotate the DC motor car left in place");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_dc_car_turn_right'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("↩️ DC Car Turn Right");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Rotate the DC motor car right in place");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_dc_car_stop'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🛑 DC Car Stop");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Stop all DC motors immediately");
-    this.setHelpUrl("");
-  }
-};
-
-// Advanced Movement Blocks (unchanged)
-
-Blockly.Blocks['ils_dc_car_curve_left'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🔄 DC Car Curve Left");
+        .appendField("🔄 DC Car Curve")
+        .appendField(new Blockly.FieldDropdown([
+          ["Left", "LEFT"],
+          ["Right", "RIGHT"]
+        ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -330,35 +279,20 @@ Blockly.Blocks['ils_dc_car_curve_left'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
-    this.setTooltip("Move forward while curving left. Higher turn ratio = sharper turn");
+    this.setTooltip("Move forward while curving. Higher turn ratio = sharper turn");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_dc_car_curve_right'] = {
+// Combined Advanced Movement Block - Drift
+Blockly.Blocks['ils_dc_car_drift'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔃 DC Car Curve Right");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.appendValueInput("TURN_RATIO")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("turn sharpness (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Move forward while curving right. Higher turn ratio = sharper turn");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_dc_car_drift_left'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("💨 DC Car Drift Left");
+        .appendField("💨 DC Car Drift")
+        .appendField(new Blockly.FieldDropdown([
+          ["Left", "LEFT"],
+          ["Right", "RIGHT"]
+        ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -366,28 +300,12 @@ Blockly.Blocks['ils_dc_car_drift_left'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
-    this.setTooltip("Drift left - works best in 4-wheel mode");
+    this.setTooltip("Drift in selected direction - works best in 4-wheel mode");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_dc_car_drift_right'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("💨 DC Car Drift Right");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Drift right - works best in 4-wheel mode");
-    this.setHelpUrl("");
-  }
-};
-
-// Individual Wheel Control (unchanged)
+// Individual Wheel Control
 
 Blockly.Blocks['ils_dc_car_wheel_speed_4wheel'] = {
   init: function() {
@@ -433,28 +351,6 @@ Blockly.Blocks['ils_dc_car_wheel_speed_2wheel'] = {
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
     this.setTooltip("Control individual DC motor speed in 2-wheel mode. Negative = reverse");
-    this.setHelpUrl("");
-  }
-};
-
-// Configuration Block (unchanged)
-
-Blockly.Blocks['ils_dc_car_set_mirror'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🔄 Set DC Car Mirror Mode");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("mirror left motors")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "MIRROR_LEFT");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("mirror right motors")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "MIRROR_RIGHT");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Enable mirror mode if motors are mounted in opposite directions");
     this.setHelpUrl("");
   }
 };

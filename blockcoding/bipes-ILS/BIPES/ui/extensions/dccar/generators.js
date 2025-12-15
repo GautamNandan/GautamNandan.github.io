@@ -1,4 +1,4 @@
-// ILS DC Motor Car Code Generators (Separated Drivers)
+// ILS DC Motor Car Code Generators (Consolidated)
 
 Blockly.Python['ils_dc_car_init'] = function(block) {
   var config = block.getFieldValue('CONFIG');
@@ -111,66 +111,65 @@ Blockly.Python['ils_dc_car_set_pins_drv8833_2wheel'] = function(block) {
   return code;
 };
 
-// Basic Movement Generators (unchanged)
-
-Blockly.Python['ils_dc_car_forward'] = function(block) {
+// Combined Basic Movement Generator
+Blockly.Python['ils_dc_car_move'] = function(block) {
+  var direction = block.getFieldValue('DIRECTION');
   var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.move_forward(' + speed + ')\n';
+  
+  var code = '';
+  switch(direction) {
+    case 'FORWARD':
+      code = 'ils_dc_car.move_forward(' + speed + ')\n';
+      break;
+    case 'BACKWARD':
+      code = 'ils_dc_car.move_backward(' + speed + ')\n';
+      break;
+    case 'LEFT':
+      code = 'ils_dc_car.turn_left(' + speed + ')\n';
+      break;
+    case 'RIGHT':
+      code = 'ils_dc_car.turn_right(' + speed + ')\n';
+      break;
+    case 'STOP':
+      code = 'ils_dc_car.stop()\n';
+      break;
+  }
+  
   return code;
 };
 
-Blockly.Python['ils_dc_car_backward'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.move_backward(' + speed + ')\n';
-  return code;
-};
-
-Blockly.Python['ils_dc_car_turn_left'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.turn_left(' + speed + ')\n';
-  return code;
-};
-
-Blockly.Python['ils_dc_car_turn_right'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.turn_right(' + speed + ')\n';
-  return code;
-};
-
-Blockly.Python['ils_dc_car_stop'] = function(block) {
-  var code = 'ils_dc_car.stop()\n';
-  return code;
-};
-
-// Advanced Movement Generators (unchanged)
-
-Blockly.Python['ils_dc_car_curve_left'] = function(block) {
+// Combined Curve Generator
+Blockly.Python['ils_dc_car_curve'] = function(block) {
+  var direction = block.getFieldValue('DIRECTION');
   var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
   var turn_ratio = Blockly.Python.valueToCode(block, 'TURN_RATIO', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.curve_left(' + speed + ', ' + turn_ratio + ')\n';
+  
+  var code = '';
+  if (direction === 'LEFT') {
+    code = 'ils_dc_car.curve_left(' + speed + ', ' + turn_ratio + ')\n';
+  } else {
+    code = 'ils_dc_car.curve_right(' + speed + ', ' + turn_ratio + ')\n';
+  }
+  
   return code;
 };
 
-Blockly.Python['ils_dc_car_curve_right'] = function(block) {
+// Combined Drift Generator
+Blockly.Python['ils_dc_car_drift'] = function(block) {
+  var direction = block.getFieldValue('DIRECTION');
   var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var turn_ratio = Blockly.Python.valueToCode(block, 'TURN_RATIO', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.curve_right(' + speed + ', ' + turn_ratio + ')\n';
+  
+  var code = '';
+  if (direction === 'LEFT') {
+    code = 'ils_dc_car.drift_left(' + speed + ')\n';
+  } else {
+    code = 'ils_dc_car.drift_right(' + speed + ')\n';
+  }
+  
   return code;
 };
 
-Blockly.Python['ils_dc_car_drift_left'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.drift_left(' + speed + ')\n';
-  return code;
-};
-
-Blockly.Python['ils_dc_car_drift_right'] = function(block) {
-  var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '50';
-  var code = 'ils_dc_car.drift_right(' + speed + ')\n';
-  return code;
-};
-
-// Individual Wheel Control Generators (unchanged)
+// Individual Wheel Control Generators
 
 Blockly.Python['ils_dc_car_wheel_speed_4wheel'] = function(block) {
   var wheel = block.getFieldValue('WHEEL');
@@ -183,14 +182,5 @@ Blockly.Python['ils_dc_car_wheel_speed_2wheel'] = function(block) {
   var wheel = block.getFieldValue('WHEEL');
   var speed = Blockly.Python.valueToCode(block, 'SPEED', Blockly.Python.ORDER_ATOMIC) || '0';
   var code = 'ils_dc_car.set_wheel_speed(' + wheel + ', ' + speed + ')\n';
-  return code;
-};
-
-// Configuration Generator (unchanged)
-
-Blockly.Python['ils_dc_car_set_mirror'] = function(block) {
-  var mirror_left = block.getFieldValue('MIRROR_LEFT') == 'TRUE' ? 'True' : 'False';
-  var mirror_right = block.getFieldValue('MIRROR_RIGHT') == 'TRUE' ? 'True' : 'False';
-  var code = 'ils_dc_car.set_mirror_mode(' + mirror_left + ', ' + mirror_right + ')\n';
   return code;
 };

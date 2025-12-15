@@ -146,12 +146,15 @@ Blockly.Blocks['ils_car_move'] = {
   }
 };
 
-// Advanced Movement Blocks
-
-Blockly.Blocks['ils_car_curve_left'] = {
+// Combined Advanced Movement Block - Curve
+Blockly.Blocks['ils_car_curve'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔄 Car Curve Left");
+        .appendField("🔄 Car Curve")
+        .appendField(new Blockly.FieldDropdown([
+          ["Left", "LEFT"],
+          ["Right", "RIGHT"]
+        ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -163,35 +166,20 @@ Blockly.Blocks['ils_car_curve_left'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
-    this.setTooltip("Move forward while curving left. Higher turn ratio = sharper turn");
+    this.setTooltip("Move forward while curving. Higher turn ratio = sharper turn");
     this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['ils_car_curve_right'] = {
+// Combined Advanced Movement Block - Drift
+Blockly.Blocks['ils_car_drift'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔃 Car Curve Right");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.appendValueInput("TURN_RATIO")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("turn sharpness (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Move forward while curving right. Higher turn ratio = sharper turn");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_drift_left'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("💨 Car Drift Left");
+        .appendField("💨 Car Drift")
+        .appendField(new Blockly.FieldDropdown([
+          ["Left", "LEFT"],
+          ["Right", "RIGHT"]
+        ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -199,23 +187,7 @@ Blockly.Blocks['ils_car_drift_left'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
-    this.setTooltip("Drift left - works best in 4-wheel mode");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_drift_right'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("💨 Car Drift Right");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Drift right - works best in 4-wheel mode");
+    this.setTooltip("Drift in selected direction - works best in 4-wheel mode");
     this.setHelpUrl("");
   }
 };
