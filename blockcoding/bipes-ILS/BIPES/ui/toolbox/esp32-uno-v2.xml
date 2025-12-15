@@ -4498,261 +4498,229 @@ Roll: Left/right tilt</comment>
 <category name="%{BKY_CAT_PROJECTS}" colour="#9999ff">
 
   
-  <category name="Servo Car" colour="#9999ff">
-    
-    <!-- Setup Section -->
-    <label text="Setup - Choose ONE option below" web-class="boldtext"></label>
-    
-    <sep></sep>
-    <label text="Option 1: PCA9685 Mode (I2C)" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_channels_4wheel">
-      <comment pinned="false">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
-      <value name="SDA_PIN">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-      <value name="SCL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="ADDRESS">
-        <shadow type="math_number">
-          <field name="NUM">0x40</field>
-        </shadow>
-      </value>
-      <value name="FL_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-      <value name="FR_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-      <value name="RL_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">2</field>
-        </shadow>
-      </value>
-      <value name="RR_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">3</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_set_channels_2wheel">
-      <comment pinned="false">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
-      <value name="SDA_PIN">
-        <shadow type="pinout">
-          <field name="PIN">21</field>
-        </shadow>
-      </value>
-      <value name="SCL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">22</field>
-        </shadow>
-      </value>
-      <value name="ADDRESS">
-        <shadow type="math_number">
-          <field name="NUM">0x40</field>
-        </shadow>
-      </value>
-      <value name="LEFT_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_CHANNEL">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    <label text="Option 2: Direct GPIO Mode" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_pins_4wheel">
-      <comment pinned="false">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
-      <value name="FL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="FR_PIN">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-      <value name="RL_PIN">
-        <shadow type="pinout">
-          <field name="PIN">14</field>
-        </shadow>
-      </value>
-      <value name="RR_PIN">
-        <shadow type="pinout">
-          <field name="PIN">27</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_set_pins_2wheel">
-      <comment pinned="false">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
-      <value name="LEFT_PIN">
-        <shadow type="pinout">
-          <field name="PIN">12</field>
-        </shadow>
-      </value>
-      <value name="RIGHT_PIN">
-        <shadow type="pinout">
-          <field name="PIN">13</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    <label text="Calibration" web-class="boldtext"></label>
-    
-    <block type="ils_car_set_servo_range">
-      <comment pinned="false">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
-      <value name="MIN_US">
-        <shadow type="math_number">
-          <field name="NUM">500</field>
-        </shadow>
-      </value>
-      <value name="MAX_US">
-        <shadow type="math_number">
-          <field name="NUM">2500</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Basic Movement Section -->
-    <label text="Basic Movement" web-class="boldtext"></label>
-    
-    <block type="ils_car_forward">
-      <comment pinned="false">Move forward - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_backward">
-      <comment pinned="false">Move backward - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_turn_left">
-      <comment pinned="false">Rotate left - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_turn_right">
-      <comment pinned="false">Rotate right - works in all modes</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_stop">
-      <comment pinned="false">Stop all wheels</comment>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Advanced Movement Section -->
-    <label text="Advanced Movement" web-class="boldtext"></label>
-    
-    <block type="ils_car_curve_left">
-      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="TURN_RATIO">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_curve_right">
-      <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="TURN_RATIO">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_drift_left">
-      <comment pinned="false">Drift left - works best in 4-wheel mode</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">60</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_drift_right">
-      <comment pinned="false">Drift right - works best in 4-wheel mode</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">60</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <sep></sep>
-    
-    <!-- Individual Wheel Control Section -->
-    <label text="Individual Wheel Control" web-class="boldtext"></label>
-    
-    <block type="ils_car_wheel_speed_4wheel">
-      <comment pinned="false">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-    <block type="ils_car_wheel_speed_2wheel">
-      <comment pinned="false">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
-      <value name="SPEED">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    
-  </category>
+<category name="Servo Car" colour="#9999ff">
   
+  <!-- Setup Section -->
+  <label text="Setup - Choose ONE option below" web-class="boldtext"></label>
+  
+  <sep></sep>
+  <label text="Option 1: PCA9685 Mode (I2C)" web-class="boldtext"></label>
+  
+  <block type="ils_car_set_channels_4wheel">
+    <comment pinned="false">For 4-wheel PCA9685 mode: Setup I2C and set channels (0-15) for each wheel</comment>
+    <value name="SDA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+    <value name="SCL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="ADDRESS">
+      <shadow type="math_number">
+        <field name="NUM">0x40</field>
+      </shadow>
+    </value>
+    <value name="FL_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="FR_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="RL_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <value name="RR_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">3</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_set_channels_2wheel">
+    <comment pinned="false">For 2-wheel PCA9685 mode: Setup I2C and set channels (0-15) for left and right wheels</comment>
+    <value name="SDA_PIN">
+      <shadow type="pinout">
+        <field name="PIN">21</field>
+      </shadow>
+    </value>
+    <value name="SCL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">22</field>
+      </shadow>
+    </value>
+    <value name="ADDRESS">
+      <shadow type="math_number">
+        <field name="NUM">0x40</field>
+      </shadow>
+    </value>
+    <value name="LEFT_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_CHANNEL">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  <label text="Option 2: Direct GPIO Mode" web-class="boldtext"></label>
+  
+  <block type="ils_car_set_pins_4wheel">
+    <comment pinned="false">Set GPIO pins for 4-wheel Direct mode. Use PWM-capable pins!</comment>
+    <value name="FL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="FR_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+    <value name="RL_PIN">
+      <shadow type="pinout">
+        <field name="PIN">14</field>
+      </shadow>
+    </value>
+    <value name="RR_PIN">
+      <shadow type="pinout">
+        <field name="PIN">27</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_set_pins_2wheel">
+    <comment pinned="false">Set GPIO pins for 2-wheel Direct mode. Use PWM-capable pins!</comment>
+    <value name="LEFT_PIN">
+      <shadow type="pinout">
+        <field name="PIN">12</field>
+      </shadow>
+    </value>
+    <value name="RIGHT_PIN">
+      <shadow type="pinout">
+        <field name="PIN">13</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  <label text="Calibration" web-class="boldtext"></label>
+  
+  <block type="ils_car_set_servo_range">
+    <comment pinned="false">Calibrate servo range if needed. Standard servos: 500-2500μs</comment>
+    <value name="MIN_US">
+      <shadow type="math_number">
+        <field name="NUM">500</field>
+      </shadow>
+    </value>
+    <value name="MAX_US">
+      <shadow type="math_number">
+        <field name="NUM">2500</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Basic Movement Section - Now Combined -->
+  <label text="Basic Movement" web-class="boldtext"></label>
+  
+  <block type="ils_car_move">
+    <comment pinned="false">Control car movement - select direction and set speed</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Advanced Movement Section -->
+  <label text="Advanced Movement" web-class="boldtext"></label>
+  
+  <block type="ils_car_curve_left">
+    <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+    <value name="TURN_RATIO">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_curve_right">
+    <comment pinned="false">Curve while moving. Turn sharpness: 0=gentle, 100=sharp</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+    <value name="TURN_RATIO">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_drift_left">
+    <comment pinned="false">Drift left - works best in 4-wheel mode</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">60</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_drift_right">
+    <comment pinned="false">Drift right - works best in 4-wheel mode</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">60</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <sep></sep>
+  
+  <!-- Individual Wheel Control Section -->
+  <label text="Individual Wheel Control" web-class="boldtext"></label>
+  
+  <block type="ils_car_wheel_speed_4wheel">
+    <comment pinned="false">Control single wheel in 4-wheel mode. Speed: -100 to 100</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="ils_car_wheel_speed_2wheel">
+    <comment pinned="false">Control single wheel in 2-wheel mode. Speed: -100 to 100</comment>
+    <value name="SPEED">
+      <shadow type="math_number">
+        <field name="NUM">50</field>
+      </shadow>
+    </value>
+  </block>
+  
+</category>
 
 
  <category name="DC Motor Car" colour="#9999ff">

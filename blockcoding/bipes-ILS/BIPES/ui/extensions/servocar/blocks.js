@@ -122,12 +122,18 @@ Blockly.Blocks['ils_car_set_channels_2wheel'] = {
   }
 };
 
-// Basic Movement Blocks
-
-Blockly.Blocks['ils_car_forward'] = {
+// Combined Basic Movement Block
+Blockly.Blocks['ils_car_move'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⬆️ Car Move Forward");
+        .appendField("🚗 Car Move")
+        .appendField(new Blockly.FieldDropdown([
+          ["⬆️ Forward", "FORWARD"],
+          ["⬇️ Backward", "BACKWARD"],
+          ["↪️ Turn Left", "LEFT"],
+          ["↩️ Turn Right", "RIGHT"],
+          ["🛑 Stop", "STOP"]
+        ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -135,67 +141,7 @@ Blockly.Blocks['ils_car_forward'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#9999ff");
-    this.setTooltip("Move the car forward at specified speed");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_backward'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("⬇️ Car Move Backward");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Move the car backward at specified speed");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_turn_left'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("↪️ Car Turn Left");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Rotate the car left in place");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_turn_right'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("↩️ Car Turn Right");
-    this.appendValueInput("SPEED")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("speed (0-100)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Rotate the car right in place");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['ils_car_stop'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("🛑 Car Stop");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour("#9999ff");
-    this.setTooltip("Stop all wheels immediately");
+    this.setTooltip("Control car movement - select direction and speed");
     this.setHelpUrl("");
   }
 };
