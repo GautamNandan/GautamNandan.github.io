@@ -89,6 +89,11 @@ Blockly.Python['ils_car_move'] = function(block) {
   return code;
 };
 
+Blockly.Python['ils_car_stop'] = function(block) {
+  var code = 'ils_car.stop()\n';
+  return code;
+};
+
 // Combined Curve Generator
 Blockly.Python['ils_car_curve'] = function(block) {
   var direction = block.getFieldValue('DIRECTION');

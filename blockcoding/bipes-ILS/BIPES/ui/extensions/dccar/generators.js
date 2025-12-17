@@ -130,11 +130,13 @@ Blockly.Python['ils_dc_car_move'] = function(block) {
     case 'RIGHT':
       code = 'ils_dc_car.turn_right(' + speed + ')\n';
       break;
-    case 'STOP':
-      code = 'ils_dc_car.stop()\n';
-      break;
   }
   
+  return code;
+};
+
+Blockly.Python['ils_dc_car_stop'] = function(block) {
+  var code = 'ils_dc_car.stop()\n'; 
   return code;
 };
 

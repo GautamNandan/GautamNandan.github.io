@@ -4646,6 +4646,10 @@ Roll: Left/right tilt</comment>
     </value>
   </block>
   
+	<block type="ils_car_stop">
+	  <comment pinned="false">Quick stop - stops all wheels immediately</comment>
+	</block>
+  
   <sep></sep>
   
   <!-- Advanced Movement Section - Now Consolidated -->
@@ -4895,6 +4899,10 @@ Roll: Left/right tilt</comment>
       </shadow>
     </value>
   </block>
+  
+	<block type="ils_dc_car_stop">
+	  <comment pinned="false">Quick stop - stops all DC motors immediately</comment>
+	</block>
   
   <sep></sep>
   

@@ -5,7 +5,7 @@
 Blockly.Blocks['ils_car_set_pins_4wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📍 Set Car GPIO Pins (4-Wheel)");
+        .appendField("📍 Set Servo Car GPIO Pins (4-Wheel)");
     this.appendValueInput("FL_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -33,7 +33,7 @@ Blockly.Blocks['ils_car_set_pins_4wheel'] = {
 Blockly.Blocks['ils_car_set_pins_2wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📍 Set Car GPIO Pins (2-Wheel)");
+        .appendField("📍 Set Servo Car GPIO Pins (2-Wheel)");
     this.appendValueInput("LEFT_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -53,7 +53,7 @@ Blockly.Blocks['ils_car_set_pins_2wheel'] = {
 Blockly.Blocks['ils_car_set_channels_4wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⚙️ Set Car PCA9685 (4-Wheel)");
+        .appendField("⚙️ Set Servo Car PCA9685 (4-Wheel)");
     this.appendValueInput("SDA_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -93,7 +93,7 @@ Blockly.Blocks['ils_car_set_channels_4wheel'] = {
 Blockly.Blocks['ils_car_set_channels_2wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("⚙️ Set Car PCA9685 (2-Wheel)");
+        .appendField("⚙️ Set Servo Car PCA9685 (2-Wheel)");
     this.appendValueInput("SDA_PIN")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -126,13 +126,12 @@ Blockly.Blocks['ils_car_set_channels_2wheel'] = {
 Blockly.Blocks['ils_car_move'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🚗 Car Move")
+        .appendField("🚗 Servo Car Move")
         .appendField(new Blockly.FieldDropdown([
           ["⬆️ Forward", "FORWARD"],
           ["⬇️ Backward", "BACKWARD"],
           ["↪️ Turn Left", "LEFT"],
-          ["↩️ Turn Right", "RIGHT"],
-          ["🛑 Stop", "STOP"]
+          ["↩️ Turn Right", "RIGHT"]
         ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
@@ -146,11 +145,24 @@ Blockly.Blocks['ils_car_move'] = {
   }
 };
 
+Blockly.Blocks['ils_car_stop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🛑 Stop Servo Car");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour("#9999ff");
+    this.setTooltip("Stops the Servo car");
+    this.setHelpUrl("");
+  }
+};
+
+
 // Combined Advanced Movement Block - Curve
 Blockly.Blocks['ils_car_curve'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🔄 Car Curve")
+        .appendField("🔄Servo Car Curve")
         .appendField(new Blockly.FieldDropdown([
           ["Left", "LEFT"],
           ["Right", "RIGHT"]
@@ -175,7 +187,7 @@ Blockly.Blocks['ils_car_curve'] = {
 Blockly.Blocks['ils_car_drift'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("💨 Car Drift")
+        .appendField("💨Servo Car Drift")
         .appendField(new Blockly.FieldDropdown([
           ["Left", "LEFT"],
           ["Right", "RIGHT"]
@@ -197,7 +209,7 @@ Blockly.Blocks['ils_car_drift'] = {
 Blockly.Blocks['ils_car_wheel_speed_4wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🎡 Set Wheel Speed (4-Wheel)");
+        .appendField("🎡 Set Servo Wheel Speed (4-Wheel)");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("wheel")
@@ -222,7 +234,7 @@ Blockly.Blocks['ils_car_wheel_speed_4wheel'] = {
 Blockly.Blocks['ils_car_wheel_speed_2wheel'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("🎡 Set Wheel Speed (2-Wheel)");
+        .appendField("🎡 Set Servo Wheel Speed (2-Wheel)");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("wheel")
@@ -247,7 +259,7 @@ Blockly.Blocks['ils_car_wheel_speed_2wheel'] = {
 Blockly.Blocks['ils_car_set_servo_range'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("📏 Set Car Servo Range");
+        .appendField("📏 Set Servo Car Servo Range");
     this.appendValueInput("MIN_US")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)

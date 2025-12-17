@@ -244,8 +244,7 @@ Blockly.Blocks['ils_dc_car_move'] = {
           ["⬆️ Forward", "FORWARD"],
           ["⬇️ Backward", "BACKWARD"],
           ["↪️ Turn Left", "LEFT"],
-          ["↩️ Turn Right", "RIGHT"],
-          ["🛑 Stop", "STOP"]
+          ["↩️ Turn Right", "RIGHT"]
         ]), "DIRECTION");
     this.appendValueInput("SPEED")
         .setCheck("Number")
@@ -258,6 +257,19 @@ Blockly.Blocks['ils_dc_car_move'] = {
     this.setHelpUrl("");
   }
 };
+Blockly.Blocks['ils_dc_car_stop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("🛑 DC Car Stop");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour("#9999ff");
+    this.setTooltip("Stops the DC Car");
+    this.setHelpUrl("");
+  }
+};
+
+
 
 // Combined Advanced Movement Block - Curve
 Blockly.Blocks['ils_dc_car_curve'] = {
