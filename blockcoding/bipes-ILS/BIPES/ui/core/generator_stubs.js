@@ -322,7 +322,7 @@ Blockly.Python['gpio_interrupt'] = function(block) {
 
   var code='';
   if (value_pin) {
-    Blockly.Python.definitions_[`gpio_interrupt${value_pin}`] = `\n#Interrupt handler\ndef callback${value_pin}(pPin):\n${globals}${statements_code}\n\n`;
+    Blockly.Python.definitions_[`gpio_interrupt${value_pin}`] = `\n#Interrupt handler\n\n#@no_async\ndef callback${value_pin}(pPin):\n${globals}${statements_code}\n\n`;
 
 	  code = `p${value_pin} = Pin(${value_pin}, Pin.IN)\n`;
 	  code += `p${value_pin}.irq(trigger=Pin.${dropdown_trigger}, handler=callback${value_pin})\n`;
@@ -4291,7 +4291,7 @@ Blockly.Python['timer'] = function(block) {
   Blockly.Python.definitions_['import_timer'] = 'from machine import Timer';
   Blockly.Python.definitions_[`import_timer_start${timerNumber}`] = `tim${timerNumber} = Timer(${timerNumber})`;
 
-  Blockly.Python.definitions_[`import_timer_callback${timerNumber}`] = `\n#Timer Function Callback\ndef timerFunc${timerNumber}(t):\n${globals}${statements_name}\n\n`;
+  Blockly.Python.definitions_[`import_timer_callback${timerNumber}`] = `\n#Timer Function Callback\n#@no_async\ndef timerFunc${timerNumber}(t):\n${globals}${statements_name}\n\n`;
 
   var code = `tim${timerNumber}.init(period=${interval}, mode=Timer.${dropdown_mode}, callback=timerFunc${timerNumber})\n`;
              
@@ -5482,7 +5482,7 @@ Blockly.Python['inter_init'] = function(block){
 	Blockly.Python.definitions_['import_machine'] = 'import machine';
 
 	var value_nome = Blockly.Python.valueToCode(block, 'Nome', Blockly.Python.ORDER_ATOMIC);
-	var value_handler = Blockly.Python.valueToCode(block, 'Function', Blockly.Python.ORDER_ATOMIC);
+	var value_handler =  Blockly.Python.valueToCode(block, 'Function', Blockly.Python.ORDER_ATOMIC);
 	var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
 
 	var code = ''+value_nome.replace('\'','').replace('\'','')+'=machine.Pin('+value_pin+', machine.Pin.IN, machine.Pin.PULL_UP) \n'+value_nome.replace('\'','').replace('\'','')+'.irq(trigger=machine.Pin.IRQ_FALLING, handler='+ value_handler.replace('\'','').replace('\'','')+')\n';
